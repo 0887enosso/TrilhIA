@@ -15,10 +15,15 @@ export default async function ModuloPage({
   const sessao = await obterSessaoAtual();
   if (!sessao) redirect("/login");
 
-  if (trilha === "intermediaria") {
-    const progresso = await obterProgressoAgregado(sessao.usuarioId);
-    if (!progresso.basica.trilhaConcluida) redirect("/trilha/basica");
+  const progresso = await obterProgressoAgregado(sessao.usuarioId);
+
+  if (trilha === "intermediaria" && !progresso.basica.trilhaConcluida) {
+    redirect("/trilha/basica");
   }
+
+  const moduloAlvo = progresso[trilha as TrilhaId].modulos.find((m) => m.modulo_id === moduloId);
+  if (!moduloAlvo) notFound();
+  if (!moduloAlvo.desbloqueado) redirect(`/trilha/${trilha}`);
 
   return <ModuloClient trilha={trilha as TrilhaId} moduloId={moduloId} />;
 }

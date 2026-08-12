@@ -65,7 +65,7 @@ export function ModuloClient({ trilha, moduloId }: { trilha: TrilhaId; moduloId:
 
     if (!respostaIniciar.ok) {
       setMensagemErro(corpoIniciar.erro ?? "Não foi possível iniciar o módulo.");
-      const codigosBloqueio = ["limite_diario_atingido", "trilha_bloqueada"];
+      const codigosBloqueio = ["limite_diario_atingido", "trilha_bloqueada", "modulo_bloqueado"];
       setFase(codigosBloqueio.includes(corpoIniciar.codigo) ? "bloqueado" : "erro");
       return;
     }

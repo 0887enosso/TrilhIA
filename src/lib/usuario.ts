@@ -1,3 +1,4 @@
+import { cache } from "react";
 import { prisma } from "./prisma";
 import { estrelasRestantesHoje } from "./limiteDiario";
 
@@ -21,8 +22,12 @@ export type ResumoUsuario = {
  * Retrato do usuário logado — usado por GET /api/auth/me e diretamente pelo
  * layout autenticado do frontend (Server Component), que precisa dos mesmos
  * dados (streak, corações, estrelas) em toda página da área logada.
+ *
+ * Em `cache()`: o layout autenticado já busca isso pra montar o cabeçalho, e
+ * várias páginas buscavam de novo pro próprio conteúdo — cada chamada extra
+ * era outra ida ao Postgres remoto na mesma requisição.
  */
-export async function obterResumoUsuario(usuarioId: string): Promise<ResumoUsuario | null> {
+export const obterResumoUsuario = cache(async (usuarioId: string): Promise<ResumoUsuario | null> => {
   const usuario = await prisma.usuario.findUnique({
     where: { id: usuarioId },
     include: { equipe: true },
@@ -41,7 +46,7 @@ export async function obterResumoUsuario(usuarioId: string): Promise<ResumoUsuar
     streakAtual: usuario.streakAtual,
     streakFreezesDisponiveis: usuario.streakFreezesDisponiveis,
     coracoesAtuais: usuario.coracoesAtuais,
-    estrelasDiariasRestantes: await estrelasRestantesHoje(usuario.id),
+    estrelasDiariasRestantes: estrelasRestantesHoje(usuario),
     precisaTrocarSenha: usuario.precisaTrocarSenha,
   };
-}
+});

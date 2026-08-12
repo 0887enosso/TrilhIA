@@ -2,6 +2,7 @@ import bcrypt from "bcryptjs";
 import { randomInt } from "crypto";
 import { SignJWT, jwtVerify } from "jose";
 import { cookies } from "next/headers";
+import { cache } from "react";
 
 const COOKIE_NAME = "trilhia_session";
 const SESSION_DURATION_SECONDS = 60 * 60 * 24 * 7; // 7 dias
@@ -94,8 +95,15 @@ export async function limparCookieSessao(): Promise<void> {
  * como inválida, mesmo que o token em si ainda não tenha expirado. Isso
  * fecha a lacuna de "resetar senha não expulsa sessões já abertas" (ver
  * docs/auditoria-tecnica-backend.md, item #5.2).
+ *
+ * Envolvida em `cache()` do React: layout + página (e às vezes componentes
+ * dentro dela) chamam isso separadamente na mesma requisição — sem cache,
+ * cada chamada é uma ida a mais ao Postgres remoto (Supabase), e essa
+ * duplicação sozinha já explicava boa parte da lentidão sentida ao navegar.
+ * `cache()` garante que só a primeira chamada por requisição bate no banco;
+ * as demais reaproveitam o resultado.
  */
-export async function obterSessaoAtual(): Promise<SessaoPayload | null> {
+export const obterSessaoAtual = cache(async (): Promise<SessaoPayload | null> => {
   const cookieStore = await cookies();
   const token = cookieStore.get(COOKIE_NAME)?.value;
   if (!token) return null;
@@ -126,4 +134,4 @@ export async function obterSessaoAtual(): Promise<SessaoPayload | null> {
   if (usuario.senhaAlteradaEm.getTime() !== payload.senhaVersao) return null;
 
   return payload;
-}
+});

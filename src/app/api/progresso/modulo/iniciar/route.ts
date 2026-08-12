@@ -5,6 +5,7 @@ import { obterSessaoAtual } from "@/lib/auth";
 import { carregarModulo } from "@/lib/content";
 import { tentarConsumirEstrelaDiaria } from "@/lib/limiteDiario";
 import { trilhaBasicaConcluida } from "@/lib/ligas";
+import { obterProgressoAgregado } from "@/lib/progresso";
 
 const schema = z.object({
   trilha: z.enum(["basica", "intermediaria"]),
@@ -38,6 +39,20 @@ export async function POST(request: NextRequest) {
       {
         erro: "Conclua a Trilha Básica antes de começar a Trilha Intermediária.",
         codigo: "trilha_bloqueada",
+      },
+      { status: 403 }
+    );
+  }
+
+  // Módulo seguinte só libera depois que o anterior está concluído — checado
+  // aqui (não só no mapa da trilha) porque esta rota pode ser chamada direto.
+  const progresso = await obterProgressoAgregado(sessao.usuarioId);
+  const moduloAlvo = progresso[trilha].modulos.find((m) => m.modulo_id === moduloId);
+  if (moduloAlvo && !moduloAlvo.desbloqueado) {
+    return NextResponse.json(
+      {
+        erro: "Conclua o módulo anterior antes de acessar este.",
+        codigo: "modulo_bloqueado",
       },
       { status: 403 }
     );

@@ -60,9 +60,17 @@ export async function tentarConsumirEstrelaDiaria(
   };
 }
 
-/** Só para exibição (ex: tela inicial) — não reserva nada, apenas informa o estado atual. */
-export async function estrelasRestantesHoje(usuarioId: string): Promise<number> {
-  const usuario = await prisma.usuario.findUniqueOrThrow({ where: { id: usuarioId } });
+/**
+ * Só para exibição (ex: tela inicial) — não reserva nada, apenas informa o
+ * estado atual. Recebe os dois campos já carregados (não busca de novo por
+ * ID) porque o único chamador (`obterResumoUsuario`) já tem o usuário
+ * inteiro em mãos — refazer a consulta aqui era uma ida a mais ao banco por
+ * dado que já estava disponível.
+ */
+export function estrelasRestantesHoje(usuario: {
+  modulosIniciadosHoje: number;
+  dataUltimoModuloIniciado: Date | null;
+}): number {
   const hoje = inicioDoDiaUTC(new Date());
 
   const contadorEhDeHoje =
