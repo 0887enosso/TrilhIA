@@ -1,0 +1,191 @@
+{
+  "modulo_id": "intermediaria-14",
+  "trilha": "intermediaria",
+  "bloco": "C",
+  "ordem": 14,
+  "titulo": "Due diligence assistida por IA",
+  "descricao_curta": "O silêncio da IA sobre um documento não é garantia de que ele está sem problema.",
+  "tempo_estimado_min": 5,
+  "objetivos_aprendizagem": [
+    "Entender due diligence como tarefa de organização de grande volume documental",
+    "Usar IA para triagem inicial e sinalização de pontos de atenção",
+    "Reconhecer o risco de falso negativo em triagens automatizadas",
+    "Aplicar prompts de extração em lote de forma consistente"
+  ],
+  "aulas": [
+    {
+      "ordem": 1,
+      "titulo_aula": "Due diligence é, na essência, um problema de volume",
+      "corpo": "Não é que cada documento seja individualmente complexo — é que são muitos, e a IA ajuda justamente onde volume grande vira gargalo humano.",
+      "atividade": {
+        "id": "intermediaria-14-q1",
+        "tipo": "multipla_escolha",
+        "enunciado": "Por que a IA costuma ajudar bem em tarefas de due diligence?",
+        "alternativas": [
+          {
+            "id": "a",
+            "texto": "Porque due diligence é, em essência, um problema de volume de documentos, e a IA ajuda a reduzir esse gargalo.",
+            "correta": true
+          },
+          {
+            "id": "b",
+            "texto": "Porque cada documento individual de due diligence é tecnicamente muito complexo para leitura humana.",
+            "correta": false
+          },
+          {
+            "id": "c",
+            "texto": "Porque due diligence não envolve nenhum tipo de dado sensível.",
+            "correta": false
+          },
+          {
+            "id": "d",
+            "texto": "Porque a IA garante 100% de acerto na triagem de documentos.",
+            "correta": false
+          }
+        ],
+        "explicacao_acerto": "Isso mesmo — o ganho está em lidar com volume, não em complexidade individual dos documentos.",
+        "explicacao_erro": "Complexidade individual não é o ponto central, due diligence frequentemente envolve dado sensível, e não existe garantia de 100% de acerto em nenhuma triagem automatizada."
+      }
+    },
+    {
+      "ordem": 2,
+      "titulo_aula": "Onde a IA ajuda de verdade",
+      "corpo": "Triagem inicial de documentos, sinalização de cláusulas fora do padrão esperado, organização por categoria (financeiro, trabalhista, societário).",
+      "atividade": {
+        "id": "intermediaria-14-q2",
+        "tipo": "verdadeiro_falso",
+        "enunciado": "Se a IA não sinalizou nenhum problema em um documento, é porque o documento está de fato sem problemas.",
+        "resposta_correta": false,
+        "justificativas": [
+          {
+            "id": "a",
+            "texto": "Falso — esse é o risco de falso negativo: um padrão raro pode simplesmente não ser sinalizado pela IA.",
+            "correta": true
+          },
+          {
+            "id": "b",
+            "texto": "Falso, porque a IA sinaliza aleatoriamente documentos sem nenhum critério real.",
+            "correta": false
+          },
+          {
+            "id": "c",
+            "texto": "Verdadeiro, ausência de sinalização é sempre um indicador confiável de documento correto.",
+            "correta": false
+          }
+        ],
+        "explicacao": "A sinalização não é aleatória, mas também não é garantia — silêncio da IA é ausência de sinal, não confirmação de que está tudo certo."
+      }
+    },
+    {
+      "ordem": 3,
+      "titulo_aula": "O risco do \"falso negativo\"",
+      "corpo": "A IA pode simplesmente não sinalizar algo importante, porque aquele padrão específico é raro no que ela aprendeu. Silêncio da IA sobre um documento não significa 'documento sem problema'.",
+      "atividade": {
+        "id": "intermediaria-14-q3",
+        "tipo": "completar_lacuna",
+        "enunciado": "Mesmo com apoio de IA na triagem, uma ___ dos documentos deve ser conferida manualmente.",
+        "lacunas": [
+          {
+            "posicao": 1,
+            "opcoes": [
+              "amostra",
+              "cópia",
+              "tradução"
+            ],
+            "correta": "amostra"
+          }
+        ]
+      }
+    },
+    {
+      "ordem": 4,
+      "titulo_aula": "Amostragem de verificação",
+      "corpo": "Mesmo com apoio de IA na triagem, uma amostra dos documentos — não só os sinalizados — deve ser conferida manualmente, especialmente em due diligences de maior risco.",
+      "atividade": {
+        "id": "intermediaria-14-q4",
+        "tipo": "multipla_escolha",
+        "enunciado": "Uma due diligence de alto risco confia inteiramente na triagem da IA, sem nenhuma amostragem manual dos documentos não sinalizados. Qual o problema?",
+        "alternativas": [
+          {
+            "id": "a",
+            "texto": "O risco de falso negativo fica sem nenhuma camada de verificação adicional, especialmente perigoso em cenários de alto risco.",
+            "correta": true
+          },
+          {
+            "id": "b",
+            "texto": "Não há problema, já que a IA sempre sinaliza corretamente 100% dos documentos com problema.",
+            "correta": false
+          },
+          {
+            "id": "c",
+            "texto": "O único problema é que o processo fica mais lento do que o necessário.",
+            "correta": false
+          },
+          {
+            "id": "d",
+            "texto": "O problema é que due diligence nunca deveria envolver nenhum tipo de IA.",
+            "correta": false
+          }
+        ],
+        "explicacao_acerto": "Sem amostragem manual, um falso negativo pode passar despercebido — justamente o risco mais grave em cenários de alto risco.",
+        "explicacao_erro": "Não existe garantia de 100% de acerto, o problema não é velocidade, e usar IA na triagem não é o problema — a ausência de amostragem, sim."
+      }
+    }
+  ],
+  "atividade_final": [
+    {
+      "id": "intermediaria-14-q5",
+      "tipo": "associacao",
+      "enunciado": "Ligue cada função à sua descrição na due diligence.",
+      "pares": [
+        {
+          "termo": "Triagem inicial de documentos",
+          "definicao": "Primeira organização de um grande volume de material"
+        },
+        {
+          "termo": "Sinalização de cláusulas fora do padrão",
+          "definicao": "Apontar pontos de atenção para revisão"
+        },
+        {
+          "termo": "Organização por categoria",
+          "definicao": "Agrupar documentos por tema (financeiro, trabalhista, societário)"
+        }
+      ]
+    },
+    {
+      "id": "intermediaria-14-q6",
+      "tipo": "verdadeiro_falso",
+      "enunciado": "O silêncio da IA sobre um documento é garantia de que ele não tem nenhum ponto de atenção.",
+      "resposta_correta": false,
+      "justificativas": [
+        {
+          "id": "a",
+          "texto": "Falso — esse é exatamente o risco de falso negativo descrito no módulo.",
+          "correta": true
+        },
+        {
+          "id": "b",
+          "texto": "Falso, porque a IA sempre sinaliza mais documentos do que o necessário, nunca menos.",
+          "correta": false
+        },
+        {
+          "id": "c",
+          "texto": "Verdadeiro, silêncio da IA é um indicador cientificamente comprovado de ausência de risco.",
+          "correta": false
+        }
+      ],
+      "explicacao": "Não há um viés garantido de 'sinalizar demais' — o risco relevante aqui é justamente o oposto, sinalizar de menos."
+    },
+    {
+      "id": "intermediaria-14-q7",
+      "tipo": "resposta_curta_autoavaliada",
+      "enunciado": "Descreva, em até duas frases, um critério de amostragem que você aplicaria para revisar manualmente documentos não sinalizados em uma due diligence fictícia de alto risco.",
+      "criterios_autoavaliacao": [
+        "Meu critério vai além de só revisar os documentos sinalizados pela IA?",
+        "O critério é proporcional ao risco do caso (mais amostra em casos de maior risco)?",
+        "Minha resposta reconhece explicitamente o risco de falso negativo?"
+      ],
+      "exemplo_de_resposta_forte": "\"Eu revisaria manualmente uma amostra aleatória de 15% dos documentos não sinalizados, além de todos os sinalizados, dado o alto risco desse caso fictício.\""
+    }
+  ]
+}

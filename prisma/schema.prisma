@@ -1,0 +1,292 @@
+// Schema inicial do TrilhIA — Fase 2 (Backend)
+//
+// Decisão de design mais importante deste schema: o CONTEÚDO (módulos, telas,
+// questões) não vive no banco de dados. Ele continua em content/*.json,
+// lido diretamente pelo backend como fonte de verdade (ver docs/stack-tecnica.md).
+// O banco só guarda dados DINÂMICOS gerados pelo uso do app: usuários, progresso,
+// respostas, XP, ligas e conquistas — todos referenciando o conteúdo pelos IDs
+// estáveis já definidos nos JSONs (modulo_id, id de questão).
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL") // connection pooler do Supabase (pgbouncer)
+  directUrl = env("DIRECT_URL")   // conexão direta, usada só pelo Prisma Migrate
+}
+
+// ==========================================================================
+// USUÁRIOS E EQUIPES
+// ==========================================================================
+
+enum PapelUsuario {
+  COLABORADOR
+  ADMIN
+}
+
+// Cadastro só dá acesso de fato depois de um admin aprovar (ver
+// src/app/api/admin/usuarios/[usuarioId]/route.ts e docs/modelagem-dados.md).
+// Substituiu a restrição por domínio de e-mail (DOMINIOS_EMAIL_PERMITIDOS,
+// removida) — mecanismo mais forte, já que agora nem e-mail é coletado.
+enum StatusCadastro {
+  PENDENTE
+  APROVADO
+  REJEITADO
+}
+
+model Equipe {
+  id        String   @id @default(cuid())
+  nome      String   @unique // ex: "Banco BMG", "Banco Pine", "C6 Bank"
+  criadoEm  DateTime @default(now())
+
+  usuarios  Usuario[]
+  ligas     Liga[]
+}
+
+model Usuario {
+  id                       String       @id @default(cuid())
+  nome                     String
+  nickname                 String       @unique // identificador de login — sempre em minúsculas (ver src/lib/auth.ts)
+  email                    String?      @unique // opcional — não é mais coletado no cadastro, campo mantido por compatibilidade
+  senhaHash                String
+  papel                    PapelUsuario @default(COLABORADOR)
+  statusCadastro           StatusCadastro @default(PENDENTE) // só ADMIN aprova; login bloqueado até então
+  precisaTrocarSenha       Boolean      @default(false) // true após reset de senha feito pelo admin
+  senhaAlteradaEm          DateTime     @default(now()) // usado para invalidar sessões antigas ao trocar/resetar senha
+  ativo                    Boolean      @default(true)  // false = conta desativada (ex: colaborador que saiu), bloqueia login sem apagar histórico
+
+  equipeId                 String
+  equipe                   Equipe       @relation(fields: [equipeId], references: [id])
+
+  // Gamificação
+  xpTotal                  Int          @default(0)
+  nivel                    Int          @default(1)
+  streakAtual              Int          @default(0)
+  streakFreezesDisponiveis Int          @default(0)
+  ultimoDiaAtivo           DateTime?
+  coracoesAtuais           Int          @default(5)
+
+  // Estrelas diárias — limite de módulos NOVOS que podem ser iniciados por
+  // dia (ver src/lib/limiteDiario.ts). Reabrir um módulo já iniciado antes
+  // não consome estrela.
+  modulosIniciadosHoje     Int          @default(0)
+  dataUltimoModuloIniciado DateTime?
+
+  criadoEm                 DateTime     @default(now())
+  atualizadoEm             DateTime     @updatedAt
+
+  progresso                ProgressoModulo[]
+  respostas                RespostaQuestao[]
+  conquistas               ConquistaUsuario[]
+  certificados             Certificado[]
+  participacoesLiga        ParticipacaoLiga[]
+  desafiosDiarios          DesafioDiario[]
+  xpConcedidos             XpConcedido[]
+  entregasProjetoFinal     EntregaProjetoFinal[]
+}
+
+// ==========================================================================
+// PROGRESSO E RESPOSTAS
+// (referenciam o conteúdo por ID de string — nunca por chave estrangeira,
+// já que módulos e questões não são tabelas neste banco)
+// ==========================================================================
+
+model ProgressoModulo {
+  id           String    @id @default(cuid())
+
+  usuarioId    String
+  usuario      Usuario   @relation(fields: [usuarioId], references: [id])
+
+  moduloId     String    // referência externa ao JSON, ex: "basica-01", "intermediaria-13"
+  trilha       String    // "basica" | "intermediaria"
+
+  concluido    Boolean   @default(false)
+  concluidoEm  DateTime?
+  xpGanho      Int       @default(0)
+
+  criadoEm     DateTime  @default(now())
+
+  @@unique([usuarioId, moduloId])
+  @@index([usuarioId, trilha])
+}
+
+model RespostaQuestao {
+  id           String   @id @default(cuid())
+
+  usuarioId    String
+  usuario      Usuario  @relation(fields: [usuarioId], references: [id])
+
+  questaoId    String   // referência externa, ex: "basica-01-q1"
+  moduloId     String   // desnormalizado de propósito, evita join com o JSON só pra filtrar por módulo
+  tipoQuestao  String   // copiado do JSON no momento da resposta, útil para relatórios de XP por tipo
+
+  correta      Boolean? // null = tipo sem gabarito automático (resposta_curta_autoavaliada)
+  tentativas   Int      @default(1)
+  respondidoEm DateTime @default(now())
+
+  @@index([usuarioId, questaoId])
+  @@index([usuarioId, moduloId])
+}
+
+// ==========================================================================
+// CONQUISTAS E CERTIFICADOS
+// ==========================================================================
+
+model ConquistaUsuario {
+  id            String   @id @default(cuid())
+
+  usuarioId     String
+  usuario       Usuario  @relation(fields: [usuarioId], references: [id])
+
+  badgeId       String   // slug estável, ex: "arquiteto-de-prompts" — ver conquista_de_bloco no JSON
+  nomeBadge     String
+  descricao     String
+
+  conquistadoEm DateTime @default(now())
+
+  @@unique([usuarioId, badgeId])
+}
+
+model Certificado {
+  id         String   @id @default(cuid())
+
+  usuarioId  String
+  usuario    Usuario  @relation(fields: [usuarioId], references: [id])
+
+  trilha     String   // "basica" | "intermediaria"
+  emitidoEm  DateTime @default(now())
+
+  @@unique([usuarioId, trilha])
+}
+
+// ==========================================================================
+// LIGAS
+// ==========================================================================
+
+enum TipoLiga {
+  PADRAO     // liga regular da equipe, disponível para todos os seus membros
+  EXCLUSIVA  // liga com condição de desbloqueio (ex: concluir a Trilha Básica)
+}
+
+model Liga {
+  id                  String   @id @default(cuid())
+  nome                String
+  tipo                TipoLiga @default(PADRAO)
+
+  // Ligas PADRAO pertencem a uma equipe. Ligas EXCLUSIVA podem ser cross-team
+  // (equipeId nulo) ou também restritas a uma equipe específica.
+  equipeId            String?
+  equipe              Equipe?  @relation(fields: [equipeId], references: [id])
+
+  // Condição textual de desbloqueio, interpretada pela lógica de aplicação.
+  // Valor inicial suportado: "trilha_basica_concluida".
+  // Null = sem restrição (caso das ligas PADRAO).
+  condicaoDesbloqueio String?
+
+  criadoEm            DateTime @default(now())
+
+  participacoes       ParticipacaoLiga[]
+}
+
+model ParticipacaoLiga {
+  id           String   @id @default(cuid())
+
+  ligaId       String
+  liga         Liga     @relation(fields: [ligaId], references: [id])
+
+  usuarioId    String
+  usuario      Usuario  @relation(fields: [usuarioId], references: [id])
+
+  semana       String   // formato ISO week, ex: "2026-W33"
+  xpNaSemana   Int      @default(0)
+  posicaoFinal Int?     // preenchido ao final da semana, pela rotina de apuração
+
+  @@unique([ligaId, usuarioId, semana])
+  @@index([ligaId, semana])
+}
+
+// ==========================================================================
+// DESAFIO DIÁRIO
+// ==========================================================================
+
+model DesafioDiario {
+  id               String    @id @default(cuid())
+
+  usuarioId        String
+  usuario          Usuario   @relation(fields: [usuarioId], references: [id])
+
+  data             DateTime  // início do dia (UTC) a que este desafio pertence
+  questaoIds       String[]  // ids sorteados; trilha/moduloId são extraídos do próprio id (ver parseQuestaoId)
+
+  concluido        Boolean   @default(false)
+  concluidoEm      DateTime?
+  xpBonusConcedido Int       @default(0)
+
+  criadoEm         DateTime  @default(now())
+
+  @@unique([usuarioId, data])
+}
+
+// ==========================================================================
+// CONTROLE DE CONCESSÃO DE XP (evita XP em dobro sob concorrência)
+// ==========================================================================
+
+// Um registro aqui representa "usuário X já foi creditado com XP pela
+// questão Y, definitivamente". A constraint @@unique é o que garante isso de
+// forma atômica: duas requisições concorrentes tentando conceder XP para a
+// mesma questão vão ambas tentar criar essa linha, mas só uma consegue — a
+// outra recebe erro de constraint (P2002) e sabe que deve pular a concessão.
+// Ver src/app/api/progresso/questao/responder/route.ts.
+model XpConcedido {
+  id        String   @id @default(cuid())
+  usuarioId String
+  usuario   Usuario  @relation(fields: [usuarioId], references: [id])
+  questaoId String
+  xp        Int
+  criadoEm  DateTime @default(now())
+
+  @@unique([usuarioId, questaoId])
+}
+
+// ==========================================================================
+// RATE LIMITING (login / cadastro)
+// ==========================================================================
+
+// Registro simples de tentativas, usado por src/lib/rateLimiter.ts para
+// bloquear força bruta em login e criação em massa de contas em cadastro.
+// Sem dependência externa (Redis etc.) — aceitável para o volume esperado
+// (uso interno do escritório, não uma API pública de alto tráfego).
+model TentativaAcesso {
+  id            String   @id @default(cuid())
+  identificador String   // e-mail (login) ou IP (cadastro)
+  tipo          String   // "login" | "register"
+  criadoEm      DateTime @default(now())
+
+  @@index([identificador, tipo, criadoEm])
+}
+
+// ==========================================================================
+// PROJETO FINAL (Módulo 30 — capstone da Trilha Intermediária)
+// ==========================================================================
+
+// O módulo 30 não tem quiz — captura o caso escolhido, as respostas das
+// tarefas abertas e o checklist de autoavaliação. Sem isso, o módulo mais
+// importante pedagogicamente da trilha era o único que não guardava nada do
+// que o usuário produzia (ver docs/auditoria-tecnica-backend.md, item #4).
+model EntregaProjetoFinal {
+  id               String   @id @default(cuid())
+
+  usuarioId        String
+  usuario          Usuario  @relation(fields: [usuarioId], references: [id])
+
+  moduloId         String   // "intermediaria-30"
+  casoId           String   // ex: "caso-1-revisao-contratual"
+  respostasTarefas Json     // array de strings, uma por tarefa do caso escolhido
+  checklistMarcado Json     // array de booleans, na mesma ordem do checklist_autoavaliacao do conteúdo
+
+  criadoEm         DateTime @default(now())
+
+  @@unique([usuarioId, moduloId])
+}

@@ -1,0 +1,196 @@
+{
+  "modulo_id": "intermediaria-28",
+  "trilha": "intermediaria",
+  "bloco": "E",
+  "ordem": 28,
+  "titulo": "Automação sem código: conectando IA a fluxos de trabalho",
+  "descricao_curta": "Gatilho + ação — a lógica por trás de qualquer automação, mesmo sem escrever código.",
+  "tempo_estimado_min": 4,
+  "objetivos_aprendizagem": [
+    "Entender como ferramentas no-code (Zapier, Make e afins) usam API por trás",
+    "Reconhecer o conceito de gatilho e ação em uma automação",
+    "Aplicar isso a um exemplo prático do dia a dia jurídico",
+    "Reconhecer quando vale a pena automatizar, e quando não vale"
+  ],
+  "aulas": [
+    {
+      "ordem": 1,
+      "titulo_aula": "Automação sem escrever uma linha de código",
+      "corpo": "Ferramentas como Zapier ou Make permitem conectar diferentes serviços (e-mail, planilha, IA) através de uma interface visual — você configura o fluxo, a ferramenta cuida da comunicação técnica via API por trás.",
+      "atividade": {
+        "id": "intermediaria-28-q1",
+        "tipo": "multipla_escolha",
+        "enunciado": "O que uma ferramenta no-code como Zapier ou Make permite fazer?",
+        "alternativas": [
+          {
+            "id": "a",
+            "texto": "Conectar diferentes serviços através de uma interface visual, sem exigir que o usuário escreva código.",
+            "correta": true
+          },
+          {
+            "id": "b",
+            "texto": "Escrever código diretamente, mas em uma linguagem simplificada.",
+            "correta": false
+          },
+          {
+            "id": "c",
+            "texto": "Substituir totalmente a necessidade de qualquer ferramenta de IA.",
+            "correta": false
+          },
+          {
+            "id": "d",
+            "texto": "Criar modelos de IA totalmente novos, do zero.",
+            "correta": false
+          }
+        ],
+        "explicacao_acerto": "Isso mesmo — conexão visual entre serviços, sem exigir programação.",
+        "explicacao_erro": "Não envolve escrever código nem simplificado, não substitui ferramentas de IA (na verdade se conecta a elas), e não cria modelos novos."
+      }
+    },
+    {
+      "ordem": 2,
+      "titulo_aula": "Gatilho e ação",
+      "corpo": "Todo fluxo de automação tem um gatilho (o que inicia o processo, ex: 'um novo e-mail chega') e uma ou mais ações (o que acontece depois, ex: 'a IA resume o e-mail e salva numa planilha').",
+      "atividade": {
+        "id": "intermediaria-28-q2",
+        "tipo": "verdadeiro_falso",
+        "enunciado": "Configurar uma automação em uma ferramenta no-code exige escrever código de programação.",
+        "resposta_correta": false,
+        "justificativas": [
+          {
+            "id": "a",
+            "texto": "Falso — 'no-code' significa justamente que a configuração é feita por interface visual, sem exigir programação.",
+            "correta": true
+          },
+          {
+            "id": "b",
+            "texto": "Falso, porque ferramentas no-code foram descontinuadas do mercado.",
+            "correta": false
+          },
+          {
+            "id": "c",
+            "texto": "Verdadeiro, todo fluxo de automação exige pelo menos uma linha de código.",
+            "correta": false
+          }
+        ],
+        "explicacao": "Ferramentas no-code continuam amplamente disponíveis, e a própria proposta delas é eliminar a necessidade de código para configurar um fluxo."
+      }
+    },
+    {
+      "ordem": 3,
+      "titulo_aula": "Um exemplo prático",
+      "corpo": "Gatilho: um novo documento chega numa pasta compartilhada. Ação 1: a IA gera um resumo do documento. Ação 2: o resumo é enviado automaticamente para o canal de comunicação da equipe.",
+      "atividade": {
+        "id": "intermediaria-28-q3",
+        "tipo": "completar_lacuna",
+        "enunciado": "Todo fluxo de automação tem um ___1___ que inicia o processo e uma ou mais ___2___ que definem o que acontece depois.",
+        "lacunas": [
+          {
+            "posicao": 1,
+            "opcoes": [
+              "gatilho",
+              "arquivo",
+              "botão"
+            ],
+            "correta": "gatilho"
+          },
+          {
+            "posicao": 2,
+            "opcoes": [
+              "ações",
+              "senhas",
+              "cores"
+            ],
+            "correta": "ações"
+          }
+        ]
+      }
+    },
+    {
+      "ordem": 4,
+      "titulo_aula": "Nem toda tarefa vale a pena automatizar",
+      "corpo": "Automatizar tem custo de configuração e manutenção — vale a pena para tarefas repetitivas e previsíveis, não necessariamente para tarefas raras ou muito variáveis.",
+      "atividade": {
+        "id": "intermediaria-28-q4",
+        "tipo": "multipla_escolha",
+        "enunciado": "Dado o fluxo fictício \"novo documento chega → IA gera resumo → resumo é enviado ao canal da equipe\", qual parte representa o gatilho?",
+        "alternativas": [
+          {
+            "id": "a",
+            "texto": "\"Novo documento chega\" — é o evento que inicia todo o processo.",
+            "correta": true
+          },
+          {
+            "id": "b",
+            "texto": "\"IA gera resumo\" — é o evento que inicia o processo.",
+            "correta": false
+          },
+          {
+            "id": "c",
+            "texto": "\"Resumo é enviado ao canal\" — é o evento que inicia o processo.",
+            "correta": false
+          },
+          {
+            "id": "d",
+            "texto": "Não existe gatilho nesse fluxo, apenas ações.",
+            "correta": false
+          }
+        ],
+        "explicacao_acerto": "O gatilho é sempre o evento que dá início ao fluxo — nesse caso, a chegada do documento.",
+        "explicacao_erro": "Gerar o resumo e enviar ao canal são ações que acontecem depois do gatilho, não o gatilho em si — e todo fluxo de automação precisa de um gatilho."
+      }
+    }
+  ],
+  "atividade_final": [
+    {
+      "id": "intermediaria-28-q5",
+      "tipo": "associacao",
+      "enunciado": "Ligue cada elemento à sua definição e a um exemplo correspondente.",
+      "pares": [
+        {
+          "termo": "Gatilho",
+          "definicao": "Evento que inicia o fluxo, como 'novo e-mail recebido'"
+        },
+        {
+          "termo": "Ação",
+          "definicao": "O que acontece depois do gatilho, como 'IA resume o conteúdo'"
+        }
+      ]
+    },
+    {
+      "id": "intermediaria-28-q6",
+      "tipo": "verdadeiro_falso",
+      "enunciado": "Toda tarefa repetitiva vale a pena ser automatizada, independentemente da frequência com que acontece.",
+      "resposta_correta": false,
+      "justificativas": [
+        {
+          "id": "a",
+          "texto": "Falso — automatizar tem custo de configuração e manutenção, que pode não compensar para tarefas raras ou muito variáveis.",
+          "correta": true
+        },
+        {
+          "id": "b",
+          "texto": "Falso, porque automação só funciona para tarefas que acontecem uma única vez.",
+          "correta": false
+        },
+        {
+          "id": "c",
+          "texto": "Verdadeiro, o custo de automatizar é sempre zero, então vale a pena em qualquer caso.",
+          "correta": false
+        }
+      ],
+      "explicacao": "Automação não é voltada para tarefas únicas, e o custo de configuração/manutenção não é zero — é justamente esse custo que define se vale a pena automatizar."
+    },
+    {
+      "id": "intermediaria-28-q7",
+      "tipo": "resposta_curta_autoavaliada",
+      "enunciado": "Descreva, em até duas frases, um critério que ajudaria a decidir se vale a pena automatizar uma tarefa fictícia repetitiva do escritório.",
+      "criterios_autoavaliacao": [
+        "Meu critério considera a frequência da tarefa?",
+        "Meu critério considera o custo de configurar e manter a automação?",
+        "Minha resposta evita a ideia de que 'toda automação vale a pena'?"
+      ],
+      "exemplo_de_resposta_forte": "\"Eu automatizaria se a tarefa fictícia acontecer com frequência alta e seguir sempre o mesmo padrão — se for rara ou muito variável, o custo de configurar não compensaria.\""
+    }
+  ]
+}

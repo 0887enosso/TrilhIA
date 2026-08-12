@@ -1,0 +1,192 @@
+{
+  "modulo_id": "intermediaria-03",
+  "trilha": "intermediaria",
+  "bloco": "A",
+  "ordem": 3,
+  "titulo": "Técnica: few-shot",
+  "descricao_curta": "Às vezes, mostrar um exemplo vale mais do que mil palavras de instrução.",
+  "tempo_estimado_min": 4,
+  "objetivos_aprendizagem": [
+    "Entender o conceito de few-shot prompting",
+    "Reconhecer quando fornecer exemplos melhora a resposta",
+    "Diferenciar zero-shot de few-shot",
+    "Aplicar few-shot a uma tarefa jurídica repetitiva"
+  ],
+  "aulas": [
+    {
+      "ordem": 1,
+      "titulo_aula": "O que é few-shot",
+      "corpo": "Em vez de só descrever o que você quer, você mostra um ou dois exemplos do resultado esperado antes de pedir que a IA faça o mesmo para um novo caso.",
+      "atividade": {
+        "id": "intermediaria-03-q1",
+        "tipo": "multipla_escolha",
+        "enunciado": "O que caracteriza few-shot prompting?",
+        "alternativas": [
+          {
+            "id": "a",
+            "texto": "Fornecer um ou mais exemplos do resultado esperado antes de pedir que a IA aplique o mesmo padrão a um novo caso.",
+            "correta": true
+          },
+          {
+            "id": "b",
+            "texto": "Escrever a resposta em poucas palavras, de forma bem resumida.",
+            "correta": false
+          },
+          {
+            "id": "c",
+            "texto": "Fazer várias perguntas curtas seguidas, em vez de uma pergunta longa.",
+            "correta": false
+          },
+          {
+            "id": "d",
+            "texto": "Usar a versão mais rápida e leve de um modelo de IA disponível.",
+            "correta": false
+          }
+        ],
+        "explicacao_acerto": "Isso mesmo — 'few-shot' se refere ao número de exemplos fornecidos, não ao tamanho da resposta.",
+        "explicacao_erro": "Cuidado com o nome da técnica: 'few' se refere à quantidade de exemplos dados, não ao tamanho da resposta nem à velocidade do modelo."
+      }
+    },
+    {
+      "ordem": 2,
+      "titulo_aula": "Zero-shot x few-shot",
+      "corpo": "Zero-shot: pedir direto, sem exemplo ('resuma este contrato'). Few-shot: mostrar um exemplo de como você quer o resumo, e só depois pedir para aplicar ao próximo documento.",
+      "atividade": {
+        "id": "intermediaria-03-q2",
+        "tipo": "verdadeiro_falso",
+        "enunciado": "Zero-shot e few-shot são a mesma técnica, apenas com nomes de marketing diferentes.",
+        "resposta_correta": false,
+        "justificativas": [
+          {
+            "id": "a",
+            "texto": "Falso — zero-shot pede diretamente, sem exemplo; few-shot fornece um ou mais exemplos antes do pedido.",
+            "correta": true
+          },
+          {
+            "id": "b",
+            "texto": "Falso, porque zero-shot só existe em versões gratuitas de ferramentas de IA.",
+            "correta": false
+          },
+          {
+            "id": "c",
+            "texto": "Verdadeiro, o resultado final é sempre idêntico entre as duas técnicas.",
+            "correta": false
+          }
+        ],
+        "explicacao": "A diferença é estrutural — presença ou ausência de exemplo — não uma questão de nome comercial ou de plano de assinatura."
+      }
+    },
+    {
+      "ordem": 3,
+      "titulo_aula": "Quando few-shot vale a pena",
+      "corpo": "Especialmente útil em tarefas repetitivas com um padrão específico de formato ou estilo — como preencher um mesmo tipo de resumo padronizado para vários processos parecidos.",
+      "atividade": {
+        "id": "intermediaria-03-q3",
+        "tipo": "completar_lacuna",
+        "enunciado": "Em few-shot, os exemplos fornecidos funcionam como um ___ que a IA tende a seguir nos casos seguintes.",
+        "lacunas": [
+          {
+            "posicao": 1,
+            "opcoes": [
+              "padrão/modelo",
+              "obstáculo",
+              "sorteio"
+            ],
+            "correta": "padrão/modelo"
+          }
+        ]
+      }
+    },
+    {
+      "ordem": 4,
+      "titulo_aula": "O cuidado com few-shot",
+      "corpo": "Os exemplos que você dá moldam fortemente o resultado — um exemplo com erro tende a ser repetido pela IA nos próximos casos, porque ela não sabe distinguir se o exemplo está certo ou errado.",
+      "atividade": {
+        "id": "intermediaria-03-q4",
+        "tipo": "correcao_prompt",
+        "enunciado": "Um colaborador precisa resumir 15 processos sempre no mesmo formato padronizado, mas está pedindo um por um com prompts soltos e diferentes entre si. Qual abordagem corrigiria esse fluxo?",
+        "prompt_analisado": "\"Resuma o processo 1.\" (depois) \"Resuma o processo 2, mas dessa vez em tópicos.\" (depois) \"Resuma o processo 3, só que mais curto.\"",
+        "alternativas": [
+          {
+            "id": "a",
+            "texto": "Fornecer um exemplo do formato de resumo desejado uma vez (few-shot), e depois aplicar o mesmo padrão aos demais processos.",
+            "correta": true
+          },
+          {
+            "id": "b",
+            "texto": "Continuar pedindo um por um, já que cada processo é sempre um caso único e imprevisível.",
+            "correta": false
+          },
+          {
+            "id": "c",
+            "texto": "Pedir para a IA decidir sozinha qual formato usar em cada processo, sem nenhuma orientação prévia.",
+            "correta": false
+          },
+          {
+            "id": "d",
+            "texto": "Reduzir a quantidade de processos analisados, já que 15 é considerado tecnicamente inviável para IA.",
+            "correta": false
+          }
+        ],
+        "explicacao_acerto": "Exatamente o caso de uso ideal para few-shot: tarefa repetitiva, com um padrão de formato que vale a pena fixar uma vez.",
+        "explicacao_erro": "O problema aqui não é falta de tecnologia nem volume inviável — é a ausência de um padrão fixado com exemplo, que causa inconsistência entre os resumos."
+      }
+    }
+  ],
+  "atividade_final": [
+    {
+      "id": "intermediaria-03-q5",
+      "tipo": "associacao",
+      "enunciado": "Ligue cada situação à técnica ou risco correspondente.",
+      "pares": [
+        {
+          "termo": "Pergunta única, sem necessidade de padrão repetido",
+          "definicao": "Zero-shot costuma ser suficiente"
+        },
+        {
+          "termo": "Tarefa repetitiva com formato padronizado",
+          "definicao": "Few-shot tende a ajudar bastante"
+        },
+        {
+          "termo": "Exemplo fornecido contém um erro",
+          "definicao": "Risco de o erro ser repetido nos próximos casos"
+        }
+      ]
+    },
+    {
+      "id": "intermediaria-03-q6",
+      "tipo": "verdadeiro_falso",
+      "enunciado": "Um exemplo com erro fornecido em few-shot é identificado e corrigido automaticamente pela IA nos próximos casos.",
+      "resposta_correta": false,
+      "justificativas": [
+        {
+          "id": "a",
+          "texto": "Falso — a IA não sabe distinguir se o exemplo fornecido está certo ou errado, e tende a repeti-lo.",
+          "correta": true
+        },
+        {
+          "id": "b",
+          "texto": "Falso, porque exemplos com erro são automaticamente descartados pelo sistema.",
+          "correta": false
+        },
+        {
+          "id": "c",
+          "texto": "Verdadeiro, a IA sempre identifica e sinaliza erros nos exemplos fornecidos.",
+          "correta": false
+        }
+      ],
+      "explicacao": "Não existe descarte automático nem identificação de erro no exemplo — por isso a revisão humana do exemplo fornecido é tão importante quanto a revisão do resultado final."
+    },
+    {
+      "id": "intermediaria-03-q7",
+      "tipo": "resposta_curta_autoavaliada",
+      "enunciado": "Descreva, em até duas frases, um exemplo de resumo padronizado que você usaria como referência em few-shot para resumir contratos de prestação de serviço.",
+      "criterios_autoavaliacao": [
+        "Meu exemplo mostra claramente o formato esperado (tópicos, ordem, nível de detalhe)?",
+        "Esse exemplo está livre de erros que eu não gostaria de ver repetidos nos próximos resumos?",
+        "Seria fácil para outra pessoa aplicar o mesmo padrão só olhando meu exemplo?"
+      ],
+      "exemplo_de_resposta_forte": "\"Resumo padrão: Partes envolvidas — Objeto do contrato — Prazo de vigência — Valor e forma de pagamento — Cláusula de rescisão (em uma linha cada).\""
+    }
+  ]
+}

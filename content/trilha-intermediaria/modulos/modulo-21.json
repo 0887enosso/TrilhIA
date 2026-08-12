@@ -1,0 +1,187 @@
+{
+  "modulo_id": "intermediaria-21",
+  "trilha": "intermediaria",
+  "bloco": "D",
+  "ordem": 21,
+  "titulo": "Embeddings: como a IA \"entende\" a similaridade entre textos",
+  "descricao_curta": "Buscar por significado, não só por palavra exata.",
+  "tempo_estimado_min": 5,
+  "objetivos_aprendizagem": [
+    "Entender o conceito de embedding de forma acessível",
+    "Entender por que isso permite buscar por significado, não só por palavra exata",
+    "Relacionar embeddings ao funcionamento de RAG",
+    "Reconhecer aplicações práticas (busca semântica em documentos)"
+  ],
+  "aulas": [
+    {
+      "ordem": 1,
+      "titulo_aula": "O problema da busca por palavra exata",
+      "corpo": "Buscar 'rescisão' não encontra um documento que fala em 'término do contrato' — mesmo que o significado seja praticamente o mesmo.",
+      "atividade": {
+        "id": "intermediaria-21-q1",
+        "tipo": "multipla_escolha",
+        "enunciado": "O que é um embedding, de forma simples?",
+        "alternativas": [
+          {
+            "id": "a",
+            "texto": "Uma representação numérica de um texto que captura seu significado, permitindo comparar textos por similaridade.",
+            "correta": true
+          },
+          {
+            "id": "b",
+            "texto": "Um tipo de erro que ocorre quando a IA não encontra nenhum resultado para uma busca.",
+            "correta": false
+          },
+          {
+            "id": "c",
+            "texto": "Um recurso exclusivo de ferramentas de busca tradicional, sem relação com IA.",
+            "correta": false
+          },
+          {
+            "id": "d",
+            "texto": "Uma senha usada para autenticar buscas dentro de um sistema.",
+            "correta": false
+          }
+        ],
+        "explicacao_acerto": "Isso mesmo — é uma representação numérica do significado do texto.",
+        "explicacao_erro": "Embedding não é um erro, não é exclusivo de busca tradicional (é central em busca com IA), e não é senha de autenticação."
+      }
+    },
+    {
+      "ordem": 2,
+      "titulo_aula": "O que é um embedding",
+      "corpo": "Uma forma de transformar um texto em uma espécie de 'coordenada' numérica que representa seu significado. Textos com significado parecido acabam com coordenadas próximas entre si.",
+      "atividade": {
+        "id": "intermediaria-21-q2",
+        "tipo": "verdadeiro_falso",
+        "enunciado": "Busca por palavra exata e busca semântica são a mesma coisa.",
+        "resposta_correta": false,
+        "justificativas": [
+          {
+            "id": "a",
+            "texto": "Falso — busca por palavra exata encontra apenas correspondência literal; busca semântica encontra por significado, mesmo com palavras diferentes.",
+            "correta": true
+          },
+          {
+            "id": "b",
+            "texto": "Falso, porque busca semântica só existe em textos escritos em inglês.",
+            "correta": false
+          },
+          {
+            "id": "c",
+            "texto": "Verdadeiro, as duas sempre retornam exatamente os mesmos resultados.",
+            "correta": false
+          }
+        ],
+        "explicacao": "Busca semântica não é limitada a um idioma específico, e as duas abordagens frequentemente retornam resultados diferentes — essa é justamente a vantagem da busca semântica."
+      }
+    },
+    {
+      "ordem": 3,
+      "titulo_aula": "Por que isso importa",
+      "corpo": "Permite busca semântica — encontrar documentos relevantes pelo significado, não apenas pela palavra exata que foi digitada.",
+      "atividade": {
+        "id": "intermediaria-21-q3",
+        "tipo": "completar_lacuna",
+        "enunciado": "Textos com significado parecido tendem a ficar com ___ numéricas próximas entre si.",
+        "lacunas": [
+          {
+            "posicao": 1,
+            "opcoes": [
+              "coordenadas/representações",
+              "cores",
+              "datas"
+            ],
+            "correta": "coordenadas/representações"
+          }
+        ]
+      }
+    },
+    {
+      "ordem": 4,
+      "titulo_aula": "Conectando com RAG",
+      "corpo": "A etapa de busca (retrieval) do RAG normalmente usa embeddings para encontrar os documentos mais relevantes para aquela pergunta específica.",
+      "atividade": {
+        "id": "intermediaria-21-q4",
+        "tipo": "multipla_escolha",
+        "enunciado": "Alguém busca \"rescisão\" e não encontra um documento fictício que fala em \"término do contrato\", mesmo tratando do mesmo assunto. Qual tecnologia resolveria esse problema?",
+        "alternativas": [
+          {
+            "id": "a",
+            "texto": "Busca semântica baseada em embeddings, que reconhece proximidade de significado, não só de palavra exata.",
+            "correta": true
+          },
+          {
+            "id": "b",
+            "texto": "Aumentar o tamanho da fonte do documento para facilitar a leitura.",
+            "correta": false
+          },
+          {
+            "id": "c",
+            "texto": "Traduzir o documento para outro idioma antes da busca.",
+            "correta": false
+          },
+          {
+            "id": "d",
+            "texto": "Reduzir o número de páginas do documento.",
+            "correta": false
+          }
+        ],
+        "explicacao_acerto": "Exatamente — embeddings permitem reconhecer que 'rescisão' e 'término do contrato' têm significado próximo.",
+        "explicacao_erro": "Tamanho de fonte, tradução e redução de páginas não resolvem o problema de busca por significado."
+      }
+    }
+  ],
+  "atividade_final": [
+    {
+      "id": "intermediaria-21-q5",
+      "tipo": "associacao",
+      "enunciado": "Ligue cada tipo de busca à sua característica.",
+      "pares": [
+        {
+          "termo": "Busca por palavra exata",
+          "definicao": "Encontra apenas correspondência literal do termo digitado"
+        },
+        {
+          "termo": "Busca semântica",
+          "definicao": "Encontra por proximidade de significado, mesmo com palavras diferentes"
+        }
+      ]
+    },
+    {
+      "id": "intermediaria-21-q6",
+      "tipo": "verdadeiro_falso",
+      "enunciado": "Embeddings costumam ser usados na etapa de busca (retrieval) do RAG.",
+      "resposta_correta": true,
+      "justificativas": [
+        {
+          "id": "a",
+          "texto": "Verdadeiro — embeddings são a tecnologia comum por trás da etapa de busca por similaridade de significado no RAG.",
+          "correta": true
+        },
+        {
+          "id": "b",
+          "texto": "Verdadeiro, mas apenas em sistemas RAG desenvolvidos depois de 2023.",
+          "correta": false
+        },
+        {
+          "id": "c",
+          "texto": "Falso, embeddings e RAG são tecnologias completamente independentes, sem nenhuma relação.",
+          "correta": false
+        }
+      ],
+      "explicacao": "Não há um recorte de data que defina esse uso, e as duas tecnologias estão, sim, frequentemente conectadas na prática."
+    },
+    {
+      "id": "intermediaria-21-q7",
+      "tipo": "resposta_curta_autoavaliada",
+      "enunciado": "Descreva, em até duas frases, um bom uso de busca semântica no dia a dia fictício de um escritório de advocacia.",
+      "criterios_autoavaliacao": [
+        "Meu exemplo envolve encontrar documentos por significado, não só por palavra exata?",
+        "O exemplo é realista para o contexto jurídico?",
+        "Ficou claro por que a busca por palavra exata sozinha não resolveria esse caso?"
+      ],
+      "exemplo_de_resposta_forte": "\"Buscar todos os pareceres fictícios sobre 'encerramento de vínculo' e encontrar também os que falam em 'rescisão contratual', mesmo sem usar exatamente essas palavras.\""
+    }
+  ]
+}

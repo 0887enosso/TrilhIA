@@ -1,0 +1,188 @@
+{
+  "modulo_id": "intermediaria-07",
+  "trilha": "intermediaria",
+  "bloco": "B",
+  "ordem": 7,
+  "titulo": "Usando um assistente de IA como espaço de trabalho",
+  "descricao_curta": "Organizar seu uso de IA em projetos evita reexplicar contexto toda hora.",
+  "tempo_estimado_min": 4,
+  "objetivos_aprendizagem": [
+    "Entender o conceito de \"projeto\" ou espaço de trabalho dentro de uma ferramenta de IA",
+    "Reconhecer o papel de instruções customizadas/persistentes",
+    "Diferenciar memória de curto prazo (conversa) de configuração persistente (projeto)",
+    "Aplicar isso para organizar o próprio uso no dia a dia, inclusive com cuidado de sigilo"
+  ],
+  "aulas": [
+    {
+      "ordem": 1,
+      "titulo_aula": "Além da conversa avulsa",
+      "corpo": "Muitas ferramentas de IA hoje permitem organizar o uso em 'espaços' — projetos, pastas ou instruções que persistem além de uma única conversa.",
+      "atividade": {
+        "id": "intermediaria-07-q1",
+        "tipo": "multipla_escolha",
+        "enunciado": "O que diferencia uma instrução customizada/persistente de uma instrução dada dentro de uma única conversa?",
+        "alternativas": [
+          {
+            "id": "a",
+            "texto": "A instrução persistente continua valendo em conversas futuras, sem precisar ser repetida; a de conversa vale só ali.",
+            "correta": true
+          },
+          {
+            "id": "b",
+            "texto": "A instrução persistente só pode ser configurada por um administrador de sistema.",
+            "correta": false
+          },
+          {
+            "id": "c",
+            "texto": "Não existe diferença real de funcionamento entre as duas.",
+            "correta": false
+          },
+          {
+            "id": "d",
+            "texto": "A instrução persistente é sempre mais curta do que uma instrução de conversa.",
+            "correta": false
+          }
+        ],
+        "explicacao_acerto": "Isso mesmo — a diferença central é a duração: uma vale só naquela conversa, a outra persiste entre conversas.",
+        "explicacao_erro": "Não é questão de quem configura, nem de tamanho — é sobre por quanto tempo a instrução continua valendo."
+      }
+    },
+    {
+      "ordem": 2,
+      "titulo_aula": "Instruções customizadas",
+      "corpo": "Você pode configurar, uma vez, como quer que a IA se comporte (ex: 'sempre responda em tom formal', 'sempre avise se algo não estiver confirmado na fonte') — sem repetir isso em cada prompt.",
+      "atividade": {
+        "id": "intermediaria-07-q2",
+        "tipo": "verdadeiro_falso",
+        "enunciado": "Configurações de projeto valem apenas para a conversa em que foram criadas.",
+        "resposta_correta": false,
+        "justificativas": [
+          {
+            "id": "a",
+            "texto": "Falso — é justamente o contrário: configurações de projeto persistem entre conversas diferentes.",
+            "correta": true
+          },
+          {
+            "id": "b",
+            "texto": "Falso, porque projetos são apagados automaticamente a cada 30 dias.",
+            "correta": false
+          },
+          {
+            "id": "c",
+            "texto": "Verdadeiro, cada nova conversa exige reconfigurar o projeto do zero.",
+            "correta": false
+          }
+        ],
+        "explicacao": "Não há apagamento automático por prazo fixo — a característica central de um projeto é justamente persistir além de uma conversa isolada."
+      }
+    },
+    {
+      "ordem": 3,
+      "titulo_aula": "Memória de conversa x configuração persistente",
+      "corpo": "A memória de uma conversa dura enquanto ela está aberta (Módulo 5 da trilha básica). Uma configuração de projeto ou instrução persiste entre conversas diferentes, até você mudar.",
+      "atividade": {
+        "id": "intermediaria-07-q3",
+        "tipo": "completar_lacuna",
+        "enunciado": "Instruções customizadas evitam ter que ___ o mesmo contexto em toda conversa nova.",
+        "lacunas": [
+          {
+            "posicao": 1,
+            "opcoes": [
+              "repetir",
+              "esconder",
+              "traduzir"
+            ],
+            "correta": "repetir"
+          }
+        ]
+      }
+    },
+    {
+      "ordem": 4,
+      "titulo_aula": "Por que isso importa no trabalho",
+      "corpo": "Organizar por projeto (um projeto por cliente, ou por tipo de tarefa) evita reexplicar contexto toda vez e mantém padrão de resposta consistente.",
+      "destaque": "Cuidado: se envolver dados de cliente, vale a mesma regra do Módulo 9 da trilha básica — só em ferramenta aprovada, sem misturar projetos de clientes diferentes sem necessidade.",
+      "atividade": {
+        "id": "intermediaria-07-q4",
+        "tipo": "associacao",
+        "enunciado": "Ligue cada tipo de memória à sua duração correspondente.",
+        "pares": [
+          {
+            "termo": "Memória de conversa",
+            "definicao": "Dura enquanto aquela conversa específica está aberta"
+          },
+          {
+            "termo": "Configuração de projeto/instrução persistente",
+            "definicao": "Persiste entre conversas diferentes, até ser alterada"
+          }
+        ]
+      }
+    }
+  ],
+  "atividade_final": [
+    {
+      "id": "intermediaria-07-q5",
+      "tipo": "multipla_escolha",
+      "enunciado": "Um colaborador trabalha sempre com o mesmo tipo de documento e o mesmo padrão de resposta esperado. Qual prática economiza mais tempo no médio prazo?",
+      "alternativas": [
+        {
+          "id": "a",
+          "texto": "Configurar uma instrução persistente uma única vez, em vez de reescrever o mesmo contexto em cada conversa nova.",
+          "correta": true
+        },
+        {
+          "id": "b",
+          "texto": "Criar uma conversa nova a cada tarefa, sempre reexplicando tudo do zero.",
+          "correta": false
+        },
+        {
+          "id": "c",
+          "texto": "Anotar o contexto em um bloco de notas separado, fora da ferramenta de IA.",
+          "correta": false
+        },
+        {
+          "id": "d",
+          "texto": "Pedir para um colega repetir o contexto verbalmente antes de cada uso.",
+          "correta": false
+        }
+      ],
+      "explicacao_acerto": "Configurar uma vez e deixar persistente é exatamente o ganho de eficiência que esse recurso oferece.",
+      "explicacao_erro": "Reexplicar do zero, anotar externamente ou depender de terceiros são soluções mais trabalhosas do que usar a própria persistência da ferramenta."
+    },
+    {
+      "id": "intermediaria-07-q6",
+      "tipo": "verdadeiro_falso",
+      "enunciado": "Usar projetos ou instruções persistentes dispensa a necessidade de revisão humana do conteúdo gerado.",
+      "resposta_correta": false,
+      "justificativas": [
+        {
+          "id": "a",
+          "texto": "Falso — organizar o uso em projeto não muda nada sobre a necessidade de revisar cada saída gerada.",
+          "correta": true
+        },
+        {
+          "id": "b",
+          "texto": "Falso, porque projetos são revisados automaticamente por outra IA antes de exibir a resposta.",
+          "correta": false
+        },
+        {
+          "id": "c",
+          "texto": "Verdadeiro, projetos configurados corretamente eliminam o risco de erro.",
+          "correta": false
+        }
+      ],
+      "explicacao": "Não existe revisão automática por segunda IA embutida — o princípio do Módulo 8 da trilha básica (toda saída é rascunho) vale igualmente dentro ou fora de um projeto configurado."
+    },
+    {
+      "id": "intermediaria-07-q7",
+      "tipo": "resposta_curta_autoavaliada",
+      "enunciado": "Descreva, em até duas frases, como você organizaria projetos/espaços de trabalho ao lidar com três clientes fictícios diferentes ao mesmo tempo.",
+      "criterios_autoavaliacao": [
+        "Minha organização evita misturar contexto de um cliente com o de outro?",
+        "Levei em conta a regra de sigilo do Módulo 9 da trilha básica?",
+        "Minha resposta seria fácil de explicar para um colega novo na equipe?"
+      ],
+      "exemplo_de_resposta_forte": "\"Eu criaria um projeto separado para cada cliente fictício, com instruções específicas daquele caso, evitando misturar documentos ou contexto entre eles.\""
+    }
+  ]
+}

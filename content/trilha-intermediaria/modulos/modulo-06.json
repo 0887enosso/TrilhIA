@@ -1,0 +1,184 @@
+{
+  "modulo_id": "intermediaria-06",
+  "trilha": "intermediaria",
+  "bloco": "A",
+  "ordem": 6,
+  "titulo": "Refinando e depurando prompts",
+  "descricao_curta": "Prompt ruim nem sempre é culpa da IA — aprenda a diagnosticar.",
+  "tempo_estimado_min": 5,
+  "objetivos_aprendizagem": [
+    "Diagnosticar por que um prompt não funcionou como esperado",
+    "Aplicar uma lógica simples de depuração ao prompt",
+    "Reconhecer os erros mais comuns de formulação",
+    "Praticar reformulação iterativa"
+  ],
+  "aulas": [
+    {
+      "ordem": 1,
+      "titulo_aula": "Prompt ruim nem sempre é \"culpa da IA\"",
+      "corpo": "Quando o resultado não sai como esperado, o primeiro lugar a olhar é o próprio prompt, não a ferramenta.",
+      "atividade": {
+        "id": "intermediaria-06-q1",
+        "tipo": "correcao_prompt",
+        "enunciado": "O prompt abaixo gerou uma resposta genérica e pouco útil. Diagnostique o problema principal.",
+        "prompt_analisado": "\"Faz um resumo bom desse documento pra mim.\"",
+        "alternativas": [
+          {
+            "id": "a",
+            "texto": "O termo 'bom' é ambíguo — não define o que caracteriza um bom resumo nesse contexto (tamanho, foco, nível de detalhe).",
+            "correta": true
+          },
+          {
+            "id": "b",
+            "texto": "O prompt é longo demais e deveria ser encurtado.",
+            "correta": false
+          },
+          {
+            "id": "c",
+            "texto": "O prompt usa uma linguagem informal, o que sempre prejudica o resultado.",
+            "correta": false
+          },
+          {
+            "id": "d",
+            "texto": "Faltou pedir para a IA assumir um papel específico antes de resumir.",
+            "correta": false
+          }
+        ],
+        "explicacao_acerto": "'Bom' não define nada concreto — é o tipo clássico de termo ambíguo que gera resposta genérica.",
+        "explicacao_erro": "O prompt não é longo, informalidade não é o problema central aqui, e o papel ausente é secundário perto da ambiguidade do termo 'bom'."
+      }
+    },
+    {
+      "ordem": 2,
+      "titulo_aula": "Perguntas de diagnóstico",
+      "corpo": "Faltou contexto? O objetivo estava claro? O formato pedido era mesmo o que eu queria? Havia alguma ambiguidade na forma como pedi?",
+      "atividade": {
+        "id": "intermediaria-06-q2",
+        "tipo": "multipla_escolha",
+        "enunciado": "Diante de uma resposta ruim, qual deveria ser o primeiro diagnóstico a fazer?",
+        "alternativas": [
+          {
+            "id": "a",
+            "texto": "Revisar o próprio prompt: faltou contexto, objetivo claro, formato ou havia alguma ambiguidade?",
+            "correta": true
+          },
+          {
+            "id": "b",
+            "texto": "Assumir que a ferramenta de IA usada é fraca e trocar imediatamente de ferramenta.",
+            "correta": false
+          },
+          {
+            "id": "c",
+            "texto": "Concluir que a tarefa pedida é impossível de ser feita por qualquer IA.",
+            "correta": false
+          },
+          {
+            "id": "d",
+            "texto": "Repetir exatamente o mesmo prompt, sem nenhuma alteração, e esperar um resultado diferente.",
+            "correta": false
+          }
+        ],
+        "explicacao_acerto": "O primeiro lugar a investigar é o próprio prompt — é onde está a maior parte das causas de resposta ruim.",
+        "explicacao_erro": "Trocar de ferramenta, desistir da tarefa ou repetir sem ajuste raramente resolvem o problema real, que costuma estar na formulação do pedido."
+      }
+    },
+    {
+      "ordem": 3,
+      "titulo_aula": "Erros comuns",
+      "corpo": "Prompt genérico demais. Pedir várias coisas diferentes ao mesmo tempo, sem organizar. Usar termos ambíguos ('fazer um resumo bom' — bom como?). Esquecer de dizer o que a IA não deve fazer.",
+      "atividade": {
+        "id": "intermediaria-06-q3",
+        "tipo": "completar_lacuna",
+        "enunciado": "Pedir várias coisas diferentes ao mesmo tempo, sem organizar, é um erro comum de ___.",
+        "lacunas": [
+          {
+            "posicao": 1,
+            "opcoes": [
+              "formulação/estrutura",
+              "hardware",
+              "conexão"
+            ],
+            "correta": "formulação/estrutura"
+          }
+        ]
+      }
+    },
+    {
+      "ordem": 4,
+      "titulo_aula": "Refinar é processo, não falha",
+      "corpo": "Ajustar o prompt uma, duas, três vezes até chegar no resultado certo é o uso esperado da ferramenta — cada ajuste é informação sobre o que faltou da primeira vez.",
+      "atividade": {
+        "id": "intermediaria-06-q4",
+        "tipo": "associacao",
+        "enunciado": "Ligue cada erro comum de formulação ao sintoma que ele costuma gerar na resposta.",
+        "pares": [
+          {
+            "termo": "Prompt genérico demais",
+            "definicao": "Resposta vaga, sem direcionamento útil"
+          },
+          {
+            "termo": "Termo ambíguo (ex: 'um resumo bom')",
+            "definicao": "IA interpreta de um jeito diferente do que você queria"
+          },
+          {
+            "termo": "Não dizer o que a IA não deve fazer",
+            "definicao": "Risco de a IA complementar com algo indesejado"
+          }
+        ]
+      }
+    }
+  ],
+  "atividade_final": [
+    {
+      "id": "intermediaria-06-q5",
+      "tipo": "verdadeiro_falso",
+      "enunciado": "Refinar um prompt várias vezes até chegar no resultado certo é sinal de que a pessoa não sabe usar a ferramenta.",
+      "resposta_correta": false,
+      "justificativas": [
+        {
+          "id": "a",
+          "texto": "Falso — refinar é o processo esperado; cada ajuste traz informação sobre o que faltou da primeira vez.",
+          "correta": true
+        },
+        {
+          "id": "b",
+          "texto": "Falso, porque refinar um prompt é uma função ainda em fase de testes em algumas ferramentas.",
+          "correta": false
+        },
+        {
+          "id": "c",
+          "texto": "Verdadeiro, quem sabe usar a ferramenta acerta o prompt sempre na primeira tentativa.",
+          "correta": false
+        }
+      ],
+      "explicacao": "Refinar não é uma função experimental nem sinal de despreparo — é o uso esperado e recomendado, retomando o que já vimos no Módulo 5 da trilha básica."
+    },
+    {
+      "id": "intermediaria-06-q6",
+      "tipo": "ordenar_etapas",
+      "enunciado": "Coloque em ordem um processo simples de depuração de um prompt que não funcionou.",
+      "etapas_corretas": [
+        "Reler o prompt e identificar possíveis ambiguidades ou falta de contexto",
+        "Ajustar um elemento por vez (objetivo, contexto, formato ou restrição)",
+        "Reenviar o prompt ajustado",
+        "Comparar o novo resultado com o que você realmente precisava"
+      ]
+    },
+    {
+      "id": "intermediaria-06-q7",
+      "tipo": "resposta_curta_autoavaliada",
+      "enunciado": "Pegue o prompt fraco \"Analisa esse contrato aí\" e reescreva uma versão melhorada, aplicando o que você aprendeu neste módulo.",
+      "criterios_autoavaliacao": [
+        "Minha versão elimina termos vagos como 'analisa' e 'esse aí'?",
+        "Ficou claro o que exatamente deve ser analisado no contrato?",
+        "Incluí pelo menos um elemento a mais (contexto, formato ou restrição) além da tarefa?"
+      ],
+      "exemplo_de_resposta_forte": "\"Analise este contrato fictício de prestação de serviços e liste, em tópicos, as cláusulas que podem representar risco financeiro para o contratante.\""
+    }
+  ],
+  "conquista_de_bloco": {
+    "bloco": "A",
+    "nome_badge": "Arquiteto de Prompts",
+    "descricao": "Concluiu o Bloco A — domina os fundamentos de prompt engineering aplicados ao trabalho jurídico."
+  }
+}

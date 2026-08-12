@@ -1,0 +1,192 @@
+{
+  "modulo_id": "intermediaria-13",
+  "trilha": "intermediaria",
+  "bloco": "C",
+  "ordem": 13,
+  "titulo": "Gerando primeiras versões de minutas e peças com apoio de IA",
+  "descricao_curta": "Estrutura, sim. Fundamentação e fatos inventados, nunca.",
+  "tempo_estimado_min": 5,
+  "objetivos_aprendizagem": [
+    "Aplicar prompt avançado à geração de minutas e peças",
+    "Entender o papel do rascunho estruturado como ponto de partida",
+    "Reconhecer riscos específicos de gerar peças processuais com IA",
+    "Aplicar um checklist de revisão antes de considerar uma minuta pronta"
+  ],
+  "aulas": [
+    {
+      "ordem": 1,
+      "titulo_aula": "Juntando o que você já sabe",
+      "corpo": "Role prompting, contexto detalhado e restrições claras (Bloco A) se combinam aqui numa aplicação concreta: gerar a primeira versão de uma minuta ou peça.",
+      "atividade": {
+        "id": "intermediaria-13-q1",
+        "tipo": "multipla_escolha",
+        "enunciado": "Qual é o papel mais adequado da IA ao gerar uma minuta ou peça processual?",
+        "alternativas": [
+          {
+            "id": "a",
+            "texto": "Ajudar na estrutura geral e em uma primeira organização dos argumentos já fornecidos, sem inventar fatos ou fundamentos.",
+            "correta": true
+          },
+          {
+            "id": "b",
+            "texto": "Preencher sozinha os fatos e a fundamentação jurídica do caso, sem qualquer informação prévia.",
+            "correta": false
+          },
+          {
+            "id": "c",
+            "texto": "Substituir completamente a redação final de qualquer peça processual.",
+            "correta": false
+          },
+          {
+            "id": "d",
+            "texto": "Decidir a estratégia processual que deve embasar a peça.",
+            "correta": false
+          }
+        ],
+        "explicacao_acerto": "Isso mesmo — estrutura e organização são bons usos; fatos e fundamentação exigem sua entrada e revisão.",
+        "explicacao_erro": "Preencher fatos sozinha, substituir a redação final por completo, ou decidir estratégia são exatamente os usos de maior risco descritos no módulo."
+      }
+    },
+    {
+      "ordem": 2,
+      "titulo_aula": "O que costuma funcionar bem",
+      "corpo": "Estrutura geral do documento, primeira redação de cláusulas padronizadas, organização lógica de argumentos já fornecidos por você.",
+      "atividade": {
+        "id": "intermediaria-13-q2",
+        "tipo": "verdadeiro_falso",
+        "enunciado": "A IA pode preencher sozinha os fatos específicos de um caso, sem que você os forneça.",
+        "resposta_correta": false,
+        "justificativas": [
+          {
+            "id": "a",
+            "texto": "Falso — pedir isso é abrir a porta para alucinação, já que a IA vai gerar algo plausível, não necessariamente real.",
+            "correta": true
+          },
+          {
+            "id": "b",
+            "texto": "Falso, porque a função de preencher fatos automaticamente é bloqueada tecnicamente.",
+            "correta": false
+          },
+          {
+            "id": "c",
+            "texto": "Verdadeiro, desde que o prompt peça isso educadamente.",
+            "correta": false
+          }
+        ],
+        "explicacao": "Não há bloqueio técnico dessa função — o risco é conceitual: fatos não fornecidos tendem a ser inventados, independentemente de como o pedido é formulado."
+      }
+    },
+    {
+      "ordem": 3,
+      "titulo_aula": "Onde mora o risco",
+      "corpo": "Fundamentação jurídica, citações e fatos específicos do caso precisam vir de você — pedir para a IA 'completar' isso sozinha é abrir a porta para alucinação (Módulo 8 da trilha básica).",
+      "atividade": {
+        "id": "intermediaria-13-q3",
+        "tipo": "completar_lacuna",
+        "enunciado": "Citações e fundamentação jurídica geradas por IA precisam ser ___ antes de entrar na versão final.",
+        "lacunas": [
+          {
+            "posicao": 1,
+            "opcoes": [
+              "verificadas/conferidas",
+              "traduzidas",
+              "resumidas"
+            ],
+            "correta": "verificadas/conferidas"
+          }
+        ]
+      }
+    },
+    {
+      "ordem": 4,
+      "titulo_aula": "Checklist antes de considerar pronta",
+      "corpo": "Fatos conferidos com o processo real? Citações verificadas em fonte oficial? Fundamentação revisada por um humano? Formato adequado ao tipo de peça?",
+      "atividade": {
+        "id": "intermediaria-13-q4",
+        "tipo": "correcao_prompt",
+        "enunciado": "Um estagiário pede para a IA \"completar os fundamentos legais\" de uma petição fictícia, sem fornecer nenhuma base. Qual o risco desse prompt?",
+        "prompt_analisado": "\"Complete os fundamentos legais desta petição.\"",
+        "alternativas": [
+          {
+            "id": "a",
+            "texto": "Sem nenhuma base fornecida, a IA tende a gerar fundamentação plausível, mas potencialmente inventada — alto risco de alucinação.",
+            "correta": true
+          },
+          {
+            "id": "b",
+            "texto": "O prompt é tecnicamente inválido e a IA vai simplesmente recusar responder.",
+            "correta": false
+          },
+          {
+            "id": "c",
+            "texto": "Não há nenhum risco, desde que a petição seja revisada por um corretor ortográfico depois.",
+            "correta": false
+          },
+          {
+            "id": "d",
+            "texto": "O risco é apenas de a resposta demorar mais para ser gerada.",
+            "correta": false
+          }
+        ],
+        "explicacao_acerto": "Sem base fornecida, a IA preenche a lacuna com o que é estatisticamente plausível — exatamente o mecanismo de alucinação visto no Módulo 8 da trilha básica.",
+        "explicacao_erro": "A IA não recusa automaticamente, corretor ortográfico não verifica fundamentação jurídica, e o risco não é sobre tempo de resposta."
+      }
+    }
+  ],
+  "atividade_final": [
+    {
+      "id": "intermediaria-13-q5",
+      "tipo": "associacao",
+      "enunciado": "Ligue cada elemento da peça a quem deve garanti-lo.",
+      "pares": [
+        {
+          "termo": "Estrutura geral do documento",
+          "definicao": "IA pode ajudar"
+        },
+        {
+          "termo": "Fatos específicos do caso",
+          "definicao": "Você deve fornecer"
+        },
+        {
+          "termo": "Citações e fundamentação jurídica",
+          "definicao": "Verificação humana obrigatória"
+        }
+      ]
+    },
+    {
+      "id": "intermediaria-13-q6",
+      "tipo": "verdadeiro_falso",
+      "enunciado": "Um checklist de revisão antes de finalizar a minuta deve incluir a checagem de citações em fonte oficial.",
+      "resposta_correta": true,
+      "justificativas": [
+        {
+          "id": "a",
+          "texto": "Verdadeiro — citação não verificada é um dos maiores riscos de conteúdo gerado por IA em peças jurídicas.",
+          "correta": true
+        },
+        {
+          "id": "b",
+          "texto": "Verdadeiro, mas apenas em peças com mais de 20 páginas.",
+          "correta": false
+        },
+        {
+          "id": "c",
+          "texto": "Falso, checagem de citação é responsabilidade exclusiva de quem assina a peça, não do checklist.",
+          "correta": false
+        }
+      ],
+      "explicacao": "Checagem de citação não depende do tamanho da peça, e o checklist é justamente a ferramenta que apoia quem assina a peça a cumprir essa responsabilidade."
+    },
+    {
+      "id": "intermediaria-13-q7",
+      "tipo": "resposta_curta_autoavaliada",
+      "enunciado": "Escreva um prompt para gerar a estrutura geral (não o conteúdo jurídico final) de uma petição fictícia de cobrança, incluindo uma restrição clara contra invenção de conteúdo.",
+      "criterios_autoavaliacao": [
+        "Meu prompt pede estrutura, não fundamentação jurídica pronta?",
+        "Incluí a restrição de não inventar fatos ou fundamentos?",
+        "Ficou claro que essa estrutura ainda precisa ser preenchida e revisada por um responsável?"
+      ],
+      "exemplo_de_resposta_forte": "\"Gere apenas a estrutura geral de uma petição inicial de cobrança (sem fundamentação jurídica), sem inventar nenhum fato ou fundamento não fornecido por mim.\""
+    }
+  ]
+}

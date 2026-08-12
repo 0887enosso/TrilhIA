@@ -1,0 +1,202 @@
+{
+  "modulo_id": "intermediaria-05",
+  "trilha": "intermediaria",
+  "bloco": "A",
+  "ordem": 5,
+  "titulo": "Prompts para tarefas jurídicas: resumir, extrair e comparar documentos",
+  "descricao_curta": "Três tarefas parecidas, três lógicas de prompt diferentes.",
+  "tempo_estimado_min": 5,
+  "objetivos_aprendizagem": [
+    "Aplicar os elementos do prompt avançado a três tarefas comuns: resumir, extrair e comparar",
+    "Reconhecer que cada tipo de tarefa pede um enquadramento diferente de prompt",
+    "Construir prompts reutilizáveis para essas três tarefas",
+    "Identificar quando a tarefa exige revisão humana redobrada"
+  ],
+  "aulas": [
+    {
+      "ordem": 1,
+      "titulo_aula": "Três tarefas, três lógicas diferentes",
+      "corpo": "Resumir, extrair e comparar parecem parecidos, mas pedem enquadramentos diferentes de prompt. Resumir pede síntese; extrair pede precisão e formato estruturado; comparar pede um 'quadro' claro do que está sendo colocado lado a lado.",
+      "atividade": {
+        "id": "intermediaria-05-q1",
+        "tipo": "correcao_prompt",
+        "enunciado": "Um colega usou o prompt abaixo para extrair datas de um contrato fictício. Ele recebeu de volta uma data que não constava em nenhum lugar do documento. O que provavelmente faltou no prompt?",
+        "prompt_analisado": "\"Liste as datas importantes deste contrato.\"",
+        "alternativas": [
+          {
+            "id": "a",
+            "texto": "Faltou pedir explicitamente que a IA não complemente com nenhuma informação fora do texto original.",
+            "correta": true
+          },
+          {
+            "id": "b",
+            "texto": "Faltou definir um papel para a IA assumir antes de extrair as datas.",
+            "correta": false
+          },
+          {
+            "id": "c",
+            "texto": "Faltou pedir a resposta em um idioma diferente.",
+            "correta": false
+          },
+          {
+            "id": "d",
+            "texto": "Nada faltou — isso é um comportamento normal e esperado da extração de dados.",
+            "correta": false
+          }
+        ],
+        "explicacao_acerto": "Extração exige uma restrição explícita contra complementar com informação externa — sem isso, o risco de invenção aumenta.",
+        "explicacao_erro": "Papel e idioma não são a causa provável aqui, e esse tipo de erro não deveria ser tratado como 'normal' — é um sinal de alucinação, tema do Módulo 8 da trilha básica."
+      }
+    },
+    {
+      "ordem": 2,
+      "titulo_aula": "Resumir bem",
+      "corpo": "Um bom prompt de resumo define o propósito (para quem, para quê) e o nível de detalhe — resumir 'para entender rapidamente' é diferente de resumir 'para não perder nenhuma obrigação contratual'.",
+      "atividade": {
+        "id": "intermediaria-05-q2",
+        "tipo": "verdadeiro_falso",
+        "enunciado": "Resumir um texto para entender rapidamente e resumir para não perder nenhuma obrigação contratual pedem o mesmo tipo de prompt.",
+        "resposta_correta": false,
+        "justificativas": [
+          {
+            "id": "a",
+            "texto": "Falso — o propósito do resumo muda o nível de detalhe necessário, e isso deveria estar explícito no prompt.",
+            "correta": true
+          },
+          {
+            "id": "b",
+            "texto": "Falso, porque resumos jurídicos são tecnicamente proibidos de ter mais de 100 palavras.",
+            "correta": false
+          },
+          {
+            "id": "c",
+            "texto": "Verdadeiro, resumir é sempre a mesma tarefa, independentemente da finalidade.",
+            "correta": false
+          }
+        ],
+        "explicacao": "Não existe limite técnico fixo de palavras — o que muda é o propósito, e isso deve ser refletido no prompt para gerar o nível de detalhe certo."
+      }
+    },
+    {
+      "ordem": 3,
+      "titulo_aula": "Extrair com precisão",
+      "corpo": "Para extração (ex: 'liste todas as datas mencionadas neste contrato'), peça formato estruturado (lista, tabela) e deixe claro que a IA não deve complementar com informação fora do texto original — isso reduz risco de invenção.",
+      "atividade": {
+        "id": "intermediaria-05-q3",
+        "tipo": "completar_lacuna",
+        "enunciado": "Um prompt de extração deve pedir formato ___1___ e restringir a IA a não ___2___ informação fora do texto original.",
+        "lacunas": [
+          {
+            "posicao": 1,
+            "opcoes": [
+              "estruturado",
+              "poético",
+              "aleatório"
+            ],
+            "correta": "estruturado"
+          },
+          {
+            "posicao": 2,
+            "opcoes": [
+              "complementar",
+              "resumir",
+              "traduzir"
+            ],
+            "correta": "complementar"
+          }
+        ]
+      }
+    },
+    {
+      "ordem": 4,
+      "titulo_aula": "Comparar sem se perder",
+      "corpo": "Comparar dois documentos exige que você defina os critérios de comparação (ex: 'compare as cláusulas de rescisão dos dois contratos'). Sem critério claro, a IA pode comparar aspectos irrelevantes.",
+      "destaque": "Toda diferença apontada precisa ser conferida linha a linha depois.",
+      "atividade": {
+        "id": "intermediaria-05-q4",
+        "tipo": "multipla_escolha",
+        "enunciado": "Uma comparação entre cláusulas de rescisão de dois contratos foi feita sem nenhum critério definido no prompt. Qual o risco mais provável?",
+        "alternativas": [
+          {
+            "id": "a",
+            "texto": "A IA pode comparar aspectos irrelevantes ou genéricos, em vez de focar no que realmente importa para a decisão.",
+            "correta": true
+          },
+          {
+            "id": "b",
+            "texto": "A comparação será automaticamente recusada pela ferramenta por falta de critério.",
+            "correta": false
+          },
+          {
+            "id": "c",
+            "texto": "Os dois contratos serão fundidos automaticamente em um único documento.",
+            "correta": false
+          },
+          {
+            "id": "d",
+            "texto": "Não há nenhum risco real — critério de comparação é opcional e não influencia o resultado.",
+            "correta": false
+          }
+        ],
+        "explicacao_acerto": "Sem critério, a comparação tende a ser genérica ou focar em aspectos que não são o que você realmente precisa avaliar.",
+        "explicacao_erro": "Não existe recusa automática nem fusão de documentos — e critério de comparação, sim, influencia bastante o resultado."
+      }
+    }
+  ],
+  "atividade_final": [
+    {
+      "id": "intermediaria-05-q5",
+      "tipo": "associacao",
+      "enunciado": "Ligue cada tarefa ao elemento de prompt mais importante para ela.",
+      "pares": [
+        {
+          "termo": "Resumir",
+          "definicao": "Definir propósito e nível de detalhe esperado"
+        },
+        {
+          "termo": "Extrair",
+          "definicao": "Definir formato estruturado e restringir invenção de dado"
+        },
+        {
+          "termo": "Comparar",
+          "definicao": "Definir critérios claros de comparação"
+        }
+      ]
+    },
+    {
+      "id": "intermediaria-05-q6",
+      "tipo": "verdadeiro_falso",
+      "enunciado": "Toda comparação apontada pela IA entre dois documentos deve ser conferida linha a linha depois.",
+      "resposta_correta": true,
+      "justificativas": [
+        {
+          "id": "a",
+          "texto": "Verdadeiro — mesmo com critério bem definido, a comparação ainda pode conter erro e precisa de checagem.",
+          "correta": true
+        },
+        {
+          "id": "b",
+          "texto": "Verdadeiro, mas apenas quando os dois documentos têm mais de 50 páginas.",
+          "correta": false
+        },
+        {
+          "id": "c",
+          "texto": "Falso, comparações entre documentos são a única tarefa de IA que dispensa revisão humana.",
+          "correta": false
+        }
+      ],
+      "explicacao": "A necessidade de checagem não depende do tamanho do documento, e nenhuma tarefa de IA dispensa totalmente a revisão humana."
+    },
+    {
+      "id": "intermediaria-05-q7",
+      "tipo": "resposta_curta_autoavaliada",
+      "enunciado": "Escreva um prompt de comparação, com critério claro, para comparar as cláusulas de multa por atraso de dois contratos fictícios de fornecimento.",
+      "criterios_autoavaliacao": [
+        "Meu prompt define exatamente qual aspecto está sendo comparado (não é 'compare os dois contratos' de forma genérica)?",
+        "Ficou claro o que a IA deve fazer com o resultado (listar diferenças, apontar qual é mais vantajosa, etc.)?",
+        "Eu me lembrei de que o resultado ainda precisará ser conferido linha a linha?"
+      ],
+      "exemplo_de_resposta_forte": "\"Compare exclusivamente as cláusulas de multa por atraso na entrega dos dois contratos fictícios anexados, e liste as diferenças em uma tabela de duas colunas.\""
+    }
+  ]
+}

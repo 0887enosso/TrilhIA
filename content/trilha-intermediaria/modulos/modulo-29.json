@@ -1,0 +1,195 @@
+{
+  "modulo_id": "intermediaria-29",
+  "trilha": "intermediaria",
+  "bloco": "E",
+  "ordem": 29,
+  "titulo": "Riscos e limites de automações com IA no ambiente jurídico",
+  "descricao_curta": "Automação amplia escala — inclusive a de um erro.",
+  "tempo_estimado_min": 5,
+  "objetivos_aprendizagem": [
+    "Reconhecer riscos específicos de automações que envolvem IA e dados sensíveis",
+    "Entender por que automações precisam de supervisão periódica",
+    "Aplicar critérios de aprovação antes de automatizar um fluxo com dado sensível"
+  ],
+  "aulas": [
+    {
+      "ordem": 1,
+      "titulo_aula": "Automação amplia escala — inclusive a de um erro",
+      "corpo": "Uma automação mal configurada não comete um erro isolado: ela repete esse erro em todos os casos seguintes, sem que ninguém perceba imediatamente.",
+      "atividade": {
+        "id": "intermediaria-29-q1",
+        "tipo": "multipla_escolha",
+        "enunciado": "Por que um erro em uma automação pode ser mais grave do que um erro pontual feito manualmente?",
+        "alternativas": [
+          {
+            "id": "a",
+            "texto": "Porque a automação repete o mesmo erro em todos os casos seguintes, ampliando a escala do problema.",
+            "correta": true
+          },
+          {
+            "id": "b",
+            "texto": "Porque erros em automações são sempre irreversíveis, diferente de qualquer erro manual.",
+            "correta": false
+          },
+          {
+            "id": "c",
+            "texto": "Não existe diferença real de gravidade entre os dois tipos de erro.",
+            "correta": false
+          },
+          {
+            "id": "d",
+            "texto": "Porque automações são sempre mais lentas do que processos manuais.",
+            "correta": false
+          }
+        ],
+        "explicacao_acerto": "Isso mesmo — o risco central é a escala: o mesmo erro se repete sem intervenção.",
+        "explicacao_erro": "Nem todo erro de automação é irreversível, existe sim diferença de gravidade potencial pela escala, e velocidade não é o ponto central aqui."
+      }
+    },
+    {
+      "ordem": 2,
+      "titulo_aula": "Dado sensível dentro de um fluxo automatizado",
+      "corpo": "Se uma automação processa documentos com dado de cliente através de uma IA, as mesmas regras de sigilo e LGPD do Módulo 9 da trilha básica se aplicam — e precisam ser verificadas antes de configurar o fluxo, não depois.",
+      "atividade": {
+        "id": "intermediaria-29-q2",
+        "tipo": "verdadeiro_falso",
+        "enunciado": "As regras de sigilo profissional e LGPD não se aplicam dentro de fluxos automatizados, apenas no uso manual e direto da IA.",
+        "resposta_correta": false,
+        "justificativas": [
+          {
+            "id": "a",
+            "texto": "Falso — as mesmas regras do Módulo 9 da trilha básica se aplicam integralmente dentro de fluxos automatizados.",
+            "correta": true
+          },
+          {
+            "id": "b",
+            "texto": "Falso, porque a LGPD só regula sistemas configurados manualmente, nunca automações.",
+            "correta": false
+          },
+          {
+            "id": "c",
+            "texto": "Verdadeiro, automações estão fora do escopo de qualquer regra de sigilo ou proteção de dados.",
+            "correta": false
+          }
+        ],
+        "explicacao": "Não existe essa distinção na lei nem na prática — dado sensível processado automaticamente continua sendo dado sensível, sujeito às mesmas regras."
+      }
+    },
+    {
+      "ordem": 3,
+      "titulo_aula": "Retomando a supervisão periódica",
+      "corpo": "Como vimos no Módulo 17, uma automação configurada uma vez não deve ser 'esquecida'. Revisar periodicamente evita que um erro silencioso se acumule por meses.",
+      "atividade": {
+        "id": "intermediaria-29-q3",
+        "tipo": "completar_lacuna",
+        "enunciado": "Antes de automatizar um fluxo com dado sensível, é necessário verificar a ___ do escritório para esse tipo de processo.",
+        "lacunas": [
+          {
+            "posicao": 1,
+            "opcoes": [
+              "aprovação",
+              "cor",
+              "velocidade"
+            ],
+            "correta": "aprovação"
+          }
+        ]
+      }
+    },
+    {
+      "ordem": 4,
+      "titulo_aula": "Antes de automatizar algo no seu trabalho",
+      "corpo": "Pergunte: essa automação foi aprovada pelo escritório? Envolve dado sensível de cliente? Existe alguém responsável por revisar seu funcionamento periodicamente?",
+      "atividade": {
+        "id": "intermediaria-29-q4",
+        "tipo": "multipla_escolha",
+        "enunciado": "Uma automação fictícia com erro de classificação passa meses sem revisão, afetando um grande volume de documentos. Qual prática teria evitado isso?",
+        "alternativas": [
+          {
+            "id": "a",
+            "texto": "Supervisão periódica do funcionamento da automação, revisando amostras dos resultados regularmente.",
+            "correta": true
+          },
+          {
+            "id": "b",
+            "texto": "Configurar a automação uma única vez e nunca mais precisar olhar para ela, como já era esperado.",
+            "correta": false
+          },
+          {
+            "id": "c",
+            "texto": "Aumentar a quantidade de documentos processados por dia, sem alterar mais nada.",
+            "correta": false
+          },
+          {
+            "id": "d",
+            "texto": "Nenhuma prática poderia ter evitado esse tipo de problema.",
+            "correta": false
+          }
+        ],
+        "explicacao_acerto": "Supervisão periódica é exatamente o mecanismo que evita esse tipo de erro silencioso e acumulado.",
+        "explicacao_erro": "Configurar e esquecer é justamente o comportamento de risco, aumentar volume não resolve o problema de fundo, e existe sim uma prática capaz de evitar isso."
+      }
+    }
+  ],
+  "atividade_final": [
+    {
+      "id": "intermediaria-29-q5",
+      "tipo": "associacao",
+      "enunciado": "Ligue cada pergunta de checagem à sua finalidade.",
+      "pares": [
+        {
+          "termo": "A automação foi aprovada pelo escritório?",
+          "definicao": "Garantir conformidade com a governança interna"
+        },
+        {
+          "termo": "Envolve dado sensível de cliente?",
+          "definicao": "Avaliar risco de sigilo e LGPD"
+        },
+        {
+          "termo": "Existe responsável pela revisão periódica?",
+          "definicao": "Evitar erro silencioso acumulado ao longo do tempo"
+        }
+      ]
+    },
+    {
+      "id": "intermediaria-29-q6",
+      "tipo": "verdadeiro_falso",
+      "enunciado": "Uma automação bem configurada dispensa qualquer tipo de supervisão futura.",
+      "resposta_correta": false,
+      "justificativas": [
+        {
+          "id": "a",
+          "texto": "Falso — mesmo bem configurada no início, uma automação precisa de supervisão periódica para não acumular erros silenciosos.",
+          "correta": true
+        },
+        {
+          "id": "b",
+          "texto": "Falso, porque automações bem configuradas exigem supervisão apenas na primeira semana de uso.",
+          "correta": false
+        },
+        {
+          "id": "c",
+          "texto": "Verdadeiro, configuração inicial correta garante funcionamento perfeito para sempre.",
+          "correta": false
+        }
+      ],
+      "explicacao": "Não existe prazo fixo de uma semana nem garantia permanente — supervisão periódica contínua é a prática recomendada, retomando o Módulo 17."
+    },
+    {
+      "id": "intermediaria-29-q7",
+      "tipo": "resposta_curta_autoavaliada",
+      "enunciado": "Diante de uma proposta fictícia de automatizar um fluxo que envolve dados de clientes, descreva em até duas frases qual deveria ser o primeiro passo.",
+      "criterios_autoavaliacao": [
+        "Minha resposta menciona verificar a aprovação do escritório antes de configurar?",
+        "Considerei a sensibilidade do dado envolvido?",
+        "Minha resposta evita pular direto para a configuração técnica da automação?"
+      ],
+      "exemplo_de_resposta_forte": "\"Antes de configurar qualquer coisa, eu verificaria se esse tipo de automação com dado de cliente é aprovado pelo escritório e quem ficaria responsável pela revisão periódica.\""
+    }
+  ],
+  "conquista_de_bloco": {
+    "bloco": "E",
+    "nome_badge": "Guardião de Integrações",
+    "descricao": "Concluiu o Bloco E — entende como ferramentas se conectam a IA via API, e como usar isso com segurança e responsabilidade."
+  }
+}

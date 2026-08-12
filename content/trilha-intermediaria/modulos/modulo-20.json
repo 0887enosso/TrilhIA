@@ -1,0 +1,191 @@
+{
+  "modulo_id": "intermediaria-20",
+  "trilha": "intermediaria",
+  "bloco": "D",
+  "ordem": 20,
+  "titulo": "Agentes de IA: quando uma IA executa tarefas sozinha, passo a passo",
+  "descricao_curta": "Da resposta única à execução de ações reais — e por que isso pede mais cuidado.",
+  "tempo_estimado_min": 5,
+  "objetivos_aprendizagem": [
+    "Entender o conceito de agente de IA (diferente de simplesmente responder uma pergunta)",
+    "Reconhecer a diferença entre assistente conversacional e agente que executa ações",
+    "Entender o conceito de \"ferramenta\" que um agente pode usar",
+    "Reconhecer riscos específicos de dar autonomia a um agente"
+  ],
+  "aulas": [
+    {
+      "ordem": 1,
+      "titulo_aula": "Da resposta única à execução de tarefa",
+      "corpo": "Um assistente comum responde uma pergunta. Um agente pode executar uma sequência de ações para cumprir um objetivo — buscar informação, preencher um formulário, enviar um e-mail.",
+      "atividade": {
+        "id": "intermediaria-20-q1",
+        "tipo": "multipla_escolha",
+        "enunciado": "O que diferencia um agente de IA de um assistente conversacional comum?",
+        "alternativas": [
+          {
+            "id": "a",
+            "texto": "O agente executa uma sequência de ações reais para cumprir um objetivo, não só responde perguntas.",
+            "correta": true
+          },
+          {
+            "id": "b",
+            "texto": "O agente é sempre mais rápido para gerar texto do que um assistente comum.",
+            "correta": false
+          },
+          {
+            "id": "c",
+            "texto": "O agente não pode errar, diferente de um assistente comum.",
+            "correta": false
+          },
+          {
+            "id": "d",
+            "texto": "Não existe diferença real — são apenas nomes de marketing diferentes.",
+            "correta": false
+          }
+        ],
+        "explicacao_acerto": "Isso mesmo — a diferença central é executar ações reais, não só responder.",
+        "explicacao_erro": "Velocidade não é o critério de diferenciação, agentes também podem errar, e a diferença é funcional, não apenas de nome."
+      }
+    },
+    {
+      "ordem": 2,
+      "titulo_aula": "Como um agente \"age\"",
+      "corpo": "Ele decide, passo a passo, qual ação tomar em seguida, usando ferramentas (acesso a um sistema, um buscador, uma planilha) — e repete esse ciclo até concluir a tarefa.",
+      "atividade": {
+        "id": "intermediaria-20-q2",
+        "tipo": "verdadeiro_falso",
+        "enunciado": "Um agente de IA nunca comete erros, porque segue passos predefinidos.",
+        "resposta_correta": false,
+        "justificativas": [
+          {
+            "id": "a",
+            "texto": "Falso — seguir passos não elimina o risco de erro em cada decisão tomada ao longo do caminho.",
+            "correta": true
+          },
+          {
+            "id": "b",
+            "texto": "Falso, porque agentes de IA são tecnicamente proibidos de cometer qualquer tipo de erro.",
+            "correta": false
+          },
+          {
+            "id": "c",
+            "texto": "Verdadeiro, passos predefinidos garantem 100% de acerto em qualquer execução.",
+            "correta": false
+          }
+        ],
+        "explicacao": "Não existe proibição técnica de erro nem garantia de 100% de acerto — seguir etapas reduz, mas não elimina, o risco de decisão errada em algum ponto do caminho."
+      }
+    },
+    {
+      "ordem": 3,
+      "titulo_aula": "Por que isso é mais arriscado que uma conversa simples",
+      "corpo": "Cada ação executada tem efeito real — enviar, salvar, apagar. Um erro no meio do caminho pode se propagar sem que ninguém perceba a tempo.",
+      "atividade": {
+        "id": "intermediaria-20-q3",
+        "tipo": "completar_lacuna",
+        "enunciado": "Quanto mais ___ um agente tem, mais importante é ter pontos de checagem humana antes de ações irreversíveis.",
+        "lacunas": [
+          {
+            "posicao": 1,
+            "opcoes": [
+              "autonomia",
+              "velocidade",
+              "cor"
+            ],
+            "correta": "autonomia"
+          }
+        ]
+      }
+    },
+    {
+      "ordem": 4,
+      "titulo_aula": "Autonomia com supervisão",
+      "corpo": "Quanto mais autonomia um agente tem, mais importante é ter pontos de checagem humana antes de ações irreversíveis.",
+      "atividade": {
+        "id": "intermediaria-20-q4",
+        "tipo": "multipla_escolha",
+        "enunciado": "Um agente configurado para enviar e-mails automaticamente comete um erro no meio do fluxo. Qual o risco central desse tipo de configuração?",
+        "alternativas": [
+          {
+            "id": "a",
+            "texto": "O erro pode se propagar e ter efeito real (e-mail enviado) antes que alguém perceba e consiga corrigir.",
+            "correta": true
+          },
+          {
+            "id": "b",
+            "texto": "Não há risco real, já que agentes sempre corrigem os próprios erros automaticamente antes de agir.",
+            "correta": false
+          },
+          {
+            "id": "c",
+            "texto": "O único risco é o agente ficar temporariamente mais lento.",
+            "correta": false
+          },
+          {
+            "id": "d",
+            "texto": "O risco existe apenas se o agente for de um fornecedor não conhecido no mercado.",
+            "correta": false
+          }
+        ],
+        "explicacao_acerto": "Ações com efeito real e irreversível são justamente o que torna agentes mais arriscados do que uma conversa simples.",
+        "explicacao_erro": "Não há autocorreção garantida antes da ação, o risco não é sobre velocidade, e a fama do fornecedor não elimina o risco de execução."
+      }
+    }
+  ],
+  "atividade_final": [
+    {
+      "id": "intermediaria-20-q5",
+      "tipo": "associacao",
+      "enunciado": "Ligue cada conceito à sua definição correta.",
+      "pares": [
+        {
+          "termo": "Assistente conversacional",
+          "definicao": "Responde perguntas, sem executar ações externas"
+        },
+        {
+          "termo": "Agente de IA",
+          "definicao": "Executa uma sequência de ações reais para cumprir um objetivo"
+        },
+        {
+          "termo": "Ferramenta (no contexto de agente)",
+          "definicao": "Recurso externo que o agente pode usar, como um sistema ou planilha"
+        }
+      ]
+    },
+    {
+      "id": "intermediaria-20-q6",
+      "tipo": "verdadeiro_falso",
+      "enunciado": "Ações executadas por um agente podem ter efeito real, como enviar ou apagar algo.",
+      "resposta_correta": true,
+      "justificativas": [
+        {
+          "id": "a",
+          "texto": "Verdadeiro — diferente de uma resposta de texto, ações de agente podem alterar sistemas reais de forma irreversível.",
+          "correta": true
+        },
+        {
+          "id": "b",
+          "texto": "Verdadeiro, mas apenas em agentes configurados por administradores de sistema.",
+          "correta": false
+        },
+        {
+          "id": "c",
+          "texto": "Falso, todas as ações de um agente são sempre reversíveis automaticamente.",
+          "correta": false
+        }
+      ],
+      "explicacao": "Não é uma questão de quem configurou o agente — o ponto central é que a ação em si pode ser irreversível, e nem toda ação tem reversão automática."
+    },
+    {
+      "id": "intermediaria-20-q7",
+      "tipo": "resposta_curta_autoavaliada",
+      "enunciado": "Descreva, em até duas frases, um ponto de checagem humana que você colocaria em um agente fictício configurado para enviar respostas automáticas a clientes.",
+      "criterios_autoavaliacao": [
+        "Meu ponto de checagem acontece antes de uma ação irreversível (o envio)?",
+        "Minha resposta é aplicável na prática, não apenas teórica?",
+        "Considerei que a autonomia total, sem checagem, seria arriscada nesse cenário?"
+      ],
+      "exemplo_de_resposta_forte": "\"Eu configuraria o agente para gerar a resposta e aguardar aprovação humana antes de efetivamente enviá-la ao cliente, em vez de enviar automaticamente.\""
+    }
+  ]
+}

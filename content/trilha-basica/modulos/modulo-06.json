@@ -1,0 +1,205 @@
+{
+  "modulo_id": "basica-06",
+  "trilha": "basica",
+  "ordem": 6,
+  "titulo": "O que é um prompt e por que ele muda o resultado",
+  "descricao_curta": "A pergunta certa já é metade da resposta certa.",
+  "tempo_estimado_min": 4,
+  "objetivos_aprendizagem": [
+    "Definir o que é um prompt",
+    "Entender que a qualidade da entrada influencia diretamente a qualidade da saída",
+    "Reconhecer três elementos básicos de um prompt melhor: objetivo, contexto e formato",
+    "Diferenciar um prompt vago de um prompt específico"
+  ],
+  "aulas": [
+    {
+      "ordem": 1,
+      "titulo_aula": "O que é um prompt",
+      "corpo": "É a instrução ou pergunta que você dá à IA — o ponto de partida de tudo que ela vai gerar depois.",
+      "atividade": {
+        "id": "basica-06-q1",
+        "tipo": "multipla_escolha",
+        "enunciado": "O que é um \"prompt\" no contexto de IA generativa?",
+        "alternativas": [
+          {
+            "id": "a",
+            "texto": "A instrução ou pergunta que você fornece à IA, servindo como ponto de partida da resposta gerada.",
+            "correta": true
+          },
+          {
+            "id": "b",
+            "texto": "Um tipo específico de erro técnico que acontece quando a IA fica sobrecarregada.",
+            "correta": false
+          },
+          {
+            "id": "c",
+            "texto": "O nome técnico dado ao modelo de IA que roda por trás de uma plataforma.",
+            "correta": false
+          },
+          {
+            "id": "d",
+            "texto": "Um recurso avançado disponível apenas em versões pagas de ferramentas de IA.",
+            "correta": false
+          }
+        ],
+        "explicacao_acerto": "Exatamente — é a sua entrada, o ponto de partida de toda a resposta gerada.",
+        "explicacao_erro": "Prompt não é um erro técnico, nem o nome do modelo, nem um recurso exclusivo de plano pago — é simplesmente a sua instrução de entrada."
+      }
+    },
+    {
+      "ordem": 2,
+      "titulo_aula": "Por que ele muda tanto o resultado",
+      "corpo": "Como a IA gera a resposta com base no que você forneceu, um prompt vago tende a gerar algo genérico. Um prompt específico tende a gerar algo mais útil e direcionado ao que você realmente precisa.",
+      "atividade": {
+        "id": "basica-06-q2",
+        "tipo": "verdadeiro_falso",
+        "enunciado": "A forma como você escreve o pedido para a IA não influencia a qualidade da resposta.",
+        "resposta_correta": false,
+        "justificativas": [
+          {
+            "id": "a",
+            "texto": "Falso — prompts mais específicos, com objetivo e contexto claros, tendem a gerar respostas mais úteis.",
+            "correta": true
+          },
+          {
+            "id": "b",
+            "texto": "Falso — porque a IA ignora completamente o texto do pedido e responde de forma aleatória.",
+            "correta": false
+          },
+          {
+            "id": "c",
+            "texto": "Verdadeiro — a resposta gerada é sempre igual, independentemente de como a pergunta é formulada.",
+            "correta": false
+          }
+        ],
+        "explicacao": "A entrada é a base de tudo que a IA gera — e a resposta não é aleatória nem indiferente à forma do pedido, ela é fortemente influenciada por ele."
+      }
+    },
+    {
+      "ordem": 3,
+      "titulo_aula": "Três elementos que já fazem diferença",
+      "corpo": "Você não precisa de nenhuma técnica avançada para começar — só de três ingredientes:",
+      "destaque": "Objetivo claro (o que você quer alcançar). Contexto (informação relevante que a IA precisa para responder bem). Formato esperado (como você quer receber a resposta: lista, resumo, texto corrido).",
+      "atividade": {
+        "id": "basica-06-q3",
+        "tipo": "ordenar_etapas",
+        "enunciado": "Coloque em ordem os passos para transformar um prompt vago em um prompt mais eficaz.",
+        "etapas_corretas": [
+          "Definir o objetivo do que você quer alcançar",
+          "Adicionar o contexto relevante para a tarefa",
+          "Especificar o formato esperado da resposta",
+          "Revisar o prompt antes de enviar"
+        ]
+      }
+    },
+    {
+      "ordem": 4,
+      "titulo_aula": "Vago x específico, na prática",
+      "corpo": "'Resuma isso' versus 'Resuma este texto em até 5 tópicos, destacando prazos e obrigações.' O segundo prompt já embute objetivo, contexto e formato — e tende a gerar um resultado muito mais útil.",
+      "destaque": "Esse é só o começo. Técnicas mais avançadas de construção de prompt ficam para a trilha intermediária.",
+      "atividade": {
+        "id": "basica-06-q4",
+        "tipo": "associacao",
+        "enunciado": "Ligue cada trecho de prompt ao elemento que ele representa.",
+        "pares": [
+          {
+            "termo": "\"Resuma este contrato\"",
+            "definicao": "Objetivo"
+          },
+          {
+            "termo": "\"considerando que é um contrato de prestação de serviços\"",
+            "definicao": "Contexto"
+          },
+          {
+            "termo": "\"em até 5 tópicos\"",
+            "definicao": "Formato"
+          }
+        ]
+      }
+    }
+  ],
+  "atividade_final": [
+    {
+      "id": "basica-06-q5",
+      "tipo": "multipla_escolha",
+      "enunciado": "Qual dos dois prompts abaixo tende a gerar um resultado melhor para revisar um contrato?",
+      "alternativas": [
+        {
+          "id": "a",
+          "texto": "\"Revise isso e me diga se está bom.\"",
+          "correta": false
+        },
+        {
+          "id": "b",
+          "texto": "\"Revise este contrato de prestação de serviços e liste, em tópicos, as cláusulas que possam gerar risco para o contratante.\"",
+          "correta": true
+        },
+        {
+          "id": "c",
+          "texto": "\"Dá uma olhada rápida nesse documento aí, por favor.\"",
+          "correta": false
+        },
+        {
+          "id": "d",
+          "texto": "\"Verifique o contrato e me avise se tiver algum problema.\"",
+          "correta": false
+        }
+      ],
+      "explicacao_acerto": "O segundo tem objetivo, contexto e formato claros — por isso tende a gerar um resultado mais útil e direcionado.",
+      "explicacao_erro": "As demais opções ainda são vagas: falta contexto sobre o tipo de documento, o que conta como 'problema', ou em que formato a resposta deveria vir."
+    },
+    {
+      "id": "basica-06-q6",
+      "tipo": "verdadeiro_falso",
+      "enunciado": "Um prompt específico tende a gerar uma resposta mais direcionada do que um prompt vago.",
+      "resposta_correta": true,
+      "justificativas": [
+        {
+          "id": "a",
+          "texto": "Verdadeiro — quanto mais objetivo, contexto e formato você fornece, mais direcionada a resposta tende a ser.",
+          "correta": true
+        },
+        {
+          "id": "b",
+          "texto": "Verdadeiro, mas esse efeito só é perceptível em ferramentas pagas ou empresariais.",
+          "correta": false
+        },
+        {
+          "id": "c",
+          "texto": "Falso — a especificidade do prompt não tem nenhuma relação com a qualidade da resposta gerada.",
+          "correta": false
+        }
+      ],
+      "explicacao": "Esse é o princípio central do módulo: uma entrada melhor tende a gerar uma saída melhor, em qualquer tipo de ferramenta."
+    },
+    {
+      "id": "basica-06-q7",
+      "tipo": "multipla_escolha",
+      "enunciado": "Dado o prompt vago \"Escreva um resumo\", qual reformulação está mais bem estruturada?",
+      "alternativas": [
+        {
+          "id": "a",
+          "texto": "\"Escreva um resumo de até 150 palavras deste parecer jurídico, destacando a conclusão e os fundamentos principais.\"",
+          "correta": true
+        },
+        {
+          "id": "b",
+          "texto": "\"Escreva algo mais ou menos assim, sobre esse assunto que te mandei.\"",
+          "correta": false
+        },
+        {
+          "id": "c",
+          "texto": "\"Preciso de um resumo, pode ser rapidinho.\"",
+          "correta": false
+        },
+        {
+          "id": "d",
+          "texto": "\"Resume esse negócio aí pra mim, por favor.\"",
+          "correta": false
+        }
+      ],
+      "explicacao_acerto": "Tem objetivo (resumir), contexto (parecer jurídico) e formato (150 palavras, com foco em conclusão e fundamentos).",
+      "explicacao_erro": "As demais opções mantêm o mesmo problema do prompt original: falta de objetivo, contexto ou formato claros, mesmo com palavras diferentes."
+    }
+  ]
+}

@@ -1,0 +1,187 @@
+{
+  "modulo_id": "intermediaria-16",
+  "trilha": "intermediaria",
+  "bloco": "C",
+  "ordem": 16,
+  "titulo": "Criando apresentações e materiais de comunicação com IA",
+  "descricao_curta": "Mesmo conteúdo, tons diferentes — e cuidado redobrado com o que circula.",
+  "tempo_estimado_min": 4,
+  "objetivos_aprendizagem": [
+    "Usar IA para gerar estrutura e primeira versão de apresentações",
+    "Adaptar tom e linguagem para públicos diferentes (cliente x equipe interna)",
+    "Reconhecer o cuidado com dados sensíveis em materiais que podem circular externamente",
+    "Revisar o material antes de compartilhar"
+  ],
+  "aulas": [
+    {
+      "ordem": 1,
+      "titulo_aula": "Da ideia solta à estrutura organizada",
+      "corpo": "A IA ajuda bastante a transformar uma lista de pontos soltos em uma estrutura lógica de apresentação — tópicos, ordem, argumento central.",
+      "atividade": {
+        "id": "intermediaria-16-q1",
+        "tipo": "multipla_escolha",
+        "enunciado": "Qual é um bom uso de IA na criação de apresentações?",
+        "alternativas": [
+          {
+            "id": "a",
+            "texto": "Transformar uma lista de pontos soltos em uma estrutura lógica de tópicos e argumento central.",
+            "correta": true
+          },
+          {
+            "id": "b",
+            "texto": "Gerar a apresentação final pronta para envio, sem nenhuma revisão posterior.",
+            "correta": false
+          },
+          {
+            "id": "c",
+            "texto": "Inserir dados de cliente sem verificar se o material vai circular externamente.",
+            "correta": false
+          },
+          {
+            "id": "d",
+            "texto": "Usar exatamente o mesmo tom, independentemente de o público ser cliente ou equipe interna.",
+            "correta": false
+          }
+        ],
+        "explicacao_acerto": "Isso mesmo — estruturar ideias soltas é um dos usos mais úteis e de menor risco nessa tarefa.",
+        "explicacao_erro": "Enviar sem revisão, ignorar sensibilidade de dado, ou não adaptar o tom ao público são exatamente os cuidados que o módulo pede para não negligenciar."
+      }
+    },
+    {
+      "ordem": 2,
+      "titulo_aula": "Adaptando o tom ao público",
+      "corpo": "Uma apresentação para cliente pede linguagem menos técnica e mais orientada a resultado; uma apresentação interna pode manter termos técnicos e mais detalhe processual. O mesmo conteúdo pode (e deve) ser adaptado.",
+      "atividade": {
+        "id": "intermediaria-16-q2",
+        "tipo": "verdadeiro_falso",
+        "enunciado": "O mesmo conteúdo pode ser adaptado em tom para públicos diferentes, como cliente e equipe interna.",
+        "resposta_correta": true,
+        "justificativas": [
+          {
+            "id": "a",
+            "texto": "Verdadeiro — o conteúdo central pode ser o mesmo, mas o tom e o nível de detalhe técnico devem se adaptar ao público.",
+            "correta": true
+          },
+          {
+            "id": "b",
+            "texto": "Verdadeiro, mas apenas se o público interno tiver menos de 5 pessoas.",
+            "correta": false
+          },
+          {
+            "id": "c",
+            "texto": "Falso, o tom de uma apresentação deve ser sempre idêntico, independentemente do público.",
+            "correta": false
+          }
+        ],
+        "explicacao": "Não há relação com tamanho do público interno — a adaptação de tom é sobre quem está recebendo a informação, cliente ou equipe."
+      }
+    },
+    {
+      "ordem": 3,
+      "titulo_aula": "Cuidado redobrado com dado sensível",
+      "corpo": "Material de apresentação tende a circular mais — e às vezes sair do controle direto de quem criou. Dado de cliente em um slide exige o mesmo cuidado do Módulo 9 da trilha básica, ou mais.",
+      "atividade": {
+        "id": "intermediaria-16-q3",
+        "tipo": "completar_lacuna",
+        "enunciado": "Material de apresentação exige cuidado redobrado com dado sensível porque tende a ___ mais do que uma conversa isolada.",
+        "lacunas": [
+          {
+            "posicao": 1,
+            "opcoes": [
+              "circular",
+              "encolher",
+              "expirar"
+            ],
+            "correta": "circular"
+          }
+        ]
+      }
+    },
+    {
+      "ordem": 4,
+      "titulo_aula": "Revisão final, sempre",
+      "corpo": "Antes de compartilhar, revisar não só o conteúdo, mas se algo sensível não deveria estar ali, especialmente se o material vai para fora do escritório.",
+      "atividade": {
+        "id": "intermediaria-16-q4",
+        "tipo": "multipla_escolha",
+        "enunciado": "Um slide gerado com apoio de IA inclui, sem querer, um trecho com nome de cliente. Qual a atitude correta antes de enviar?",
+        "alternativas": [
+          {
+            "id": "a",
+            "texto": "Remover ou anonimizar o trecho com nome de cliente antes de qualquer envio, especialmente se for para fora do escritório.",
+            "correta": true
+          },
+          {
+            "id": "b",
+            "texto": "Enviar assim mesmo, já que o nome já apareceu em algum documento do processo antes.",
+            "correta": false
+          },
+          {
+            "id": "c",
+            "texto": "Ignorar, contanto que o destinatário seja alguém de confiança.",
+            "correta": false
+          },
+          {
+            "id": "d",
+            "texto": "Apagar o slide inteiro e recomeçar a apresentação do zero.",
+            "correta": false
+          }
+        ],
+        "explicacao_acerto": "Remover ou anonimizar o dado sensível antes do envio é o cuidado mínimo esperado, especialmente para material que pode circular.",
+        "explicacao_erro": "Publicidade parcial em outro documento ou confiança no destinatário não substituem o cuidado de revisão — e recomeçar do zero é desproporcional ao problema."
+      }
+    }
+  ],
+  "atividade_final": [
+    {
+      "id": "intermediaria-16-q5",
+      "tipo": "associacao",
+      "enunciado": "Ligue cada tipo de apresentação ao tom de linguagem mais adequado.",
+      "pares": [
+        {
+          "termo": "Apresentação para cliente",
+          "definicao": "Linguagem menos técnica, orientada a resultado"
+        },
+        {
+          "termo": "Apresentação interna para a equipe",
+          "definicao": "Pode manter termos técnicos e mais detalhe processual"
+        }
+      ]
+    },
+    {
+      "id": "intermediaria-16-q6",
+      "tipo": "verdadeiro_falso",
+      "enunciado": "Depois que a IA gera a estrutura da apresentação, não é mais necessário revisar antes de compartilhar.",
+      "resposta_correta": false,
+      "justificativas": [
+        {
+          "id": "a",
+          "texto": "Falso — revisão final é sempre necessária, tanto de conteúdo quanto de dado sensível que possa ter entrado sem querer.",
+          "correta": true
+        },
+        {
+          "id": "b",
+          "texto": "Falso, porque apresentações internas dispensam revisão, só as externas exigem.",
+          "correta": false
+        },
+        {
+          "id": "c",
+          "texto": "Verdadeiro, a estrutura gerada por IA já vem pronta para uso final.",
+          "correta": false
+        }
+      ],
+      "explicacao": "A revisão vale para apresentações internas e externas — o risco de dado sensível ou erro de conteúdo não desaparece pelo público ser interno."
+    },
+    {
+      "id": "intermediaria-16-q7",
+      "tipo": "resposta_curta_autoavaliada",
+      "enunciado": "Descreva, em até duas frases, como você adaptaria uma mesma apresentação fictícia sobre andamento de um caso para um cliente e para a equipe interna.",
+      "criterios_autoavaliacao": [
+        "Minha resposta muda o nível de detalhe técnico entre os dois públicos?",
+        "Considerei remover ou simplificar dado sensível na versão que vai para o cliente?",
+        "Ficou claro que ambas as versões precisam de revisão antes do envio?"
+      ],
+      "exemplo_de_resposta_forte": "\"Para o cliente, eu manteria foco em resultado e prazos, com linguagem simples; para a equipe interna, manteria os detalhes processuais e técnicos, revisando as duas antes de enviar.\""
+    }
+  ]
+}

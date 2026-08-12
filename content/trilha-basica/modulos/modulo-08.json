@@ -1,0 +1,243 @@
+{
+  "modulo_id": "basica-08",
+  "trilha": "basica",
+  "ordem": 8,
+  "titulo": "Por que a resposta da IA não é uma verdade pronta",
+  "descricao_curta": "O módulo mais importante da trilha básica — leia com atenção.",
+  "tempo_estimado_min": 5,
+  "objetivos_aprendizagem": [
+    "Explicar o conceito de alucinação com exemplos jurídicos concretos",
+    "Reconhecer que confiança na resposta não é sinônimo de correção da resposta",
+    "Internalizar que toda saída de IA é um rascunho, não um produto final",
+    "Identificar sinais de alerta que pedem verificação redobrada"
+  ],
+  "aulas": [
+    {
+      "ordem": 1,
+      "titulo_aula": "Retomando o Módulo 2",
+      "corpo": "A IA gera o texto estatisticamente mais provável, não o mais verdadeiro. Isso significa que ela pode errar com a mesma fluência e a mesma confiança com que acerta.",
+      "atividade": {
+        "id": "basica-08-q1",
+        "tipo": "multipla_escolha",
+        "enunciado": "O que é \"alucinação\" no contexto de IA generativa?",
+        "alternativas": [
+          {
+            "id": "a",
+            "texto": "Quando a IA gera uma informação plausível, mas factualmente incorreta ou inexistente, com a mesma confiança de uma resposta correta.",
+            "correta": true
+          },
+          {
+            "id": "b",
+            "texto": "Um problema técnico pontual que faz a ferramenta travar ou ficar indisponível por alguns minutos.",
+            "correta": false
+          },
+          {
+            "id": "c",
+            "texto": "Um recurso experimental que só está disponível em versões gratuitas de teste.",
+            "correta": false
+          },
+          {
+            "id": "d",
+            "texto": "Uma falha que a IA sempre sinaliza claramente assim que ela acontece durante a conversa.",
+            "correta": false
+          }
+        ],
+        "explicacao_acerto": "Exatamente essa é a definição — e o perigo real está em não vir acompanhada de nenhum aviso.",
+        "explicacao_erro": "Não é uma falha técnica de disponibilidade, não é exclusiva de versão gratuita, e o ponto mais perigoso é justamente que ela não costuma ser sinalizada."
+      }
+    },
+    {
+      "ordem": 2,
+      "titulo_aula": "Alucinação em contexto jurídico",
+      "corpo": "Já existem casos reais e documentados ao redor do mundo: citação de jurisprudência inexistente, número de processo inventado, artigo de lei citado incorretamente ou fora de vigência. Nada disso é hipotético — já causou problemas sérios, inclusive processuais, em diversos escritórios.",
+      "atividade": {
+        "id": "basica-08-q2",
+        "tipo": "verdadeiro_falso",
+        "enunciado": "Uma resposta de IA com tom confiante e bem escrito é mais provável de estar correta.",
+        "resposta_correta": false,
+        "justificativas": [
+          {
+            "id": "a",
+            "texto": "Falso — o tom de confiança não está relacionado à veracidade da informação; respostas erradas podem soar igualmente seguras.",
+            "correta": true
+          },
+          {
+            "id": "b",
+            "texto": "Falso — porque textos bem escritos demoram mais tempo para serem gerados pela IA.",
+            "correta": false
+          },
+          {
+            "id": "c",
+            "texto": "Verdadeiro — quanto mais fluente e articulado o texto, maior a chance estatística de estar correto.",
+            "correta": false
+          }
+        ],
+        "explicacao": "Esse é o núcleo do módulo: fluência e tom de segurança não são sinônimos de veracidade, e não têm relação com tempo de geração."
+      }
+    },
+    {
+      "ordem": 3,
+      "titulo_aula": "O perigo específico: confiança não é indicador de acerto",
+      "corpo": "Uma resposta errada da IA tem exatamente o mesmo tom de segurança de uma resposta certa. Isso é diferente de uma pessoa insegura, que geralmente sinaliza dúvida — a IA, na maioria das vezes, não sinaliza nada.",
+      "atividade": {
+        "id": "basica-08-q3",
+        "tipo": "multipla_escolha",
+        "enunciado": "Uma IA cita um precedente que parece plausível, mas não existe. Qual é a atitude correta diante disso?",
+        "alternativas": [
+          {
+            "id": "a",
+            "texto": "Verificar a fonte original antes de usar essa citação em qualquer documento ou peça.",
+            "correta": true
+          },
+          {
+            "id": "b",
+            "texto": "Usar a citação normalmente, já que ela veio formatada como uma referência jurídica real.",
+            "correta": false
+          },
+          {
+            "id": "c",
+            "texto": "Pedir para a mesma IA confirmar se ela mesma está certa, e considerar essa confirmação suficiente.",
+            "correta": false
+          },
+          {
+            "id": "d",
+            "texto": "Ignorar o risco, já que esse tipo de erro costuma ser raro o suficiente para não preocupar.",
+            "correta": false
+          }
+        ],
+        "explicacao_acerto": "A única verificação confiável é checar a fonte original — formatação correta não garante veracidade.",
+        "explicacao_erro": "Formatação convincente, autoconfirmação da própria IA e raridade do evento não substituem a checagem em uma fonte independente e real."
+      }
+    },
+    {
+      "ordem": 4,
+      "titulo_aula": "A regra prática",
+      "corpo": "Toda saída de IA deve ser tratada como rascunho a ser verificado, nunca como produto final pronto para uso — especialmente qualquer citação, número, data ou referência legal.",
+      "destaque": "Grave essa frase: resposta de IA é ponto de partida, nunca ponto final.",
+      "atividade": {
+        "id": "basica-08-q4",
+        "tipo": "completar_lacuna",
+        "enunciado": "Toda saída de uma IA deve ser tratada como um ___1___, não como um produto ___2___.",
+        "lacunas": [
+          {
+            "posicao": 1,
+            "opcoes": [
+              "rascunho",
+              "presente",
+              "certificado"
+            ],
+            "correta": "rascunho"
+          },
+          {
+            "posicao": 2,
+            "opcoes": [
+              "final",
+              "grátis",
+              "colorido"
+            ],
+            "correta": "final"
+          }
+        ]
+      }
+    }
+  ],
+  "atividade_final": [
+    {
+      "id": "basica-08-q5",
+      "tipo": "associacao",
+      "enunciado": "Ligue cada tipo de conteúdo ao nível de verificação necessário antes de usar.",
+      "pares": [
+        {
+          "termo": "Citação de lei ou jurisprudência gerada por IA",
+          "definicao": "Verificação obrigatória da fonte original"
+        },
+        {
+          "termo": "Número de processo mencionado pela IA",
+          "definicao": "Verificação obrigatória da fonte original"
+        },
+        {
+          "termo": "Resumo geral de um texto já revisado por você",
+          "definicao": "Revisão de clareza e coesão, sem checagem factual externa"
+        }
+      ]
+    },
+    {
+      "id": "basica-08-q6",
+      "tipo": "verdadeiro_falso",
+      "enunciado": "É seguro copiar e colar uma citação legal gerada por IA sem conferir a fonte original.",
+      "resposta_correta": false,
+      "justificativas": [
+        {
+          "id": "a",
+          "texto": "Falso — citações legais fazem parte da categoria de maior risco de alucinação e exigem verificação obrigatória.",
+          "correta": true
+        },
+        {
+          "id": "b",
+          "texto": "Falso — porque copiar e colar texto gerado por IA é uma função tecnicamente bloqueada pelo sistema.",
+          "correta": false
+        },
+        {
+          "id": "c",
+          "texto": "Verdadeiro — citações jurídicas geradas por IA já passam por um processo interno de verificação automática.",
+          "correta": false
+        }
+      ],
+      "explicacao": "Não existe bloqueio técnico de copiar e colar, nem verificação automática embutida — a checagem é sempre responsabilidade de quem usa."
+    },
+    {
+      "id": "basica-08-q7",
+      "tipo": "multipla_escolha",
+      "enunciado": "Antes de usar qualquer dado factual (nome de lei, número, data) gerado por IA em um documento, qual passo é obrigatório?",
+      "alternativas": [
+        {
+          "id": "a",
+          "texto": "Confirmar essa informação em uma fonte confiável e independente da própria IA.",
+          "correta": true
+        },
+        {
+          "id": "b",
+          "texto": "Confiar na informação, já que a IA foi treinada com uma quantidade enorme de dados.",
+          "correta": false
+        },
+        {
+          "id": "c",
+          "texto": "Perguntar a mesma coisa de novo, com outras palavras, para a mesma ferramenta de IA.",
+          "correta": false
+        },
+        {
+          "id": "d",
+          "texto": "Verificar apenas se o texto está bem escrito e sem erros de português.",
+          "correta": false
+        }
+      ],
+      "explicacao_acerto": "A única forma confiável de checagem é uma fonte externa e independente — não a própria IA, nem a fluência do texto.",
+      "explicacao_erro": "Volume de treinamento, reformular a pergunta para a mesma IA, ou boa redação não substituem uma verificação em fonte independente."
+    },
+    {
+      "id": "basica-08-q8",
+      "tipo": "verdadeiro_falso",
+      "revisao_de": "basica-03",
+      "enunciado": "Revisão rápida do Módulo 3: um assistente especializado em pesquisa jurídica elimina a necessidade de verificar as citações que ele traz.",
+      "resposta_correta": false,
+      "justificativas": [
+        {
+          "id": "a",
+          "texto": "Falso — especialização de domínio reduz o risco de erro, mas não elimina a necessidade de verificação em fonte oficial.",
+          "correta": true
+        },
+        {
+          "id": "b",
+          "texto": "Falso, porque ferramentas especializadas são proibidas de citar jurisprudência.",
+          "correta": false
+        },
+        {
+          "id": "c",
+          "texto": "Verdadeiro, ferramentas especializadas nunca alucinam.",
+          "correta": false
+        }
+      ],
+      "explicacao": "Escolher a ferramenta certa (Módulo 3) reduz o risco, mas não substitui a revisão humana (este módulo) — os dois cuidados trabalham juntos, um não elimina o outro."
+    }
+  ]
+}

@@ -1,0 +1,206 @@
+{
+  "modulo_id": "intermediaria-02",
+  "trilha": "intermediaria",
+  "bloco": "A",
+  "ordem": 2,
+  "titulo": "Técnica: role prompting",
+  "descricao_curta": "Dar um papel para a IA assumir muda a resposta — mas só se for feito com propósito.",
+  "tempo_estimado_min": 4,
+  "objetivos_aprendizagem": [
+    "Entender o que é role prompting e por que ele funciona",
+    "Reconhecer quando atribuir um papel melhora a resposta",
+    "Evitar o erro do papel decorativo, sem função real",
+    "Aplicar role prompting a uma tarefa jurídica"
+  ],
+  "aulas": [
+    {
+      "ordem": 1,
+      "titulo_aula": "O que é role prompting",
+      "corpo": "Pedir para a IA assumir uma persona ou função antes de responder — ex: 'aja como um advogado revisor de contratos' — muda o enquadramento da resposta: ela tende a priorizar informação como alguém daquela função priorizaria.",
+      "atividade": {
+        "id": "intermediaria-02-q1",
+        "tipo": "multipla_escolha",
+        "enunciado": "O que é role prompting?",
+        "alternativas": [
+          {
+            "id": "a",
+            "texto": "Atribuir à IA uma persona ou função específica antes de pedir a resposta, mudando o enquadramento dela.",
+            "correta": true
+          },
+          {
+            "id": "b",
+            "texto": "Trocar o modelo de IA que está sendo usado por trás da ferramenta.",
+            "correta": false
+          },
+          {
+            "id": "c",
+            "texto": "Garantir automaticamente que a resposta estará livre de qualquer erro factual.",
+            "correta": false
+          },
+          {
+            "id": "d",
+            "texto": "Dar acesso à IA a dados privados do usuário automaticamente.",
+            "correta": false
+          }
+        ],
+        "explicacao_acerto": "Exatamente — role prompting muda o enquadramento e a perspectiva da resposta.",
+        "explicacao_erro": "Role prompting não troca o modelo, não dá acesso a dados privados, e não elimina o risco de erro factual."
+      }
+    },
+    {
+      "ordem": 2,
+      "titulo_aula": "Por que isso funciona",
+      "corpo": "O modelo foi treinado com uma quantidade enorme de textos escritos por diferentes tipos de profissionais, em diferentes registros. Atribuir um papel ajuda a 'puxar' o padrão de linguagem e prioridade certos para a resposta.",
+      "atividade": {
+        "id": "intermediaria-02-q2",
+        "tipo": "verdadeiro_falso",
+        "enunciado": "Definir um papel para a IA garante que a resposta estará livre de erros factuais.",
+        "resposta_correta": false,
+        "justificativas": [
+          {
+            "id": "a",
+            "texto": "Falso — role prompting muda o enquadramento da resposta, mas não elimina o risco de alucinação visto na trilha básica.",
+            "correta": true
+          },
+          {
+            "id": "b",
+            "texto": "Falso, porque atribuir papel a uma IA é uma função ainda em fase experimental.",
+            "correta": false
+          },
+          {
+            "id": "c",
+            "texto": "Verdadeiro, um papel bem definido ativa uma checagem factual automática.",
+            "correta": false
+          }
+        ],
+        "explicacao": "Role prompting não é experimental nem ativa checagem factual — ele muda a perspectiva da resposta, e a revisão humana continua necessária."
+      }
+    },
+    {
+      "ordem": 3,
+      "titulo_aula": "O erro comum: papel decorativo",
+      "corpo": "Só escrever 'aja como um advogado' sem conectar isso à tarefa real não muda muito o resultado.",
+      "destaque": "Funciona melhor com foco: 'aja como um advogado revisor de contratos, focado em identificar cláusulas de risco para o contratante' já direciona de verdade.",
+      "atividade": {
+        "id": "intermediaria-02-q3",
+        "tipo": "correcao_prompt",
+        "enunciado": "Compare os dois prompts fictícios abaixo, ambos usando role prompting para revisar uma cláusula de confidencialidade, e identifique o mais eficaz.",
+        "prompt_analisado": "Opção A: \"Aja como um advogado.\" | Opção B: \"Aja como um advogado revisor de contratos, focado em identificar riscos de vazamento de informação para o contratante.\"",
+        "alternativas": [
+          {
+            "id": "a",
+            "texto": "A Opção A é mais eficaz, porque é mais curta e direta.",
+            "correta": false
+          },
+          {
+            "id": "b",
+            "texto": "A Opção B é mais eficaz, porque conecta o papel a um foco específico da tarefa, evitando o 'papel decorativo'.",
+            "correta": true
+          },
+          {
+            "id": "c",
+            "texto": "As duas são igualmente eficazes, já que ambas atribuem o mesmo papel de advogado.",
+            "correta": false
+          },
+          {
+            "id": "d",
+            "texto": "Nenhuma das duas é eficaz, porque role prompting não deveria ser usado em tarefas de revisão contratual.",
+            "correta": false
+          }
+        ],
+        "explicacao_acerto": "A Opção B evita o erro do papel decorativo, conectando a persona a um foco real da tarefa.",
+        "explicacao_erro": "Tamanho do prompt não é o critério de eficácia, os dois prompts não são equivalentes, e role prompting é perfeitamente aplicável a revisão contratual."
+      }
+    },
+    {
+      "ordem": 4,
+      "titulo_aula": "Role prompting não substitui contexto",
+      "corpo": "Atribuir um papel não dispensa fornecer o contexto real da tarefa — os dois trabalham juntos, um não substitui o outro.",
+      "atividade": {
+        "id": "intermediaria-02-q4",
+        "tipo": "associacao",
+        "enunciado": "Ligue cada exemplo de papel ao seu nível de eficácia.",
+        "pares": [
+          {
+            "termo": "\"Aja como um advogado.\"",
+            "definicao": "Papel genérico, sem foco na tarefa"
+          },
+          {
+            "termo": "\"Aja como um advogado revisor de contratos, focado em cláusulas de risco.\"",
+            "definicao": "Papel específico, conectado à tarefa"
+          },
+          {
+            "termo": "\"Aja como um advogado com 100% de precisão garantida.\"",
+            "definicao": "Papel com promessa irreal, que não deve ser levada a sério"
+          }
+        ]
+      }
+    }
+  ],
+  "atividade_final": [
+    {
+      "id": "intermediaria-02-q5",
+      "tipo": "verdadeiro_falso",
+      "enunciado": "Atribuir um papel à IA dispensa a necessidade de fornecer contexto sobre a tarefa.",
+      "resposta_correta": false,
+      "justificativas": [
+        {
+          "id": "a",
+          "texto": "Falso — papel e contexto trabalham juntos; um não substitui o outro.",
+          "correta": true
+        },
+        {
+          "id": "b",
+          "texto": "Falso, porque contexto só é necessário em tarefas de baixa complexidade.",
+          "correta": false
+        },
+        {
+          "id": "c",
+          "texto": "Verdadeiro, o papel já contém informação suficiente sobre a tarefa.",
+          "correta": false
+        }
+      ],
+      "explicacao": "Contexto é necessário independentemente da complexidade da tarefa, e o papel sozinho não carrega informação sobre o caso específico."
+    },
+    {
+      "id": "intermediaria-02-q6",
+      "tipo": "multipla_escolha",
+      "enunciado": "Entre os prompts abaixo para redigir uma cláusula de confidencialidade, qual aplica role prompting de forma mais eficaz?",
+      "alternativas": [
+        {
+          "id": "a",
+          "texto": "\"Aja como um chef de cozinha e redija uma cláusula de confidencialidade.\"",
+          "correta": false
+        },
+        {
+          "id": "b",
+          "texto": "\"Aja como um advogado especializado em contratos empresariais e redija uma cláusula de confidencialidade equilibrada entre as partes.\"",
+          "correta": true
+        },
+        {
+          "id": "c",
+          "texto": "\"Redija uma cláusula de confidencialidade.\"",
+          "correta": false
+        },
+        {
+          "id": "d",
+          "texto": "\"Aja como um advogado e fale sobre confidencialidade de um jeito qualquer.\"",
+          "correta": false
+        }
+      ],
+      "explicacao_acerto": "Papel compatível com a tarefa, mais foco específico ('equilibrada entre as partes') — é a combinação mais eficaz.",
+      "explicacao_erro": "Um papel incompatível com a tarefa (chef de cozinha), a ausência de papel, ou um foco vago não aproveitam o potencial do role prompting."
+    },
+    {
+      "id": "intermediaria-02-q7",
+      "tipo": "resposta_curta_autoavaliada",
+      "enunciado": "Escreva um prompt curto usando role prompting para pedir que a IA revise o tom de um e-mail fictício antes de ser enviado a um cliente.",
+      "criterios_autoavaliacao": [
+        "O papel que escolhi está conectado à tarefa (não é genérico ou decorativo)?",
+        "Ficou claro qual é o objetivo da revisão (tom, clareza, formalidade)?",
+        "Eu incluí, mesmo que brevemente, algum contexto sobre a situação do e-mail?"
+      ],
+      "exemplo_de_resposta_forte": "\"Aja como um revisor de comunicação corporativa. Revise o tom deste e-mail fictício para um cliente, garantindo que soe profissional mas não excessivamente formal.\""
+    }
+  ]
+}

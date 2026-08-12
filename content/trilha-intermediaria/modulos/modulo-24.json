@@ -1,0 +1,191 @@
+{
+  "modulo_id": "intermediaria-24",
+  "trilha": "intermediaria",
+  "bloco": "E",
+  "ordem": 24,
+  "titulo": "O que é uma API, em termos simples",
+  "descricao_curta": "O garçom que leva seu pedido até a cozinha e traz o resultado de volta.",
+  "tempo_estimado_min": 4,
+  "objetivos_aprendizagem": [
+    "Entender o que é uma API de forma conceitual, sem código",
+    "Relacionar API ao padrão entrada → modelo → saída da trilha básica",
+    "Entender por que APIs permitem que ferramentas diferentes conversem entre si",
+    "Reconhecer exemplos do dia a dia que já usam API por trás"
+  ],
+  "aulas": [
+    {
+      "ordem": 1,
+      "titulo_aula": "Retomando o padrão que você já conhece",
+      "corpo": "Lá no Módulo 4 da trilha básica, vimos que toda plataforma com IA segue entrada → modelo → saída. Uma API é o 'canal' que permite que um programa envie essa entrada e receba essa saída, sem interface visual — programa conversando direto com programa.",
+      "atividade": {
+        "id": "intermediaria-24-q1",
+        "tipo": "multipla_escolha",
+        "enunciado": "O que é uma API, de forma simples?",
+        "alternativas": [
+          {
+            "id": "a",
+            "texto": "Um canal que permite que dois programas se comuniquem entre si, enviando pedidos e recebendo respostas.",
+            "correta": true
+          },
+          {
+            "id": "b",
+            "texto": "Um tipo de tela onde o usuário digita perguntas para a IA.",
+            "correta": false
+          },
+          {
+            "id": "c",
+            "texto": "Um documento legal que regula o uso de ferramentas de IA.",
+            "correta": false
+          },
+          {
+            "id": "d",
+            "texto": "Um tipo de erro que ocorre quando duas ferramentas tentam se conectar.",
+            "correta": false
+          }
+        ],
+        "explicacao_acerto": "Isso mesmo — canal de comunicação programa-a-programa, sem interface visual.",
+        "explicacao_erro": "API não é uma tela de interface, não é documento legal, e não é um tipo de erro — é justamente o canal que evita esse tipo de falha de comunicação."
+      }
+    },
+    {
+      "ordem": 2,
+      "titulo_aula": "Um jeito simples de pensar: o garçom",
+      "corpo": "Pense numa API como um garçom. Você (o app) não entra na cozinha (o modelo de IA) para pegar o prato — você faz o pedido ao garçom (a API), que leva à cozinha e traz o resultado de volta.",
+      "atividade": {
+        "id": "intermediaria-24-q2",
+        "tipo": "verdadeiro_falso",
+        "enunciado": "Uma API é apenas um tipo de tela onde você digita perguntas para a IA.",
+        "resposta_correta": false,
+        "justificativas": [
+          {
+            "id": "a",
+            "texto": "Falso — API é comunicação entre programas, sem interface visual; a tela de chat é só uma das formas de usar um modelo de IA.",
+            "correta": true
+          },
+          {
+            "id": "b",
+            "texto": "Falso, porque APIs foram substituídas por interfaces visuais em todas as ferramentas modernas.",
+            "correta": false
+          },
+          {
+            "id": "c",
+            "texto": "Verdadeiro, toda API tem obrigatoriamente uma tela visual para o usuário digitar.",
+            "correta": false
+          }
+        ],
+        "explicacao": "APIs não foram substituídas — elas continuam sendo o canal por trás até das interfaces visuais modernas, que são só uma camada a mais em cima delas."
+      }
+    },
+    {
+      "ordem": 3,
+      "titulo_aula": "Por que isso importa",
+      "corpo": "É graças a APIs que uma ferramenta de gestão jurídica consegue 'usar' um modelo de IA por trás, sem ter que construir o próprio modelo do zero — mesma lógica do Módulo 4 da trilha básica.",
+      "atividade": {
+        "id": "intermediaria-24-q3",
+        "tipo": "completar_lacuna",
+        "enunciado": "Uma API funciona como um ___ que permite dois programas se comunicarem entre si.",
+        "lacunas": [
+          {
+            "posicao": 1,
+            "opcoes": [
+              "canal/intermediário",
+              "vírus",
+              "arquivo"
+            ],
+            "correta": "canal/intermediário"
+          }
+        ]
+      }
+    },
+    {
+      "ordem": 4,
+      "titulo_aula": "Você já usa API sem saber",
+      "corpo": "Todo app do celular que puxa previsão do tempo, mapa ou status de entrega está, por trás, se comunicando com alguma API. Com IA não é diferente.",
+      "atividade": {
+        "id": "intermediaria-24-q4",
+        "tipo": "multipla_escolha",
+        "enunciado": "Um app de gestão jurídica fictício \"usa\" IA sem ter construído o próprio modelo do zero. O que possibilita isso?",
+        "alternativas": [
+          {
+            "id": "a",
+            "texto": "A comunicação via API com um modelo de IA já existente, mantido por outra empresa.",
+            "correta": true
+          },
+          {
+            "id": "b",
+            "texto": "O app copiou ilegalmente o código-fonte de um modelo já existente.",
+            "correta": false
+          },
+          {
+            "id": "c",
+            "texto": "Isso é tecnicamente impossível sem construir um modelo próprio.",
+            "correta": false
+          },
+          {
+            "id": "d",
+            "texto": "O app treinou um modelo idêntico em poucos minutos, sem custo.",
+            "correta": false
+          }
+        ],
+        "explicacao_acerto": "Exatamente — API permite usar um modelo de terceiros de forma legítima, sem construir nada do zero.",
+        "explicacao_erro": "Não envolve cópia ilegal, não é impossível, e treinar um modelo do zero em minutos não é realista — API é justamente o que evita essa necessidade."
+      }
+    }
+  ],
+  "atividade_final": [
+    {
+      "id": "intermediaria-24-q5",
+      "tipo": "associacao",
+      "enunciado": "Ligue cada elemento à sua função.",
+      "pares": [
+        {
+          "termo": "Interface visual",
+          "definicao": "O que você vê e clica"
+        },
+        {
+          "termo": "API",
+          "definicao": "Canal de comunicação entre programas"
+        },
+        {
+          "termo": "Modelo de IA",
+          "definicao": "O motor que processa a entrada e gera a saída"
+        }
+      ]
+    },
+    {
+      "id": "intermediaria-24-q6",
+      "tipo": "verdadeiro_falso",
+      "enunciado": "Você provavelmente já interage com APIs no dia a dia, sem perceber.",
+      "resposta_correta": true,
+      "justificativas": [
+        {
+          "id": "a",
+          "texto": "Verdadeiro — apps de previsão do tempo, mapas e status de entrega normalmente se comunicam com APIs por trás.",
+          "correta": true
+        },
+        {
+          "id": "b",
+          "texto": "Verdadeiro, mas apenas para quem trabalha com tecnologia.",
+          "correta": false
+        },
+        {
+          "id": "c",
+          "texto": "Falso, APIs só são usadas por programadores dentro de ambientes de desenvolvimento.",
+          "correta": false
+        }
+      ],
+      "explicacao": "Não é restrito a quem trabalha com tecnologia — qualquer pessoa que usa um app de celular comum provavelmente já interage com APIs indiretamente."
+    },
+    {
+      "id": "intermediaria-24-q7",
+      "tipo": "resposta_curta_autoavaliada",
+      "enunciado": "Descreva, em até duas frases e com suas próprias palavras, um exemplo do dia a dia (fora do trabalho) que provavelmente usa uma API por trás.",
+      "criterios_autoavaliacao": [
+        "Meu exemplo envolve comunicação entre dois programas diferentes?",
+        "Consegui explicar sem usar jargão técnico?",
+        "Meu exemplo é realista e cotidiano?"
+      ],
+      "exemplo_de_resposta_forte": "\"Quando abro um app de comida e vejo o status de entrega em tempo real, esse app provavelmente está se comunicando com a API do sistema do restaurante ou do entregador.\""
+    }
+  ]
+}

@@ -1,0 +1,196 @@
+{
+  "modulo_id": "intermediaria-25",
+  "trilha": "intermediaria",
+  "bloco": "E",
+  "ordem": 25,
+  "titulo": "Como ferramentas se conectam a uma IA por trás dos panos",
+  "descricao_curta": "Do clique ao resultado: o que acontece nos bastidores em poucos segundos.",
+  "tempo_estimado_min": 4,
+  "objetivos_aprendizagem": [
+    "Entender o fluxo de requisição e resposta entre uma ferramenta e um modelo de IA via API",
+    "Reconhecer os elementos básicos dessa comunicação",
+    "Relacionar isso ao conceito de prompt",
+    "Entender que isso envolve várias etapas técnicas, mesmo sendo quase instantâneo"
+  ],
+  "aulas": [
+    {
+      "ordem": 1,
+      "titulo_aula": "Do clique ao resultado: o que acontece por trás",
+      "corpo": "Quando você clica em 'gerar' numa ferramenta com IA, ela monta uma requisição (um pedido estruturado) e envia pela API até o modelo — que processa e devolve uma resposta.",
+      "atividade": {
+        "id": "intermediaria-25-q1",
+        "tipo": "multipla_escolha",
+        "enunciado": "O que acontece, tecnicamente, quando você clica em \"gerar\" numa ferramenta com IA?",
+        "alternativas": [
+          {
+            "id": "a",
+            "texto": "A ferramenta monta uma requisição com o prompt e envia pela API até o modelo, que processa e devolve uma resposta.",
+            "correta": true
+          },
+          {
+            "id": "b",
+            "texto": "O modelo de IA já estava rodando dentro do seu computador o tempo todo, sem nenhuma comunicação externa.",
+            "correta": false
+          },
+          {
+            "id": "c",
+            "texto": "A ferramenta busca uma resposta pronta em um arquivo salvo previamente.",
+            "correta": false
+          },
+          {
+            "id": "d",
+            "texto": "Nada é enviado — a resposta é gerada aleatoriamente sem relação com o que foi pedido.",
+            "correta": false
+          }
+        ],
+        "explicacao_acerto": "Isso mesmo — requisição, envio via API, processamento no modelo, resposta de volta.",
+        "explicacao_erro": "O modelo normalmente não roda localmente no seu computador nesse tipo de ferramenta, não há busca em arquivo pronto, e a resposta não é aleatória — ela depende diretamente do que foi enviado."
+      }
+    },
+    {
+      "ordem": 2,
+      "titulo_aula": "O prompt viaja dentro da requisição",
+      "corpo": "Tudo que você aprendeu no Bloco A sobre construir um bom prompt continua valendo aqui — só que agora ele vai 'empacotado' dentro dessa requisição técnica, junto de outras configurações.",
+      "atividade": {
+        "id": "intermediaria-25-q2",
+        "tipo": "verdadeiro_falso",
+        "enunciado": "O prompt que você escreve não tem relação com o que é enviado na requisição técnica.",
+        "resposta_correta": false,
+        "justificativas": [
+          {
+            "id": "a",
+            "texto": "Falso — o prompt viaja dentro da requisição, junto de outras configurações técnicas.",
+            "correta": true
+          },
+          {
+            "id": "b",
+            "texto": "Falso, porque o prompt é descartado assim que você aperta enviar.",
+            "correta": false
+          },
+          {
+            "id": "c",
+            "texto": "Verdadeiro, a requisição é gerada de forma independente do que você escreveu.",
+            "correta": false
+          }
+        ],
+        "explicacao": "O prompt não é descartado — ele é justamente o conteúdo central que viaja dentro da requisição até o modelo."
+      }
+    },
+    {
+      "ordem": 3,
+      "titulo_aula": "Requisição e resposta",
+      "corpo": "A requisição carrega o que você quer (prompt + configurações). A resposta traz de volta o que o modelo gerou — em geral leva poucos segundos, mesmo passando por várias etapas técnicas.",
+      "atividade": {
+        "id": "intermediaria-25-q3",
+        "tipo": "completar_lacuna",
+        "enunciado": "A ___1___ carrega o prompt e as configurações; a ___2___ traz o resultado gerado pelo modelo.",
+        "lacunas": [
+          {
+            "posicao": 1,
+            "opcoes": [
+              "requisição",
+              "senha",
+              "fatura"
+            ],
+            "correta": "requisição"
+          },
+          {
+            "posicao": 2,
+            "opcoes": [
+              "resposta",
+              "conta",
+              "fatura"
+            ],
+            "correta": "resposta"
+          }
+        ]
+      }
+    },
+    {
+      "ordem": 4,
+      "titulo_aula": "Por que entender isso ajuda",
+      "corpo": "Explica, por exemplo, por que algumas ferramentas permitem ajustar configurações extras (como 'criatividade' da resposta) — são parâmetros dentro dessa mesma requisição.",
+      "atividade": {
+        "id": "intermediaria-25-q4",
+        "tipo": "multipla_escolha",
+        "enunciado": "Uma ferramenta permite ajustar a \"criatividade\" da resposta gerada. O que isso provavelmente representa tecnicamente?",
+        "alternativas": [
+          {
+            "id": "a",
+            "texto": "Um parâmetro configurável dentro da mesma requisição enviada à API, ajustando o comportamento do modelo.",
+            "correta": true
+          },
+          {
+            "id": "b",
+            "texto": "A troca completa do modelo de IA usado por trás da ferramenta.",
+            "correta": false
+          },
+          {
+            "id": "c",
+            "texto": "Um recurso decorativo, sem nenhum efeito real na resposta gerada.",
+            "correta": false
+          },
+          {
+            "id": "d",
+            "texto": "Uma configuração que só existe visualmente, sem relação com a comunicação via API.",
+            "correta": false
+          }
+        ],
+        "explicacao_acerto": "Exatamente — é um parâmetro dentro da requisição, não uma troca de modelo nem um recurso decorativo.",
+        "explicacao_erro": "Não envolve troca de modelo, não é meramente decorativo, e tem relação direta com o que é enviado via API."
+      }
+    }
+  ],
+  "atividade_final": [
+    {
+      "id": "intermediaria-25-q5",
+      "tipo": "associacao",
+      "enunciado": "Ligue cada termo à sua definição correta.",
+      "pares": [
+        {
+          "termo": "Requisição",
+          "definicao": "Carrega o prompt e as configurações enviadas ao modelo"
+        },
+        {
+          "termo": "Resposta",
+          "definicao": "Traz de volta o que o modelo gerou"
+        }
+      ]
+    },
+    {
+      "id": "intermediaria-25-q6",
+      "tipo": "verdadeiro_falso",
+      "enunciado": "Essa comunicação normalmente acontece em poucos segundos, mesmo envolvendo várias etapas técnicas.",
+      "resposta_correta": true,
+      "justificativas": [
+        {
+          "id": "a",
+          "texto": "Verdadeiro — apesar de várias etapas (requisição, processamento, resposta), o tempo total costuma ser curto.",
+          "correta": true
+        },
+        {
+          "id": "b",
+          "texto": "Verdadeiro, mas apenas em conexões de internet consideradas muito rápidas.",
+          "correta": false
+        },
+        {
+          "id": "c",
+          "texto": "Falso, esse processo sempre leva vários minutos para ser concluído.",
+          "correta": false
+        }
+      ],
+      "explicacao": "Não depende de uma classificação especial de internet — mesmo em conexões comuns, o processo costuma ser rápido, na ordem de segundos."
+    },
+    {
+      "id": "intermediaria-25-q7",
+      "tipo": "resposta_curta_autoavaliada",
+      "enunciado": "Explique, em até duas frases e com suas próprias palavras, qual conhecimento deste módulo ajuda a entender configurações extras oferecidas por algumas ferramentas de IA.",
+      "criterios_autoavaliacao": [
+        "Minha explicação menciona que essas configurações são parâmetros dentro da requisição?",
+        "Evitei dizer que são apenas recursos decorativos?",
+        "Consegui explicar sem jargão técnico excessivo?"
+      ],
+      "exemplo_de_resposta_forte": "\"Saber que existe uma requisição com parâmetros ajustáveis explica por que configurações como 'criatividade' ou 'tom' aparecem em algumas ferramentas — são ajustes enviados junto com o prompt.\""
+    }
+  ]
+}

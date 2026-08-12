@@ -1,0 +1,191 @@
+{
+  "modulo_id": "basica-09",
+  "trilha": "basica",
+  "ordem": 9,
+  "titulo": "Privacidade, sigilo e segurança da informação",
+  "descricao_curta": "O que parece uma conversa privada pode não ser. Entenda antes de digitar.",
+  "tempo_estimado_min": 5,
+  "objetivos_aprendizagem": [
+    "Entender por que dados inseridos em uma IA não devem ser tratados como privados por padrão",
+    "Relacionar o uso de IA ao sigilo profissional do advogado",
+    "Reconhecer princípios da LGPD aplicáveis ao uso de IA no trabalho",
+    "Identificar o que nunca deve ser inserido em uma ferramenta de IA sem avaliação prévia"
+  ],
+  "aulas": [
+    {
+      "ordem": 1,
+      "titulo_aula": "Dados que você digita não desaparecem",
+      "corpo": "Informações inseridas em uma ferramenta de IA podem ser armazenadas, usadas para treinamento ou processadas por terceiros, dependendo da plataforma e de suas configurações. Isso não é automaticamente 'privado' só porque parece uma conversa individual.",
+      "atividade": {
+        "id": "basica-09-q1",
+        "tipo": "multipla_escolha",
+        "enunciado": "Por que dados inseridos em uma ferramenta de IA não devem ser tratados como automaticamente privados?",
+        "alternativas": [
+          {
+            "id": "a",
+            "texto": "Porque, dependendo da plataforma e das configurações, esses dados podem ser armazenados, usados em treinamento ou processados por terceiros.",
+            "correta": true
+          },
+          {
+            "id": "b",
+            "texto": "Porque toda ferramenta de IA disponível no mercado é, por definição legal, uma ferramenta pública.",
+            "correta": false
+          },
+          {
+            "id": "c",
+            "texto": "Porque a IA sempre exibe automaticamente os dados de um usuário para todos os outros usuários da plataforma.",
+            "correta": false
+          },
+          {
+            "id": "d",
+            "texto": "Isso não procede — dados inseridos em qualquer ferramenta de IA são sempre tratados como privados.",
+            "correta": false
+          }
+        ],
+        "explicacao_acerto": "Isso mesmo — o tratamento de dados varia conforme a plataforma, e por isso não se deve presumir privacidade automática.",
+        "explicacao_erro": "Não existe uma definição legal universal de 'ferramenta pública', nem exposição direta a outros usuários — o risco está em como a plataforma armazena e processa os dados por trás."
+      }
+    },
+    {
+      "ordem": 2,
+      "titulo_aula": "Sigilo profissional não é opcional",
+      "corpo": "O advogado tem dever legal e ético de sigilo sobre informações de clientes — isso não muda dentro de uma ferramenta de IA. Colar o resumo de um caso real numa ferramenta pessoal, achando que é só um jeito rápido de organizar ideias, já foi motivo de investigação disciplinar em escritórios de outros países. A intenção não muda o resultado: o dado saiu do controle do escritório.",
+      "atividade": {
+        "id": "basica-09-q2",
+        "tipo": "verdadeiro_falso",
+        "enunciado": "Inserir dados de um cliente em qualquer ferramenta de IA é seguro, desde que a intenção seja apenas agilizar o trabalho.",
+        "resposta_correta": false,
+        "justificativas": [
+          {
+            "id": "a",
+            "texto": "Falso — a boa intenção não muda o risco de quebra de sigilo profissional ou de exposição indevida de dados pessoais.",
+            "correta": true
+          },
+          {
+            "id": "b",
+            "texto": "Falso — porque agilizar o trabalho usando qualquer tecnologia é uma prática proibida por norma interna.",
+            "correta": false
+          },
+          {
+            "id": "c",
+            "texto": "Verdadeiro — a intenção de quem insere os dados é o único fator que determina se existe risco real.",
+            "correta": false
+          }
+        ],
+        "explicacao": "O risco de sigilo e de exposição de dados pessoais depende da ferramenta e da natureza do dado — não da boa intenção de quem insere a informação."
+      }
+    },
+    {
+      "ordem": 3,
+      "titulo_aula": "LGPD, em termos práticos",
+      "corpo": "Dados pessoais — nome, CPF, informações de saúde, dados processuais identificáveis — exigem cuidado redobrado. Eles só devem entrar em ferramentas aprovadas, dentro da finalidade autorizada. Nunca em ferramentas pessoais que o escritório não avaliou.",
+      "atividade": {
+        "id": "basica-09-q3",
+        "tipo": "completar_lacuna",
+        "enunciado": "O dever de ___ do advogado se aplica também ao uso de ferramentas de IA, não apenas a conversas presenciais ou documentos físicos.",
+        "lacunas": [
+          {
+            "posicao": 1,
+            "opcoes": [
+              "sigilo profissional",
+              "pontualidade",
+              "formatação"
+            ],
+            "correta": "sigilo profissional"
+          }
+        ]
+      }
+    },
+    {
+      "ordem": 4,
+      "titulo_aula": "Regra prática de segurança",
+      "corpo": "Antes de inserir qualquer informação em uma IA, pergunte: essa ferramenta foi aprovada para esse tipo de dado? Essa informação identifica um cliente ou um caso? Eu inseriria isso numa conversa pública?",
+      "destaque": "Se a resposta gerar qualquer dúvida, não insira.",
+      "atividade": {
+        "id": "basica-09-q4",
+        "tipo": "multipla_escolha",
+        "enunciado": "Um colaborador cola trechos de um processo com o nome completo do cliente em uma ferramenta de IA pessoal, não aprovada pelo escritório. Qual o problema nessa ação?",
+        "alternativas": [
+          {
+            "id": "a",
+            "texto": "Pode configurar quebra de sigilo profissional e violação de dados pessoais protegidos pela LGPD.",
+            "correta": true
+          },
+          {
+            "id": "b",
+            "texto": "Não há problema real, desde que o colaborador apague a conversa logo em seguida.",
+            "correta": false
+          },
+          {
+            "id": "c",
+            "texto": "O problema é apenas que ferramentas pessoais tendem a ser mais lentas do que as corporativas.",
+            "correta": false
+          },
+          {
+            "id": "d",
+            "texto": "Não há problema, já que o nome do cliente já consta em um processo tecnicamente público.",
+            "correta": false
+          }
+        ],
+        "explicacao_acerto": "Ferramenta não aprovada combinada com dado identificável de cliente é justamente o cenário de maior risco descrito no módulo.",
+        "explicacao_erro": "Apagar a conversa depois não desfaz o processamento já feito pela plataforma, velocidade não é o problema central, e publicidade parcial do processo não autoriza inserir o dado em qualquer ferramenta."
+      }
+    }
+  ],
+  "atividade_final": [
+    {
+      "id": "basica-09-q5",
+      "tipo": "associacao",
+      "enunciado": "Ligue cada tipo de dado ao nível de cuidado necessário antes de inserir em uma IA.",
+      "pares": [
+        {
+          "termo": "Nome completo e CPF de um cliente",
+          "definicao": "Cuidado máximo — só em ferramenta aprovada e dentro da finalidade autorizada"
+        },
+        {
+          "termo": "Resumo genérico de uma tese jurídica, sem dados identificáveis",
+          "definicao": "Risco baixo — não envolve dado pessoal ou sigiloso"
+        },
+        {
+          "termo": "Número de processo vinculado a um cliente específico",
+          "definicao": "Cuidado máximo — dado identificável e sigiloso"
+        }
+      ]
+    },
+    {
+      "id": "basica-09-q6",
+      "tipo": "verdadeiro_falso",
+      "enunciado": "A LGPD só se aplica a sistemas internos do escritório, não a ferramentas externas de IA.",
+      "resposta_correta": false,
+      "justificativas": [
+        {
+          "id": "a",
+          "texto": "Falso — a LGPD se aplica a qualquer tratamento de dados pessoais, inclusive em ferramentas externas de IA.",
+          "correta": true
+        },
+        {
+          "id": "b",
+          "texto": "Falso — porque a LGPD regula exclusivamente empresas do setor de tecnologia.",
+          "correta": false
+        },
+        {
+          "id": "c",
+          "texto": "Verdadeiro — ferramentas hospedadas fora do escritório estão automaticamente fora do alcance da lei brasileira.",
+          "correta": false
+        }
+      ],
+      "explicacao": "O que importa para a LGPD é o tratamento do dado pessoal em si, não o setor da empresa nem onde a ferramenta está hospedada."
+    },
+    {
+      "id": "basica-09-q7",
+      "tipo": "ordenar_etapas",
+      "enunciado": "Coloque em ordem o fluxo de decisão antes de inserir uma informação sensível em uma ferramenta de IA.",
+      "etapas_corretas": [
+        "Identificar se a informação é um dado pessoal ou sigiloso",
+        "Verificar se a ferramenta foi aprovada pelo escritório para esse tipo de dado",
+        "Se restar qualquer dúvida, não inserir a informação",
+        "Consultar um responsável antes de prosseguir"
+      ]
+    }
+  ]
+}

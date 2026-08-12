@@ -1,0 +1,69 @@
+{
+  "modulo_id": "intermediaria-30",
+  "trilha": "intermediaria",
+  "bloco": "final",
+  "ordem": 30,
+  "titulo": "Projeto prático: aplicando IA a um caso jurídico real (fictício), do prompt à entrega revisada",
+  "descricao_curta": "O módulo mais diferente de todos — não é quiz, é aplicação prática guiada.",
+  "tempo_estimado_min": 30,
+  "tipo_modulo": "projeto_pratico",
+  "objetivos_aprendizagem": [
+    "Aplicar, em sequência, as principais habilidades da trilha: prompt avançado, escolha de ferramenta, revisão crítica, cuidado com sigilo",
+    "Produzir uma entrega revisada, não apenas uma resposta gerada por IA",
+    "Praticar autoavaliação estruturada do próprio processo, não só do resultado final"
+  ],
+  "instrucoes": "Diferente dos módulos anteriores, aqui não há banco de questões de múltipla escolha. O colaborador recebe (sorteado ou à escolha) um dos 3 casos fictícios abaixo, e percorre uma sequência de tarefas abertas — escreve prompts de verdade, cola resultados, toma decisões. Ao final, se autoavalia com um checklist único, aplicável a qualquer um dos três casos. Todos os nomes, empresas e documentos citados são fictícios, criados especificamente para este exercício.",
+  "casos": [
+    {
+      "caso_id": "caso-1-revisao-contratual",
+      "titulo": "Revisão contratual e identificação de riscos",
+      "dossie": "A empresa fictícia Construtora Vetor Ltda. pediu para revisar um contrato de prestação de serviços com o fornecedor fictício Insumo Prime Materiais Ltda., antes da assinatura. O contrato tem 12 páginas, incluindo cláusulas de reajuste, prazo de entrega, penalidades por atraso e rescisão.",
+      "tarefas": [
+        "Decida qual tipo de ferramenta de IA seria mais adequada para uma primeira leitura deste contrato, e justifique.",
+        "Escreva um prompt avançado (papel + tarefa + contexto + restrição + formato) para identificar cláusulas de risco financeiro para a Construtora Vetor.",
+        "Escreva um segundo prompt para comparar a cláusula de penalidade por atraso com uma cláusula 'padrão de mercado' hipotética que você descreverá em poucas linhas.",
+        "Revise criticamente: existe algum ponto na resposta que pareça uma afirmação sem base clara no texto do contrato? Anote.",
+        "Escreva, com suas próprias palavras, a versão final do apontamento de risco que você entregaria a um superior."
+      ]
+    },
+    {
+      "caso_id": "caso-2-due-diligence",
+      "titulo": "Due diligence simplificada",
+      "dossie": "O escritório fictício assessora a aquisição da empresa Estúdio Nortelar Design Ltda. por um grupo comprador. Foram recebidos 18 documentos fictícios: contratos de trabalho, um contrato de aluguel comercial, três contratos com fornecedores e uma planilha de pendências fiscais.",
+      "tarefas": [
+        "Decida como você organizaria esses 18 documentos antes de envolver IA na triagem (categorias, prioridade).",
+        "Escreva um prompt para pedir que a IA sinalize cláusulas fora do padrão esperado em um dos contratos de fornecedor (descreva brevemente o contrato em 3-4 linhas fictícias).",
+        "Explique, com base no Módulo 14, por que o silêncio da IA sobre os outros 17 documentos não é garantia de que estão sem problema.",
+        "Defina um critério de amostragem: quantos e quais documentos você revisaria manualmente, mesmo sem sinalização da IA.",
+        "Escreva a versão final do resumo de achados que você entregaria à equipe responsável pela aquisição."
+      ]
+    },
+    {
+      "caso_id": "caso-3-peca-processual",
+      "titulo": "Preparação de peça processual",
+      "dossie": "Um cliente fictício, Marcos Aurélio Ferreira, contratou o escritório para uma ação de cobrança contra um ex-fornecedor. Os fatos, prazos e valores são fictícios e foram fornecidos pelo cliente em uma reunião inicial (resumida em algumas linhas fictícias que você mesmo pode elaborar para o exercício).",
+      "tarefas": [
+        "Escreva um prompt de role prompting + contexto para gerar a estrutura geral (não o conteúdo jurídico final) de uma petição inicial de cobrança.",
+        "Identifique, no resultado gerado, quais partes exigiriam fundamentação jurídica e citação que só você (ou um responsável) pode fornecer com segurança.",
+        "Aplique o checklist do Módulo 13 (fatos conferidos? citações verificadas? fundamentação revisada? formato adequado?) e registre o resultado.",
+        "Escreva a versão final da estrutura revisada, pronta para ser preenchida com o conteúdo jurídico real por um responsável."
+      ]
+    }
+  ],
+  "checklist_autoavaliacao": [
+    "Usei prompts com objetivo, contexto e formato claros — e papel/restrições quando fazia sentido.",
+    "Escolhi a ferramenta considerando o tipo de tarefa e a sensibilidade do dado envolvido.",
+    "Revisei manualmente qualquer citação, número, data ou nome antes de considerar o resultado pronto.",
+    "Identifiquei pelo menos um ponto da resposta que exigiria checagem humana antes de qualquer entrega real.",
+    "Tratei toda saída de IA como rascunho, não como produto final.",
+    "Se este fosse um caso real, eu saberia dizer com clareza quais partes vieram de mim e quais vieram da IA.",
+    "O resultado final poderia ser entregue a um superior com total transparência sobre como foi produzido."
+  ],
+  "conquista_final": {
+    "nome_badge": "Mestre em IA Aplicada",
+    "descricao": "Concluiu a Trilha Intermediária completa — do prompt avançado à entrega revisada de um caso jurídico aplicado.",
+    "certificado_elegivel": true,
+    "titulo_certificado": "Certificado de Aplicação Prática de Inteligência Artificial no Trabalho Jurídico",
+    "texto_base_certificado": "Certificamos que {nome_do_usuario} concluiu a Trilha Intermediária do TrilhIA, aplicando técnicas de prompt engineering, uso de ferramentas de IA e conceitos técnicos essenciais a um caso jurídico prático."
+  }
+}

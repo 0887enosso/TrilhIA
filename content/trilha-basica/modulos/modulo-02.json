@@ -1,0 +1,211 @@
+{
+  "modulo_id": "basica-02",
+  "trilha": "basica",
+  "ordem": 2,
+  "titulo": "Como a IA generativa \"pensa\"",
+  "descricao_curta": "O mecanismo por trás da conversa — e por que ele pode te enganar.",
+  "tempo_estimado_min": 4,
+  "objetivos_aprendizagem": [
+    "Explicar, em termos simples, como um LLM gera uma resposta",
+    "Entender o conceito de previsão de padrão em vez de raciocínio",
+    "Reconhecer por que isso torna a IA capaz de errar com confiança",
+    "Diferenciar IA generativa de um motor de busca"
+  ],
+  "aulas": [
+    {
+      "ordem": 1,
+      "titulo_aula": "Não é busca. É previsão",
+      "corpo": "Quando você pesquisa no Google, ele procura páginas que já existem em algum lugar. Quando você pergunta a uma IA generativa, ela não 'procura' uma resposta pronta em lugar nenhum — ela gera, palavra por palavra, a sequência de texto mais provável com base em tudo que aprendeu durante o treinamento.",
+      "atividade": {
+        "id": "basica-02-q1",
+        "tipo": "multipla_escolha",
+        "enunciado": "Qual a principal diferença entre uma busca no Google e uma pergunta feita a uma IA generativa?",
+        "alternativas": [
+          {
+            "id": "a",
+            "texto": "O Google localiza páginas que já existem; a IA generativa gera um texto novo, palavra por palavra, a partir de padrões aprendidos.",
+            "correta": true
+          },
+          {
+            "id": "b",
+            "texto": "Não há diferença real — por trás dos panos, os dois fazem exatamente o mesmo tipo de busca em arquivos.",
+            "correta": false
+          },
+          {
+            "id": "c",
+            "texto": "A IA generativa apenas reorganiza resultados que o Google já encontrou antes, sem gerar nada realmente novo.",
+            "correta": false
+          },
+          {
+            "id": "d",
+            "texto": "A IA generativa é apenas uma versão mais rápida de fazer a mesma busca que o Google faz.",
+            "correta": false
+          }
+        ],
+        "explicacao_acerto": "Isso mesmo: busca localiza o que já existe; geração cria algo novo com base em probabilidade estatística.",
+        "explicacao_erro": "O ponto-chave é o mecanismo: gerar não é o mesmo que buscar, reorganizar resultados de busca ou apenas acelerar uma pesquisa."
+      }
+    },
+    {
+      "ordem": 2,
+      "titulo_aula": "Como isso funciona, na prática",
+      "corpo": "O modelo foi treinado lendo uma quantidade gigantesca de texto — livros, artigos, sites. A partir disso, aprendeu padrões estatísticos: dado um certo começo de frase, quais palavras normalmente vêm a seguir. Ele repete esse processo várias vezes, até formar a resposta inteira.",
+      "destaque": "Pensa no corretor preditivo do seu celular — só que extremamente mais sofisticado. Em vez de prever uma palavra, ele prevê parágrafos inteiros, mantendo coerência com o resto da conversa.",
+      "atividade": {
+        "id": "basica-02-q2",
+        "tipo": "verdadeiro_falso",
+        "enunciado": "A IA generativa procura a resposta certa em uma base de dados, como se fosse um arquivo.",
+        "resposta_correta": false,
+        "justificativas": [
+          {
+            "id": "a",
+            "texto": "Falso — ela gera a resposta prevendo palavra por palavra a partir de padrões aprendidos, e não localizando um texto pronto em algum arquivo.",
+            "correta": true
+          },
+          {
+            "id": "b",
+            "texto": "Falso — porque nenhuma ferramenta de IA tem permissão de acessar qualquer tipo de arquivo armazenado.",
+            "correta": false
+          },
+          {
+            "id": "c",
+            "texto": "Verdadeiro — toda resposta gerada já existe em algum lugar da internet, só que reorganizada de outro jeito.",
+            "correta": false
+          }
+        ],
+        "explicacao": "A questão central é o mecanismo de geração por previsão — não uma regra sobre permissão de acesso a arquivos, nem a ideia de que tudo já existe pronto em algum lugar."
+      }
+    },
+    {
+      "ordem": 3,
+      "titulo_aula": "Por que ela \"alucina\"",
+      "corpo": "Como o modelo está prevendo o que é estatisticamente provável — não o que é factualmente verdadeiro — ele pode gerar informações que soam plausíveis, mas são inventadas: nomes de leis, números de processo, citações que simplesmente não existem. Isso tem nome: alucinação. E o problema real não é ela existir — é que a resposta errada tem exatamente a mesma 'cara de confiança' da resposta certa.",
+      "atividade": {
+        "id": "basica-02-q3",
+        "tipo": "completar_lacuna",
+        "enunciado": "A IA gera texto prevendo a palavra mais ___1___ com base em padrões aprendidos, não necessariamente a mais ___2___.",
+        "lacunas": [
+          {
+            "posicao": 1,
+            "opcoes": [
+              "provável",
+              "aleatória",
+              "antiga"
+            ],
+            "correta": "provável"
+          },
+          {
+            "posicao": 2,
+            "opcoes": [
+              "verdadeira",
+              "criativa",
+              "estruturada"
+            ],
+            "correta": "verdadeira"
+          }
+        ]
+      }
+    },
+    {
+      "ordem": 4,
+      "titulo_aula": "O que isso muda para você",
+      "corpo": "Se a IA não sabe distinguir 'verdade' de 'texto plausível', quem precisa fazer essa distinção é você. Isso não torna a IA inútil — torna a revisão humana uma etapa obrigatória, nunca opcional.",
+      "destaque": "A gente aprofunda esse ponto no Módulo 8, com exemplos reais.",
+      "atividade": {
+        "id": "basica-02-q4",
+        "tipo": "ordenar_etapas",
+        "enunciado": "Coloque em ordem o processo simplificado de como uma IA generativa chega a uma resposta.",
+        "etapas_corretas": [
+          "Treinamento com grande volume de texto",
+          "Aprendizado de padrões estatísticos de linguagem",
+          "Geração de texto palavra por palavra a partir de um pedido",
+          "Formação da resposta final"
+        ]
+      }
+    }
+  ],
+  "atividade_final": [
+    {
+      "id": "basica-02-q5",
+      "tipo": "multipla_escolha",
+      "enunciado": "Uma IA cita um artigo de lei que não existe, mas com total confiança. O que provavelmente aconteceu?",
+      "alternativas": [
+        {
+          "id": "a",
+          "texto": "Ela consultou uma base de dados jurídica desatualizada e reproduziu uma informação antiga.",
+          "correta": false
+        },
+        {
+          "id": "b",
+          "texto": "Ela gerou o texto mais estatisticamente plausível para aquele contexto, sem garantia de que fosse factualmente real — uma alucinação.",
+          "correta": true
+        },
+        {
+          "id": "c",
+          "texto": "Ela cometeu um erro de digitação ao copiar o texto de uma fonte jurídica confiável.",
+          "correta": false
+        },
+        {
+          "id": "d",
+          "texto": "Ela copiou uma informação incorreta de um site jurídico pouco confiável.",
+          "correta": false
+        }
+      ],
+      "explicacao_acerto": "Exatamente o conceito de alucinação: texto plausível gerado por padrão, sem checagem factual embutida — e sem que tenha 'copiado' de lugar nenhum.",
+      "explicacao_erro": "As outras opções presumem que a IA consultou ou copiou de alguma fonte — mas ela gera o texto por previsão de padrão, não por consulta a uma fonte específica."
+    },
+    {
+      "id": "basica-02-q6",
+      "tipo": "verdadeiro_falso",
+      "enunciado": "Uma resposta de IA com aparência confiante é garantia de que está correta.",
+      "resposta_correta": false,
+      "justificativas": [
+        {
+          "id": "a",
+          "texto": "Falso — o tom de confiança da resposta não está relacionado à veracidade factual da informação gerada.",
+          "correta": true
+        },
+        {
+          "id": "b",
+          "texto": "Falso — porque a IA só costuma errar em perguntas sobre temas muito recentes ou pouco divulgados.",
+          "correta": false
+        },
+        {
+          "id": "c",
+          "texto": "Verdadeiro — a IA passa por um processo interno de checagem de fatos antes de responder qualquer coisa.",
+          "correta": false
+        }
+      ],
+      "explicacao": "Diferente de uma pessoa insegura, a IA normalmente não sinaliza dúvida — e não existe uma etapa embutida de checagem factual antes da resposta."
+    },
+    {
+      "id": "basica-02-q7",
+      "tipo": "multipla_escolha",
+      "enunciado": "Diante do que foi aprendido neste módulo, qual é a atitude correta ao receber uma resposta importante de uma IA?",
+      "alternativas": [
+        {
+          "id": "a",
+          "texto": "Usar direto, já que a IA foi treinada com uma quantidade enorme de dados considerados confiáveis.",
+          "correta": false
+        },
+        {
+          "id": "b",
+          "texto": "Tratar a resposta como ponto de partida e verificar as informações antes de usá-la para algo importante.",
+          "correta": true
+        },
+        {
+          "id": "c",
+          "texto": "Usar apenas se a resposta vier bastante detalhada e com uma linguagem segura e bem escrita.",
+          "correta": false
+        },
+        {
+          "id": "d",
+          "texto": "Pedir para outra ferramenta de IA confirmar a mesma informação, e considerar isso prova suficiente.",
+          "correta": false
+        }
+      ],
+      "explicacao_acerto": "Essa é a postura certa — e ela vira 'regra de ouro' no Módulo 8.",
+      "explicacao_erro": "Volume de treinamento, tom detalhado e confirmação por outra IA não substituem uma verificação independente e humana."
+    }
+  ]
+}

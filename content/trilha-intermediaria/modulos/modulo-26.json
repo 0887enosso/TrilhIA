@@ -1,0 +1,191 @@
+{
+  "modulo_id": "intermediaria-26",
+  "trilha": "intermediaria",
+  "bloco": "E",
+  "ordem": 26,
+  "titulo": "O que é uma API Key e por que ela deve ser tratada como uma senha",
+  "descricao_curta": "Uma credencial de acesso para programas — trate como trataria uma senha de banco.",
+  "tempo_estimado_min": 4,
+  "objetivos_aprendizagem": [
+    "Entender o que é uma API Key",
+    "Entender por que ela funciona como uma credencial de acesso",
+    "Reconhecer os riscos de uma API Key exposta ou vazada",
+    "Aplicar o mesmo cuidado de sigilo da trilha básica a esse novo contexto"
+  ],
+  "aulas": [
+    {
+      "ordem": 1,
+      "titulo_aula": "Uma \"senha\" para programas",
+      "corpo": "Uma API Key é um código único que identifica quem está fazendo a requisição — como uma senha, só que usada por um programa para se autenticar, não por uma pessoa digitando em um login.",
+      "atividade": {
+        "id": "intermediaria-26-q1",
+        "tipo": "multipla_escolha",
+        "enunciado": "O que é uma API Key?",
+        "alternativas": [
+          {
+            "id": "a",
+            "texto": "Um código único que identifica e autentica quem está fazendo uma requisição a um serviço de IA.",
+            "correta": true
+          },
+          {
+            "id": "b",
+            "texto": "Um botão visual dentro da interface de uma ferramenta de IA.",
+            "correta": false
+          },
+          {
+            "id": "c",
+            "texto": "Um tipo de prompt especialmente formatado para gerar respostas mais rápidas.",
+            "correta": false
+          },
+          {
+            "id": "d",
+            "texto": "Um recurso disponível apenas em ferramentas gratuitas.",
+            "correta": false
+          }
+        ],
+        "explicacao_acerto": "Isso mesmo — é uma credencial de identificação e autenticação, como uma senha para programas.",
+        "explicacao_erro": "API Key não é um botão de interface, não é um formato de prompt, e não é exclusiva de ferramentas gratuitas — pelo contrário, é comum justamente em uso via API paga."
+      }
+    },
+    {
+      "ordem": 2,
+      "titulo_aula": "Por que ela existe",
+      "corpo": "Sem uma API Key, qualquer um poderia usar o serviço de IA de outra pessoa ou empresa livremente. A chave garante que o uso — e o custo associado — seja rastreado e vinculado a quem tem permissão.",
+      "atividade": {
+        "id": "intermediaria-26-q2",
+        "tipo": "verdadeiro_falso",
+        "enunciado": "Uma API Key pode ser compartilhada livremente, desde que seja com uma pessoa de confiança da equipe.",
+        "resposta_correta": false,
+        "justificativas": [
+          {
+            "id": "a",
+            "texto": "Falso — mesmo com pessoas de confiança, compartilhar aumenta o risco de exposição e uso indevido, e deve ser evitado.",
+            "correta": true
+          },
+          {
+            "id": "b",
+            "texto": "Falso, porque compartilhar uma API Key é tecnicamente impossível.",
+            "correta": false
+          },
+          {
+            "id": "c",
+            "texto": "Verdadeiro, confiança na pessoa elimina qualquer risco de compartilhamento.",
+            "correta": false
+          }
+        ],
+        "explicacao": "Compartilhar é tecnicamente possível (e é justamente por isso que é arriscado) — confiança pessoal não elimina o risco de exposição acidental."
+      }
+    },
+    {
+      "ordem": 3,
+      "titulo_aula": "O risco de uma chave exposta",
+      "corpo": "Se uma API Key vaza — publicada sem querer em um e-mail, documento ou repositório público — qualquer pessoa pode usá-la, gerando custo indevido ou até acesso a informações vinculadas àquela conta.",
+      "atividade": {
+        "id": "intermediaria-26-q3",
+        "tipo": "completar_lacuna",
+        "enunciado": "Uma API Key deve ser tratada com o mesmo cuidado que uma ___.",
+        "lacunas": [
+          {
+            "posicao": 1,
+            "opcoes": [
+              "senha",
+              "assinatura digitalizada",
+              "logomarca"
+            ],
+            "correta": "senha"
+          }
+        ]
+      }
+    },
+    {
+      "ordem": 4,
+      "titulo_aula": "A regra de ouro",
+      "corpo": "Trate uma API Key exatamente como trataria uma senha de banco: nunca compartilhe, nunca cole em lugar público, nunca envie por canal não seguro.",
+      "atividade": {
+        "id": "intermediaria-26-q4",
+        "tipo": "multipla_escolha",
+        "enunciado": "Um colaborador cola, por engano, uma API Key em uma mensagem de um grupo do escritório. Qual a atitude correta?",
+        "alternativas": [
+          {
+            "id": "a",
+            "texto": "Avisar a equipe técnica imediatamente para que a chave seja revogada e substituída por uma nova.",
+            "correta": true
+          },
+          {
+            "id": "b",
+            "texto": "Apagar a mensagem do grupo e considerar o problema resolvido.",
+            "correta": false
+          },
+          {
+            "id": "c",
+            "texto": "Não fazer nada, já que o grupo é interno e apenas colegas têm acesso.",
+            "correta": false
+          },
+          {
+            "id": "d",
+            "texto": "Esperar para ver se algum uso indevido acontece antes de agir.",
+            "correta": false
+          }
+        ],
+        "explicacao_acerto": "Apagar a mensagem não desfaz o vazamento — a chave já foi exposta e precisa ser revogada e trocada o quanto antes.",
+        "explicacao_erro": "Apagar a mensagem, confiar no caráter interno do grupo, ou esperar por sinais de uso indevido não eliminam o risco já criado pela exposição."
+      }
+    }
+  ],
+  "atividade_final": [
+    {
+      "id": "intermediaria-26-q5",
+      "tipo": "associacao",
+      "enunciado": "Ligue cada situação à sua consequência mais provável.",
+      "pares": [
+        {
+          "termo": "Chave usada apenas pela pessoa autorizada",
+          "definicao": "Uso rastreado corretamente, sem risco adicional"
+        },
+        {
+          "termo": "Chave vazada em repositório público",
+          "definicao": "Alto risco de uso indevido por terceiros desconhecidos"
+        },
+        {
+          "termo": "Chave compartilhada em grupo interno do escritório",
+          "definicao": "Risco elevado, mesmo sendo um grupo de confiança"
+        }
+      ]
+    },
+    {
+      "id": "intermediaria-26-q6",
+      "tipo": "verdadeiro_falso",
+      "enunciado": "Se uma API Key vazar, apenas o dono da chave sofre algum tipo de consequência.",
+      "resposta_correta": false,
+      "justificativas": [
+        {
+          "id": "a",
+          "texto": "Falso — dependendo do uso indevido, o escritório inteiro pode ser afetado, seja por custo ou por exposição de dados vinculados.",
+          "correta": true
+        },
+        {
+          "id": "b",
+          "texto": "Falso, porque um vazamento de chave nunca gera nenhuma consequência prática real.",
+          "correta": false
+        },
+        {
+          "id": "c",
+          "texto": "Verdadeiro, o impacto é sempre estritamente individual e isolado.",
+          "correta": false
+        }
+      ],
+      "explicacao": "Um vazamento pode, sim, gerar consequência real (custo, exposição), e o impacto frequentemente vai além da pessoa que expôs a chave."
+    },
+    {
+      "id": "intermediaria-26-q7",
+      "tipo": "resposta_curta_autoavaliada",
+      "enunciado": "Descreva, em até duas frases, como você explicaria a um colega novo por que uma API Key não deve ser tratada como uma informação qualquer.",
+      "criterios_autoavaliacao": [
+        "Minha explicação compara a API Key com algo familiar, como uma senha?",
+        "Mencionei o risco de uso indevido por terceiros?",
+        "Minha explicação é clara para alguém sem conhecimento técnico prévio?"
+      ],
+      "exemplo_de_resposta_forte": "\"Uma API Key é como a senha do banco do escritório: se vazar, qualquer pessoa pode usá-la em nome da empresa, gerando custo ou acessando informações que não deveriam estar expostas.\""
+    }
+  ]
+}

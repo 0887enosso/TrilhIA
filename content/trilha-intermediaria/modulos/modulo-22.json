@@ -1,0 +1,187 @@
+{
+  "modulo_id": "intermediaria-22",
+  "trilha": "intermediaria",
+  "bloco": "D",
+  "ordem": 22,
+  "titulo": "Fine-tuning x prompt engineering: quando ajustar um modelo faz sentido",
+  "descricao_curta": "Duas formas de \"ensinar\" algo a uma IA — e por que uma delas resolve quase tudo no dia a dia.",
+  "tempo_estimado_min": 4,
+  "objetivos_aprendizagem": [
+    "Entender o que é fine-tuning, de forma conceitual",
+    "Diferenciar fine-tuning de prompt engineering",
+    "Reconhecer que fine-tuning é uma decisão técnica rara, não do dia a dia",
+    "Entender por que prompt engineering resolve a maioria dos casos práticos"
+  ],
+  "aulas": [
+    {
+      "ordem": 1,
+      "titulo_aula": "Duas formas de \"ensinar\" algo a uma IA",
+      "corpo": "Ajustar como você pergunta (prompt engineering) ou re-treinar parte do modelo com exemplos específicos (fine-tuning).",
+      "atividade": {
+        "id": "intermediaria-22-q1",
+        "tipo": "multipla_escolha",
+        "enunciado": "Qual a diferença central entre fine-tuning e prompt engineering?",
+        "alternativas": [
+          {
+            "id": "a",
+            "texto": "Fine-tuning re-treina parte do modelo com exemplos específicos; prompt engineering ajusta apenas como você pergunta, sem alterar o modelo.",
+            "correta": true
+          },
+          {
+            "id": "b",
+            "texto": "Fine-tuning é mais rápido e simples de aplicar do que prompt engineering no dia a dia.",
+            "correta": false
+          },
+          {
+            "id": "c",
+            "texto": "Prompt engineering exige conhecimento técnico avançado, e fine-tuning não exige nenhum.",
+            "correta": false
+          },
+          {
+            "id": "d",
+            "texto": "Não existe diferença real de complexidade entre as duas abordagens.",
+            "correta": false
+          }
+        ],
+        "explicacao_acerto": "Isso mesmo — uma altera o modelo em si, a outra só a forma de interagir com ele.",
+        "explicacao_erro": "Fine-tuning é mais lento e complexo, não o contrário, e prompt engineering é a abordagem mais acessível no dia a dia, não a mais técnica."
+      }
+    },
+    {
+      "ordem": 2,
+      "titulo_aula": "O que é fine-tuning",
+      "corpo": "Pegar um modelo já treinado e continuar o treinamento com um conjunto específico de exemplos, para que ele se especialize em um padrão ou domínio.",
+      "atividade": {
+        "id": "intermediaria-22-q2",
+        "tipo": "verdadeiro_falso",
+        "enunciado": "Fine-tuning é algo que qualquer colaborador faz no dia a dia para melhorar uma resposta.",
+        "resposta_correta": false,
+        "justificativas": [
+          {
+            "id": "a",
+            "texto": "Falso — fine-tuning exige dados, tempo, custo e conhecimento técnico; é decisão de projeto, não uso cotidiano.",
+            "correta": true
+          },
+          {
+            "id": "b",
+            "texto": "Falso, porque fine-tuning é uma função tecnicamente removida de todas as ferramentas atuais.",
+            "correta": false
+          },
+          {
+            "id": "c",
+            "texto": "Verdadeiro, qualquer colaborador pode fazer fine-tuning em poucos cliques.",
+            "correta": false
+          }
+        ],
+        "explicacao": "Fine-tuning não foi removido das ferramentas — ele continua existindo, mas como uma decisão técnica de poucas pessoas, não uma ação de poucos cliques do dia a dia."
+      }
+    },
+    {
+      "ordem": 3,
+      "titulo_aula": "Por que isso não é o padrão do dia a dia",
+      "corpo": "Fine-tuning exige dados de treinamento, tempo, custo e conhecimento técnico — é uma decisão de projeto, tomada por poucas pessoas, não algo que você faz na sua rotina.",
+      "atividade": {
+        "id": "intermediaria-22-q3",
+        "tipo": "completar_lacuna",
+        "enunciado": "Fine-tuning consiste em continuar o treinamento de um modelo já existente com um conjunto ___ de exemplos.",
+        "lacunas": [
+          {
+            "posicao": 1,
+            "opcoes": [
+              "específico",
+              "aleatório",
+              "público"
+            ],
+            "correta": "específico"
+          }
+        ]
+      }
+    },
+    {
+      "ordem": 4,
+      "titulo_aula": "Na prática, prompt engineering resolve quase tudo",
+      "corpo": "Para tarefas do dia a dia, ajustar o prompt (o que você já aprendeu no Bloco A) é suficiente e muito mais rápido do que fine-tuning.",
+      "atividade": {
+        "id": "intermediaria-22-q4",
+        "tipo": "multipla_escolha",
+        "enunciado": "Alguém sugere \"vamos fazer fine-tuning\" só para melhorar um resumo malfeito de um documento fictício. Qual a resposta mais adequada?",
+        "alternativas": [
+          {
+            "id": "a",
+            "texto": "Antes de considerar fine-tuning, vale tentar ajustar o prompt — provavelmente resolve, com muito menos custo e tempo.",
+            "correta": true
+          },
+          {
+            "id": "b",
+            "texto": "Concordar imediatamente, já que fine-tuning é sempre a solução mais rápida para qualquer problema de resposta.",
+            "correta": false
+          },
+          {
+            "id": "c",
+            "texto": "Recusar totalmente a usar IA para essa tarefa a partir de então.",
+            "correta": false
+          },
+          {
+            "id": "d",
+            "texto": "Sugerir trocar de fornecedor de IA, já que o modelo atual claramente não funciona.",
+            "correta": false
+          }
+        ],
+        "explicacao_acerto": "Prompt engineering resolve a esmagadora maioria dos problemas do dia a dia, com muito menos esforço do que fine-tuning.",
+        "explicacao_erro": "Fine-tuning não é a solução mais rápida para um problema pontual, abandonar a tarefa é desproporcional, e trocar de fornecedor não é a causa provável de um resumo malfeito."
+      }
+    }
+  ],
+  "atividade_final": [
+    {
+      "id": "intermediaria-22-q5",
+      "tipo": "associacao",
+      "enunciado": "Ligue cada abordagem ao tipo de uso correspondente.",
+      "pares": [
+        {
+          "termo": "Prompt engineering",
+          "definicao": "Uso do dia a dia, rápido e acessível"
+        },
+        {
+          "termo": "Fine-tuning",
+          "definicao": "Decisão técnica rara, tomada por poucas pessoas em um projeto"
+        }
+      ]
+    },
+    {
+      "id": "intermediaria-22-q6",
+      "tipo": "verdadeiro_falso",
+      "enunciado": "Prompt engineering resolve a maioria das tarefas práticas do dia a dia.",
+      "resposta_correta": true,
+      "justificativas": [
+        {
+          "id": "a",
+          "texto": "Verdadeiro — para a grande maioria das tarefas cotidianas, ajustar o prompt é suficiente e muito mais rápido que fine-tuning.",
+          "correta": true
+        },
+        {
+          "id": "b",
+          "texto": "Verdadeiro, mas apenas para tarefas que não envolvem nenhum tipo de análise de documento.",
+          "correta": false
+        },
+        {
+          "id": "c",
+          "texto": "Falso, prompt engineering só resolve problemas triviais, sem nenhuma aplicação real.",
+          "correta": false
+        }
+      ],
+      "explicacao": "Não há essa restrição sobre análise de documentos, e prompt engineering tem aplicação real e ampla, como visto em quase todos os módulos anteriores."
+    },
+    {
+      "id": "intermediaria-22-q7",
+      "tipo": "resposta_curta_autoavaliada",
+      "enunciado": "Descreva, em até duas frases, uma situação fictícia em que considerar fine-tuning (em vez de só ajustar o prompt) faria sentido para um escritório.",
+      "criterios_autoavaliacao": [
+        "Minha situação envolve um padrão muito específico e repetido, não uma tarefa pontual?",
+        "Reconheci que essa seria uma decisão de projeto, não uma ação cotidiana de um colaborador?",
+        "Evitei sugerir fine-tuning para um problema que um bom prompt já resolveria?"
+      ],
+      "exemplo_de_resposta_forte": "\"Se o escritório precisasse de um modelo especializado em um estilo de redação muito específico, usado em milhares de documentos por mês, fine-tuning poderia valer o investimento — diferente de um ajuste pontual.\""
+    }
+  ]
+}

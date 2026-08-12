@@ -1,0 +1,217 @@
+{
+  "modulo_id": "basica-03",
+  "trilha": "basica",
+  "ordem": 3,
+  "titulo": "O panorama das ferramentas de IA",
+  "descricao_curta": "\"IA\" não é uma ferramenta só — é uma família inteira delas.",
+  "tempo_estimado_min": 4,
+  "objetivos_aprendizagem": [
+    "Entender que IA não é um produto único, mas uma categoria com vários tipos de ferramenta",
+    "Diferenciar assistentes conversacionais gerais, copilots integrados, assistentes especializados e ferramentas de automação",
+    "Situar ferramentas conhecidas dentro desse panorama"
+  ],
+  "aulas": [
+    {
+      "ordem": 1,
+      "titulo_aula": "\"IA\" não é um produto. É uma categoria",
+      "corpo": "Quando alguém diz 'vamos usar IA', isso pode significar coisas bem diferentes: um chat geral, um recurso dentro do Word, um sistema de busca jurídica inteligente. Entender essa diferença evita expectativa errada sobre o que cada ferramenta realmente faz.",
+      "atividade": {
+        "id": "basica-03-q1",
+        "tipo": "multipla_escolha",
+        "enunciado": "Qual das opções melhor descreve a diferença entre um assistente geral e um copilot integrado a um software?",
+        "alternativas": [
+          {
+            "id": "a",
+            "texto": "O assistente geral serve para conversas livres e variadas; o copilot é uma IA voltada para uma tarefa específica dentro de um programa já existente.",
+            "correta": true
+          },
+          {
+            "id": "b",
+            "texto": "Não existe diferença prática entre os dois — ambos fazem exatamente a mesma coisa, apenas com nomes diferentes.",
+            "correta": false
+          },
+          {
+            "id": "c",
+            "texto": "O copilot é sempre mais avançado e poderoso do que qualquer assistente geral disponível no mercado.",
+            "correta": false
+          },
+          {
+            "id": "d",
+            "texto": "O assistente geral só pode ser usado dentro de outros softwares, nunca como ferramenta independente.",
+            "correta": false
+          }
+        ],
+        "explicacao_acerto": "Exatamente — o que diferencia os dois é o escopo de atuação: amplo e livre versus específico e integrado.",
+        "explicacao_erro": "O ponto central é o escopo de atuação de cada categoria, não qual delas é tecnicamente 'mais poderosa' ou onde cada uma pode ser acessada."
+      }
+    },
+    {
+      "ordem": 2,
+      "titulo_aula": "As quatro grandes categorias",
+      "corpo": "Vale a pena guardar essas quatro famílias:",
+      "destaque": "Assistentes conversacionais gerais (ChatGPT, Claude, Gemini) fazem de tudo um pouco, em conversa livre. Copilots integrados (recursos de IA dentro do Word, Excel, Gmail, plataformas do escritório) fazem uma tarefa específica, dentro de um programa que você já usa. Assistentes especializados (como pesquisa jurídica com IA) são ajustados para um domínio. Ferramentas de automação executam fluxos de tarefas repetitivas sozinhas, usando IA como parte do processo.",
+      "atividade": {
+        "id": "basica-03-q2",
+        "tipo": "verdadeiro_falso",
+        "enunciado": "Toda ferramenta com IA serve igualmente bem para qualquer tarefa.",
+        "resposta_correta": false,
+        "justificativas": [
+          {
+            "id": "a",
+            "texto": "Falso — cada categoria de ferramenta foi desenhada com um propósito e um escopo diferente.",
+            "correta": true
+          },
+          {
+            "id": "b",
+            "texto": "Falso — porque apenas as ferramentas mais recentes conseguem lidar com mais de um tipo de tarefa ao mesmo tempo.",
+            "correta": false
+          },
+          {
+            "id": "c",
+            "texto": "Verdadeiro — toda ferramenta de IA usa exatamente a mesma tecnologia por trás, então o resultado é sempre equivalente.",
+            "correta": false
+          }
+        ],
+        "explicacao": "Tecnologia parecida por trás, ou lançamento recente, não garantem escopo igual — o desenho e o propósito da ferramenta é o que define isso."
+      }
+    },
+    {
+      "ordem": 3,
+      "titulo_aula": "Por que essa distinção importa",
+      "corpo": "Cada categoria tem um propósito diferente. Pedir para um copilot de e-mail redigir uma peça processual complexa provavelmente vai frustrar — não porque a IA é ruim, mas porque a ferramenta simplesmente não foi desenhada para isso.",
+      "atividade": {
+        "id": "basica-03-q3",
+        "tipo": "associacao",
+        "enunciado": "Ligue cada exemplo à categoria correta.",
+        "pares": [
+          {
+            "termo": "ChatGPT / Claude / Gemini",
+            "definicao": "Assistente conversacional geral"
+          },
+          {
+            "termo": "IA dentro do Word ou Excel",
+            "definicao": "Copilot integrado a um software"
+          },
+          {
+            "termo": "Fluxo automático que processa e-mails sozinho usando IA",
+            "definicao": "Ferramenta de automação"
+          }
+        ]
+      }
+    },
+    {
+      "ordem": 4,
+      "titulo_aula": "Ligando com o seu dia a dia",
+      "corpo": "No trabalho, você provavelmente vai circular entre mais de uma categoria — um copilot dentro de um sistema do escritório, e talvez um assistente geral para tarefas soltas. Saber identificar 'que tipo de ferramenta é essa' já é meio caminho andado para usá-la bem.",
+      "atividade": {
+        "id": "basica-03-q4",
+        "tipo": "completar_lacuna",
+        "enunciado": "Um ___1___ é uma IA integrada dentro de um software que você já usa, feita para uma tarefa ___2___.",
+        "lacunas": [
+          {
+            "posicao": 1,
+            "opcoes": [
+              "copilot",
+              "servidor",
+              "algoritmo"
+            ],
+            "correta": "copilot"
+          },
+          {
+            "posicao": 2,
+            "opcoes": [
+              "específica",
+              "genérica",
+              "aleatória"
+            ],
+            "correta": "específica"
+          }
+        ]
+      }
+    }
+  ],
+  "atividade_final": [
+    {
+      "id": "basica-03-q5",
+      "tipo": "multipla_escolha",
+      "enunciado": "Um colega quer redigir uma peça processual longa usando apenas o corretor de texto com IA do e-mail. Qual é o problema nesse cenário?",
+      "alternativas": [
+        {
+          "id": "a",
+          "texto": "Não há problema algum — qualquer ferramenta com IA serve igualmente bem para qualquer tipo de tarefa.",
+          "correta": false
+        },
+        {
+          "id": "b",
+          "texto": "A ferramenta foi feita para correção pontual de texto, não para redigir documentos longos e complexos — o escopo dela é outro.",
+          "correta": true
+        },
+        {
+          "id": "c",
+          "texto": "O problema é que corretores de e-mail nunca utilizam nenhum tipo de tecnologia real de inteligência artificial.",
+          "correta": false
+        },
+        {
+          "id": "d",
+          "texto": "O problema é que peças processuais nunca podem contar com nenhum tipo de apoio de ferramentas de IA.",
+          "correta": false
+        }
+      ],
+      "explicacao_acerto": "Isso mesmo — usar a ferramenta certa para o escopo certo é o cerne deste módulo.",
+      "explicacao_erro": "O problema não é a ausência de IA real na ferramenta, nem uma proibição geral de IA em peças processuais — é o descompasso entre o escopo da ferramenta e a complexidade da tarefa."
+    },
+    {
+      "id": "basica-03-q6",
+      "tipo": "verdadeiro_falso",
+      "enunciado": "Assistentes especializados costumam ser treinados ou ajustados para um domínio específico, como pesquisa jurídica.",
+      "resposta_correta": true,
+      "justificativas": [
+        {
+          "id": "a",
+          "texto": "Verdadeiro — essa é justamente a característica que os diferencia dos assistentes gerais.",
+          "correta": true
+        },
+        {
+          "id": "b",
+          "texto": "Verdadeiro, mas isso só costuma acontecer em ferramentas gratuitas e de acesso aberto.",
+          "correta": false
+        },
+        {
+          "id": "c",
+          "texto": "Falso — todos os assistentes de IA disponíveis hoje são igualmente genéricos.",
+          "correta": false
+        }
+      ],
+      "explicacao": "Especialização de domínio é o que diferencia essa categoria das demais — e não depende de a ferramenta ser gratuita ou paga."
+    },
+    {
+      "id": "basica-03-q7",
+      "tipo": "multipla_escolha",
+      "enunciado": "Diante de uma tarefa nova, qual a primeira pergunta que você deveria se fazer antes de escolher qual ferramenta de IA usar?",
+      "alternativas": [
+        {
+          "id": "a",
+          "texto": "Que tipo de tarefa é essa, e qual categoria de ferramenta foi feita para lidar com esse escopo?",
+          "correta": true
+        },
+        {
+          "id": "b",
+          "texto": "Qual ferramenta é mais famosa entre os colegas de trabalho no momento?",
+          "correta": false
+        },
+        {
+          "id": "c",
+          "texto": "Qual ferramenta tem o plano mais barato ou totalmente gratuito?",
+          "correta": false
+        },
+        {
+          "id": "d",
+          "texto": "Qual ferramenta tem a interface visual mais bonita e moderna?",
+          "correta": false
+        }
+      ],
+      "explicacao_acerto": "Essa é a pergunta certa — escopo da tarefa, escopo da ferramenta.",
+      "explicacao_erro": "Popularidade, custo e estética não garantem que a ferramenta seja adequada ao escopo real da tarefa."
+    }
+  ]
+}

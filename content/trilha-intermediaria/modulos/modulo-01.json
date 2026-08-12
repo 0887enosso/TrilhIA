@@ -1,0 +1,190 @@
+{
+  "modulo_id": "intermediaria-01",
+  "trilha": "intermediaria",
+  "bloco": "A",
+  "ordem": 1,
+  "titulo": "Anatomia de um prompt avançado",
+  "descricao_curta": "Cinco elementos que separam um prompt amador de um prompt profissional.",
+  "tempo_estimado_min": 5,
+  "objetivos_aprendizagem": [
+    "Reconhecer os cinco elementos de um prompt avançado: papel, tarefa, contexto, restrições e formato",
+    "Diferenciar restrição de contexto",
+    "Aplicar a estrutura completa em um prompt jurídico",
+    "Entender que a estrutura é um checklist mental, não uma fórmula rígida"
+  ],
+  "aulas": [
+    {
+      "ordem": 1,
+      "titulo_aula": "Da trilha básica pra cá",
+      "corpo": "Lá no letramento você aprendeu três ingredientes: objetivo, contexto, formato. Agora, para tarefas mais complexas, vamos adicionar mais dois: papel e restrições.",
+      "atividade": {
+        "id": "intermediaria-01-q1",
+        "tipo": "correcao_prompt",
+        "enunciado": "Leia o prompt fictício abaixo e identifique seu problema principal.",
+        "prompt_analisado": "\"Aja como um advogado. Resuma o documento.\"",
+        "alternativas": [
+          {
+            "id": "a",
+            "texto": "Falta o elemento de restrição — o prompt não diz quais limites a resposta deve respeitar.",
+            "correta": false
+          },
+          {
+            "id": "b",
+            "texto": "Falta o elemento de contexto — o prompt não informa nada sobre o documento, como tipo, tamanho ou finalidade do resumo.",
+            "correta": true
+          },
+          {
+            "id": "c",
+            "texto": "Falta o elemento de papel — o prompt não diz quem a IA deve ser ao responder.",
+            "correta": false
+          },
+          {
+            "id": "d",
+            "texto": "Nada falta — esse prompt já está completo e pronto para uso.",
+            "correta": false
+          }
+        ],
+        "explicacao_acerto": "O papel já está presente ('aja como um advogado'). O buraco mais crítico aqui é a ausência total de contexto: a IA não sabe nada sobre o documento em si.",
+        "explicacao_erro": "Revise: o papel já foi definido no prompt. Restrição seria um refinamento útil, mas o problema mais grave é não haver nenhuma informação sobre o documento a ser resumido."
+      }
+    },
+    {
+      "ordem": 2,
+      "titulo_aula": "Os cinco elementos de um prompt avançado",
+      "corpo": "Nenhum deles é novidade isolada — juntos, formam um checklist mais completo:",
+      "destaque": "Papel: quem a IA deve 'ser' ao responder. Tarefa: o que exatamente você quer que ela faça. Contexto: informação relevante para a tarefa. Restrições: limites que a resposta deve respeitar. Formato: como você quer receber o resultado.",
+      "atividade": {
+        "id": "intermediaria-01-q2",
+        "tipo": "multipla_escolha",
+        "enunciado": "Qual das opções melhor descreve o elemento \"papel\" em um prompt avançado?",
+        "alternativas": [
+          {
+            "id": "a",
+            "texto": "Quem a IA deve 'ser' ao responder, como 'aja como um advogado revisor de contratos'.",
+            "correta": true
+          },
+          {
+            "id": "b",
+            "texto": "O limite que a resposta deve respeitar, como tom ou extensão máxima do texto.",
+            "correta": false
+          },
+          {
+            "id": "c",
+            "texto": "A informação relevante para a tarefa, como o tipo de documento envolvido.",
+            "correta": false
+          },
+          {
+            "id": "d",
+            "texto": "Como você quer receber o resultado, como uma lista ou uma tabela.",
+            "correta": false
+          }
+        ],
+        "explicacao_acerto": "Isso mesmo — papel define a perspectiva que a IA deve assumir ao responder.",
+        "explicacao_erro": "As demais opções descrevem, respectivamente, restrição, contexto e formato — elementos diferentes de papel."
+      }
+    },
+    {
+      "ordem": 3,
+      "titulo_aula": "Por que \"restrições\" muda o jogo",
+      "corpo": "Sem restrição, a IA generativa tende a ser mais genérica e mais verbosa. Uma restrição como 'não use jargão técnico' ou 'não sugira nada fora do que está no documento' reduz bastante o risco de a IA 'inventar' algo fora do escopo.",
+      "atividade": {
+        "id": "intermediaria-01-q3",
+        "tipo": "completar_lacuna",
+        "enunciado": "Um prompt avançado pode combinar até cinco elementos: papel, tarefa, ___1___, restrições e ___2___.",
+        "lacunas": [
+          {
+            "posicao": 1,
+            "opcoes": [
+              "contexto",
+              "custo",
+              "velocidade"
+            ],
+            "correta": "contexto"
+          },
+          {
+            "posicao": 2,
+            "opcoes": [
+              "formato",
+              "emoji",
+              "cor"
+            ],
+            "correta": "formato"
+          }
+        ]
+      }
+    },
+    {
+      "ordem": 4,
+      "titulo_aula": "Nem toda tarefa precisa dos cinco elementos",
+      "corpo": "Isso é um checklist mental, não uma fórmula obrigatória. Tarefas simples podem precisar de só dois ou três elementos — usar os cinco em tudo pode até deixar o prompt desnecessariamente pesado.",
+      "atividade": {
+        "id": "intermediaria-01-q4",
+        "tipo": "associacao",
+        "enunciado": "Ligue cada elemento à sua função correta em um prompt avançado.",
+        "pares": [
+          {
+            "termo": "Papel",
+            "definicao": "Define a perspectiva que a IA deve assumir ao responder"
+          },
+          {
+            "termo": "Restrições",
+            "definicao": "Define os limites que a resposta deve respeitar"
+          },
+          {
+            "termo": "Contexto",
+            "definicao": "Fornece a informação relevante para a tarefa"
+          }
+        ]
+      }
+    }
+  ],
+  "atividade_final": [
+    {
+      "id": "intermediaria-01-q5",
+      "tipo": "verdadeiro_falso",
+      "enunciado": "Um prompt precisa sempre conter os cinco elementos (papel, tarefa, contexto, restrições, formato) para funcionar bem.",
+      "resposta_correta": false,
+      "justificativas": [
+        {
+          "id": "a",
+          "texto": "Falso — é um checklist mental para tarefas complexas; tarefas simples podem precisar de só dois ou três elementos.",
+          "correta": true
+        },
+        {
+          "id": "b",
+          "texto": "Falso, porque usar mais de três elementos está tecnicamente bloqueado em algumas ferramentas.",
+          "correta": false
+        },
+        {
+          "id": "c",
+          "texto": "Verdadeiro, sem os cinco elementos a IA sempre recusa responder.",
+          "correta": false
+        }
+      ],
+      "explicacao": "Não existe bloqueio técnico nem recusa automática — a estrutura de cinco elementos é um guia para tarefas complexas, não uma exigência universal."
+    },
+    {
+      "id": "intermediaria-01-q6",
+      "tipo": "ordenar_etapas",
+      "enunciado": "Coloque em ordem uma sequência lógica para construir um prompt avançado do zero.",
+      "etapas_corretas": [
+        "Definir a tarefa que você precisa realizar",
+        "Atribuir um papel à IA, se fizer sentido para a tarefa",
+        "Fornecer o contexto relevante",
+        "Definir restrições, se necessário",
+        "Especificar o formato esperado da resposta"
+      ]
+    },
+    {
+      "id": "intermediaria-01-q7",
+      "tipo": "resposta_curta_autoavaliada",
+      "enunciado": "Escreva, em até duas frases, um prompt completo (usando pelo menos três dos cinco elementos) para pedir que a IA organize os pontos principais de um parecer jurídico fictício.",
+      "criterios_autoavaliacao": [
+        "Meu prompt tem uma tarefa clara e específica?",
+        "Incluí pelo menos mais dois elementos além da tarefa (papel, contexto, restrição ou formato)?",
+        "Um colega conseguiria entender exatamente o que pedir, sem precisar de explicação adicional?"
+      ],
+      "exemplo_de_resposta_forte": "\"Aja como um assistente jurídico. Organize os pontos principais deste parecer fictício em até 5 tópicos, destacando a conclusão final.\""
+    }
+  ]
+}

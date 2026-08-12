@@ -1,0 +1,191 @@
+{
+  "modulo_id": "intermediaria-11",
+  "trilha": "intermediaria",
+  "bloco": "B",
+  "ordem": 11,
+  "titulo": "IA para organização pessoal e produtividade",
+  "descricao_curta": "Nem todo bom uso de IA precisa ser jurídico — mas o sigilo continua valendo.",
+  "tempo_estimado_min": 4,
+  "objetivos_aprendizagem": [
+    "Usar IA para triagem e resposta de e-mails",
+    "Usar IA para organizar tarefas e prioridades",
+    "Reconhecer o limite: prioridade estratégica continua sendo decisão humana",
+    "Manter cuidado de sigilo mesmo em tarefas administrativas"
+  ],
+  "aulas": [
+    {
+      "ordem": 1,
+      "titulo_aula": "Produtividade também é um bom uso",
+      "corpo": "Nem toda aplicação de IA precisa ser jurídica em si — organizar a própria rotina (e-mails, tarefas, agenda) é um uso legítimo e de baixo risco, desde que sem dados sensíveis de cliente.",
+      "atividade": {
+        "id": "intermediaria-11-q1",
+        "tipo": "multipla_escolha",
+        "enunciado": "Qual das opções é um bom exemplo de uso de IA para produtividade pessoal?",
+        "alternativas": [
+          {
+            "id": "a",
+            "texto": "Pedir para a IA resumir uma caixa de entrada cheia, sem nenhum dado sensível de cliente envolvido.",
+            "correta": true
+          },
+          {
+            "id": "b",
+            "texto": "Colar o conteúdo completo de um e-mail com dados de cliente em uma ferramenta pessoal, só para 'ganhar tempo'.",
+            "correta": false
+          },
+          {
+            "id": "c",
+            "texto": "Deixar que a IA decida sozinha, sem nenhuma informação sua, qual tarefa é estrategicamente mais importante.",
+            "correta": false
+          },
+          {
+            "id": "d",
+            "texto": "Usar qualquer ferramenta disponível, sem verificar se foi aprovada, desde que a tarefa pareça simples.",
+            "correta": false
+          }
+        ],
+        "explicacao_acerto": "Resumir a caixa de entrada, sem dado sensível envolvido, é exatamente o tipo de uso de baixo risco e alto ganho de produtividade.",
+        "explicacao_erro": "As demais opções envolvem risco de sigilo ou delegam decisão estratégica sem contexto — nenhuma delas é uma boa prática."
+      }
+    },
+    {
+      "ordem": 2,
+      "titulo_aula": "Onde ajuda bem",
+      "corpo": "Rascunhar respostas de e-mail padrão, resumir uma caixa de entrada cheia, sugerir uma ordem de prioridade com base em prazos que você mesmo informa.",
+      "atividade": {
+        "id": "intermediaria-11-q2",
+        "tipo": "verdadeiro_falso",
+        "enunciado": "A IA sabe automaticamente qual tarefa é mais importante para você, sem precisar de nenhum contexto.",
+        "resposta_correta": false,
+        "justificativas": [
+          {
+            "id": "a",
+            "texto": "Falso — a IA só consegue sugerir uma ordem de prioridade a partir de informações que você mesmo fornece.",
+            "correta": true
+          },
+          {
+            "id": "b",
+            "texto": "Falso, porque a IA prioriza tarefas automaticamente com base no horário do dia.",
+            "correta": false
+          },
+          {
+            "id": "c",
+            "texto": "Verdadeiro, a IA consegue inferir prioridade estratégica sem nenhuma informação prévia.",
+            "correta": false
+          }
+        ],
+        "explicacao": "Não existe inferência automática de prioridade por horário nem por qualquer outro sinal implícito — a IA depende do contexto que você fornece."
+      }
+    },
+    {
+      "ordem": 3,
+      "titulo_aula": "O limite: prioridade real é sua, não da IA",
+      "corpo": "A IA não sabe o peso estratégico real de cada tarefa a menos que você diga — ela pode sugerir uma ordem, mas a decisão final de prioridade continua sendo sua.",
+      "atividade": {
+        "id": "intermediaria-11-q3",
+        "tipo": "completar_lacuna",
+        "enunciado": "A decisão final sobre a prioridade real das tarefas continua sendo ___.",
+        "lacunas": [
+          {
+            "posicao": 1,
+            "opcoes": [
+              "sua/humana",
+              "automática",
+              "aleatória"
+            ],
+            "correta": "sua/humana"
+          }
+        ]
+      }
+    },
+    {
+      "ordem": 4,
+      "titulo_aula": "Sigilo em tarefa \"boba\" também conta",
+      "corpo": "Colar o conteúdo de um e-mail inteiro numa ferramenta não aprovada, mesmo para algo 'administrativo', pode envolver dado de cliente sem que você perceba.",
+      "atividade": {
+        "id": "intermediaria-11-q4",
+        "tipo": "multipla_escolha",
+        "enunciado": "Um colaborador cola um e-mail inteiro com dados de cliente em uma ferramenta pessoal não aprovada, só para 'organizar a caixa de entrada'. Qual o problema?",
+        "alternativas": [
+          {
+            "id": "a",
+            "texto": "Mesmo em uma tarefa aparentemente administrativa, o dado de cliente saiu do controle do escritório sem aprovação.",
+            "correta": true
+          },
+          {
+            "id": "b",
+            "texto": "Não há problema, já que organizar e-mails é uma tarefa de baixíssimo risco por definição.",
+            "correta": false
+          },
+          {
+            "id": "c",
+            "texto": "O único problema é que ferramentas pessoais costumam ser mais lentas.",
+            "correta": false
+          },
+          {
+            "id": "d",
+            "texto": "O problema é que e-mails não podem, sob nenhuma hipótese, ser organizados com apoio de IA.",
+            "correta": false
+          }
+        ],
+        "explicacao_acerto": "O tipo de tarefa (administrativa) não muda a sensibilidade do dado envolvido — o risco de sigilo é o mesmo do Módulo 9 da trilha básica.",
+        "explicacao_erro": "Risco baixo por padrão não existe quando há dado de cliente envolvido, velocidade não é o problema central, e organizar e-mail com IA não é proibido em si — o problema é a ferramenta não aprovada."
+      }
+    }
+  ],
+  "atividade_final": [
+    {
+      "id": "intermediaria-11-q5",
+      "tipo": "associacao",
+      "enunciado": "Ligue cada tarefa ao tipo de ajuda que ela representa.",
+      "pares": [
+        {
+          "termo": "Rascunhar uma resposta de e-mail padrão",
+          "definicao": "Geração de primeira versão"
+        },
+        {
+          "termo": "Resumir uma caixa de entrada cheia",
+          "definicao": "Síntese e organização"
+        },
+        {
+          "termo": "Sugerir uma ordem de prioridade com base em prazos informados",
+          "definicao": "Apoio à decisão, não decisão final"
+        }
+      ]
+    },
+    {
+      "id": "intermediaria-11-q6",
+      "tipo": "verdadeiro_falso",
+      "enunciado": "Tarefas administrativas nunca envolvem risco de sigilo.",
+      "resposta_correta": false,
+      "justificativas": [
+        {
+          "id": "a",
+          "texto": "Falso — o risco de sigilo depende do dado envolvido, não do tipo de tarefa em que ele aparece.",
+          "correta": true
+        },
+        {
+          "id": "b",
+          "texto": "Falso, porque tarefas administrativas são sempre processadas fora do escritório por padrão.",
+          "correta": false
+        },
+        {
+          "id": "c",
+          "texto": "Verdadeiro, apenas tarefas jurídicas formais envolvem dado sensível.",
+          "correta": false
+        }
+      ],
+      "explicacao": "O que define o risco é a presença de dado sensível, não o rótulo 'administrativo' ou 'jurídico' da tarefa."
+    },
+    {
+      "id": "intermediaria-11-q7",
+      "tipo": "resposta_curta_autoavaliada",
+      "enunciado": "Escreva, em até duas frases, a pergunta que você deveria se fazer antes de colar o conteúdo de um e-mail em uma ferramenta de produtividade com IA.",
+      "criterios_autoavaliacao": [
+        "Minha pergunta considera se o e-mail contém dado de cliente ou informação sensível?",
+        "Minha pergunta considera se a ferramenta é aprovada pelo escritório?",
+        "Essa pergunta funcionaria também para outras tarefas 'administrativas' do dia a dia?"
+      ],
+      "exemplo_de_resposta_forte": "\"Este e-mail contém algum dado de cliente ou informação sigilosa, e a ferramenta que vou usar é aprovada pelo escritório para esse tipo de conteúdo?\""
+    }
+  ]
+}

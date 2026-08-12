@@ -1,0 +1,239 @@
+{
+  "modulo_id": "basica-05",
+  "trilha": "basica",
+  "ordem": 5,
+  "titulo": "Primeiros passos: como se comunicar bem com uma IA",
+  "descricao_curta": "É uma conversa, não uma busca — e isso muda tudo.",
+  "tempo_estimado_min": 4,
+  "objetivos_aprendizagem": [
+    "Entender a lógica de conversa (não de busca) na interação com IA",
+    "Compreender o conceito de contexto dentro de uma conversa",
+    "Reconhecer que refinar e iterar é parte normal do uso, não falha",
+    "Evitar erros comuns de quem está começando"
+  ],
+  "aulas": [
+    {
+      "ordem": 1,
+      "titulo_aula": "A conversa é o formato",
+      "corpo": "Diferente de uma busca curta e única, aqui você interage por diálogo: pode perguntar, pedir para reformular, corrigir, aprofundar — exatamente como numa conversa com um colega de trabalho.",
+      "atividade": {
+        "id": "basica-05-q1",
+        "tipo": "multipla_escolha",
+        "enunciado": "Qual das opções melhor descreve como funciona uma conversa com uma IA generativa?",
+        "alternativas": [
+          {
+            "id": "a",
+            "texto": "Um diálogo contínuo, onde você pode pedir ajustes, correções e aprofundamentos ao longo da interação.",
+            "correta": true
+          },
+          {
+            "id": "b",
+            "texto": "Uma única pergunta seguida de uma única resposta definitiva, sem qualquer possibilidade de ajuste posterior.",
+            "correta": false
+          },
+          {
+            "id": "c",
+            "texto": "Um formulário fixo, com campos pré-definidos, que precisa ser preenchido de uma vez só.",
+            "correta": false
+          },
+          {
+            "id": "d",
+            "texto": "Uma busca que retorna uma lista de links relacionados, parecida com um mecanismo de pesquisa.",
+            "correta": false
+          }
+        ],
+        "explicacao_acerto": "Isso mesmo — o formato é de conversa contínua, com espaço real para ajuste.",
+        "explicacao_erro": "O ponto central é a natureza dialógica da interação: pedir ajuste é esperado, não uma exceção ao funcionamento normal."
+      }
+    },
+    {
+      "ordem": 2,
+      "titulo_aula": "Contexto dentro da conversa",
+      "corpo": "A IA 'lembra' o que foi dito antes, dentro da mesma conversa (até um certo limite) — mas não sabe de conversas anteriores, a menos que você informe de novo.",
+      "atividade": {
+        "id": "basica-05-q2",
+        "tipo": "verdadeiro_falso",
+        "enunciado": "A IA lembra automaticamente de conversas anteriores, mesmo em uma sessão nova.",
+        "resposta_correta": false,
+        "justificativas": [
+          {
+            "id": "a",
+            "texto": "Falso — o contexto normalmente fica restrito à conversa atual, a menos que você reintroduza a informação.",
+            "correta": true
+          },
+          {
+            "id": "b",
+            "texto": "Falso — porque toda plataforma de IA apaga completamente os dados do usuário a cada 24 horas.",
+            "correta": false
+          },
+          {
+            "id": "c",
+            "texto": "Verdadeiro — ela sempre lembra de tudo que já foi dito em qualquer conversa anterior, por padrão.",
+            "correta": false
+          }
+        ],
+        "explicacao": "O limite não é uma regra de tempo fixo de 24 horas — é uma questão de escopo: uma conversa nova normalmente começa sem o histórico das anteriores."
+      }
+    },
+    {
+      "ordem": 3,
+      "titulo_aula": "Iteração é esperada, não é fracasso",
+      "corpo": "Se a resposta não veio como você queria, pedir para refazer, mudar o tom ou adicionar informação é o uso correto da ferramenta — não é sinal de que 'a IA não funcionou'.",
+      "atividade": {
+        "id": "basica-05-q3",
+        "tipo": "completar_lacuna",
+        "enunciado": "Se a resposta da IA não veio como esperado, o mais adequado é ___ o pedido, e não desistir.",
+        "lacunas": [
+          {
+            "posicao": 1,
+            "opcoes": [
+              "refinar",
+              "ignorar",
+              "repetir exatamente igual"
+            ],
+            "correta": "refinar"
+          }
+        ]
+      }
+    },
+    {
+      "ordem": 4,
+      "titulo_aula": "Erros comuns de quem está começando",
+      "corpo": "Esperar que a IA 'adivinhe' sem contexto suficiente. Achar que ela lembra automaticamente de conversas passadas. Desistir na primeira resposta ruim em vez de refinar o pedido.",
+      "destaque": "Nenhum desses erros é 'culpa da IA' — são hábitos que se ajustam rápido, uma vez que você entende a lógica.",
+      "atividade": {
+        "id": "basica-05-q4",
+        "tipo": "multipla_escolha",
+        "enunciado": "Um usuário faz uma pergunta vaga, recebe uma resposta genérica e diz \"essa IA não presta\". O que provavelmente faltou?",
+        "alternativas": [
+          {
+            "id": "a",
+            "texto": "Contexto e especificidade suficientes no pedido original feito à IA.",
+            "correta": true
+          },
+          {
+            "id": "b",
+            "texto": "Uma conexão de internet mais estável e rápida no momento da pergunta.",
+            "correta": false
+          },
+          {
+            "id": "c",
+            "texto": "Um plano pago ou uma versão premium daquela ferramenta específica.",
+            "correta": false
+          },
+          {
+            "id": "d",
+            "texto": "Nada em especial — algumas ferramentas de IA realmente não funcionam bem na prática.",
+            "correta": false
+          }
+        ],
+        "explicacao_acerto": "Pedido vago tende a gerar resposta genérica — isso é esperado, e refinar o pedido costuma resolver.",
+        "explicacao_erro": "Internet, plano pago ou a própria ferramenta raramente são a causa real aqui — o problema costuma estar na especificidade do pedido em si."
+      }
+    }
+  ],
+  "atividade_final": [
+    {
+      "id": "basica-05-q5",
+      "tipo": "verdadeiro_falso",
+      "enunciado": "Pedir para a IA refazer ou ajustar uma resposta é um uso normal e esperado da ferramenta.",
+      "resposta_correta": true,
+      "justificativas": [
+        {
+          "id": "a",
+          "texto": "Verdadeiro — iterar e refinar faz parte do uso correto da ferramenta, não é sinal de falha.",
+          "correta": true
+        },
+        {
+          "id": "b",
+          "texto": "Verdadeiro, mas apenas em ferramentas que oferecem plano pago ou empresarial.",
+          "correta": false
+        },
+        {
+          "id": "c",
+          "texto": "Falso — pedir ajuste indica que o usuário não soube formular bem o pedido original.",
+          "correta": false
+        }
+      ],
+      "explicacao": "Iteração é parte central de como a ferramenta foi pensada para funcionar — em qualquer plano, gratuito ou pago."
+    },
+    {
+      "id": "basica-05-q6",
+      "tipo": "associacao",
+      "enunciado": "Ligue cada situação ao comportamento esperado da IA.",
+      "pares": [
+        {
+          "termo": "Nova conversa iniciada",
+          "definicao": "A IA não tem acesso ao histórico de conversas anteriores"
+        },
+        {
+          "termo": "Mesma conversa em andamento",
+          "definicao": "A IA considera o que já foi dito até aquele ponto"
+        },
+        {
+          "termo": "Pedido de ajuste na resposta",
+          "definicao": "A IA gera uma nova versão considerando o feedback dado"
+        }
+      ]
+    },
+    {
+      "id": "basica-05-q7",
+      "tipo": "multipla_escolha",
+      "enunciado": "Antes de considerar que \"a IA não sabe fazer isso\", qual deveria ser o próximo passo?",
+      "alternativas": [
+        {
+          "id": "a",
+          "texto": "Tentar reformular o pedido, adicionando mais contexto e especificidade sobre o que você precisa.",
+          "correta": true
+        },
+        {
+          "id": "b",
+          "texto": "Trocar imediatamente para outra ferramenta de IA disponível no mercado.",
+          "correta": false
+        },
+        {
+          "id": "c",
+          "texto": "Assumir que essa tarefa é impossível de ser feita por qualquer ferramenta de IA.",
+          "correta": false
+        },
+        {
+          "id": "d",
+          "texto": "Esperar alguns minutos e repetir exatamente o mesmo pedido, sem nenhuma alteração.",
+          "correta": false
+        }
+      ],
+      "explicacao_acerto": "Na maioria das vezes, refinar o pedido resolve — antes mesmo de considerar trocar de ferramenta.",
+      "explicacao_erro": "Trocar de ferramenta, desistir da tarefa ou apenas repetir o mesmo pedido raramente resolvem um problema de contexto insuficiente."
+    },
+    {
+      "id": "basica-05-q8",
+      "tipo": "multipla_escolha",
+      "revisao_de": "basica-01",
+      "enunciado": "Revisão rápida do Módulo 1: qual das opções descreve corretamente a relação entre IA, Machine Learning e IA Generativa?",
+      "alternativas": [
+        {
+          "id": "a",
+          "texto": "São três nomes diferentes para exatamente a mesma tecnologia.",
+          "correta": false
+        },
+        {
+          "id": "b",
+          "texto": "São camadas, uma dentro da outra: IA é o campo amplo, Machine Learning uma fatia dele, e IA Generativa uma fatia ainda mais específica.",
+          "correta": true
+        },
+        {
+          "id": "c",
+          "texto": "Machine Learning é uma versão mais avançada da IA Generativa, lançada depois dela.",
+          "correta": false
+        },
+        {
+          "id": "d",
+          "texto": "IA Generativa existe independentemente de Machine Learning, sem nenhuma relação entre os dois.",
+          "correta": false
+        }
+      ],
+      "explicacao_acerto": "Isso mesmo — vale reforçar esse conceito do Módulo 1, porque ele é a base de tudo que vem depois.",
+      "explicacao_erro": "Volte ao Módulo 1 se precisar: a relação é de camadas (uma dentro da outra), não de nomes equivalentes nem de ordem cronológica de lançamento."
+    }
+  ]
+}

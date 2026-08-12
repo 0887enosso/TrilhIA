@@ -1,0 +1,23 @@
+{
+  "tipo_conteudo": "transicao_de_trilha",
+  "trilha_concluida": "basica",
+  "proxima_trilha": "intermediaria",
+  "tela_celebracao": {
+    "titulo": "Você concluiu o Letramento em IA",
+    "corpo": "Dez módulos, do \"o que é IA\" até governança e uso responsável. Você já sabe mais sobre como usar IA de verdade do que a grande maioria das pessoas que usa essas ferramentas todo dia sem entender o que está por trás.",
+    "badge_conquistada": {
+      "nome": "Letrado em IA",
+      "descricao": "Concluiu os 10 módulos da Trilha Básica de Letramento em IA."
+    },
+    "certificado": {
+      "elegivel": true,
+      "titulo_certificado": "Certificado de Letramento em Inteligência Artificial",
+      "texto_base": "Certificamos que {nome_do_usuario} concluiu a Trilha Básica de Letramento em Inteligência Artificial, com foco em fundamentos, uso responsável, privacidade e governança."
+    }
+  },
+  "tela_ponte": {
+    "titulo": "O que muda a partir daqui",
+    "corpo": "A trilha intermediária vai mais fundo: técnicas de prompt, ferramentas específicas para o dia a dia jurídico, e alguns conceitos técnicos que hoje parecem distantes — mas continua sem exigir nenhuma linha de código. Tudo que você aprendeu até aqui (principalmente os Módulos 4 e 8) continua valendo e vai aparecer de novo, agora aplicado.",
+    "expectativa": "30 módulos, organizados em 5 blocos + um projeto prático final. Você pode fazer no seu ritmo — cada bloco concluído já é uma conquista por si só."
+  }
+}

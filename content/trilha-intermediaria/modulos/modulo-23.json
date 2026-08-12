@@ -1,0 +1,191 @@
+{
+  "modulo_id": "intermediaria-23",
+  "trilha": "intermediaria",
+  "bloco": "D",
+  "ordem": 23,
+  "titulo": "Modelos abertos x fechados: o que isso significa na prática",
+  "descricao_curta": "Nenhum dos dois é melhor por padrão — a escolha depende do contexto.",
+  "tempo_estimado_min": 4,
+  "objetivos_aprendizagem": [
+    "Entender a diferença entre modelo de código aberto e modelo fechado/proprietário",
+    "Reconhecer implicações práticas de cada tipo (controle, customização, suporte)",
+    "Não assumir que \"aberto\" é sempre melhor, ou que \"fechado\" é sempre melhor"
+  ],
+  "aulas": [
+    {
+      "ordem": 1,
+      "titulo_aula": "Duas filosofias diferentes",
+      "corpo": "Modelo fechado (proprietário) é controlado por uma empresa, acessado via ferramenta ou API dela. Modelo aberto tem seus componentes disponíveis publicamente — qualquer um pode rodar ou adaptar.",
+      "atividade": {
+        "id": "intermediaria-23-q1",
+        "tipo": "multipla_escolha",
+        "enunciado": "Qual a diferença central entre um modelo de IA aberto e um fechado?",
+        "alternativas": [
+          {
+            "id": "a",
+            "texto": "O modelo fechado é controlado por uma empresa e acessado via ferramenta/API dela; o aberto tem componentes públicos que qualquer um pode rodar ou adaptar.",
+            "correta": true
+          },
+          {
+            "id": "b",
+            "texto": "Modelo aberto é sempre gratuito, e modelo fechado é sempre pago, sem exceção.",
+            "correta": false
+          },
+          {
+            "id": "c",
+            "texto": "Modelo aberto só pode ser usado por programadores profissionais.",
+            "correta": false
+          },
+          {
+            "id": "d",
+            "texto": "Não existe diferença técnica real entre os dois tipos.",
+            "correta": false
+          }
+        ],
+        "explicacao_acerto": "Isso mesmo — a diferença central é sobre controle e disponibilidade dos componentes do modelo.",
+        "explicacao_erro": "Custo não é uma regra absoluta em nenhum dos dois casos, uso não se restringe a programadores, e existe diferença técnica real."
+      }
+    },
+    {
+      "ordem": 2,
+      "titulo_aula": "Implicações práticas de um modelo fechado",
+      "corpo": "Geralmente mais fácil de usar, com suporte da empresa — mas você depende das regras e da infraestrutura dela.",
+      "atividade": {
+        "id": "intermediaria-23-q2",
+        "tipo": "verdadeiro_falso",
+        "enunciado": "Um modelo aberto é sempre uma escolha melhor do que um modelo fechado.",
+        "resposta_correta": false,
+        "justificativas": [
+          {
+            "id": "a",
+            "texto": "Falso — a escolha depende do contexto: orçamento, necessidade de customização e conhecimento técnico disponível.",
+            "correta": true
+          },
+          {
+            "id": "b",
+            "texto": "Falso, porque modelos abertos foram descontinuados no mercado atual.",
+            "correta": false
+          },
+          {
+            "id": "c",
+            "texto": "Verdadeiro, modelo aberto sempre supera modelo fechado em qualquer critério técnico.",
+            "correta": false
+          }
+        ],
+        "explicacao": "Modelos abertos continuam disponíveis e amplamente usados — a questão não é superioridade técnica absoluta, é adequação ao contexto."
+      }
+    },
+    {
+      "ordem": 3,
+      "titulo_aula": "Implicações práticas de um modelo aberto",
+      "corpo": "Mais controle e customização possível, pode rodar em infraestrutura própria — mas exige bem mais conhecimento técnico para implementar bem.",
+      "atividade": {
+        "id": "intermediaria-23-q3",
+        "tipo": "completar_lacuna",
+        "enunciado": "Em um modelo fechado, você depende das ___ e da infraestrutura da empresa que o mantém.",
+        "lacunas": [
+          {
+            "posicao": 1,
+            "opcoes": [
+              "regras",
+              "cores",
+              "fontes tipográficas"
+            ],
+            "correta": "regras"
+          }
+        ]
+      }
+    },
+    {
+      "ordem": 4,
+      "titulo_aula": "Nenhum dos dois é \"melhor\" por padrão",
+      "corpo": "A escolha depende do contexto — empresa, orçamento, necessidade de customização. Não existe resposta universal.",
+      "atividade": {
+        "id": "intermediaria-23-q4",
+        "tipo": "multipla_escolha",
+        "enunciado": "Uma empresa fictícia precisa de controle total e customização técnica profunda, com equipe capacitada para isso. Qual tipo de modelo tende a fazer mais sentido?",
+        "alternativas": [
+          {
+            "id": "a",
+            "texto": "Um modelo aberto, que permite mais controle e customização, desde que haja capacidade técnica para implementar.",
+            "correta": true
+          },
+          {
+            "id": "b",
+            "texto": "Um modelo fechado, já que eles sempre oferecem mais controle técnico do que modelos abertos.",
+            "correta": false
+          },
+          {
+            "id": "c",
+            "texto": "Nenhum dos dois — nesse cenário, IA não deveria ser usada de forma alguma.",
+            "correta": false
+          },
+          {
+            "id": "d",
+            "texto": "A escolha entre os dois nunca depende da capacidade técnica da equipe envolvida.",
+            "correta": false
+          }
+        ],
+        "explicacao_acerto": "Controle e customização profunda são justamente os pontos fortes de um modelo aberto, quando há capacidade técnica disponível.",
+        "explicacao_erro": "Modelo fechado normalmente oferece menos controle técnico, não mais, e a capacidade técnica da equipe é sim um fator relevante na decisão."
+      }
+    }
+  ],
+  "atividade_final": [
+    {
+      "id": "intermediaria-23-q5",
+      "tipo": "associacao",
+      "enunciado": "Ligue cada tipo de modelo às suas características correspondentes.",
+      "pares": [
+        {
+          "termo": "Modelo fechado",
+          "definicao": "Mais fácil de usar, com suporte da empresa, menos controle direto"
+        },
+        {
+          "termo": "Modelo aberto",
+          "definicao": "Mais controle e customização, exige mais conhecimento técnico"
+        }
+      ]
+    },
+    {
+      "id": "intermediaria-23-q6",
+      "tipo": "verdadeiro_falso",
+      "enunciado": "A escolha entre modelo aberto e fechado depende do contexto — não existe resposta universal.",
+      "resposta_correta": true,
+      "justificativas": [
+        {
+          "id": "a",
+          "texto": "Verdadeiro — orçamento, necessidade de customização e capacidade técnica variam de caso para caso.",
+          "correta": true
+        },
+        {
+          "id": "b",
+          "texto": "Verdadeiro, mas apenas para empresas de grande porte.",
+          "correta": false
+        },
+        {
+          "id": "c",
+          "texto": "Falso, existe uma resposta técnica única e correta para qualquer empresa.",
+          "correta": false
+        }
+      ],
+      "explicacao": "Não há restrição de porte de empresa — a lógica de decisão contextual vale para qualquer organização, grande ou pequena."
+    },
+    {
+      "id": "intermediaria-23-q7",
+      "tipo": "resposta_curta_autoavaliada",
+      "enunciado": "Escreva, em até duas frases, uma pergunta que ajudaria a decidir entre um modelo aberto ou fechado em uma situação fictícia real.",
+      "criterios_autoavaliacao": [
+        "Minha pergunta considera orçamento ou capacidade técnica disponível?",
+        "Evitei sugerir que um dos dois é sempre superior?",
+        "Minha pergunta é aplicável a uma decisão real de negócio, não apenas teórica?"
+      ],
+      "exemplo_de_resposta_forte": "\"Nós temos orçamento e equipe técnica para manter um modelo aberto customizado, ou faz mais sentido depender do suporte de um fornecedor de modelo fechado?\""
+    }
+  ],
+  "conquista_de_bloco": {
+    "bloco": "D",
+    "nome_badge": "Decodificador de IA",
+    "descricao": "Concluiu o Bloco D — entende os conceitos técnicos essenciais por trás de qualquer ferramenta de IA, sem precisar programar."
+  }
+}

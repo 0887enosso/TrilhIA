@@ -1,0 +1,209 @@
+{
+  "modulo_id": "basica-04",
+  "trilha": "basica",
+  "ordem": 4,
+  "titulo": "Como funciona uma plataforma com IA integrada",
+  "descricao_curta": "Entenda a lógica por trás de qualquer plataforma com IA — e nunca mais tenha que aprender do zero.",
+  "tempo_estimado_min": 4,
+  "objetivos_aprendizagem": [
+    "Entender o padrão geral: entrada → modelo → saída",
+    "Compreender que a maioria das plataformas usa modelos já existentes por trás de uma interface própria",
+    "Entender que os limites de uma ferramenta são definidos pela plataforma, não pela IA em si",
+    "Aplicar esse entendimento para se adaptar rapidamente a qualquer nova ferramenta"
+  ],
+  "aulas": [
+    {
+      "ordem": 1,
+      "titulo_aula": "O padrão por trás de qualquer plataforma com IA",
+      "corpo": "Praticamente toda plataforma com IA segue a mesma lógica de fundo: uma interface (o que você vê e clica), um modelo de IA (o 'motor' que processa), um dado de entrada (o que você fornece) e uma saída (o resultado que aparece na tela). Aprenda esse padrão uma vez, e ele se repete em quase tudo que você for encontrar depois.",
+      "atividade": {
+        "id": "basica-04-q1",
+        "tipo": "multipla_escolha",
+        "enunciado": "Qual sequência representa corretamente o funcionamento de uma plataforma com IA integrada?",
+        "alternativas": [
+          {
+            "id": "a",
+            "texto": "Interface → dado de entrada → modelo de IA processa → saída exibida na interface.",
+            "correta": true
+          },
+          {
+            "id": "b",
+            "texto": "Saída exibida primeiro → depois o modelo processa → depois a interface recebe a entrada.",
+            "correta": false
+          },
+          {
+            "id": "c",
+            "texto": "O modelo gera a saída sozinho, sem depender de nenhum dado de entrada fornecido pelo usuário.",
+            "correta": false
+          },
+          {
+            "id": "d",
+            "texto": "A entrada vira saída diretamente, sem qualquer tipo de processamento por um modelo.",
+            "correta": false
+          }
+        ],
+        "explicacao_acerto": "Essa é a lógica de fundo: você entra com um dado, o modelo processa, e a interface devolve a saída.",
+        "explicacao_erro": "Repare na ordem e na dependência: sempre parte de uma entrada real, passa pelo processamento do modelo, e só então gera a saída."
+      }
+    },
+    {
+      "ordem": 2,
+      "titulo_aula": "De onde vem a \"inteligência\"",
+      "corpo": "A maioria das plataformas não cria seu próprio modelo do zero. Elas usam ou adaptam modelos já existentes — como os que estão por trás do ChatGPT, do Claude ou do Gemini — e constroem uma interface própria em cima, voltada para uma tarefa específica.",
+      "atividade": {
+        "id": "basica-04-q2",
+        "tipo": "verdadeiro_falso",
+        "enunciado": "Cada plataforma com IA sempre constrói seu próprio modelo de inteligência artificial do zero.",
+        "resposta_correta": false,
+        "justificativas": [
+          {
+            "id": "a",
+            "texto": "Falso — a maioria das plataformas usa ou adapta modelos já existentes, construindo uma interface própria em cima.",
+            "correta": true
+          },
+          {
+            "id": "b",
+            "texto": "Falso — porque construir um modelo próprio do zero é uma prática proibida no mercado de tecnologia.",
+            "correta": false
+          },
+          {
+            "id": "c",
+            "texto": "Verdadeiro — é assim que toda plataforma nova precisa nascer, sem exceção.",
+            "correta": false
+          }
+        ],
+        "explicacao": "Não é uma questão de proibição — é que construir um modelo do zero é caro e raro, então a prática comum é adaptar modelos já existentes."
+      }
+    },
+    {
+      "ordem": 3,
+      "titulo_aula": "Os limites são da plataforma, não da IA",
+      "corpo": "A mesma tecnologia de IA pode parecer 'mais fraca' em uma ferramenta e 'mais forte' em outra — não porque a IA mudou, mas porque cada plataforma decide o que habilitar, restringir ou personalizar.",
+      "atividade": {
+        "id": "basica-04-q3",
+        "tipo": "ordenar_etapas",
+        "enunciado": "Coloque em ordem o funcionamento de uma plataforma com IA integrada.",
+        "etapas_corretas": [
+          "Você fornece uma entrada na interface",
+          "A interface envia essa entrada para o modelo de IA",
+          "O modelo processa a entrada",
+          "A saída é exibida de volta na interface"
+        ]
+      }
+    },
+    {
+      "ordem": 4,
+      "titulo_aula": "Por que isso importa para você",
+      "corpo": "Entender esse padrão evita que você tenha que 'aprender do zero' toda vez que uma ferramenta nova aparece — a lógica de fundo costuma se repetir. Vale tanto para a plataforma que você usa hoje quanto para qualquer outra que vier a existir amanhã.",
+      "atividade": {
+        "id": "basica-04-q4",
+        "tipo": "completar_lacuna",
+        "enunciado": "Os limites do que uma ferramenta com IA pode fazer são definidos pela ___1___, não apenas pela ___2___ de IA em si.",
+        "lacunas": [
+          {
+            "posicao": 1,
+            "opcoes": [
+              "plataforma",
+              "internet",
+              "sorte"
+            ],
+            "correta": "plataforma"
+          },
+          {
+            "posicao": 2,
+            "opcoes": [
+              "tecnologia",
+              "cor",
+              "velocidade"
+            ],
+            "correta": "tecnologia"
+          }
+        ]
+      }
+    }
+  ],
+  "atividade_final": [
+    {
+      "id": "basica-04-q5",
+      "tipo": "multipla_escolha",
+      "enunciado": "Duas plataformas diferentes usam a \"mesma\" tecnologia de IA por trás, mas uma parece muito mais limitada que a outra. Qual a explicação mais provável?",
+      "alternativas": [
+        {
+          "id": "a",
+          "texto": "Uma das duas plataformas provavelmente está usando uma versão falsa ou desativada da tecnologia.",
+          "correta": false
+        },
+        {
+          "id": "b",
+          "texto": "Cada plataforma decide o que habilitar, restringir ou personalizar em cima do mesmo modelo de IA.",
+          "correta": true
+        },
+        {
+          "id": "c",
+          "texto": "Isso é praticamente impossível — duas plataformas com a mesma IA sempre entregam exatamente o mesmo resultado.",
+          "correta": false
+        },
+        {
+          "id": "d",
+          "texto": "A diferença normalmente acontece porque uma das duas está com problema técnico temporário.",
+          "correta": false
+        }
+      ],
+      "explicacao_acerto": "Exatamente esse é o ponto central do módulo: a plataforma configura os limites, não a IA sozinha.",
+      "explicacao_erro": "Não se trata de uma versão 'falsa', de impossibilidade, nem de instabilidade técnica pontual — é sobre configuração e escopo definidos deliberadamente pela plataforma."
+    },
+    {
+      "id": "basica-04-q6",
+      "tipo": "verdadeiro_falso",
+      "enunciado": "Entender o padrão geral de uma plataforma com IA ajuda você a se adaptar mais rápido a ferramentas novas.",
+      "resposta_correta": true,
+      "justificativas": [
+        {
+          "id": "a",
+          "texto": "Verdadeiro — a lógica de fundo (entrada, modelo, saída) se repete na maioria das plataformas com IA.",
+          "correta": true
+        },
+        {
+          "id": "b",
+          "texto": "Verdadeiro, mas isso só faz diferença em ferramentas voltadas para desenvolvedores.",
+          "correta": false
+        },
+        {
+          "id": "c",
+          "texto": "Falso — cada plataforma nova exige um aprendizado completamente independente das demais.",
+          "correta": false
+        }
+      ],
+      "explicacao": "É justamente por reconhecer o padrão repetido — em qualquer tipo de ferramenta, não só técnicas — que você economiza tempo de adaptação."
+    },
+    {
+      "id": "basica-04-q7",
+      "tipo": "multipla_escolha",
+      "enunciado": "Se uma nova ferramenta com IA for adotada pelo escritório amanhã, qual conhecimento deste módulo mais ajudaria você a usá-la bem desde o primeiro dia?",
+      "alternativas": [
+        {
+          "id": "a",
+          "texto": "Saber que ela provavelmente segue o padrão entrada → modelo → saída, e que os limites vêm da configuração da plataforma, não da IA em si.",
+          "correta": true
+        },
+        {
+          "id": "b",
+          "texto": "Saber o nome exato da empresa que desenvolveu o modelo por trás da ferramenta.",
+          "correta": false
+        },
+        {
+          "id": "c",
+          "texto": "Saber se a ferramenta é gratuita ou se exige algum tipo de assinatura paga.",
+          "correta": false
+        },
+        {
+          "id": "d",
+          "texto": "Saber se a ferramenta também está disponível em versão para celular.",
+          "correta": false
+        }
+      ],
+      "explicacao_acerto": "Reconhecer o padrão estrutural de fundo é o que realmente acelera sua adaptação a qualquer ferramenta nova.",
+      "explicacao_erro": "Nome do fornecedor, custo e disponibilidade em mobile são detalhes de superfície — o que importa é reconhecer o padrão estrutural por trás."
+    }
+  ]
+}

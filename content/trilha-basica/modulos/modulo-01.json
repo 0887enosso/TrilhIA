@@ -1,0 +1,219 @@
+{
+  "modulo_id": "basica-01",
+  "trilha": "basica",
+  "ordem": 1,
+  "titulo": "O que é Inteligência Artificial",
+  "descricao_curta": "Desmistificando o termo mais usado (e menos entendido) do momento.",
+  "tempo_estimado_min": 4,
+  "objetivos_aprendizagem": [
+    "Explicar o que é IA sem usar jargão técnico",
+    "Diferenciar IA, Machine Learning e IA Generativa",
+    "Reconhecer que já usa IA no cotidiano, mesmo sem perceber",
+    "Identificar e questionar dois mitos comuns sobre IA"
+  ],
+  "aulas": [
+    {
+      "ordem": 1,
+      "titulo_aula": "O que realmente é IA",
+      "corpo": "Toda vez que alguém diz 'isso é IA', vale desconfiar um pouco — porque, na prática, é um termo usado para coisas bem diferentes entre si. Na essência, IA é um sistema treinado para reconhecer padrões em uma quantidade gigante de dados e usar esses padrões para tomar decisões ou gerar respostas. Ela não 'pensa' como você pensa. É mais parecido com alguém que leu milhões de textos e aprendeu a prever o que provavelmente vem a seguir — sem necessariamente entender o significado do que está dizendo.",
+      "atividade": {
+        "id": "basica-01-q1",
+        "tipo": "multipla_escolha",
+        "enunciado": "Qual das opções abaixo melhor descreve o que é Inteligência Artificial?",
+        "alternativas": [
+          {
+            "id": "a",
+            "texto": "Um sistema que copia o comportamento humano com perfeição, sem nunca cometer nenhum tipo de erro.",
+            "correta": false
+          },
+          {
+            "id": "b",
+            "texto": "Um sistema treinado para reconhecer padrões em grandes volumes de dados e usar isso para gerar respostas ou decisões.",
+            "correta": true
+          },
+          {
+            "id": "c",
+            "texto": "Um programa que armazena respostas já prontas e apenas devolve a mais parecida com o que foi perguntado.",
+            "correta": false
+          },
+          {
+            "id": "d",
+            "texto": "Um conjunto de regras fixas, escritas manualmente por uma pessoa, que nunca se ajusta com o tempo.",
+            "correta": false
+          }
+        ],
+        "explicacao_acerto": "Isso mesmo: a IA aprende padrões a partir de dados, em vez de apenas guardar respostas prontas ou seguir regras fixas.",
+        "explicacao_erro": "Repense: a IA não é infalível, não é um arquivo de respostas prontas, e o que a define é justamente aprender e se ajustar — não seguir regras fixas paradas no tempo."
+      }
+    },
+    {
+      "ordem": 2,
+      "titulo_aula": "Três palavras que se confundem o tempo todo",
+      "corpo": "IA, Machine Learning e IA Generativa não são sinônimos — são camadas, uma dentro da outra, como bonecas russas.",
+      "destaque": "IA é o campo inteiro (qualquer sistema com comportamento 'inteligente'). Machine Learning é uma fatia dele (sistemas que aprendem padrões a partir de dados, em vez de seguir regras fixas). IA Generativa é uma fatia ainda mais específica (sistemas que criam conteúdo novo a partir do que aprenderam) — é o que está por trás do ChatGPT, do Claude e do Gemini.",
+      "atividade": {
+        "id": "basica-01-q2",
+        "tipo": "verdadeiro_falso",
+        "enunciado": "IA pensa e raciocina exatamente como um ser humano.",
+        "resposta_correta": false,
+        "justificativas": [
+          {
+            "id": "a",
+            "texto": "Falso — ela prevê a palavra mais provável com base em padrões estatísticos, o que é diferente de raciocinar conscientemente sobre um problema.",
+            "correta": true
+          },
+          {
+            "id": "b",
+            "texto": "Falso — nenhum sistema de computador pode ser chamado de inteligente sob nenhuma circunstância.",
+            "correta": false
+          },
+          {
+            "id": "c",
+            "texto": "Verdadeiro — como ela aprendeu com textos escritos por seres humanos, o raciocínio dela acaba sendo igual ao humano.",
+            "correta": false
+          }
+        ],
+        "explicacao": "O ponto não é se ela 'merece' o rótulo de inteligente, nem que aprender com texto humano implique pensar como humano — o mecanismo de previsão de padrão é estruturalmente diferente do raciocínio consciente."
+      }
+    },
+    {
+      "ordem": 3,
+      "titulo_aula": "Você já usa IA. Só não tinha parado pra pensar nisso",
+      "corpo": "Corretor preditivo do celular. Recomendação de série no streaming. Filtro de spam no e-mail. A rota mais rápida sugerida pelo GPS. Nada disso é novidade de 2023 — a novidade foi a IA generativa virar acessível numa simples conversa de chat, como se fosse uma pessoa do outro lado da tela.",
+      "atividade": {
+        "id": "basica-01-q3",
+        "tipo": "associacao",
+        "enunciado": "Ligue cada termo à sua definição correta.",
+        "pares": [
+          {
+            "termo": "IA",
+            "definicao": "Campo amplo que estuda sistemas com comportamento inteligente"
+          },
+          {
+            "termo": "Machine Learning",
+            "definicao": "Sistemas que aprendem padrões a partir de dados, em vez de seguir regras fixas"
+          },
+          {
+            "termo": "IA Generativa",
+            "definicao": "Sistemas que criam conteúdo novo a partir do que aprenderam"
+          }
+        ]
+      }
+    },
+    {
+      "ordem": 4,
+      "titulo_aula": "Dois mitos que valem a pena derrubar agora",
+      "corpo": "'A IA pensa como um humano.' Não pensa: ela prevê o que é estatisticamente mais provável, não o que é certo. 'Se a IA respondeu, é porque está certo.' Esse é o mito mais perigoso da lista — uma resposta errada pode vir com exatamente a mesma confiança de uma resposta certa.",
+      "destaque": "Guarda essa segunda ideia. A gente volta nela com força lá no Módulo 8.",
+      "atividade": {
+        "id": "basica-01-q4",
+        "tipo": "completar_lacuna",
+        "enunciado": "IA Generativa é um tipo de ___1___ que ___2___ novo conteúdo com base em padrões aprendidos.",
+        "lacunas": [
+          {
+            "posicao": 1,
+            "opcoes": [
+              "Machine Learning",
+              "banco de dados",
+              "sistema operacional"
+            ],
+            "correta": "Machine Learning"
+          },
+          {
+            "posicao": 2,
+            "opcoes": [
+              "cria",
+              "armazena",
+              "apaga"
+            ],
+            "correta": "cria"
+          }
+        ]
+      }
+    }
+  ],
+  "atividade_final": [
+    {
+      "id": "basica-01-q5",
+      "tipo": "multipla_escolha",
+      "enunciado": "Qual das situações abaixo é um exemplo de IA que você provavelmente já usa sem perceber?",
+      "alternativas": [
+        {
+          "id": "a",
+          "texto": "O corretor preditivo do celular, que aprende seu jeito de escrever e ajusta as sugestões com o tempo.",
+          "correta": true
+        },
+        {
+          "id": "b",
+          "texto": "O alarme do celular, que toca exatamente no horário que você mesmo programou.",
+          "correta": false
+        },
+        {
+          "id": "c",
+          "texto": "A soma automática de uma coluna de números fixos em uma planilha.",
+          "correta": false
+        },
+        {
+          "id": "d",
+          "texto": "A ordenação alfabética de uma lista de contatos salvos no celular.",
+          "correta": false
+        }
+      ],
+      "explicacao_acerto": "O corretor preditivo aprende com seus padrões de digitação e muda as sugestões com o tempo — isso é aprendizado de padrão, a marca registrada da IA.",
+      "explicacao_erro": "As outras opções seguem uma regra fixa e sempre igual (tocar no horário certo, somar, ordenar) — não há aprendizado de padrão envolvido, então não contam como IA."
+    },
+    {
+      "id": "basica-01-q6",
+      "tipo": "verdadeiro_falso",
+      "enunciado": "ChatGPT e Claude são exemplos de IA Generativa.",
+      "resposta_correta": true,
+      "justificativas": [
+        {
+          "id": "a",
+          "texto": "Verdadeiro — ambos geram texto novo a partir do que aprenderam durante o treinamento, em vez de buscar uma resposta pronta.",
+          "correta": true
+        },
+        {
+          "id": "b",
+          "texto": "Verdadeiro — porque são as únicas ferramentas de IA que existem disponíveis no mercado hoje.",
+          "correta": false
+        },
+        {
+          "id": "c",
+          "texto": "Falso — eles apenas repetem, palavra por palavra, textos que já existem prontos em algum lugar da internet.",
+          "correta": false
+        }
+      ],
+      "explicacao": "O que caracteriza a IA Generativa é gerar algo novo a partir de padrões — não ser a única categoria de ferramenta no mercado, nem copiar textos prontos."
+    },
+    {
+      "id": "basica-01-q7",
+      "tipo": "multipla_escolha",
+      "enunciado": "Um colega diz: 'a IA respondeu, então deve estar certo.' Qual a resposta mais adequada, considerando o que você aprendeu neste módulo?",
+      "alternativas": [
+        {
+          "id": "a",
+          "texto": "Concordar, já que quanto mais dados uma IA usou no treinamento, menor a chance de ela errar uma resposta.",
+          "correta": false
+        },
+        {
+          "id": "b",
+          "texto": "Explicar que confiança na resposta não é garantia de que ela está correta, e que vale a pena verificar antes de usar.",
+          "correta": true
+        },
+        {
+          "id": "c",
+          "texto": "Dizer que esse tipo de erro só costuma acontecer em perguntas muito técnicas ou incomuns.",
+          "correta": false
+        },
+        {
+          "id": "d",
+          "texto": "Ignorar o comentário, já que erros desse tipo são raros o suficiente para não se preocupar no dia a dia.",
+          "correta": false
+        }
+      ],
+      "explicacao_acerto": "Essa é a atitude certa desde já — e ela vai ficar ainda mais clara, com exemplos concretos, no Módulo 8.",
+      "explicacao_erro": "Cuidado: volume de treinamento não elimina o risco, o erro não se restringe a perguntas técnicas, e a frequência não muda o fato de que toda resposta merece verificação."
+    }
+  ]
+}

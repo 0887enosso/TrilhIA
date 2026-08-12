@@ -1,0 +1,191 @@
+{
+  "modulo_id": "intermediaria-27",
+  "trilha": "intermediaria",
+  "bloco": "E",
+  "ordem": 27,
+  "titulo": "Boas práticas de segurança no uso de API Keys",
+  "descricao_curta": "Não é só \"problema de programador\" — qualquer pessoa pode encontrar uma chave pelo caminho.",
+  "tempo_estimado_min": 4,
+  "objetivos_aprendizagem": [
+    "Reconhecer práticas recomendadas de armazenamento e uso de API Keys",
+    "Entender o conceito de \"variável de ambiente\", de forma simples",
+    "Reconhecer o que nunca fazer com uma API Key",
+    "Saber a quem recorrer em caso de suspeita de vazamento"
+  ],
+  "aulas": [
+    {
+      "ordem": 1,
+      "titulo_aula": "Onde uma API Key deve (e não deve) ficar",
+      "corpo": "Ela nunca deve estar visível em um documento comum, planilha compartilhada ou mensagem de chat. O lugar adequado costuma ser um cofre de senhas corporativo ou uma configuração técnica protegida — o que profissionais de tecnologia chamam de 'variável de ambiente', um jeito de guardar informação sensível fora de qualquer lugar visível.",
+      "atividade": {
+        "id": "intermediaria-27-q1",
+        "tipo": "multipla_escolha",
+        "enunciado": "Qual é uma prática recomendada para armazenar uma API Key?",
+        "alternativas": [
+          {
+            "id": "a",
+            "texto": "Guardar em um cofre de senhas corporativo ou em configuração técnica protegida, nunca em local visível.",
+            "correta": true
+          },
+          {
+            "id": "b",
+            "texto": "Colar em uma planilha compartilhada com a equipe, para fácil acesso.",
+            "correta": false
+          },
+          {
+            "id": "c",
+            "texto": "Enviar por e-mail para quem precisar usar, sempre que solicitado.",
+            "correta": false
+          },
+          {
+            "id": "d",
+            "texto": "Anotar em um documento de texto comum salvo na área de trabalho.",
+            "correta": false
+          }
+        ],
+        "explicacao_acerto": "Isso mesmo — cofre de senhas ou configuração protegida é o local adequado.",
+        "explicacao_erro": "Planilha compartilhada, e-mail e documento de texto comum são exatamente os locais que o módulo pede para evitar."
+      }
+    },
+    {
+      "ordem": 2,
+      "titulo_aula": "O que nunca fazer",
+      "corpo": "Nunca colar a chave em um e-mail. Nunca publicar em um documento compartilhado com terceiros. Nunca reutilizar a mesma chave em vários projetos sem necessidade — quanto mais lugares, mais risco de exposição.",
+      "atividade": {
+        "id": "intermediaria-27-q2",
+        "tipo": "verdadeiro_falso",
+        "enunciado": "Colar uma API Key em uma planilha compartilhada com a equipe é seguro, desde que só pessoas de confiança tenham acesso.",
+        "resposta_correta": false,
+        "justificativas": [
+          {
+            "id": "a",
+            "texto": "Falso — planilhas compartilhadas não são um local seguro para credenciais, independentemente de quem tem acesso.",
+            "correta": true
+          },
+          {
+            "id": "b",
+            "texto": "Falso, porque planilhas compartilhadas são tecnicamente incapazes de armazenar texto.",
+            "correta": false
+          },
+          {
+            "id": "c",
+            "texto": "Verdadeiro, confiança na equipe elimina qualquer risco de exposição.",
+            "correta": false
+          }
+        ],
+        "explicacao": "Não é uma limitação técnica de armazenamento de texto — é uma questão de risco de exposição, que não desaparece com confiança na equipe."
+      }
+    },
+    {
+      "ordem": 3,
+      "titulo_aula": "Se desconfiar de vazamento",
+      "corpo": "Avisar imediatamente a equipe técnica responsável — uma chave suspeita de vazamento deve ser revogada (desativada) e substituída por uma nova o quanto antes.",
+      "atividade": {
+        "id": "intermediaria-27-q3",
+        "tipo": "completar_lacuna",
+        "enunciado": "Uma chave suspeita de vazamento deve ser ___ e substituída por uma nova o quanto antes.",
+        "lacunas": [
+          {
+            "posicao": 1,
+            "opcoes": [
+              "revogada/desativada",
+              "traduzida",
+              "compartilhada"
+            ],
+            "correta": "revogada/desativada"
+          }
+        ]
+      }
+    },
+    {
+      "ordem": 4,
+      "titulo_aula": "Isso não é só \"problema de programador\"",
+      "corpo": "Mesmo quem não escreve código pode ter acesso a uma chave em algum momento — por exemplo, configurando uma automação. Saber a regra básica de segurança protege você e o escritório.",
+      "atividade": {
+        "id": "intermediaria-27-q4",
+        "tipo": "multipla_escolha",
+        "enunciado": "Um colaborador percebe que enviou uma API Key por engano em um e-mail. Qual a atitude correta?",
+        "alternativas": [
+          {
+            "id": "a",
+            "texto": "Avisar imediatamente a equipe técnica para revogar a chave e gerar uma nova.",
+            "correta": true
+          },
+          {
+            "id": "b",
+            "texto": "Pedir para o destinatário apagar o e-mail e considerar resolvido.",
+            "correta": false
+          },
+          {
+            "id": "c",
+            "texto": "Não fazer nada, já que e-mails corporativos são sempre seguros por padrão.",
+            "correta": false
+          },
+          {
+            "id": "d",
+            "texto": "Trocar a senha do próprio e-mail, sem mexer na API Key.",
+            "correta": false
+          }
+        ],
+        "explicacao_acerto": "Assim como no vazamento por mensagem de grupo, a resposta correta é revogar e substituir a chave o quanto antes.",
+        "explicacao_erro": "Apagar o e-mail, confiar na segurança padrão do e-mail corporativo, ou trocar apenas a senha do e-mail não resolvem a exposição da própria chave."
+      }
+    }
+  ],
+  "atividade_final": [
+    {
+      "id": "intermediaria-27-q5",
+      "tipo": "associacao",
+      "enunciado": "Ligue cada prática ao nível de segurança que ela representa.",
+      "pares": [
+        {
+          "termo": "Cofre de senhas corporativo",
+          "definicao": "Prática segura e recomendada"
+        },
+        {
+          "termo": "Variável de ambiente protegida",
+          "definicao": "Prática segura e recomendada"
+        },
+        {
+          "termo": "E-mail comum ou planilha compartilhada",
+          "definicao": "Prática insegura, deve ser evitada"
+        }
+      ]
+    },
+    {
+      "id": "intermediaria-27-q6",
+      "tipo": "verdadeiro_falso",
+      "enunciado": "Apenas programadores precisam se preocupar com boas práticas de segurança de API Key.",
+      "resposta_correta": false,
+      "justificativas": [
+        {
+          "id": "a",
+          "texto": "Falso — mesmo quem não programa pode ter acesso a uma chave, por exemplo, ao configurar uma automação.",
+          "correta": true
+        },
+        {
+          "id": "b",
+          "texto": "Falso, porque apenas administradores de sistema entram em contato com API Keys.",
+          "correta": false
+        },
+        {
+          "id": "c",
+          "texto": "Verdadeiro, ninguém fora da equipe técnica tem contato com esse tipo de credencial.",
+          "correta": false
+        }
+      ],
+      "explicacao": "O contato com uma API Key não se restringe a administradores de sistema — qualquer colaborador configurando uma automação pode se deparar com uma."
+    },
+    {
+      "id": "intermediaria-27-q7",
+      "tipo": "resposta_curta_autoavaliada",
+      "enunciado": "Diante de uma automação fictícia que pede para você inserir uma API Key, descreva em até duas frases o cuidado que deve vir primeiro.",
+      "criterios_autoavaliacao": [
+        "Minha resposta menciona verificar se o local de inserção é seguro (não um campo visível a terceiros)?",
+        "Considerei buscar apoio da equipe técnica antes de prosseguir, em caso de dúvida?",
+        "Minha resposta evita tratar isso como algo trivial?"
+      ],
+      "exemplo_de_resposta_forte": "\"Antes de inserir, eu verificaria se o campo é realmente protegido (não visível a outros usuários) e, em caso de dúvida, pediria apoio da equipe técnica antes de prosseguir.\""
+    }
+  ]
+}

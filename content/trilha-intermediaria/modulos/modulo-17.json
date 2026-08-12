@@ -1,0 +1,196 @@
+{
+  "modulo_id": "intermediaria-17",
+  "trilha": "intermediaria",
+  "bloco": "C",
+  "ordem": 17,
+  "titulo": "Automatizando tarefas repetitivas do dia a dia (sem programar)",
+  "descricao_curta": "Preparando o terreno para pensar em fluxos, antes de aprender como eles se conectam por trás.",
+  "tempo_estimado_min": 4,
+  "objetivos_aprendizagem": [
+    "Entender o que é automação simples (no-code) usando IA como parte do fluxo",
+    "Reconhecer exemplos reais de tarefas repetitivas automatizáveis",
+    "Diferenciar automação de delegação total sem supervisão",
+    "Preparar a base conceitual para o Bloco E"
+  ],
+  "aulas": [
+    {
+      "ordem": 1,
+      "titulo_aula": "O que é \"automatizar\", nesse contexto",
+      "corpo": "Fazer um fluxo de tarefa rodar sozinho, seguindo regras predefinidas — às vezes com uma IA dentro desse fluxo, tomando pequenas decisões (ex: categorizar um e-mail).",
+      "atividade": {
+        "id": "intermediaria-17-q1",
+        "tipo": "multipla_escolha",
+        "enunciado": "O que caracteriza uma automação simples que usa IA como parte do fluxo?",
+        "alternativas": [
+          {
+            "id": "a",
+            "texto": "Um fluxo que roda sozinho seguindo regras predefinidas, com a IA tomando pequenas decisões dentro desse processo.",
+            "correta": true
+          },
+          {
+            "id": "b",
+            "texto": "Um processo que exige que uma pessoa execute cada etapa manualmente, mesmo repetidamente.",
+            "correta": false
+          },
+          {
+            "id": "c",
+            "texto": "Um sistema que, uma vez configurado, nunca mais precisa ser revisado.",
+            "correta": false
+          },
+          {
+            "id": "d",
+            "texto": "Um processo que só pode ser configurado por programadores.",
+            "correta": false
+          }
+        ],
+        "explicacao_acerto": "Isso mesmo — automação é justamente o fluxo rodando sozinho, com a IA participando de pequenas decisões.",
+        "explicacao_erro": "Execução manual repetida não é automação, revisão contínua ainda é necessária, e ferramentas no-code não exigem programação."
+      }
+    },
+    {
+      "ordem": 2,
+      "titulo_aula": "Exemplos do dia a dia",
+      "corpo": "Organizar e-mails recebidos por categoria automaticamente. Gerar uma resposta padrão para uma pergunta frequente. Mover um documento para a pasta certa com base no tipo de conteúdo.",
+      "atividade": {
+        "id": "intermediaria-17-q2",
+        "tipo": "verdadeiro_falso",
+        "enunciado": "Uma vez configurada, uma automação nunca mais precisa de supervisão humana.",
+        "resposta_correta": false,
+        "justificativas": [
+          {
+            "id": "a",
+            "texto": "Falso — regras podem ficar desatualizadas, e erros silenciosos se acumulam sem revisão periódica.",
+            "correta": true
+          },
+          {
+            "id": "b",
+            "texto": "Falso, porque automações param de funcionar sozinhas depois de 30 dias sem supervisão.",
+            "correta": false
+          },
+          {
+            "id": "c",
+            "texto": "Verdadeiro, automação bem configurada elimina qualquer necessidade futura de revisão.",
+            "correta": false
+          }
+        ],
+        "explicacao": "Não existe um prazo técnico fixo de expiração — o ponto é que erros podem se acumular silenciosamente sem revisão periódica, independentemente do tempo."
+      }
+    },
+    {
+      "ordem": 3,
+      "titulo_aula": "Automação não é \"esquecer e deixar rodando\"",
+      "corpo": "Um fluxo automatizado ainda precisa de supervisão periódica — regras podem ficar desatualizadas, e erros silenciosos se acumulam se ninguém olhar de tempos em tempos.",
+      "atividade": {
+        "id": "intermediaria-17-q3",
+        "tipo": "completar_lacuna",
+        "enunciado": "Um fluxo automatizado ainda precisa de ___ periódica, mesmo depois de configurado.",
+        "lacunas": [
+          {
+            "posicao": 1,
+            "opcoes": [
+              "supervisão",
+              "propaganda",
+              "tradução"
+            ],
+            "correta": "supervisão"
+          }
+        ]
+      }
+    },
+    {
+      "ordem": 4,
+      "titulo_aula": "A porta de entrada para o próximo bloco",
+      "corpo": "Entender esse conceito aqui, de forma simples, prepara terreno para o Bloco E — onde vamos ver, de forma técnica (mas ainda sem programar), como essas automações se conectam de fato com uma IA por trás dos panos.",
+      "atividade": {
+        "id": "intermediaria-17-q4",
+        "tipo": "multipla_escolha",
+        "enunciado": "Uma automação de categorização de e-mails começa a classificar errado depois de meses sem revisão. Qual o motivo mais provável?",
+        "alternativas": [
+          {
+            "id": "a",
+            "texto": "As regras ou padrões usados podem ter ficado desatualizados em relação à realidade atual dos e-mails recebidos.",
+            "correta": true
+          },
+          {
+            "id": "b",
+            "texto": "Automações sempre param de funcionar corretamente depois de exatamente 90 dias.",
+            "correta": false
+          },
+          {
+            "id": "c",
+            "texto": "A ferramenta de automação foi invadida por vírus.",
+            "correta": false
+          },
+          {
+            "id": "d",
+            "texto": "Não existe motivo provável — isso nunca acontece na prática.",
+            "correta": false
+          }
+        ],
+        "explicacao_acerto": "Desatualização de regras é a explicação mais comum e mais realista para esse tipo de degradação silenciosa.",
+        "explicacao_erro": "Não existe prazo fixo de 90 dias, vírus não é a explicação mais provável, e esse tipo de problema acontece com frequência em automações sem supervisão."
+      }
+    }
+  ],
+  "atividade_final": [
+    {
+      "id": "intermediaria-17-q5",
+      "tipo": "associacao",
+      "enunciado": "Ligue cada exemplo ao tipo de tarefa que ele automatiza.",
+      "pares": [
+        {
+          "termo": "Organizar e-mails recebidos por categoria",
+          "definicao": "Classificação automática de conteúdo"
+        },
+        {
+          "termo": "Gerar resposta padrão para pergunta frequente",
+          "definicao": "Geração automática de texto repetitivo"
+        },
+        {
+          "termo": "Mover documento para a pasta certa",
+          "definicao": "Organização automática de arquivos"
+        }
+      ]
+    },
+    {
+      "id": "intermediaria-17-q6",
+      "tipo": "verdadeiro_falso",
+      "enunciado": "Automatizar uma tarefa significa que ninguém mais precisa acompanhar como ela está sendo executada.",
+      "resposta_correta": false,
+      "justificativas": [
+        {
+          "id": "a",
+          "texto": "Falso — acompanhar periodicamente evita que erros silenciosos se acumulem sem ninguém perceber.",
+          "correta": true
+        },
+        {
+          "id": "b",
+          "texto": "Falso, porque automações exigem acompanhamento humano constante, em tempo integral.",
+          "correta": false
+        },
+        {
+          "id": "c",
+          "texto": "Verdadeiro, automação bem configurada dispensa qualquer tipo de acompanhamento.",
+          "correta": false
+        }
+      ],
+      "explicacao": "Não é acompanhamento em tempo integral, mas também não é ausência total — o ideal é supervisão periódica, nem um extremo nem o outro."
+    },
+    {
+      "id": "intermediaria-17-q7",
+      "tipo": "resposta_curta_autoavaliada",
+      "enunciado": "Descreva, em até duas frases, uma prática de supervisão periódica que você aplicaria a uma automação fictícia de categorização de documentos.",
+      "criterios_autoavaliacao": [
+        "Minha prática define uma frequência clara de revisão (semanal, mensal)?",
+        "Considerei revisar uma amostra dos resultados, não só confiar cegamente?",
+        "Minha resposta evita os dois extremos: nem acompanhamento constante, nem ausência total?"
+      ],
+      "exemplo_de_resposta_forte": "\"Eu revisaria mensalmente uma amostra de documentos categorizados pela automação, verificando se as regras ainda fazem sentido para os tipos de documento mais recentes.\""
+    }
+  ],
+  "conquista_de_bloco": {
+    "bloco": "C",
+    "nome_badge": "Construtor de Entregas",
+    "descricao": "Concluiu o Bloco C — aplica IA generativa em tarefas reais do trabalho jurídico, do rascunho à revisão."
+  }
+}

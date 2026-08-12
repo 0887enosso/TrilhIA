@@ -1,0 +1,239 @@
+{
+  "modulo_id": "basica-10",
+  "trilha": "basica",
+  "ordem": 10,
+  "titulo": "Ética, governança e uso responsável",
+  "descricao_curta": "O módulo que fecha a trilha básica — e reforça o que realmente importa.",
+  "tempo_estimado_min": 5,
+  "objetivos_aprendizagem": [
+    "Entender a revisão humana como responsabilidade profissional, não como opção",
+    "Reconhecer implicações éticas e disciplinares do uso irresponsável de IA na advocacia",
+    "Compreender o papel da transparência no uso de IA com clientes e superiores",
+    "Conhecer o papel de políticas internas de governança de IA"
+  ],
+  "aulas": [
+    {
+      "ordem": 1,
+      "titulo_aula": "Revisão humana não é boa prática. É responsabilidade",
+      "corpo": "Diferente de um erro de digitação, um erro gerado por IA e entregue sem revisão pode configurar falha profissional do advogado que assinou o documento. A responsabilidade não se transfere para a ferramenta.",
+      "atividade": {
+        "id": "basica-10-q1",
+        "tipo": "multipla_escolha",
+        "enunciado": "Por que a revisão humana de conteúdo gerado por IA é considerada uma responsabilidade profissional, e não uma opção?",
+        "alternativas": [
+          {
+            "id": "a",
+            "texto": "Porque a responsabilidade pelo conteúdo entregue continua sendo do profissional que assina, não da ferramenta usada.",
+            "correta": true
+          },
+          {
+            "id": "b",
+            "texto": "Porque a revisão só é formalmente exigida em processos classificados como de grande valor econômico.",
+            "correta": false
+          },
+          {
+            "id": "c",
+            "texto": "Porque revisar deixa o trabalho mais lento, e essa é uma exigência puramente burocrática do escritório.",
+            "correta": false
+          },
+          {
+            "id": "d",
+            "texto": "Não é bem uma responsabilidade — é apenas uma recomendação informal de boa prática, sem consequência real.",
+            "correta": false
+          }
+        ],
+        "explicacao_acerto": "Exatamente — a responsabilidade profissional não se transfere para a ferramenta usada, em nenhum tipo de caso.",
+        "explicacao_erro": "Não depende do valor econômico do processo, não é uma exigência apenas burocrática, e as consequências de não revisar são reais — inclusive disciplinares."
+      }
+    },
+    {
+      "ordem": 2,
+      "titulo_aula": "Já aconteceu, e não é hipotético",
+      "corpo": "Existem casos reais e documentados de advogados sancionados por apresentar citações jurídicas inexistentes geradas por IA, sem verificação prévia — em diferentes países, inclusive com repercussão disciplinar.",
+      "atividade": {
+        "id": "basica-10-q2",
+        "tipo": "verdadeiro_falso",
+        "enunciado": "Se um erro é gerado pela IA, a responsabilidade profissional pelo conteúdo entregue é da própria IA, não do advogado.",
+        "resposta_correta": false,
+        "justificativas": [
+          {
+            "id": "a",
+            "texto": "Falso — a responsabilidade profissional permanece do advogado que assina e entrega o conteúdo ao cliente ou ao processo.",
+            "correta": true
+          },
+          {
+            "id": "b",
+            "texto": "Falso — porque nenhuma ferramenta de IA pode ser processada judicialmente por danos causados.",
+            "correta": false
+          },
+          {
+            "id": "c",
+            "texto": "Verdadeiro — a ferramenta de IA assume integralmente a responsabilidade pelo conteúdo que gerou.",
+            "correta": false
+          }
+        ],
+        "explicacao": "O motivo central não é sobre quem pode ser processado — é que a responsabilidade profissional nunca se transfere para a ferramenta usada."
+      }
+    },
+    {
+      "ordem": 3,
+      "titulo_aula": "Transparência importa",
+      "corpo": "Usar IA no trabalho não é um problema em si. O problema é usá-la de forma que o cliente ou o superior sejam enganados sobre a origem ou o nível de verificação de um conteúdo. Transparência interna sobre o uso de IA constrói confiança — não o contrário.",
+      "atividade": {
+        "id": "basica-10-q3",
+        "tipo": "multipla_escolha",
+        "enunciado": "Um advogado entrega uma peça com uma citação inventada gerada por IA, sem checar. Qual a consequência mais provável, considerando o que foi visto no módulo?",
+        "alternativas": [
+          {
+            "id": "a",
+            "texto": "Possível responsabilização profissional e disciplinar, já que a revisão do conteúdo entregue é dever do advogado.",
+            "correta": true
+          },
+          {
+            "id": "b",
+            "texto": "Nenhuma consequência relevante, já que o erro teve origem na ferramenta de IA utilizada.",
+            "correta": false
+          },
+          {
+            "id": "c",
+            "texto": "Apenas uma orientação verbal informal do superior, sem qualquer registro ou consequência formal.",
+            "correta": false
+          },
+          {
+            "id": "d",
+            "texto": "A responsabilidade seria automaticamente transferida para a empresa que desenvolveu a ferramenta de IA.",
+            "correta": false
+          }
+        ],
+        "explicacao_acerto": "Já existem casos reais e documentados com exatamente essa consequência, em diferentes países.",
+        "explicacao_erro": "A origem do erro na ferramenta não isenta o profissional, a consequência costuma ir além de uma conversa informal, e a responsabilidade não recai sobre o fornecedor da tecnologia."
+      }
+    },
+    {
+      "ordem": 4,
+      "titulo_aula": "Por que existem políticas internas de governança",
+      "corpo": "Regras internas de uso de IA — o que pode, o que não pode, o que precisa de aprovação — não existem para dificultar o trabalho. Existem para proteger o cliente, o escritório e o próprio profissional.",
+      "destaque": "Seguir essas políticas também é parte do uso ético da ferramenta.",
+      "atividade": {
+        "id": "basica-10-q4",
+        "tipo": "completar_lacuna",
+        "enunciado": "Usar IA no trabalho não é o problema — o problema é usá-la de forma que gere ___ sobre a origem ou a verificação do conteúdo.",
+        "lacunas": [
+          {
+            "posicao": 1,
+            "opcoes": [
+              "engano/falta de transparência",
+              "economia de tempo",
+              "produtividade"
+            ],
+            "correta": "engano/falta de transparência"
+          }
+        ]
+      }
+    }
+  ],
+  "atividade_final": [
+    {
+      "id": "basica-10-q5",
+      "tipo": "verdadeiro_falso",
+      "enunciado": "Políticas internas de uso de IA existem principalmente para dificultar o trabalho do colaborador.",
+      "resposta_correta": false,
+      "justificativas": [
+        {
+          "id": "a",
+          "texto": "Falso — elas existem para proteger o cliente, o escritório e o próprio profissional.",
+          "correta": true
+        },
+        {
+          "id": "b",
+          "texto": "Falso — porque políticas internas de IA são exigidas apenas em escritórios de grande porte.",
+          "correta": false
+        },
+        {
+          "id": "c",
+          "texto": "Verdadeiro — o principal objetivo dessas políticas é burocratizar e desacelerar processos internos.",
+          "correta": false
+        }
+      ],
+      "explicacao": "A finalidade central é proteção — do cliente, do escritório e do profissional — independentemente do porte do escritório, e não burocracia pela burocracia."
+    },
+    {
+      "id": "basica-10-q6",
+      "tipo": "associacao",
+      "enunciado": "Ligue cada situação à sua consequência mais provável.",
+      "pares": [
+        {
+          "termo": "Uso transparente da IA, com revisão humana e comunicação clara",
+          "definicao": "Confiança preservada com clientes e superiores"
+        },
+        {
+          "termo": "Entrega de conteúdo gerado por IA sem qualquer revisão",
+          "definicao": "Risco de erro factual não identificado a tempo"
+        },
+        {
+          "termo": "Uso de IA fora da política aprovada pelo escritório",
+          "definicao": "Risco de violação de sigilo, dados ou norma interna"
+        }
+      ]
+    },
+    {
+      "id": "basica-10-q7",
+      "tipo": "multipla_escolha",
+      "enunciado": "Diante de uma dúvida sobre se pode ou não usar IA em determinada tarefa sensível, qual é a atitude mais correta?",
+      "alternativas": [
+        {
+          "id": "a",
+          "texto": "Consultar a política interna de uso de IA do escritório ou perguntar a um responsável antes de prosseguir.",
+          "correta": true
+        },
+        {
+          "id": "b",
+          "texto": "Prosseguir normalmente, já que dificilmente alguém vai perceber ou questionar depois.",
+          "correta": false
+        },
+        {
+          "id": "c",
+          "texto": "Evitar completamente qualquer uso de IA a partir de então, mesmo em tarefas simples e de baixo risco.",
+          "correta": false
+        },
+        {
+          "id": "d",
+          "texto": "Perguntar à própria ferramenta de IA se ela pode ser usada naquele tipo de caso específico.",
+          "correta": false
+        }
+      ],
+      "explicacao_acerto": "Esse é o comportamento de governança correto: consultar política e responsáveis diante de qualquer dúvida real.",
+      "explicacao_erro": "Agir sem ser percebido, evitar tudo por completo ou perguntar à própria IA não são formas confiáveis de resolver uma dúvida de governança."
+    },
+    {
+      "id": "basica-10-q8",
+      "tipo": "multipla_escolha",
+      "revisao_de": "basica-04",
+      "enunciado": "Revisão rápida do Módulo 4: se o escritório trocar a plataforma de IA usada hoje por outra, o que muda em termos de responsabilidade e revisão humana?",
+      "alternativas": [
+        {
+          "id": "a",
+          "texto": "Nada muda — o dever de revisão e a responsabilidade profissional se aplicam independentemente da plataforma escolhida.",
+          "correta": true
+        },
+        {
+          "id": "b",
+          "texto": "A responsabilidade profissional passa a ser da nova plataforma escolhida.",
+          "correta": false
+        },
+        {
+          "id": "c",
+          "texto": "As políticas internas de uso deixam de valer até serem reescritas do zero.",
+          "correta": false
+        },
+        {
+          "id": "d",
+          "texto": "A revisão humana só é necessária durante a primeira semana de uso da nova ferramenta.",
+          "correta": false
+        }
+      ],
+      "explicacao_acerto": "Exatamente — o padrão do Módulo 4 (entrada → modelo → saída) muda de plataforma, mas o dever de revisão e responsabilidade visto neste módulo não depende disso.",
+      "explicacao_erro": "Responsabilidade profissional e necessidade de revisão não se transferem para a ferramenta nem dependem de qual plataforma está em uso."
+    }
+  ]
+}

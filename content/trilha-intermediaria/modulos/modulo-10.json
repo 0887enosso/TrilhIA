@@ -1,0 +1,191 @@
+{
+  "modulo_id": "intermediaria-10",
+  "trilha": "intermediaria",
+  "bloco": "B",
+  "ordem": 10,
+  "titulo": "IA para reuniões: transcrição, resumo e extração de ações",
+  "descricao_curta": "Da fala ao texto, e do texto aos itens de ação — com revisão antes de compartilhar.",
+  "tempo_estimado_min": 4,
+  "objetivos_aprendizagem": [
+    "Entender como funciona transcrição e resumo automático de reuniões",
+    "Usar IA para extrair itens de ação e responsáveis",
+    "Reconhecer riscos de privacidade específicos de gravação/transcrição",
+    "Revisar criticamente resumos gerados antes de compartilhar"
+  ],
+  "aulas": [
+    {
+      "ordem": 1,
+      "titulo_aula": "Da fala ao texto",
+      "corpo": "Ferramentas de transcrição convertem áudio em texto automaticamente; a IA generativa entra depois, organizando esse texto bruto em resumo e pontos de ação.",
+      "atividade": {
+        "id": "intermediaria-10-q1",
+        "tipo": "multipla_escolha",
+        "enunciado": "O que a IA generativa costuma fazer depois que uma reunião é transcrita?",
+        "alternativas": [
+          {
+            "id": "a",
+            "texto": "Organiza o texto bruto da transcrição em resumo, decisões e itens de ação.",
+            "correta": true
+          },
+          {
+            "id": "b",
+            "texto": "Corrige automaticamente qualquer erro que a transcrição por áudio possa ter cometido.",
+            "correta": false
+          },
+          {
+            "id": "c",
+            "texto": "Grava a reunião original em um formato de vídeo compactado.",
+            "correta": false
+          },
+          {
+            "id": "d",
+            "texto": "Substitui a necessidade de qualquer ata formal da reunião, sem exceção.",
+            "correta": false
+          }
+        ],
+        "explicacao_acerto": "Isso mesmo — a IA organiza o texto bruto já transcrito em algo estruturado e útil.",
+        "explicacao_erro": "Erros de transcrição não são corrigidos automaticamente, a IA não grava vídeo, e ela não substitui necessariamente uma ata formal em todos os contextos."
+      }
+    },
+    {
+      "ordem": 2,
+      "titulo_aula": "O que costuma sair bem",
+      "corpo": "Resumo geral da reunião, lista de decisões tomadas, lista de itens de ação com responsável — quando isso foi mencionado claramente na fala.",
+      "atividade": {
+        "id": "intermediaria-10-q2",
+        "tipo": "verdadeiro_falso",
+        "enunciado": "Erros de transcrição nunca afetam o resumo gerado depois.",
+        "resposta_correta": false,
+        "justificativas": [
+          {
+            "id": "a",
+            "texto": "Falso — o resumo é gerado a partir do texto transcrito, então um erro na transcrição tende a se repetir no resumo.",
+            "correta": true
+          },
+          {
+            "id": "b",
+            "texto": "Falso, porque resumos são sempre gerados a partir do áudio original, nunca do texto transcrito.",
+            "correta": false
+          },
+          {
+            "id": "c",
+            "texto": "Verdadeiro, o resumo é gerado de forma independente da transcrição.",
+            "correta": false
+          }
+        ],
+        "explicacao": "O resumo normalmente é gerado a partir do texto já transcrito, não do áudio bruto — por isso um erro na transcrição se propaga."
+      }
+    },
+    {
+      "ordem": 3,
+      "titulo_aula": "Onde o risco aparece",
+      "corpo": "Transcrição pode errar nomes, números e trechos mal compreendidos por ruído ou sotaque — e o resumo herda esse erro sem avisar. Além disso, gravar reunião com cliente exige consentimento e o mesmo cuidado de sigilo do Módulo 9 da trilha básica.",
+      "atividade": {
+        "id": "intermediaria-10-q3",
+        "tipo": "completar_lacuna",
+        "enunciado": "Gravar uma reunião com cliente exige ___ e cuidado com o sigilo profissional.",
+        "lacunas": [
+          {
+            "posicao": 1,
+            "opcoes": [
+              "consentimento",
+              "silêncio total",
+              "tradução"
+            ],
+            "correta": "consentimento"
+          }
+        ]
+      }
+    },
+    {
+      "ordem": 4,
+      "titulo_aula": "Antes de compartilhar",
+      "corpo": "Sempre revisar o resumo e os itens de ação contra sua própria memória da reunião antes de enviar para o grupo.",
+      "atividade": {
+        "id": "intermediaria-10-q4",
+        "tipo": "multipla_escolha",
+        "enunciado": "O resumo automático lista um item de ação com o responsável errado, por causa de um erro de transcrição. Qual a atitude correta diante disso?",
+        "alternativas": [
+          {
+            "id": "a",
+            "texto": "Corrigir o erro antes de compartilhar o resumo com o grupo, comparando com sua própria memória da reunião.",
+            "correta": true
+          },
+          {
+            "id": "b",
+            "texto": "Compartilhar assim mesmo, já que a correção pode ser feita depois por quem receber.",
+            "correta": false
+          },
+          {
+            "id": "c",
+            "texto": "Desconsiderar totalmente o resumo gerado e não usar mais a ferramenta de transcrição.",
+            "correta": false
+          },
+          {
+            "id": "d",
+            "texto": "Perguntar à própria IA se ela tem certeza do que gerou, e considerar a resposta suficiente.",
+            "correta": false
+          }
+        ],
+        "explicacao_acerto": "Revisar e corrigir antes de compartilhar é o cuidado esperado — o mesmo princípio de revisão humana visto na trilha básica.",
+        "explicacao_erro": "Repassar o erro adiante, abandonar a ferramenta por completo, ou confiar na autoconfirmação da IA não resolvem o problema real."
+      }
+    }
+  ],
+  "atividade_final": [
+    {
+      "id": "intermediaria-10-q5",
+      "tipo": "associacao",
+      "enunciado": "Ligue cada termo à sua definição correta.",
+      "pares": [
+        {
+          "termo": "Transcrição",
+          "definicao": "Conversão automática do áudio da reunião em texto"
+        },
+        {
+          "termo": "Resumo",
+          "definicao": "Síntese organizada do que foi discutido"
+        },
+        {
+          "termo": "Extração de ações",
+          "definicao": "Lista de tarefas e responsáveis identificados na fala"
+        }
+      ]
+    },
+    {
+      "id": "intermediaria-10-q6",
+      "tipo": "verdadeiro_falso",
+      "enunciado": "É recomendável revisar o resumo e os itens de ação antes de compartilhar com o grupo.",
+      "resposta_correta": true,
+      "justificativas": [
+        {
+          "id": "a",
+          "texto": "Verdadeiro — comparar o resumo gerado com sua própria memória da reunião reduz o risco de propagar um erro de transcrição.",
+          "correta": true
+        },
+        {
+          "id": "b",
+          "texto": "Verdadeiro, mas apenas em reuniões com mais de 10 participantes.",
+          "correta": false
+        },
+        {
+          "id": "c",
+          "texto": "Falso, resumos automáticos de reunião são a única exceção à regra de revisão humana.",
+          "correta": false
+        }
+      ],
+      "explicacao": "Não há exceção por número de participantes — a regra de revisão humana da trilha básica se aplica igualmente aqui."
+    },
+    {
+      "id": "intermediaria-10-q7",
+      "tipo": "resposta_curta_autoavaliada",
+      "enunciado": "Descreva, em até duas frases, o cuidado mais importante antes de usar uma ferramenta de transcrição em uma reunião fictícia com um cliente.",
+      "criterios_autoavaliacao": [
+        "Mencionei a necessidade de consentimento do cliente para gravar?",
+        "Considerei se a ferramenta usada é aprovada pelo escritório para esse tipo de dado?",
+        "Minha resposta reflete o mesmo cuidado de sigilo visto no Módulo 9 da trilha básica?"
+      ],
+      "exemplo_de_resposta_forte": "\"Antes de gravar, eu pediria o consentimento explícito do cliente e confirmaria que a ferramenta de transcrição usada é aprovada pelo escritório para esse tipo de conversa.\""
+    }
+  ]
+}

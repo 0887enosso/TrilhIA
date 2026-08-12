@@ -1,0 +1,187 @@
+{
+  "modulo_id": "intermediaria-19",
+  "trilha": "intermediaria",
+  "bloco": "D",
+  "ordem": 19,
+  "titulo": "O que é RAG (Retrieval-Augmented Generation), sem jargão",
+  "descricao_curta": "Buscar antes de gerar — a tecnologia por trás de boa parte da pesquisa jurídica assistida por IA.",
+  "tempo_estimado_min": 5,
+  "objetivos_aprendizagem": [
+    "Entender o problema que RAG resolve (conhecimento limitado ou desatualizado do modelo)",
+    "Explicar RAG de forma simples: buscar informação relevante antes de gerar a resposta",
+    "Diferenciar RAG de \"a IA simplesmente sabe tudo\"",
+    "Reconhecer onde RAG provavelmente já aparece no seu dia a dia"
+  ],
+  "aulas": [
+    {
+      "ordem": 1,
+      "titulo_aula": "O problema",
+      "corpo": "O modelo aprendeu até uma certa data, e não conhece documentos internos do escritório, nem atualizações recentes por padrão.",
+      "atividade": {
+        "id": "intermediaria-19-q1",
+        "tipo": "multipla_escolha",
+        "enunciado": "O que é RAG, de forma simples?",
+        "alternativas": [
+          {
+            "id": "a",
+            "texto": "Um processo em que o sistema busca informação relevante em uma base específica antes de a IA gerar a resposta.",
+            "correta": true
+          },
+          {
+            "id": "b",
+            "texto": "Um tipo de erro que a IA comete ao gerar respostas muito longas.",
+            "correta": false
+          },
+          {
+            "id": "c",
+            "texto": "Uma técnica de prompt engineering feita inteiramente pelo usuário, sem apoio de sistema.",
+            "correta": false
+          },
+          {
+            "id": "d",
+            "texto": "Um recurso exclusivo de modelos abertos, indisponível em modelos fechados.",
+            "correta": false
+          }
+        ],
+        "explicacao_acerto": "Isso mesmo — busca primeiro, geração depois, ancorada em material real.",
+        "explicacao_erro": "RAG não é um erro, não é uma técnica manual de prompt, e está disponível tanto em modelos abertos quanto fechados."
+      }
+    },
+    {
+      "ordem": 2,
+      "titulo_aula": "A solução RAG, em duas etapas",
+      "corpo": "Antes de responder, o sistema busca (retrieval) documentos relevantes em uma base específica — e só depois passa isso para a IA gerar (generation) a resposta com base naquele material real.",
+      "atividade": {
+        "id": "intermediaria-19-q2",
+        "tipo": "verdadeiro_falso",
+        "enunciado": "RAG elimina completamente o risco de alucinação.",
+        "resposta_correta": false,
+        "justificativas": [
+          {
+            "id": "a",
+            "texto": "Falso — RAG reduz o risco ao ancorar a resposta em documentos reais, mas ainda depende da busca ter encontrado o material certo.",
+            "correta": true
+          },
+          {
+            "id": "b",
+            "texto": "Falso, porque RAG na verdade aumenta o risco de alucinação em comparação com não usar nada.",
+            "correta": false
+          },
+          {
+            "id": "c",
+            "texto": "Verdadeiro, uma vez implementado RAG, nenhuma verificação humana é mais necessária.",
+            "correta": false
+          }
+        ],
+        "explicacao": "RAG não piora o risco em relação a não usar nada — pelo contrário, reduz. Mas reduzir não é o mesmo que eliminar, e verificação humana continua necessária."
+      }
+    },
+    {
+      "ordem": 3,
+      "titulo_aula": "Por que isso reduz alucinação (mas não elimina)",
+      "corpo": "A resposta fica ancorada em documentos reais, não só em padrão aprendido no treinamento — mas ainda depende de a busca ter encontrado o material certo, e ainda pode errar.",
+      "atividade": {
+        "id": "intermediaria-19-q3",
+        "tipo": "completar_lacuna",
+        "enunciado": "RAG busca informação relevante em uma base específica antes de gerar a resposta, o que ajuda a ___ a resposta em documentos reais.",
+        "lacunas": [
+          {
+            "posicao": 1,
+            "opcoes": [
+              "ancorar/basear",
+              "traduzir",
+              "esconder"
+            ],
+            "correta": "ancorar/basear"
+          }
+        ]
+      }
+    },
+    {
+      "ordem": 4,
+      "titulo_aula": "Onde você já viu isso",
+      "corpo": "Aquele assistente de pesquisa jurídica do Módulo 8 provavelmente usa RAG por trás dos panos: busca na base de jurisprudência, depois a IA organiza o que foi encontrado.",
+      "atividade": {
+        "id": "intermediaria-19-q4",
+        "tipo": "multipla_escolha",
+        "enunciado": "Uma ferramenta de pesquisa jurídica cita documentos internos do escritório com precisão, sem ter sido treinada especificamente com eles. Qual tecnologia provavelmente está por trás disso?",
+        "alternativas": [
+          {
+            "id": "a",
+            "texto": "RAG — busca nos documentos internos como base, e a IA gera a resposta a partir do que foi encontrado.",
+            "correta": true
+          },
+          {
+            "id": "b",
+            "texto": "Fine-tuning obrigatório, já que não existe outra forma de acessar documentos internos.",
+            "correta": false
+          },
+          {
+            "id": "c",
+            "texto": "Um erro de sistema que expõe documentos por engano.",
+            "correta": false
+          },
+          {
+            "id": "d",
+            "texto": "Acesso direto e permanente do modelo a todos os arquivos do escritório, sem nenhuma etapa de busca.",
+            "correta": false
+          }
+        ],
+        "explicacao_acerto": "Esse é exatamente o cenário típico de RAG: busca em base própria, sem precisar re-treinar o modelo inteiro.",
+        "explicacao_erro": "Fine-tuning não é a única forma de acessar documentos internos, não é um erro de exposição, e não há acesso permanente e direto do modelo — a busca acontece por demanda."
+      }
+    }
+  ],
+  "atividade_final": [
+    {
+      "id": "intermediaria-19-q5",
+      "tipo": "associacao",
+      "enunciado": "Ligue cada etapa do RAG à sua função.",
+      "pares": [
+        {
+          "termo": "Retrieval (busca)",
+          "definicao": "Encontrar documentos relevantes em uma base específica"
+        },
+        {
+          "termo": "Generation (geração)",
+          "definicao": "A IA gera a resposta com base no que foi encontrado"
+        }
+      ]
+    },
+    {
+      "id": "intermediaria-19-q6",
+      "tipo": "verdadeiro_falso",
+      "enunciado": "Sem RAG, um modelo conhece automaticamente os documentos internos do escritório.",
+      "resposta_correta": false,
+      "justificativas": [
+        {
+          "id": "a",
+          "texto": "Falso — sem um mecanismo como RAG (ou treinamento específico), o modelo não tem acesso a documentos internos privados.",
+          "correta": true
+        },
+        {
+          "id": "b",
+          "texto": "Falso, porque documentos internos são automaticamente públicos assim que criados.",
+          "correta": false
+        },
+        {
+          "id": "c",
+          "texto": "Verdadeiro, todo modelo de IA tem acesso irrestrito a qualquer documento do mundo.",
+          "correta": false
+        }
+      ],
+      "explicacao": "Documentos internos não se tornam públicos automaticamente, e nenhum modelo tem acesso irrestrito a qualquer documento — é justamente esse problema que o RAG resolve."
+    },
+    {
+      "id": "intermediaria-19-q7",
+      "tipo": "resposta_curta_autoavaliada",
+      "enunciado": "Explique, em até duas frases e com suas próprias palavras, por que uma ferramenta com RAG ainda pode errar mesmo buscando em uma base confiável.",
+      "criterios_autoavaliacao": [
+        "Minha explicação menciona que a busca pode não encontrar o material mais relevante?",
+        "Evitei dizer que RAG elimina totalmente o risco de erro?",
+        "Minha explicação conecta com o conceito de verificação humana ainda necessária?"
+      ],
+      "exemplo_de_resposta_forte": "\"Mesmo com RAG, a etapa de busca pode não encontrar o documento mais relevante, ou a IA pode interpretar mal o material encontrado — por isso a verificação humana continua necessária.\""
+    }
+  ]
+}

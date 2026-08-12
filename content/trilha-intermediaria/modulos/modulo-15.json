@@ -1,0 +1,192 @@
+{
+  "modulo_id": "intermediaria-15",
+  "trilha": "intermediaria",
+  "bloco": "C",
+  "ordem": 15,
+  "titulo": "Análise de contratos com apoio de IA: identificando cláusulas e riscos",
+  "descricao_curta": "A IA aponta candidatos a risco. Classificar a gravidade continua sendo seu.",
+  "tempo_estimado_min": 5,
+  "objetivos_aprendizagem": [
+    "Usar IA para identificar tipos comuns de cláusula de risco",
+    "Construir prompts de análise de risco com critérios claros",
+    "Reconhecer que a classificação final de gravidade do risco é humana",
+    "Aplicar a restrição de não apontar risco sem base no texto"
+  ],
+  "aulas": [
+    {
+      "ordem": 1,
+      "titulo_aula": "O que conta como \"cláusula de risco\" aqui",
+      "corpo": "Cláusulas que podem gerar prejuízo financeiro, obrigação desproporcional, ou exposição jurídica para a parte que você representa.",
+      "atividade": {
+        "id": "intermediaria-15-q1",
+        "tipo": "multipla_escolha",
+        "enunciado": "O que torna um prompt de análise de risco contratual mais eficaz?",
+        "alternativas": [
+          {
+            "id": "a",
+            "texto": "Definir critérios específicos do que conta como risco, em vez de pedir 'aponte os riscos' de forma genérica.",
+            "correta": true
+          },
+          {
+            "id": "b",
+            "texto": "Pedir para a IA classificar sozinha a gravidade final de cada risco encontrado.",
+            "correta": false
+          },
+          {
+            "id": "c",
+            "texto": "Evitar mencionar qualquer critério, para não influenciar a resposta da IA.",
+            "correta": false
+          },
+          {
+            "id": "d",
+            "texto": "Pedir a resposta em uma única palavra, para maior objetividade.",
+            "correta": false
+          }
+        ],
+        "explicacao_acerto": "Isso mesmo — critério específico reduz respostas genéricas ou infladas.",
+        "explicacao_erro": "Deixar a IA classificar gravidade sozinha, evitar critério, ou pedir uma única palavra não geram uma análise útil de risco contratual."
+      }
+    },
+    {
+      "ordem": 2,
+      "titulo_aula": "Um prompt eficaz de análise de risco",
+      "corpo": "Definir critérios específicos ('aponte cláusulas com risco financeiro para o contratante' é melhor que 'aponte os riscos') evita respostas genéricas ou infladas.",
+      "atividade": {
+        "id": "intermediaria-15-q2",
+        "tipo": "verdadeiro_falso",
+        "enunciado": "A IA deve ser responsável pela classificação final de gravidade de um risco contratual.",
+        "resposta_correta": false,
+        "justificativas": [
+          {
+            "id": "a",
+            "texto": "Falso — a IA pode apontar candidatos a risco, mas a classificação de gravidade e a decisão final são julgamento humano.",
+            "correta": true
+          },
+          {
+            "id": "b",
+            "texto": "Falso, porque classificação de gravidade é uma função tecnicamente indisponível em qualquer IA.",
+            "correta": false
+          },
+          {
+            "id": "c",
+            "texto": "Verdadeiro, desde que o prompt peça uma escala numérica de gravidade.",
+            "correta": false
+          }
+        ],
+        "explicacao": "Não é uma limitação técnica — é uma questão de responsabilidade profissional, retomando o raciocínio do Módulo 7 da trilha básica."
+      }
+    },
+    {
+      "ordem": 3,
+      "titulo_aula": "O erro comum: pedir sem critério",
+      "corpo": "'Aponte todos os riscos deste contrato', sem mais nada, tende a gerar uma lista genérica — ou, pior, cláusulas apontadas como risco sem base real no texto.",
+      "atividade": {
+        "id": "intermediaria-15-q3",
+        "tipo": "completar_lacuna",
+        "enunciado": "Pedir \"aponte todos os riscos\" sem critério tende a gerar uma resposta ___ ou sem base real no texto.",
+        "lacunas": [
+          {
+            "posicao": 1,
+            "opcoes": [
+              "genérica",
+              "instantânea",
+              "traduzida"
+            ],
+            "correta": "genérica"
+          }
+        ]
+      }
+    },
+    {
+      "ordem": 4,
+      "titulo_aula": "A classificação final é sua",
+      "corpo": "A IA pode apontar candidatos a cláusula de risco; decidir a gravidade real e a resposta apropriada continua sendo julgamento humano — retomando o raciocínio do Módulo 7 da trilha básica.",
+      "atividade": {
+        "id": "intermediaria-15-q4",
+        "tipo": "correcao_prompt",
+        "enunciado": "A IA aponta uma cláusula fictícia como \"risco alto\", mas isso não está claramente fundamentado no texto do contrato. Qual restrição no prompt original teria ajudado a evitar isso?",
+        "prompt_analisado": "\"Aponte todos os riscos deste contrato.\"",
+        "alternativas": [
+          {
+            "id": "a",
+            "texto": "Pedir explicitamente que cada risco apontado venha acompanhado do trecho exato do contrato que o fundamenta.",
+            "correta": true
+          },
+          {
+            "id": "b",
+            "texto": "Pedir que a IA assuma o papel de um juiz antes de responder.",
+            "correta": false
+          },
+          {
+            "id": "c",
+            "texto": "Pedir a resposta em um idioma diferente do original do contrato.",
+            "correta": false
+          },
+          {
+            "id": "d",
+            "texto": "Nada poderia ter evitado isso — é um comportamento normal e sem solução.",
+            "correta": false
+          }
+        ],
+        "explicacao_acerto": "Exigir que cada risco venha com o trecho exato que o fundamenta reduz bastante o risco de apontamento sem base real.",
+        "explicacao_erro": "Papel de juiz e idioma não resolvem esse problema específico, e existe sim uma forma prática de reduzir esse risco: pedir fundamentação explícita."
+      }
+    }
+  ],
+  "atividade_final": [
+    {
+      "id": "intermediaria-15-q5",
+      "tipo": "associacao",
+      "enunciado": "Ligue cada etapa da análise de risco a quem é responsável por ela.",
+      "pares": [
+        {
+          "termo": "Identificar candidatos a cláusula de risco",
+          "definicao": "IA"
+        },
+        {
+          "termo": "Classificar a gravidade real do risco",
+          "definicao": "Humano"
+        },
+        {
+          "termo": "Decidir a resposta apropriada diante do risco",
+          "definicao": "Humano"
+        }
+      ]
+    },
+    {
+      "id": "intermediaria-15-q6",
+      "tipo": "verdadeiro_falso",
+      "enunciado": "Definir critérios específicos no prompt reduz o risco de resposta genérica na análise de contrato.",
+      "resposta_correta": true,
+      "justificativas": [
+        {
+          "id": "a",
+          "texto": "Verdadeiro — critério específico direciona a IA para o que realmente importa na análise.",
+          "correta": true
+        },
+        {
+          "id": "b",
+          "texto": "Verdadeiro, mas apenas em contratos com menos de 5 páginas.",
+          "correta": false
+        },
+        {
+          "id": "c",
+          "texto": "Falso, critério específico deixa a resposta mais restrita e menos útil.",
+          "correta": false
+        }
+      ],
+      "explicacao": "Não há relação com tamanho do contrato, e critério específico torna a resposta mais útil, não menos — é o princípio central do módulo."
+    },
+    {
+      "id": "intermediaria-15-q7",
+      "tipo": "resposta_curta_autoavaliada",
+      "enunciado": "Escreva um prompt para identificar cláusulas com risco de rescisão desproporcional em um contrato fictício, incluindo critério e exigência de fundamentação.",
+      "criterios_autoavaliacao": [
+        "Meu prompt define claramente o tipo de risco buscado (rescisão desproporcional)?",
+        "Pedi que cada apontamento venha com o trecho do contrato que o fundamenta?",
+        "Ficou claro que a classificação final de gravidade ainda é minha responsabilidade?"
+      ],
+      "exemplo_de_resposta_forte": "\"Identifique cláusulas deste contrato fictício que imponham obrigações de rescisão desproporcionais para o contratante, citando o trecho exato de cada uma.\""
+    }
+  ]
+}

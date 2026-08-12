@@ -1,0 +1,203 @@
+{
+  "modulo_id": "basica-07",
+  "trilha": "basica",
+  "ordem": 7,
+  "titulo": "Para que serve a IA no dia a dia de um escritório",
+  "descricao_curta": "Nem tudo é ponto de partida bom — aprenda a diferenciar.",
+  "tempo_estimado_min": 4,
+  "objetivos_aprendizagem": [
+    "Reconhecer categorias de tarefas em que a IA tende a ajudar bem",
+    "Reconhecer categorias de tarefas em que a IA exige mais cuidado",
+    "Aplicar esse raciocínio de forma genérica, sem depender de uma ferramenta específica"
+  ],
+  "aulas": [
+    {
+      "ordem": 1,
+      "titulo_aula": "Onde a IA costuma ajudar bem",
+      "corpo": "Tarefas de linguagem em grande volume: resumir documentos longos, organizar informação dispersa, gerar primeiras versões de textos, revisar clareza e coesão, estruturar rascunhos antes da versão final.",
+      "atividade": {
+        "id": "basica-07-q1",
+        "tipo": "multipla_escolha",
+        "enunciado": "Qual das tarefas abaixo é um bom exemplo de uso de IA como ponto de partida (não como decisão final)?",
+        "alternativas": [
+          {
+            "id": "a",
+            "texto": "Gerar um primeiro rascunho de resumo de um documento longo, para depois revisar com atenção.",
+            "correta": true
+          },
+          {
+            "id": "b",
+            "texto": "Definir, com base apenas na resposta da IA, a estratégia processual completa de um caso.",
+            "correta": false
+          },
+          {
+            "id": "c",
+            "texto": "Aceitar, sem checagem adicional, um número de processo mencionado pela IA em uma resposta.",
+            "correta": false
+          },
+          {
+            "id": "d",
+            "texto": "Considerar encerrada uma análise de prazo processual apenas com base no que a IA respondeu.",
+            "correta": false
+          }
+        ],
+        "explicacao_acerto": "Gerar um rascunho para revisão posterior é exatamente o uso recomendado: ponto de partida, não decisão final.",
+        "explicacao_erro": "As demais opções tratam a resposta da IA como decisão encerrada, sem revisão — exatamente o padrão de risco que este módulo pede para evitar."
+      }
+    },
+    {
+      "ordem": 2,
+      "titulo_aula": "Onde a IA exige mais cuidado",
+      "corpo": "Tarefas que dependem de precisão factual absoluta (números de processo, citações legais exatas, prazos), julgamento estratégico do caso, e qualquer decisão que envolva responsabilidade profissional direta.",
+      "destaque": "Nesses casos, a IA pode ajudar a preparar — nunca a decidir.",
+      "atividade": {
+        "id": "basica-07-q2",
+        "tipo": "verdadeiro_falso",
+        "enunciado": "A IA é igualmente confiável para resumir um texto e para decidir uma estratégia processual.",
+        "resposta_correta": false,
+        "justificativas": [
+          {
+            "id": "a",
+            "texto": "Falso — resumir é uma tarefa de organização de linguagem; decisão estratégica exige julgamento profissional que a IA não deve substituir.",
+            "correta": true
+          },
+          {
+            "id": "b",
+            "texto": "Falso — porque a IA nunca deve ser usada em nenhuma dessas duas tarefas, sob nenhuma circunstância.",
+            "correta": false
+          },
+          {
+            "id": "c",
+            "texto": "Verdadeiro — ambas são tarefas de linguagem, então apresentam exatamente o mesmo nível de risco.",
+            "correta": false
+          }
+        ],
+        "explicacao": "O nível de risco muda conforme o tipo de tarefa — resumir e decidir estrategicamente não são equivalentes, e a IA não é proibida na primeira."
+      }
+    },
+    {
+      "ordem": 3,
+      "titulo_aula": "Um jeito simples de pensar sobre isso",
+      "corpo": "Pergunta-guia: 'Isso é uma tarefa de organizar e estruturar linguagem, ou uma tarefa que exige julgamento e responsabilidade profissional?' Quanto mais a tarefa pende para o segundo lado, mais a IA deve ser ponto de partida — nunca ponto final.",
+      "atividade": {
+        "id": "basica-07-q3",
+        "tipo": "associacao",
+        "enunciado": "Classifique cada tarefa quanto ao nível de cuidado recomendado.",
+        "pares": [
+          {
+            "termo": "Organizar informações dispersas de um processo",
+            "definicao": "IA ajuda bem, como ponto de partida"
+          },
+          {
+            "termo": "Definir a estratégia de defesa de um cliente",
+            "definicao": "Exige cuidado redobrado e julgamento humano"
+          },
+          {
+            "termo": "Gerar um primeiro rascunho de um e-mail interno",
+            "definicao": "IA ajuda bem, como ponto de partida"
+          }
+        ]
+      }
+    },
+    {
+      "ordem": 4,
+      "titulo_aula": "Isso não é uma regra fixa, é um raciocínio",
+      "corpo": "Essas categorias não são uma lista fechada. O objetivo é você desenvolver o instinto de avaliar cada tarefa nova com essa lente, em vez de depender de uma lista pronta de 'tarefas permitidas'.",
+      "atividade": {
+        "id": "basica-07-q4",
+        "tipo": "ordenar_etapas",
+        "enunciado": "Coloque em ordem a sequência recomendada ao usar IA em uma tarefa que envolve julgamento profissional.",
+        "etapas_corretas": [
+          "Usar a IA para gerar um primeiro rascunho ou organização inicial",
+          "Revisar criticamente o que foi gerado",
+          "Aplicar julgamento profissional humano sobre o conteúdo",
+          "Validar e assumir responsabilidade pela versão final"
+        ]
+      }
+    }
+  ],
+  "atividade_final": [
+    {
+      "id": "basica-07-q5",
+      "tipo": "multipla_escolha",
+      "enunciado": "Um estagiário usa a IA para gerar o primeiro rascunho de um resumo de processo, depois revisa e ajusta manualmente. Essa é uma boa prática?",
+      "alternativas": [
+        {
+          "id": "a",
+          "texto": "Sim, porque usa a IA como ponto de partida e mantém a revisão humana antes da entrega final.",
+          "correta": true
+        },
+        {
+          "id": "b",
+          "texto": "Não, porque qualquer uso de IA em tarefas jurídicas é considerado inadequado.",
+          "correta": false
+        },
+        {
+          "id": "c",
+          "texto": "Não, porque o rascunho deveria ser entregue exatamente como a IA gerou, sem alterações.",
+          "correta": false
+        },
+        {
+          "id": "d",
+          "texto": "Sim, mas apenas se o uso da IA for mantido em sigilo dos colegas e superiores.",
+          "correta": false
+        }
+      ],
+      "explicacao_acerto": "Exatamente esse é o uso recomendado: IA gera o rascunho, humano revisa e valida antes da entrega.",
+      "explicacao_erro": "IA em tarefas jurídicas não é proibida por padrão, entregar sem revisão não é correto, e sigilo sobre o uso contraria o princípio de transparência (que veremos no Módulo 10)."
+    },
+    {
+      "id": "basica-07-q6",
+      "tipo": "verdadeiro_falso",
+      "enunciado": "A lista de tarefas em que a IA ajuda bem é fixa e não muda conforme o contexto.",
+      "resposta_correta": false,
+      "justificativas": [
+        {
+          "id": "a",
+          "texto": "Falso — o módulo propõe um raciocínio (organização de linguagem x julgamento profissional), não uma lista fechada.",
+          "correta": true
+        },
+        {
+          "id": "b",
+          "texto": "Falso — porque essa lista é atualizada oficialmente todos os meses pelos fabricantes de IA.",
+          "correta": false
+        },
+        {
+          "id": "c",
+          "texto": "Verdadeiro — existe uma lista universal e definitiva, válida para qualquer escritório.",
+          "correta": false
+        }
+      ],
+      "explicacao": "A ideia central é desenvolver instinto e raciocínio situacional, não seguir uma lista fechada ou uma atualização externa."
+    },
+    {
+      "id": "basica-07-q7",
+      "tipo": "multipla_escolha",
+      "enunciado": "Diante de uma tarefa nova e desconhecida, qual pergunta você deveria se fazer antes de decidir usar IA para ela?",
+      "alternativas": [
+        {
+          "id": "a",
+          "texto": "Essa tarefa é mais sobre organizar e estruturar linguagem, ou envolve julgamento e responsabilidade profissional direta?",
+          "correta": true
+        },
+        {
+          "id": "b",
+          "texto": "Essa tarefa seria mais rápida de terminar se eu fizesse manualmente, sem qualquer apoio de IA?",
+          "correta": false
+        },
+        {
+          "id": "c",
+          "texto": "Essa tarefa parece interessante o bastante para valer a pena tentar com IA?",
+          "correta": false
+        },
+        {
+          "id": "d",
+          "texto": "Meus colegas de equipe já costumam usar IA para esse tipo específico de tarefa?",
+          "correta": false
+        }
+      ],
+      "explicacao_acerto": "Essa é a pergunta-guia do módulo, e ela funciona para qualquer tarefa nova que aparecer.",
+      "explicacao_erro": "Velocidade, curiosidade pessoal ou hábito dos colegas não substituem a avaliação de risco e responsabilidade da tarefa em si."
+    }
+  ]
+}

@@ -1,0 +1,187 @@
+{
+  "modulo_id": "intermediaria-12",
+  "trilha": "intermediaria",
+  "bloco": "B",
+  "ordem": 12,
+  "titulo": "Escolhendo a ferramenta certa para cada tarefa",
+  "descricao_curta": "Não existe 'a melhor ferramenta' — existe a mais adequada para esta tarefa, com este dado.",
+  "tempo_estimado_min": 5,
+  "objetivos_aprendizagem": [
+    "Consolidar o raciocínio de categorização de ferramentas (Módulo 3 da trilha básica) em decisões práticas",
+    "Aplicar três critérios de escolha: tipo de tarefa, sensibilidade do dado, aprovação da ferramenta",
+    "Reconhecer sinais de que está usando a ferramenta errada para a tarefa"
+  ],
+  "aulas": [
+    {
+      "ordem": 1,
+      "titulo_aula": "Juntando os fios",
+      "corpo": "Você já viu categorias de ferramenta, técnicas de prompt e vários usos práticos. Este módulo é sobre decidir, na prática, qual ferramenta usar em cada situação real.",
+      "atividade": {
+        "id": "intermediaria-12-q1",
+        "tipo": "multipla_escolha",
+        "enunciado": "Quais critérios devem orientar a escolha de uma ferramenta de IA para uma tarefa?",
+        "alternativas": [
+          {
+            "id": "a",
+            "texto": "Tipo de tarefa, sensibilidade do dado envolvido e se a ferramenta é aprovada para esse tipo de dado.",
+            "correta": true
+          },
+          {
+            "id": "b",
+            "texto": "Apenas o custo da ferramenta, já que ferramentas gratuitas sempre têm o mesmo nível de risco.",
+            "correta": false
+          },
+          {
+            "id": "c",
+            "texto": "Apenas a fama da ferramenta entre os colegas de trabalho.",
+            "correta": false
+          },
+          {
+            "id": "d",
+            "texto": "Apenas a velocidade de resposta da ferramenta.",
+            "correta": false
+          }
+        ],
+        "explicacao_acerto": "Esses três critérios juntos — não isolados — levam à escolha mais adequada.",
+        "explicacao_erro": "Custo, fama e velocidade isoladamente ignoram justamente os dois fatores mais importantes: adequação à tarefa e sensibilidade do dado."
+      }
+    },
+    {
+      "ordem": 2,
+      "titulo_aula": "Três perguntas antes de escolher",
+      "corpo": "Que tipo de tarefa é essa? A informação envolvida é sensível? A ferramenta que estou pensando em usar é aprovada para esse tipo de dado?",
+      "atividade": {
+        "id": "intermediaria-12-q2",
+        "tipo": "verdadeiro_falso",
+        "enunciado": "Existe uma única ferramenta de IA que deveria ser usada para qualquer tipo de tarefa.",
+        "resposta_correta": false,
+        "justificativas": [
+          {
+            "id": "a",
+            "texto": "Falso — a ferramenta mais adequada muda conforme o tipo de tarefa e a sensibilidade do dado envolvido.",
+            "correta": true
+          },
+          {
+            "id": "b",
+            "texto": "Falso, porque cada colaborador do escritório deveria usar uma ferramenta diferente por sorteio.",
+            "correta": false
+          },
+          {
+            "id": "c",
+            "texto": "Verdadeiro, uma vez aprovada, a mesma ferramenta serve para qualquer situação.",
+            "correta": false
+          }
+        ],
+        "explicacao": "Não é uma questão de sorteio nem de usar sempre a mesma ferramenta aprovada — é uma questão de adequação situacional."
+      }
+    },
+    {
+      "ordem": 3,
+      "titulo_aula": "Sinais de ferramenta errada",
+      "corpo": "Respostas sempre genéricas apesar de prompts bons. A ferramenta 'não entende' o formato do que você precisa. Você está inserindo dado sensível numa ferramenta pessoal só por hábito.",
+      "atividade": {
+        "id": "intermediaria-12-q3",
+        "tipo": "completar_lacuna",
+        "enunciado": "Respostas sempre genéricas, mesmo com prompts bons, é um sinal de que a ferramenta pode não ser ___ para aquela tarefa.",
+        "lacunas": [
+          {
+            "posicao": 1,
+            "opcoes": [
+              "adequada",
+              "gratuita",
+              "popular"
+            ],
+            "correta": "adequada"
+          }
+        ]
+      }
+    },
+    {
+      "ordem": 4,
+      "titulo_aula": "Não existe \"a melhor ferramenta\", existe a mais adequada",
+      "corpo": "A pergunta certa nunca é 'qual é a melhor IA do mercado', e sim 'qual é a mais adequada para esta tarefa específica, com este dado específico'.",
+      "atividade": {
+        "id": "intermediaria-12-q4",
+        "tipo": "multipla_escolha",
+        "enunciado": "Um colaborador insere dado sensível numa ferramenta pessoal por hábito, mesmo tendo uma ferramenta aprovada disponível para essa mesma tarefa. Qual o erro?",
+        "alternativas": [
+          {
+            "id": "a",
+            "texto": "Priorizar o hábito em vez de aplicar os critérios de escolha (tarefa, sensibilidade do dado, aprovação).",
+            "correta": true
+          },
+          {
+            "id": "b",
+            "texto": "Nenhum — hábito é um critério legítimo e suficiente para escolher ferramenta.",
+            "correta": false
+          },
+          {
+            "id": "c",
+            "texto": "O erro é usar qualquer ferramenta de IA, independentemente de qual seja.",
+            "correta": false
+          },
+          {
+            "id": "d",
+            "texto": "O erro é ter mais de uma ferramenta disponível ao mesmo tempo.",
+            "correta": false
+          }
+        ],
+        "explicacao_acerto": "Hábito não é um critério de segurança — os três critérios do módulo deveriam prevalecer sobre a familiaridade com uma ferramenta.",
+        "explicacao_erro": "Usar IA não é o problema, ter mais de uma opção disponível também não é — o problema é a escolha não seguir os critérios corretos."
+      }
+    }
+  ],
+  "atividade_final": [
+    {
+      "id": "intermediaria-12-q5",
+      "tipo": "ordenar_etapas",
+      "enunciado": "Coloque em ordem o processo recomendado de decisão ao escolher uma ferramenta de IA para uma nova tarefa.",
+      "etapas_corretas": [
+        "Identificar o tipo de tarefa a ser realizada",
+        "Avaliar a sensibilidade do dado envolvido",
+        "Verificar se a ferramenta pretendida é aprovada para esse tipo de dado",
+        "Só então iniciar o uso da ferramenta escolhida"
+      ]
+    },
+    {
+      "id": "intermediaria-12-q6",
+      "tipo": "verdadeiro_falso",
+      "enunciado": "A pergunta certa é \"qual a melhor IA do mercado\", e não \"qual a mais adequada para esta tarefa\".",
+      "resposta_correta": false,
+      "justificativas": [
+        {
+          "id": "a",
+          "texto": "Falso — a pergunta certa é sobre adequação à tarefa e ao dado envolvido, não sobre um ranking geral de 'melhor ferramenta'.",
+          "correta": true
+        },
+        {
+          "id": "b",
+          "texto": "Falso, porque não existe nenhuma forma de comparar ferramentas de IA entre si.",
+          "correta": false
+        },
+        {
+          "id": "c",
+          "texto": "Verdadeiro, a ferramenta tecnicamente mais avançada sempre é a escolha certa para qualquer tarefa.",
+          "correta": false
+        }
+      ],
+      "explicacao": "Comparação entre ferramentas é possível, mas o critério relevante é adequação situacional, não um ranking absoluto de 'melhor ferramenta do mercado'."
+    },
+    {
+      "id": "intermediaria-12-q7",
+      "tipo": "resposta_curta_autoavaliada",
+      "enunciado": "Descreva, em até duas frases, como você escolheria entre duas ferramentas fictícias de IA para organizar um conjunto de documentos com dados de cliente.",
+      "criterios_autoavaliacao": [
+        "Considerei o tipo de tarefa (organização de documentos)?",
+        "Considerei a sensibilidade do dado (documentos de cliente)?",
+        "Minha decisão final depende da aprovação da ferramenta pelo escritório?"
+      ],
+      "exemplo_de_resposta_forte": "\"Eu escolheria a ferramenta que estiver formalmente aprovada pelo escritório para dados de cliente, mesmo que a outra pareça mais rápida ou popular.\""
+    }
+  ],
+  "conquista_de_bloco": {
+    "bloco": "B",
+    "nome_badge": "Operador de Ferramentas",
+    "descricao": "Concluiu o Bloco B — sabe aplicar IA no dia a dia jurídico com a ferramenta certa para cada tarefa."
+  }
+}

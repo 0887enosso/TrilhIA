@@ -1,0 +1,191 @@
+{
+  "modulo_id": "intermediaria-18",
+  "trilha": "intermediaria",
+  "bloco": "D",
+  "ordem": 18,
+  "titulo": "Tokens e janela de contexto: por que a IA \"esquece\" coisas em conversas longas",
+  "descricao_curta": "Não é memória apagada de propósito — é um limite técnico de espaço.",
+  "tempo_estimado_min": 5,
+  "objetivos_aprendizagem": [
+    "Entender o que é um token, de forma simples",
+    "Entender o conceito de janela de contexto",
+    "Explicar por que conversas muito longas fazem a IA esquecer informações do início",
+    "Aplicar isso na prática ao lidar com documentos grandes ou conversas extensas"
+  ],
+  "aulas": [
+    {
+      "ordem": 1,
+      "titulo_aula": "O que é um token",
+      "corpo": "A unidade básica de 'leitura e escrita' da IA — um pedaço de texto, nem sempre uma palavra inteira (às vezes uma sílaba, às vezes um fragmento). Tudo que você escreve e tudo que ela responde é processado em tokens.",
+      "atividade": {
+        "id": "intermediaria-18-q1",
+        "tipo": "multipla_escolha",
+        "enunciado": "O que é um \"token\" no contexto de uma IA generativa?",
+        "alternativas": [
+          {
+            "id": "a",
+            "texto": "A unidade básica de texto que a IA processa — nem sempre uma palavra inteira, às vezes um fragmento.",
+            "correta": true
+          },
+          {
+            "id": "b",
+            "texto": "Uma senha de acesso usada para entrar em uma ferramenta de IA.",
+            "correta": false
+          },
+          {
+            "id": "c",
+            "texto": "Uma unidade de cobrança que só existe em planos pagos.",
+            "correta": false
+          },
+          {
+            "id": "d",
+            "texto": "Um tipo de erro que a IA comete ao processar textos muito longos.",
+            "correta": false
+          }
+        ],
+        "explicacao_acerto": "Isso mesmo — token é a unidade de processamento de texto, não uma senha nem um erro.",
+        "explicacao_erro": "Token não é senha de acesso, não é exclusivo de plano pago, e não é um tipo de erro — é a unidade básica de processamento de texto."
+      }
+    },
+    {
+      "ordem": 2,
+      "titulo_aula": "Janela de contexto",
+      "corpo": "É a quantidade máxima de tokens que a IA consegue 'ter em mente' de uma vez — incluindo toda a conversa e qualquer documento anexado. Passou desse limite, algo precisa sair.",
+      "atividade": {
+        "id": "intermediaria-18-q2",
+        "tipo": "verdadeiro_falso",
+        "enunciado": "A janela de contexto de uma IA é ilimitada — ela sempre consegue considerar toda a conversa, por mais longa que seja.",
+        "resposta_correta": false,
+        "justificativas": [
+          {
+            "id": "a",
+            "texto": "Falso — existe um limite técnico de tokens que a IA consegue 'ter em mente' de uma vez.",
+            "correta": true
+          },
+          {
+            "id": "b",
+            "texto": "Falso, porque a janela de contexto só existe em ferramentas gratuitas.",
+            "correta": false
+          },
+          {
+            "id": "c",
+            "texto": "Verdadeiro, esse limite foi eliminado nas versões mais recentes de IA.",
+            "correta": false
+          }
+        ],
+        "explicacao": "O limite de janela de contexto existe em qualquer plano, gratuito ou pago, e ainda não foi eliminado — apenas ampliado ao longo do tempo em modelos mais recentes."
+      }
+    },
+    {
+      "ordem": 3,
+      "titulo_aula": "Por que a IA \"esquece\"",
+      "corpo": "Não é uma memória apagada de propósito — é um limite técnico de espaço. Conversas muito longas ou documentos extensos empurram as informações mais antigas para fora da janela.",
+      "atividade": {
+        "id": "intermediaria-18-q3",
+        "tipo": "completar_lacuna",
+        "enunciado": "Quando a conversa ultrapassa a janela de contexto, a informação mais ___ tende a sair de vista primeiro.",
+        "lacunas": [
+          {
+            "posicao": 1,
+            "opcoes": [
+              "antiga",
+              "curta",
+              "colorida"
+            ],
+            "correta": "antiga"
+          }
+        ]
+      }
+    },
+    {
+      "ordem": 4,
+      "titulo_aula": "Na prática",
+      "corpo": "Para documentos grandes ou conversas longas, resumir periodicamente o que já foi discutido, ou dividir a tarefa em partes menores, ajuda a manter o essencial sempre dentro da janela.",
+      "atividade": {
+        "id": "intermediaria-18-q4",
+        "tipo": "multipla_escolha",
+        "enunciado": "Ao analisar um documento muito longo, a IA parece \"esquecer\" um trecho do início. Qual a explicação mais provável?",
+        "alternativas": [
+          {
+            "id": "a",
+            "texto": "O documento, somado à conversa, ultrapassou a janela de contexto, empurrando a informação mais antiga para fora.",
+            "correta": true
+          },
+          {
+            "id": "b",
+            "texto": "A IA decidiu, por conta própria, que aquele trecho não era importante.",
+            "correta": false
+          },
+          {
+            "id": "c",
+            "texto": "Houve uma falha de internet durante o processamento do documento.",
+            "correta": false
+          },
+          {
+            "id": "d",
+            "texto": "O documento foi corrompido durante o envio.",
+            "correta": false
+          }
+        ],
+        "explicacao_acerto": "Esse é o mecanismo técnico correto — limite de janela de contexto, não decisão nem falha externa.",
+        "explicacao_erro": "Não há decisão autônoma da IA sobre relevância, nem relação direta com falha de internet ou corrupção de arquivo."
+      }
+    }
+  ],
+  "atividade_final": [
+    {
+      "id": "intermediaria-18-q5",
+      "tipo": "associacao",
+      "enunciado": "Ligue cada termo à sua definição correta.",
+      "pares": [
+        {
+          "termo": "Token",
+          "definicao": "Unidade básica de texto processada pela IA"
+        },
+        {
+          "termo": "Janela de contexto",
+          "definicao": "Quantidade máxima de tokens que a IA consegue considerar de uma vez"
+        },
+        {
+          "termo": "\"Esquecimento\" aparente",
+          "definicao": "Efeito de informação antiga sendo empurrada para fora da janela"
+        }
+      ]
+    },
+    {
+      "id": "intermediaria-18-q6",
+      "tipo": "verdadeiro_falso",
+      "enunciado": "Dividir uma tarefa grande em partes menores ajuda a manter o conteúdo relevante dentro da janela de contexto.",
+      "resposta_correta": true,
+      "justificativas": [
+        {
+          "id": "a",
+          "texto": "Verdadeiro — dividir reduz a quantidade de tokens necessários de uma vez só, ajudando a manter o essencial visível.",
+          "correta": true
+        },
+        {
+          "id": "b",
+          "texto": "Verdadeiro, mas apenas em documentos com menos de 5 páginas.",
+          "correta": false
+        },
+        {
+          "id": "c",
+          "texto": "Falso, dividir a tarefa não tem nenhum efeito sobre o uso da janela de contexto.",
+          "correta": false
+        }
+      ],
+      "explicacao": "Não há um limite fixo de páginas para essa estratégia funcionar — dividir sempre reduz a pressão sobre a janela de contexto, em qualquer tamanho de documento."
+    },
+    {
+      "id": "intermediaria-18-q7",
+      "tipo": "resposta_curta_autoavaliada",
+      "enunciado": "Descreva, em até duas frases, uma estratégia prática para analisar um contrato fictício muito longo sem perder informação importante do início por causa da janela de contexto.",
+      "criterios_autoavaliacao": [
+        "Minha estratégia considera dividir o documento em partes menores?",
+        "Considerei resumir periodicamente o que já foi analisado?",
+        "Minha resposta reconhece que isso é um limite técnico, não um erro da IA?"
+      ],
+      "exemplo_de_resposta_forte": "\"Eu dividiria o contrato fictício em seções menores, pedindo um resumo de cada uma antes de avançar para a próxima, mantendo os pontos-chave sempre visíveis na conversa.\""
+    }
+  ]
+}

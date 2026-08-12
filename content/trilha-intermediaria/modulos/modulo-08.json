@@ -1,0 +1,192 @@
+{
+  "modulo_id": "intermediaria-08",
+  "trilha": "intermediaria",
+  "bloco": "B",
+  "ordem": 8,
+  "titulo": "IA para pesquisa jurídica: localizando e organizando jurisprudência",
+  "descricao_curta": "A IA organiza o que você encontra — ela não substitui a fonte oficial.",
+  "tempo_estimado_min": 5,
+  "objetivos_aprendizagem": [
+    "Entender o papel de assistentes especializados em pesquisa jurídica",
+    "Usar IA para organizar e sintetizar resultados de pesquisa, não para decidir o que é relevante",
+    "Reconhecer os limites de confiabilidade de uma pesquisa assistida por IA",
+    "Aplicar prompts estruturados à pesquisa jurídica"
+  ],
+  "aulas": [
+    {
+      "ordem": 1,
+      "titulo_aula": "A IA não substitui a base de jurisprudência, ela organiza o que você encontra nela",
+      "corpo": "A pesquisa em si deve continuar vindo de fontes jurídicas confiáveis (bases oficiais, sistemas do escritório) — a IA entra depois, ajudando a organizar, resumir e comparar o que já foi encontrado.",
+      "atividade": {
+        "id": "intermediaria-08-q1",
+        "tipo": "multipla_escolha",
+        "enunciado": "Qual é o papel correto da IA dentro de um fluxo de pesquisa jurídica?",
+        "alternativas": [
+          {
+            "id": "a",
+            "texto": "Organizar, sintetizar e identificar padrões em resultados já encontrados em uma fonte oficial confiável.",
+            "correta": true
+          },
+          {
+            "id": "b",
+            "texto": "Substituir completamente a consulta à base de jurisprudência oficial.",
+            "correta": false
+          },
+          {
+            "id": "c",
+            "texto": "Decidir sozinha quais precedentes são juridicamente relevantes para o caso.",
+            "correta": false
+          },
+          {
+            "id": "d",
+            "texto": "Gerar novos precedentes quando a base oficial não retorna resultados suficientes.",
+            "correta": false
+          }
+        ],
+        "explicacao_acerto": "Isso mesmo — a IA organiza o que já foi encontrado, não substitui a busca em fonte oficial nem decide relevância jurídica sozinha.",
+        "explicacao_erro": "Substituir a fonte oficial, decidir relevância sozinha ou 'gerar' precedentes inexistentes são exatamente os usos que geram maior risco de alucinação."
+      }
+    },
+    {
+      "ordem": 2,
+      "titulo_aula": "Onde a IA ajuda de verdade",
+      "corpo": "Sintetizar um conjunto grande de decisões em pontos-chave. Identificar padrões entre vários julgados. Organizar achados por tema ou critério.",
+      "atividade": {
+        "id": "intermediaria-08-q2",
+        "tipo": "verdadeiro_falso",
+        "enunciado": "Pedir para a IA buscar jurisprudência diretamente, sem ancorar em uma fonte já confirmada, é seguro desde que o prompt esteja bem escrito.",
+        "resposta_correta": false,
+        "justificativas": [
+          {
+            "id": "a",
+            "texto": "Falso — a qualidade do prompt não elimina o risco de alucinação quando não há uma fonte oficial por trás.",
+            "correta": true
+          },
+          {
+            "id": "b",
+            "texto": "Falso, porque buscar jurisprudência é uma função tecnicamente bloqueada em qualquer IA generativa.",
+            "correta": false
+          },
+          {
+            "id": "c",
+            "texto": "Verdadeiro, um prompt bem estruturado elimina qualquer risco de erro factual.",
+            "correta": false
+          }
+        ],
+        "explicacao": "Não existe bloqueio técnico dessa função, e nenhum prompt, por melhor escrito que seja, elimina o risco de alucinação sem uma fonte real por trás."
+      }
+    },
+    {
+      "ordem": 3,
+      "titulo_aula": "Onde mora o risco",
+      "corpo": "Pedir para a IA 'buscar jurisprudência' diretamente, sem ancorar em uma fonte real, é a receita perfeita para alucinação (Módulo 8 da trilha básica). Cada citação precisa vir de algo já confirmado em fonte oficial.",
+      "atividade": {
+        "id": "intermediaria-08-q3",
+        "tipo": "completar_lacuna",
+        "enunciado": "O fluxo seguro de pesquisa é: buscar na base oficial → trazer para a IA ___ → conferir cada citação.",
+        "lacunas": [
+          {
+            "posicao": 1,
+            "opcoes": [
+              "organizar/sintetizar",
+              "inventar",
+              "ignorar"
+            ],
+            "correta": "organizar/sintetizar"
+          }
+        ]
+      }
+    },
+    {
+      "ordem": 4,
+      "titulo_aula": "Um fluxo seguro",
+      "corpo": "Buscar na base oficial → trazer os resultados para a IA organizar e sintetizar → conferir cada citação antes de usar.",
+      "atividade": {
+        "id": "intermediaria-08-q4",
+        "tipo": "correcao_prompt",
+        "enunciado": "Um colega usou o prompt abaixo para pesquisar jurisprudência sobre um tema fictício, direto na IA, sem passar por nenhuma base oficial antes. Qual o problema desse fluxo?",
+        "prompt_analisado": "\"Me traga jurisprudência recente sobre cláusulas abusivas em contratos de prestação de serviço.\"",
+        "alternativas": [
+          {
+            "id": "a",
+            "texto": "O prompt pede que a IA 'busque' precedentes diretamente, sem ancorar em uma fonte oficial já confirmada — alto risco de alucinação.",
+            "correta": true
+          },
+          {
+            "id": "b",
+            "texto": "O prompt é longo demais para a IA processar corretamente.",
+            "correta": false
+          },
+          {
+            "id": "c",
+            "texto": "O tema pedido (cláusulas abusivas) não pode ser objeto de nenhum tipo de pesquisa assistida por IA.",
+            "correta": false
+          },
+          {
+            "id": "d",
+            "texto": "Não há nenhum problema, contanto que a resposta venha bem formatada.",
+            "correta": false
+          }
+        ],
+        "explicacao_acerto": "Esse é exatamente o padrão de risco descrito no módulo: pedir busca direta sem fonte oficial por trás.",
+        "explicacao_erro": "O tamanho do prompt não é o problema, o tema é perfeitamente pesquisável com o fluxo correto, e formatação bonita não garante veracidade."
+      }
+    }
+  ],
+  "atividade_final": [
+    {
+      "id": "intermediaria-08-q5",
+      "tipo": "associacao",
+      "enunciado": "Ligue cada etapa do fluxo de pesquisa a quem deve executá-la.",
+      "pares": [
+        {
+          "termo": "Buscar decisões na base oficial",
+          "definicao": "Fonte oficial / sistema de pesquisa jurídica"
+        },
+        {
+          "termo": "Organizar e sintetizar os resultados encontrados",
+          "definicao": "IA"
+        },
+        {
+          "termo": "Conferir cada citação antes de usar",
+          "definicao": "Você mesmo"
+        }
+      ]
+    },
+    {
+      "id": "intermediaria-08-q6",
+      "tipo": "verdadeiro_falso",
+      "enunciado": "A IA pode ajudar a identificar padrões entre várias decisões já confirmadas em fonte oficial.",
+      "resposta_correta": true,
+      "justificativas": [
+        {
+          "id": "a",
+          "texto": "Verdadeiro — esse é justamente um dos usos recomendados: sintetizar e identificar padrões em material já confirmado.",
+          "correta": true
+        },
+        {
+          "id": "b",
+          "texto": "Verdadeiro, mas somente se todas as decisões tiverem menos de um ano.",
+          "correta": false
+        },
+        {
+          "id": "c",
+          "texto": "Falso, identificar padrões entre decisões é uma tarefa exclusivamente humana.",
+          "correta": false
+        }
+      ],
+      "explicacao": "Não há restrição de prazo das decisões, e identificar padrões em material já confirmado é exatamente um dos bons usos da IA descritos no módulo."
+    },
+    {
+      "id": "intermediaria-08-q7",
+      "tipo": "resposta_curta_autoavaliada",
+      "enunciado": "Escreva um prompt para pedir que a IA organize, por tema, um conjunto de 10 decisões fictícias já confirmadas na base oficial (descreva o tema em uma linha).",
+      "criterios_autoavaliacao": [
+        "Meu prompt deixa claro que as decisões já vêm de uma fonte confirmada, não pede para a IA 'buscar' nada nova?",
+        "Pedi um critério claro de organização (por tema, por data, por resultado)?",
+        "Lembrei de que ainda preciso conferir cada citação organizada antes de usar?"
+      ],
+      "exemplo_de_resposta_forte": "\"Organize estas 10 decisões fictícias já confirmadas sobre cláusulas de rescisão contratual em três grupos temáticos, destacando o entendimento predominante em cada grupo.\""
+    }
+  ]
+}

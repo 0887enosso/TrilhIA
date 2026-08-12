@@ -1,0 +1,192 @@
+{
+  "modulo_id": "intermediaria-09",
+  "trilha": "intermediaria",
+  "bloco": "B",
+  "ordem": 9,
+  "titulo": "IA para revisão e redação de documentos jurídicos",
+  "descricao_curta": "Revisar e redigir são tarefas diferentes — com prompts diferentes.",
+  "tempo_estimado_min": 5,
+  "objetivos_aprendizagem": [
+    "Usar IA para revisar clareza, coesão e consistência de documentos",
+    "Usar IA para gerar primeiras versões de trechos redacionais",
+    "Diferenciar revisão de forma de revisão de mérito jurídico",
+    "Aplicar restrições de prompt para manter fidelidade ao conteúdo original"
+  ],
+  "aulas": [
+    {
+      "ordem": 1,
+      "titulo_aula": "Dois usos diferentes: revisar x redigir",
+      "corpo": "Revisar é pegar um texto já existente e melhorar clareza, coesão e consistência. Redigir é gerar uma primeira versão do zero, a partir de instruções. São tarefas diferentes, com prompts diferentes.",
+      "atividade": {
+        "id": "intermediaria-09-q1",
+        "tipo": "multipla_escolha",
+        "enunciado": "Qual a diferença central entre \"revisar\" e \"redigir\" com apoio de IA?",
+        "alternativas": [
+          {
+            "id": "a",
+            "texto": "Revisar parte de um texto já existente para melhorar forma; redigir gera uma primeira versão do zero a partir de instruções.",
+            "correta": true
+          },
+          {
+            "id": "b",
+            "texto": "Revisar é sempre mais rápido do que redigir, independentemente do documento.",
+            "correta": false
+          },
+          {
+            "id": "c",
+            "texto": "Redigir só pode ser feito por advogados sêniors, nunca por estagiários com apoio de IA.",
+            "correta": false
+          },
+          {
+            "id": "d",
+            "texto": "Não existe diferença real — as duas tarefas usam exatamente o mesmo tipo de prompt.",
+            "correta": false
+          }
+        ],
+        "explicacao_acerto": "Isso mesmo — a diferença é o ponto de partida: texto existente (revisar) versus instrução do zero (redigir).",
+        "explicacao_erro": "Velocidade não é a diferença central, hierarquia de cargo não define quem pode usar a técnica, e os prompts ideais para cada tarefa são, sim, diferentes."
+      }
+    },
+    {
+      "ordem": 2,
+      "titulo_aula": "Revisão de forma x revisão de mérito",
+      "corpo": "A IA pode revisar bem a forma: clareza, gramática, coesão, padronização de termos. Revisão de mérito jurídico — se o argumento está correto, se a estratégia é boa — continua sendo humana.",
+      "atividade": {
+        "id": "intermediaria-09-q2",
+        "tipo": "verdadeiro_falso",
+        "enunciado": "Revisão de mérito jurídico pode ser inteiramente delegada à IA.",
+        "resposta_correta": false,
+        "justificativas": [
+          {
+            "id": "a",
+            "texto": "Falso — a IA pode ajudar na forma, mas avaliar se um argumento está correto continua sendo julgamento humano.",
+            "correta": true
+          },
+          {
+            "id": "b",
+            "texto": "Falso, porque revisão de mérito é uma função tecnicamente desabilitada em qualquer IA.",
+            "correta": false
+          },
+          {
+            "id": "c",
+            "texto": "Verdadeiro, desde que o prompt peça explicitamente uma revisão de mérito.",
+            "correta": false
+          }
+        ],
+        "explicacao": "Não é uma função 'desabilitada tecnicamente' nem uma questão de como o prompt é escrito — é uma questão de julgamento profissional, que continua sendo humano."
+      }
+    },
+    {
+      "ordem": 3,
+      "titulo_aula": "Gerando uma primeira versão",
+      "corpo": "Pedir para a IA redigir uma cláusula ou petição do zero funciona melhor como ponto de partida — com contexto claro do caso e a restrição de 'não inventar fatos ou fundamentos que não foram fornecidos'.",
+      "atividade": {
+        "id": "intermediaria-09-q3",
+        "tipo": "completar_lacuna",
+        "enunciado": "Ao revisar um texto, uma restrição importante é pedir que o ___ original não seja alterado — só a forma.",
+        "lacunas": [
+          {
+            "posicao": 1,
+            "opcoes": [
+              "sentido/conteúdo",
+              "tamanho",
+              "idioma"
+            ],
+            "correta": "sentido/conteúdo"
+          }
+        ]
+      }
+    },
+    {
+      "ordem": 4,
+      "titulo_aula": "Fidelidade ao original",
+      "corpo": "Ao revisar um texto existente, uma restrição importante é pedir que o sentido original não seja alterado — só a forma. Isso evita que a IA 'reescreva' o conteúdo por engano.",
+      "atividade": {
+        "id": "intermediaria-09-q4",
+        "tipo": "correcao_prompt",
+        "enunciado": "A IA 'revisou' um parecer fictício e, sem avisar, mudou a conclusão original. Qual restrição no prompt original teria evitado isso?",
+        "prompt_analisado": "\"Revise este parecer para melhorar a clareza.\"",
+        "alternativas": [
+          {
+            "id": "a",
+            "texto": "Faltou pedir explicitamente que o sentido e a conclusão do texto original não fossem alterados, só a forma.",
+            "correta": true
+          },
+          {
+            "id": "b",
+            "texto": "Faltou pedir que a IA assumisse o papel de um revisor de português.",
+            "correta": false
+          },
+          {
+            "id": "c",
+            "texto": "Faltou pedir a resposta em formato de lista.",
+            "correta": false
+          },
+          {
+            "id": "d",
+            "texto": "Nada faltou — mudar a conclusão é um comportamento esperado de qualquer revisão de texto.",
+            "correta": false
+          }
+        ],
+        "explicacao_acerto": "Sem essa restrição explícita, a IA pode confundir 'melhorar' com 'alterar substância' — a fidelidade ao sentido original precisa ser pedida.",
+        "explicacao_erro": "Papel de revisor de português e formato de lista não evitam esse problema específico, e mudar a conclusão de um parecer nunca deveria ser considerado esperado."
+      }
+    }
+  ],
+  "atividade_final": [
+    {
+      "id": "intermediaria-09-q5",
+      "tipo": "associacao",
+      "enunciado": "Ligue cada tarefa a quem deve conduzi-la.",
+      "pares": [
+        {
+          "termo": "Revisar clareza e gramática de um texto",
+          "definicao": "IA pode ajudar bastante"
+        },
+        {
+          "termo": "Gerar uma primeira versão de uma cláusula, com contexto fornecido",
+          "definicao": "IA pode ajudar como ponto de partida"
+        },
+        {
+          "termo": "Avaliar se um argumento jurídico está correto",
+          "definicao": "Sempre julgamento humano"
+        }
+      ]
+    },
+    {
+      "id": "intermediaria-09-q6",
+      "tipo": "verdadeiro_falso",
+      "enunciado": "Pedir para a IA não alterar o sentido original é uma restrição útil ao revisar um texto.",
+      "resposta_correta": true,
+      "justificativas": [
+        {
+          "id": "a",
+          "texto": "Verdadeiro — essa restrição reduz o risco de a IA reescrever conteúdo ao invés de só melhorar a forma.",
+          "correta": true
+        },
+        {
+          "id": "b",
+          "texto": "Verdadeiro, mas só é necessária em documentos com mais de 10 páginas.",
+          "correta": false
+        },
+        {
+          "id": "c",
+          "texto": "Falso, pedir isso deixa a resposta da IA mais lenta sem nenhum benefício real.",
+          "correta": false
+        }
+      ],
+      "explicacao": "Não há relação com tamanho do documento nem prejuízo de velocidade — é uma restrição de conteúdo, útil em qualquer revisão."
+    },
+    {
+      "id": "intermediaria-09-q7",
+      "tipo": "resposta_curta_autoavaliada",
+      "enunciado": "Escreva um prompt completo para pedir que a IA redija, do zero, uma cláusula fictícia de confidencialidade, evitando invenção de fatos.",
+      "criterios_autoavaliacao": [
+        "Meu prompt fornece contexto suficiente sobre as partes e o objetivo da cláusula?",
+        "Incluí a restrição de não inventar fatos ou fundamentos não fornecidos?",
+        "Ficou claro que o resultado é um ponto de partida, não uma versão final pronta?"
+      ],
+      "exemplo_de_resposta_forte": "\"Aja como um advogado redator de contratos. Redija uma cláusula de confidencialidade entre duas empresas fictícias, sem inventar nenhum detalhe além do que eu forneci, em formato de cláusula contratual padrão.\""
+    }
+  ]
+}
