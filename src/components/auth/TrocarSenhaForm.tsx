@@ -40,7 +40,6 @@ export function TrocarSenhaForm() {
     }
 
     router.push("/inicio");
-    router.refresh();
   }
 
   return (

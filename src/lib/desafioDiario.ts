@@ -1,7 +1,5 @@
 import { prisma } from "./prisma";
 import { todasQuestoesDoModulo, parseQuestaoId } from "./content";
-import { calcularNivel } from "./xp";
-import { adicionarXpSemanal } from "./ligas";
 
 const QUESTOES_POR_DESAFIO = 5;
 const XP_BONUS_DESAFIO_DIARIO = 30;
@@ -64,6 +62,11 @@ export async function obterOuCriarDesafioDeHoje(usuarioId: string) {
  * registrada. Se a questão pertence ao desafio de hoje do usuário e todas as
  * questões do desafio já foram respondidas ao menos uma vez, concede o bônus
  * de conclusão (uma única vez, via checagem do campo `concluido`).
+ *
+ * NÃO grava xpTotal/nivel do usuário nem soma XP semanal de liga — isso é
+ * responsabilidade de quem chama (`route.ts`), que combina este bônus com o
+ * XP da própria questão e grava tudo em uma única escrita ao final da
+ * requisição. Esta função só decide e persiste a conclusão do desafio em si.
  */
 export async function processarRespostaParaDesafioDiario(
   usuarioId: string,
@@ -103,20 +106,6 @@ export async function processarRespostaParaDesafioDiario(
   });
 
   if (resultado.count === 0) return null; // outra requisição já concedeu o bônus primeiro
-
-  // Mesmo tratamento do XP de questão (ver questao/responder/route.ts): nível
-  // recalculado a partir do xpTotal pós-incremento, e o bônus também entra na
-  // apuração semanal de liga — sem isso, o bônus do desafio inflava xpTotal
-  // sem nunca mexer no nível nem contar para o ranking da semana.
-  const usuarioAtualizado = await prisma.usuario.update({
-    where: { id: usuarioId },
-    data: { xpTotal: { increment: XP_BONUS_DESAFIO_DIARIO } },
-  });
-  await prisma.usuario.update({
-    where: { id: usuarioId },
-    data: { nivel: calcularNivel(usuarioAtualizado.xpTotal) },
-  });
-  await adicionarXpSemanal(usuarioId, XP_BONUS_DESAFIO_DIARIO);
 
   return { desafioConcluidoAgora: true, xpBonus: XP_BONUS_DESAFIO_DIARIO };
 }

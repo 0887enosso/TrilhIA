@@ -9,6 +9,13 @@ function diasEntre(a: Date, b: Date): number {
   return Math.round((inicioDoDiaUTC(b).getTime() - inicioDoDiaUTC(a).getTime()) / msPorDia);
 }
 
+/** Campos do usuário que `atualizarStreak` precisa — evita rebuscar o usuário
+ * inteiro quando quem chama já os tem em mãos. */
+export type DadosStreakUsuario = {
+  ultimoDiaAtivo: Date | null;
+  streakFreezesDisponiveis: number;
+};
+
 /**
  * Atualiza o streak do usuário com base na última vez que ele esteve ativo.
  * Chamada uma vez por ação significativa (hoje: ao responder uma questão).
@@ -20,8 +27,10 @@ function diasEntre(a: Date, b: Date): number {
  *   freeze e mantém a sequência viva.
  * - Qualquer outro caso (sem freeze, ou mais de 1 dia perdido) → reinicia em 1.
  */
-export async function atualizarStreak(usuarioId: string): Promise<void> {
-  const usuario = await prisma.usuario.findUniqueOrThrow({ where: { id: usuarioId } });
+export async function atualizarStreak(
+  usuarioId: string,
+  usuario: DadosStreakUsuario
+): Promise<void> {
   const hoje = new Date();
 
   if (!usuario.ultimoDiaAtivo) {

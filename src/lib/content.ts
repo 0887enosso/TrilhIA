@@ -210,17 +210,32 @@ export async function moduloFoiRealizado(
   const questoes = todasQuestoesDoModulo(trilha, moduloId);
   if (questoes.length === 0) return true; // módulo sem quiz (ex: projeto prático) — nada a checar aqui
 
-  for (const questao of questoes) {
-    const ehAutoavaliada = questao.tipo === "resposta_curta_autoavaliada";
-    const resposta = await prisma.respostaQuestao.findFirst({
-      where: ehAutoavaliada
-        ? { usuarioId, questaoId: questao.id }
-        : { usuarioId, questaoId: questao.id, correta: true },
-    });
-    if (!resposta) return false;
-  }
+  // Uma única ida ao banco para todas as questões do módulo, em vez de um
+  // findFirst por questão em série — o que fazia 6-10 round-trips sequenciais
+  // a um banco remoto só para essa checagem. A condição de "realizado" por
+  // questão é preservada exatamente, só avaliada em memória a partir de um
+  // único resultado: cada tentativa gera uma linha nova em RespostaQuestao
+  // (sem upsert/unique), então "respondida corretamente" continua
+  // significando "existe ao menos uma linha com correta: true alguma vez" —
+  // não a tentativa mais recente.
+  const respostas = await prisma.respostaQuestao.findMany({
+    where: {
+      usuarioId,
+      questaoId: { in: questoes.map((questao) => questao.id) },
+    },
+    select: { questaoId: true, correta: true },
+  });
 
-  return true;
+  const questoesComRespostaCorreta = new Set(
+    respostas.filter((r) => r.correta === true).map((r) => r.questaoId)
+  );
+  const questoesComQualquerResposta = new Set(respostas.map((r) => r.questaoId));
+
+  return questoes.every((questao) =>
+    questao.tipo === "resposta_curta_autoavaliada"
+      ? questoesComQualquerResposta.has(questao.id)
+      : questoesComRespostaCorreta.has(questao.id)
+  );
 }
 export function extrairExplicacao(questao: any, correta: boolean | null): any {
   switch (questao.tipo) {

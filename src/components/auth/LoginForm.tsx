@@ -40,7 +40,6 @@ export function LoginForm() {
     } else {
       router.push("/inicio");
     }
-    router.refresh();
   }
 
   return (

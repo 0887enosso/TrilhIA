@@ -1,8 +1,9 @@
 // Adaptado de React Bits (https://reactbits.dev/animations/click-spark) —
 // David Haz, licença MIT + Commons Clause (ver docs/THIRD-PARTY-NOTICES.md).
-// Sem alterações de lógica, só a cor padrão (âmbar do produto) e menos
-// faíscas por padrão (6 em vez de 8 — mais discreto, é feedback, não fogo de
-// artifício).
+// Cor padrão (âmbar do produto), menos faíscas por padrão (6 em vez de 8 —
+// mais discreto, é feedback, não fogo de artifício) e o loop de desenho só
+// roda enquanto houver faíscas ativas (evita `requestAnimationFrame`
+// permanente a 60fps sem nada para desenhar).
 "use client";
 
 import { useCallback, useEffect, useRef, type ReactNode, type MouseEvent as ReactMouseEvent } from "react";
@@ -30,6 +31,7 @@ export function ClickSpark({
 }: ClickSparkProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const sparksRef = useRef<Spark[]>([]);
+  const animationIdRef = useRef<number | null>(null);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -61,14 +63,17 @@ export function ClickSpark({
 
   const easeOut = useCallback((t: number) => t * (2 - t), []);
 
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    const ctx = canvas.getContext("2d");
-    if (!ctx) return;
+  // Desenha um frame e, se ainda restarem faíscas, agenda o próximo — do
+  // contrário para o loop (o próximo clique é quem o reinicia).
+  const draw = useCallback(
+    (timestamp: number) => {
+      const canvas = canvasRef.current;
+      const ctx = canvas?.getContext("2d");
+      if (!canvas || !ctx) {
+        animationIdRef.current = null;
+        return;
+      }
 
-    let animationId: number;
-    const draw = (timestamp: number) => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
       sparksRef.current = sparksRef.current.filter((spark) => {
@@ -94,11 +99,24 @@ export function ClickSpark({
         return true;
       });
 
-      animationId = requestAnimationFrame(draw);
+      if (sparksRef.current.length === 0) {
+        animationIdRef.current = null;
+        return;
+      }
+
+      animationIdRef.current = requestAnimationFrame(draw);
+    },
+    [sparkColor, sparkSize, sparkRadius, duration, easeOut]
+  );
+
+  // Garante que o loop pare quando o componente desmonta (ex.: navegação
+  // entre módulos) mesmo que ainda houvesse faíscas em andamento.
+  useEffect(() => {
+    return () => {
+      if (animationIdRef.current !== null) cancelAnimationFrame(animationIdRef.current);
+      animationIdRef.current = null;
     };
-    animationId = requestAnimationFrame(draw);
-    return () => cancelAnimationFrame(animationId);
-  }, [sparkColor, sparkSize, sparkRadius, duration, easeOut]);
+  }, [draw]);
 
   const handleClick = (e: ReactMouseEvent<HTMLDivElement>) => {
     const canvas = canvasRef.current;
@@ -108,6 +126,8 @@ export function ClickSpark({
     const y = e.clientY - rect.top;
     const now = performance.now();
 
+    const wasIdle = sparksRef.current.length === 0 && animationIdRef.current === null;
+
     sparksRef.current.push(
       ...Array.from({ length: sparkCount }, (_, i) => ({
         x,
@@ -116,6 +136,10 @@ export function ClickSpark({
         startTime: now,
       }))
     );
+
+    if (wasIdle) {
+      animationIdRef.current = requestAnimationFrame(draw);
+    }
   };
 
   return (

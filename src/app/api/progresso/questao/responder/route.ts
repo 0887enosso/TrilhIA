@@ -58,18 +58,24 @@ export async function POST(request: NextRequest) {
     where: { usuarioId: sessao.usuarioId, questaoId },
   });
 
-  await prisma.respostaQuestao.create({
-    data: {
-      usuarioId: sessao.usuarioId,
-      questaoId,
-      moduloId,
-      tipoQuestao: questao.tipo,
-      correta,
-      tentativas: tentativasAnteriores + 1,
-    },
-  });
-
-  await atualizarStreak(sessao.usuarioId);
+  // --- Independentes entre si: gravar a tentativa e atualizar o streak não
+  // dependem um do outro, então rodam em paralelo em vez de em série.
+  await Promise.all([
+    prisma.respostaQuestao.create({
+      data: {
+        usuarioId: sessao.usuarioId,
+        questaoId,
+        moduloId,
+        tipoQuestao: questao.tipo,
+        correta,
+        tentativas: tentativasAnteriores + 1,
+      },
+    }),
+    atualizarStreak(sessao.usuarioId, {
+      ultimoDiaAtivo: usuarioAntes.ultimoDiaAtivo,
+      streakFreezesDisponiveis: usuarioAntes.streakFreezesDisponiveis,
+    }),
+  ]);
 
   // --- XP: concedido no máximo uma vez por questão, mesmo sob concorrência.
   // A constraint única em XpConcedido é quem garante isso — a criação abaixo
@@ -96,16 +102,31 @@ export async function POST(request: NextRequest) {
 
   let usuarioAtualizado = usuarioAntes;
 
-  if (xpGanho > 0) {
-    const posIncremento = await prisma.usuario.update({
+  // --- Desafio diário: decide e persiste a conclusão em si (se for o caso),
+  // mas não grava xpTotal/nivel/liga — isso é feito uma única vez abaixo,
+  // somado ao XP da questão, para não duplicar a mesma escrita de usuário
+  // nem refazer a checagem de elegibilidade de liga duas vezes na mesma
+  // requisição.
+  const resultadoDesafioDiario = await processarRespostaParaDesafioDiario(
+    sessao.usuarioId,
+    questaoId
+  );
+  const xpBonusDesafio = resultadoDesafioDiario?.xpBonus ?? 0;
+  const xpTotalGanhoNaRequisicao = xpGanho + xpBonusDesafio;
+
+  if (xpTotalGanhoNaRequisicao > 0) {
+    // increment atômico no banco (não "ler xpTotal, somar em código, gravar")
+    // — combinar isso numa leitura-cálculo-escrita reabriria uma corrida de
+    // perda de XP se duas respostas do mesmo usuário chegarem quase juntas.
+    const comXpAtualizado = await prisma.usuario.update({
       where: { id: sessao.usuarioId },
-      data: { xpTotal: { increment: xpGanho } },
+      data: { xpTotal: { increment: xpTotalGanhoNaRequisicao } },
     });
     usuarioAtualizado = await prisma.usuario.update({
       where: { id: sessao.usuarioId },
-      data: { nivel: calcularNivel(posIncremento.xpTotal) },
+      data: { nivel: calcularNivel(comXpAtualizado.xpTotal) },
     });
-    await adicionarXpSemanal(sessao.usuarioId, xpGanho);
+    await adicionarXpSemanal(sessao.usuarioId, usuarioAntes.equipeId, xpTotalGanhoNaRequisicao);
   }
 
   // --- Corações: decremento condicional (gt: 0), nunca fica negativo mesmo
@@ -121,11 +142,6 @@ export async function POST(request: NextRequest) {
       });
     }
   }
-
-  const resultadoDesafioDiario = await processarRespostaParaDesafioDiario(
-    sessao.usuarioId,
-    questaoId
-  );
 
   return NextResponse.json({
     correta,

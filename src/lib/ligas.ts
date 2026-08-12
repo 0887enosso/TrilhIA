@@ -41,18 +41,16 @@ export async function trilhaBasicaConcluida(usuarioId: string): Promise<boolean>
  * desbloqueio ele já cumpre. Novas condições futuras (ex: trilha
  * intermediária concluída) entram como um novo "else if" aqui.
  */
-export async function ligasElegiveis(usuarioId: string) {
-  const usuario = await prisma.usuario.findUniqueOrThrow({ where: { id: usuarioId } });
+export async function ligasElegiveis(usuarioId: string, equipeId: string) {
+  const [ligasPadrao, ligasExclusivas] = await Promise.all([
+    prisma.liga.findMany({ where: { tipo: "PADRAO", equipeId } }),
+    prisma.liga.findMany({ where: { tipo: "EXCLUSIVA" } }),
+  ]);
 
-  const ligasPadrao = await prisma.liga.findMany({
-    where: { tipo: "PADRAO", equipeId: usuario.equipeId },
-  });
-
-  const ligasExclusivas = await prisma.liga.findMany({ where: { tipo: "EXCLUSIVA" } });
   const elegiveis = [];
 
   for (const liga of ligasExclusivas) {
-    if (liga.equipeId && liga.equipeId !== usuario.equipeId) continue;
+    if (liga.equipeId && liga.equipeId !== equipeId) continue;
 
     if (!liga.condicaoDesbloqueio) {
       elegiveis.push(liga);
@@ -89,7 +87,11 @@ export type RankingLiga = {
  */
 export async function obterRankingSemanalDoUsuario(usuarioId: string): Promise<RankingLiga[]> {
   const semana = semanaIsoAtual();
-  const ligas = await ligasElegiveis(usuarioId);
+  const usuario = await prisma.usuario.findUniqueOrThrow({
+    where: { id: usuarioId },
+    select: { equipeId: true },
+  });
+  const ligas = await ligasElegiveis(usuarioId, usuario.equipeId);
 
   return Promise.all(
     ligas.map(async (liga) => {
@@ -117,17 +119,23 @@ export async function obterRankingSemanalDoUsuario(usuarioId: string): Promise<R
 }
 
 /** Soma XP à(s) participação(ões) do usuário na semana corrente, em todas as ligas elegíveis. */
-export async function adicionarXpSemanal(usuarioId: string, xp: number): Promise<void> {
+export async function adicionarXpSemanal(
+  usuarioId: string,
+  equipeId: string,
+  xp: number
+): Promise<void> {
   if (xp <= 0) return;
 
   const semana = semanaIsoAtual();
-  const ligas = await ligasElegiveis(usuarioId);
+  const ligas = await ligasElegiveis(usuarioId, equipeId);
 
-  for (const liga of ligas) {
-    await prisma.participacaoLiga.upsert({
-      where: { ligaId_usuarioId_semana: { ligaId: liga.id, usuarioId, semana } },
-      update: { xpNaSemana: { increment: xp } },
-      create: { ligaId: liga.id, usuarioId, semana, xpNaSemana: xp },
-    });
-  }
+  await Promise.all(
+    ligas.map((liga) =>
+      prisma.participacaoLiga.upsert({
+        where: { ligaId_usuarioId_semana: { ligaId: liga.id, usuarioId, semana } },
+        update: { xpNaSemana: { increment: xp } },
+        create: { ligaId: liga.id, usuarioId, semana, xpNaSemana: xp },
+      })
+    )
+  );
 }

@@ -23,15 +23,17 @@ export async function POST(request: NextRequest) {
   const nickname = parsed.data.nickname.trim().toLowerCase();
   const { senha } = parsed.data;
 
-  const podeTentar = await dentroDoLimite(nickname, "login");
+  const [podeTentar, usuario] = await Promise.all([
+    dentroDoLimite(nickname, "login"),
+    prisma.usuario.findUnique({ where: { nickname } }),
+  ]);
+
   if (!podeTentar) {
     return NextResponse.json(
       { erro: "Muitas tentativas de login. Aguarde alguns minutos e tente novamente." },
       { status: 429 }
     );
   }
-
-  const usuario = await prisma.usuario.findUnique({ where: { nickname } });
 
   // Mensagem genérica de propósito: não revelar se o problema foi o
   // nickname não existir, a senha estar errada ou a conta estar desativada —

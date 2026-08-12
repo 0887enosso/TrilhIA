@@ -14,7 +14,7 @@ type NoiseProps = {
   className?: string;
 };
 
-export function Noise({ patternAlpha = 6, patternRefreshInterval = 6, className = "" }: NoiseProps) {
+export function Noise({ patternAlpha = 6, patternRefreshInterval = 24, className = "" }: NoiseProps) {
   const grainRef = useRef<HTMLCanvasElement | null>(null);
 
   useEffect(() => {
@@ -45,7 +45,7 @@ export function Noise({ patternAlpha = 6, patternRefreshInterval = 6, className 
     };
 
     const loop = () => {
-      if (frame % patternRefreshInterval === 0) drawGrain();
+      if (document.visibilityState === "visible" && frame % patternRefreshInterval === 0) drawGrain();
       frame++;
       animationId = window.requestAnimationFrame(loop);
     };
