@@ -65,6 +65,12 @@ model Usuario {
   nivel                    Int          @default(1)
   streakAtual              Int          @default(0)
   streakFreezesDisponiveis Int          @default(0)
+  // Semana ISO ("YYYY-Www") em que este usuário já recebeu a reposição
+  // semanal de freeze (ver /api/cron/semanal). Impede que rodar o cron duas
+  // vezes na mesma semana conceda dois freezes — o teto numérico (< 2)
+  // sozinho não bastava, porque alguém abaixo do teto por outro motivo
+  // (acabou de gastar um freeze) passaria no filtro nas duas execuções.
+  freezeRepostoNaSemana    String?
   ultimoDiaAtivo           DateTime?
   coracoesAtuais           Int          @default(5)
   // Timestamp de quando coracoesAtuais chegou a 0 — usado para regenerar

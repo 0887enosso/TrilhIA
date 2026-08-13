@@ -1,5 +1,9 @@
+import { Prisma } from "@prisma/client";
 import { prisma } from "./prisma";
 import { listarIdsModulos } from "./content";
+
+/** Cliente Prisma "normal" ou um cliente de transação (`tx` de `prisma.$transaction`) — mesma API para as duas coisas. */
+type PrismaOuTransacao = typeof prisma | Prisma.TransactionClient;
 
 /** Retorna a semana no formato ISO "YYYY-Www", usada como chave de agrupamento das ligas. */
 export function semanaIsoDe(data: Date): string {
@@ -22,9 +26,12 @@ export function semanaIsoAnterior(): string {
 }
 
 /** Verifica se o usuário concluiu todos os módulos da trilha básica. */
-export async function trilhaBasicaConcluida(usuarioId: string): Promise<boolean> {
+export async function trilhaBasicaConcluida(
+  usuarioId: string,
+  db: PrismaOuTransacao = prisma
+): Promise<boolean> {
   const idsModulosBasica = listarIdsModulos("basica");
-  const concluidos = await prisma.progressoModulo.count({
+  const concluidos = await db.progressoModulo.count({
     where: {
       usuarioId,
       trilha: "basica",
@@ -40,11 +47,23 @@ export async function trilhaBasicaConcluida(usuarioId: string): Promise<boolean>
  * da própria equipe, mais qualquer liga exclusiva cuja condição de
  * desbloqueio ele já cumpre. Novas condições futuras (ex: trilha
  * intermediária concluída) entram como um novo "else if" aqui.
+ *
+ * Aceita opcionalmente o client de transação (`tx`). Isso importa mais do
+ * que em `trilhaBasicaConcluida`/afins: quando chamada de dentro de um
+ * `prisma.$transaction(...)` (ver `adicionarXpSemanal`), rodar essas leituras
+ * pelo client global em vez de `tx` exigia uma 2ª conexão do pool enquanto a
+ * transação já segurava 1ª — sob concorrência real (~8 requisições
+ * simultâneas do mesmo usuário disputando a mesma linha), isso esgotava o
+ * pool de conexões e travava as respostas por vários segundos.
  */
-export async function ligasElegiveis(usuarioId: string, equipeId: string) {
+export async function ligasElegiveis(
+  usuarioId: string,
+  equipeId: string,
+  db: PrismaOuTransacao = prisma
+) {
   const [ligasPadrao, ligasExclusivas] = await Promise.all([
-    prisma.liga.findMany({ where: { tipo: "PADRAO", equipeId } }),
-    prisma.liga.findMany({ where: { tipo: "EXCLUSIVA" } }),
+    db.liga.findMany({ where: { tipo: "PADRAO", equipeId } }),
+    db.liga.findMany({ where: { tipo: "EXCLUSIVA" } }),
   ]);
 
   const elegiveis = [];
@@ -55,7 +74,7 @@ export async function ligasElegiveis(usuarioId: string, equipeId: string) {
     if (!liga.condicaoDesbloqueio) {
       elegiveis.push(liga);
     } else if (liga.condicaoDesbloqueio === "trilha_basica_concluida") {
-      if (await trilhaBasicaConcluida(usuarioId)) elegiveis.push(liga);
+      if (await trilhaBasicaConcluida(usuarioId, db)) elegiveis.push(liga);
     }
     // condições futuras de desbloqueio entram aqui
   }
@@ -98,7 +117,7 @@ export async function obterRankingSemanalDoUsuario(usuarioId: string): Promise<R
       const participacoes = await prisma.participacaoLiga.findMany({
         where: { ligaId: liga.id, semana },
         include: { usuario: { select: { id: true, nome: true } } },
-        orderBy: { xpNaSemana: "desc" },
+        orderBy: [{ xpNaSemana: "desc" }, { id: "asc" }],
       });
 
       return {
@@ -118,20 +137,28 @@ export async function obterRankingSemanalDoUsuario(usuarioId: string): Promise<R
   );
 }
 
-/** Soma XP à(s) participação(ões) do usuário na semana corrente, em todas as ligas elegíveis. */
+/**
+ * Soma XP à(s) participação(ões) do usuário na semana corrente, em todas as
+ * ligas elegíveis. Aceita opcionalmente o client de transação (`tx`) de um
+ * `prisma.$transaction(...)` para que a concessão de XP semanal aconteça
+ * atomicamente junto com o resto da concessão de XP da requisição — sem
+ * isso, uma queda do processo entre gravar o XP total do usuário e somar o
+ * XP semanal na liga deixava as duas fontes de XP divergentes.
+ */
 export async function adicionarXpSemanal(
   usuarioId: string,
   equipeId: string,
-  xp: number
+  xp: number,
+  db: PrismaOuTransacao = prisma
 ): Promise<void> {
   if (xp <= 0) return;
 
   const semana = semanaIsoAtual();
-  const ligas = await ligasElegiveis(usuarioId, equipeId);
+  const ligas = await ligasElegiveis(usuarioId, equipeId, db);
 
   await Promise.all(
     ligas.map((liga) =>
-      prisma.participacaoLiga.upsert({
+      db.participacaoLiga.upsert({
         where: { ligaId_usuarioId_semana: { ligaId: liga.id, usuarioId, semana } },
         update: { xpNaSemana: { increment: xp } },
         create: { ligaId: liga.id, usuarioId, semana, xpNaSemana: xp },

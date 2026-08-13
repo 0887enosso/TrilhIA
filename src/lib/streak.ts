@@ -1,12 +1,21 @@
 import { prisma } from "./prisma";
 
-function inicioDoDiaUTC(data: Date): Date {
-  return new Date(Date.UTC(data.getUTCFullYear(), data.getUTCMonth(), data.getUTCDate()));
+/**
+ * Início do dia no fuso de Brasília (UTC-3 fixo — o Brasil não usa mais
+ * horário de verão desde 2019, então não precisa de lógica de fuso variável).
+ * Antes disso usava UTC puro, o que deslocava a virada do dia da streak para
+ * as 21h de Brasília — bem no meio do horário mais comum de uso do app,
+ * quebrando sequência de quem usa o app em horários variáveis à noite mesmo
+ * sem ter faltado nenhum dia de verdade.
+ */
+function inicioDoDiaBrasil(data: Date): Date {
+  const deslocado = new Date(data.getTime() - 3 * 60 * 60 * 1000);
+  return new Date(Date.UTC(deslocado.getUTCFullYear(), deslocado.getUTCMonth(), deslocado.getUTCDate()));
 }
 
 function diasEntre(a: Date, b: Date): number {
   const msPorDia = 24 * 60 * 60 * 1000;
-  return Math.round((inicioDoDiaUTC(b).getTime() - inicioDoDiaUTC(a).getTime()) / msPorDia);
+  return Math.round((inicioDoDiaBrasil(b).getTime() - inicioDoDiaBrasil(a).getTime()) / msPorDia);
 }
 
 /** Campos do usuário que `atualizarStreak` precisa — evita rebuscar o usuário
@@ -26,6 +35,17 @@ export type DadosStreakUsuario = {
  * - 2 dias depois (perdeu 1 dia) e há streak freeze disponível → consome 1
  *   freeze e mantém a sequência viva.
  * - Qualquer outro caso (sem freeze, ou mais de 1 dia perdido) → reinicia em 1.
+ *
+ * Todas as escritas usam `updateMany` condicionado ao `ultimoDiaAtivo` (e,
+ * quando aplicável, `streakFreezesDisponiveis`) exatamente como foram lidos
+ * por quem chamou — não um `update` incondicional. Sem isso, duas respostas
+ * de questão quase simultâneas do mesmo usuário (duas abas, um retry de
+ * rede) liam o mesmo estado "antes" e as duas aplicavam o mesmo incremento,
+ * inflando a streak (medido: +8 numa rodada de 8 requisições paralelas) e
+ * podendo deixar o freeze negativo. Se o `updateMany` não afetar nenhuma
+ * linha (`count === 0`), outra requisição concorrente já aplicou essa mesma
+ * transição — não é erro, só um no-op silencioso (streak não é devolvida na
+ * resposta da rota, então isso é seguro).
  */
 export async function atualizarStreak(
   usuarioId: string,
@@ -34,8 +54,8 @@ export async function atualizarStreak(
   const hoje = new Date();
 
   if (!usuario.ultimoDiaAtivo) {
-    await prisma.usuario.update({
-      where: { id: usuarioId },
+    await prisma.usuario.updateMany({
+      where: { id: usuarioId, ultimoDiaAtivo: null },
       data: { streakAtual: 1, ultimoDiaAtivo: hoje },
     });
     return;
@@ -46,16 +66,20 @@ export async function atualizarStreak(
   if (gap === 0) return;
 
   if (gap === 1) {
-    await prisma.usuario.update({
-      where: { id: usuarioId },
+    await prisma.usuario.updateMany({
+      where: { id: usuarioId, ultimoDiaAtivo: usuario.ultimoDiaAtivo },
       data: { streakAtual: { increment: 1 }, ultimoDiaAtivo: hoje },
     });
     return;
   }
 
   if (gap === 2 && usuario.streakFreezesDisponiveis > 0) {
-    await prisma.usuario.update({
-      where: { id: usuarioId },
+    await prisma.usuario.updateMany({
+      where: {
+        id: usuarioId,
+        ultimoDiaAtivo: usuario.ultimoDiaAtivo,
+        streakFreezesDisponiveis: { gt: 0 },
+      },
       data: {
         streakFreezesDisponiveis: { decrement: 1 },
         streakAtual: { increment: 1 },
@@ -65,8 +89,8 @@ export async function atualizarStreak(
     return;
   }
 
-  await prisma.usuario.update({
-    where: { id: usuarioId },
+  await prisma.usuario.updateMany({
+    where: { id: usuarioId, ultimoDiaAtivo: usuario.ultimoDiaAtivo },
     data: { streakAtual: 1, ultimoDiaAtivo: hoje },
   });
 }

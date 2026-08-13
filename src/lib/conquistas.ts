@@ -1,3 +1,4 @@
+import { Prisma } from "@prisma/client";
 import { prisma } from "./prisma";
 import {
   carregarModulo,
@@ -5,6 +6,9 @@ import {
   listarIdsModulos,
   TrilhaId,
 } from "./content";
+
+/** Cliente Prisma "normal" ou um cliente de transação (`tx` de `prisma.$transaction`) — mesma API para as duas coisas. */
+type PrismaOuTransacao = typeof prisma | Prisma.TransactionClient;
 
 function paraSlug(texto: string): string {
   return texto
@@ -16,12 +20,13 @@ function paraSlug(texto: string): string {
 }
 
 async function concederBadge(
+  db: PrismaOuTransacao,
   usuarioId: string,
   nomeBadge: string,
   descricao: string
 ): Promise<string> {
   const badgeId = paraSlug(nomeBadge);
-  await prisma.conquistaUsuario.upsert({
+  await db.conquistaUsuario.upsert({
     where: { usuarioId_badgeId: { usuarioId, badgeId } },
     update: {},
     create: { usuarioId, badgeId, nomeBadge, descricao },
@@ -29,8 +34,12 @@ async function concederBadge(
   return badgeId;
 }
 
-async function emitirCertificado(usuarioId: string, trilha: TrilhaId): Promise<void> {
-  await prisma.certificado.upsert({
+async function emitirCertificado(
+  db: PrismaOuTransacao,
+  usuarioId: string,
+  trilha: TrilhaId
+): Promise<void> {
+  await db.certificado.upsert({
     where: { usuarioId_trilha: { usuarioId, trilha } },
     update: {},
     create: { usuarioId, trilha },
@@ -128,17 +137,25 @@ export async function obterConquistasDoUsuario(
  * certificado de fim de trilha intermediária (campo conquista_final, só
  * existe no módulo 30), e conclusão total da trilha básica (verificada por
  * contagem, já que ela não tem um "módulo 30" equivalente).
+ *
+ * Aceita opcionalmente o client de transação (`tx`) de um
+ * `prisma.$transaction(...)` em vez do client global — assim quem chama pode
+ * garantir que marcar o módulo como concluído e conceder badge/certificado
+ * acontecem atomicamente. Sem o parâmetro, usa o client global normalmente
+ * (compatível com quem já chama esta função fora de uma transação).
  */
 export async function processarConquistasDoModulo(
   usuarioId: string,
   trilha: TrilhaId,
-  moduloId: string
+  moduloId: string,
+  db: PrismaOuTransacao = prisma
 ): Promise<ResultadoConquistas> {
   const modulo = carregarModulo(trilha, moduloId);
   const resultado: ResultadoConquistas = { badgesGanhas: [], certificadoEmitido: false };
 
   if (modulo.conquista_de_bloco) {
     const badgeId = await concederBadge(
+      db,
       usuarioId,
       modulo.conquista_de_bloco.nome_badge,
       modulo.conquista_de_bloco.descricao
@@ -148,6 +165,7 @@ export async function processarConquistasDoModulo(
 
   if (modulo.conquista_final) {
     const badgeId = await concederBadge(
+      db,
       usuarioId,
       modulo.conquista_final.nome_badge,
       modulo.conquista_final.descricao
@@ -155,24 +173,24 @@ export async function processarConquistasDoModulo(
     resultado.badgesGanhas.push(badgeId);
 
     if (modulo.conquista_final.certificado_elegivel) {
-      await emitirCertificado(usuarioId, trilha);
+      await emitirCertificado(db, usuarioId, trilha);
       resultado.certificadoEmitido = true;
     }
   }
 
   if (trilha === "basica") {
     const idsBasica = listarIdsModulos("basica");
-    const concluidos = await prisma.progressoModulo.count({
+    const concluidos = await db.progressoModulo.count({
       where: { usuarioId, trilha: "basica", moduloId: { in: idsBasica }, concluido: true },
     });
 
     if (concluidos === idsBasica.length) {
       const transicao = carregarTransicaoBasicaParaIntermediaria();
       const badgeInfo = transicao.tela_celebracao.badge_conquistada;
-      const badgeId = await concederBadge(usuarioId, badgeInfo.nome, badgeInfo.descricao);
+      const badgeId = await concederBadge(db, usuarioId, badgeInfo.nome, badgeInfo.descricao);
       resultado.badgesGanhas.push(badgeId);
 
-      await emitirCertificado(usuarioId, "basica");
+      await emitirCertificado(db, usuarioId, "basica");
       resultado.certificadoEmitido = true;
     }
   }

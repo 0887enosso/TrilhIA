@@ -3,6 +3,7 @@ import { z } from "zod";
 import { prisma } from "@/lib/prisma";
 import { obterSessaoAtual } from "@/lib/auth";
 import { carregarModulo } from "@/lib/content";
+import { AcessoModuloBloqueadoError, garantirAcessoAoModulo } from "@/lib/acessoModulo";
 
 const MODULO_ID = "intermediaria-30";
 const TRILHA = "intermediaria";
@@ -36,6 +37,15 @@ export async function POST(request: NextRequest) {
     );
   }
   const { casoId, respostasTarefas, checklistMarcado } = parsed.data;
+
+  try {
+    await garantirAcessoAoModulo(sessao.usuarioId, TRILHA, MODULO_ID);
+  } catch (erro) {
+    if (erro instanceof AcessoModuloBloqueadoError) {
+      return NextResponse.json({ erro: erro.message, codigo: erro.codigo }, { status: 403 });
+    }
+    throw erro;
+  }
 
   const modulo = carregarModulo(TRILHA, MODULO_ID);
 

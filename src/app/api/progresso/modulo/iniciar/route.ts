@@ -4,9 +4,8 @@ import { prisma } from "@/lib/prisma";
 import { obterSessaoAtual } from "@/lib/auth";
 import { carregarModulo } from "@/lib/content";
 import { tentarConsumirEstrelaDiaria } from "@/lib/limiteDiario";
-import { trilhaBasicaConcluida } from "@/lib/ligas";
-import { obterProgressoAgregado } from "@/lib/progresso";
 import { aplicarRegeneracaoSeNecessario, calcularCoracoesLiberamEm } from "@/lib/coracoes";
+import { AcessoModuloBloqueadoError, garantirAcessoAoModulo } from "@/lib/acessoModulo";
 
 const schema = z.object({
   trilha: z.enum(["basica", "intermediaria"]),
@@ -32,31 +31,17 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ erro: "Módulo não encontrado no conteúdo." }, { status: 404 });
   }
 
-  // Trilha Intermediária só libera depois da Básica 100% concluída — não é
-  // escolha livre de trilha. Checado aqui também (não só na página) porque
-  // esta rota pode ser chamada direto, sem passar pelo frontend.
-  if (trilha === "intermediaria" && !(await trilhaBasicaConcluida(sessao.usuarioId))) {
-    return NextResponse.json(
-      {
-        erro: "Conclua a Trilha Básica antes de começar a Trilha Intermediária.",
-        codigo: "trilha_bloqueada",
-      },
-      { status: 403 }
-    );
-  }
-
-  // Módulo seguinte só libera depois que o anterior está concluído — checado
-  // aqui (não só no mapa da trilha) porque esta rota pode ser chamada direto.
-  const progresso = await obterProgressoAgregado(sessao.usuarioId);
-  const moduloAlvo = progresso[trilha].modulos.find((m) => m.modulo_id === moduloId);
-  if (moduloAlvo && !moduloAlvo.desbloqueado) {
-    return NextResponse.json(
-      {
-        erro: "Conclua o módulo anterior antes de acessar este.",
-        codigo: "modulo_bloqueado",
-      },
-      { status: 403 }
-    );
+  // Trava central de acesso — trilha intermediária só libera com a básica
+  // 100% concluída, e módulo seguinte só libera com o anterior concluído.
+  // Checado aqui também (não só na página) porque esta rota pode ser chamada
+  // direto, sem passar pelo frontend.
+  try {
+    await garantirAcessoAoModulo(sessao.usuarioId, trilha, moduloId);
+  } catch (erro) {
+    if (erro instanceof AcessoModuloBloqueadoError) {
+      return NextResponse.json({ erro: erro.message, codigo: erro.codigo }, { status: 403 });
+    }
+    throw erro;
   }
 
   const jaIniciadoAntes = await prisma.progressoModulo.findUnique({
