@@ -4,6 +4,7 @@ const CORES = {
   amber: "bg-amber-soft text-amber-strong",
   trail: "bg-trail-soft text-trail-strong",
   coral: "bg-coral-soft text-coral",
+  ink: "bg-parchment-surface text-ink-faint border border-rule",
 } as const;
 
 export function BadgePill({

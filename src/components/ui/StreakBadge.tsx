@@ -1,6 +1,9 @@
 export function StreakBadge({ dias, freezes }: { dias: number; freezes: number }) {
   return (
-    <div className="flex items-center gap-2 font-mono text-sm text-ink-soft" title={`${freezes} congelamento(s) de streak disponível`}>
+    <div
+      className="flex items-center gap-2 font-mono text-sm text-ink-soft"
+      title={`Foguinho de engajamento: avança 1 a cada desafio diário concluído, zera se um dia passar sem concluir um. ${freezes} congelamento(s) de streak disponível.`}
+    >
       <span className="text-coral" aria-hidden="true">🔥</span>
       <span className="font-variant-tabular font-semibold text-ink">{dias}</span>
       <span className="hidden sm:inline">{dias === 1 ? "dia seguido" : "dias seguidos"}</span>

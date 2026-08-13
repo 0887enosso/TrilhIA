@@ -9,31 +9,38 @@ function diasEntre(a: Date, b: Date): number {
 /** Campos do usuário que `atualizarStreak` precisa — evita rebuscar o usuário
  * inteiro quando quem chama já os tem em mãos. */
 export type DadosStreakUsuario = {
-  ultimoDiaAtivo: Date | null;
+  ultimoDesafioDiarioConcluidoEm: Date | null;
   streakFreezesDisponiveis: number;
 };
 
 /**
- * Atualiza o streak do usuário com base na última vez que ele esteve ativo.
- * Chamada uma vez por ação significativa (hoje: ao responder uma questão).
+ * Atualiza o foguinho (streak) do usuário com base na última vez que ele
+ * CONCLUIU o desafio diário — não mais "respondeu qualquer questão". O
+ * foguinho é o monitor de engajamento com o desafio diário especificamente:
+ * chamada só por `processarRespostaParaDesafioDiario` (src/lib/desafioDiario.ts),
+ * no momento em que a última questão do desafio do dia é respondida.
  *
  * Regras:
- * - Mesmo dia de novo → não faz nada.
- * - Exatamente 1 dia depois → streak +1.
+ * - Mesmo dia de novo → não faz nada (na prática, nem deveria ser chamada
+ *   duas vezes no mesmo dia, já que o desafio só conclui uma vez — este
+ *   caso é só uma proteção defensiva).
+ * - Exatamente 1 dia depois do último desafio concluído → foguinho +1.
  * - 2 dias depois (perdeu 1 dia) e há streak freeze disponível → consome 1
- *   freeze e mantém a sequência viva.
- * - Qualquer outro caso (sem freeze, ou mais de 1 dia perdido) → reinicia em 1.
+ *   freeze e mantém o foguinho vivo.
+ * - Qualquer outro caso (sem freeze, ou mais de 1 dia sem concluir o
+ *   desafio) → foguinho zera e recomeça em 1 (o dia de hoje).
  *
- * Todas as escritas usam `updateMany` condicionado ao `ultimoDiaAtivo` (e,
- * quando aplicável, `streakFreezesDisponiveis`) exatamente como foram lidos
- * por quem chamou — não um `update` incondicional. Sem isso, duas respostas
- * de questão quase simultâneas do mesmo usuário (duas abas, um retry de
- * rede) liam o mesmo estado "antes" e as duas aplicavam o mesmo incremento,
- * inflando a streak (medido: +8 numa rodada de 8 requisições paralelas) e
- * podendo deixar o freeze negativo. Se o `updateMany` não afetar nenhuma
- * linha (`count === 0`), outra requisição concorrente já aplicou essa mesma
- * transição — não é erro, só um no-op silencioso (streak não é devolvida na
- * resposta da rota, então isso é seguro).
+ * Todas as escritas usam `updateMany` condicionado ao
+ * `ultimoDesafioDiarioConcluidoEm` (e, quando aplicável,
+ * `streakFreezesDisponiveis`) exatamente como foram lidos por quem chamou —
+ * não um `update` incondicional. Sem isso, duas conclusões de desafio quase
+ * simultâneas do mesmo usuário (duas abas, um retry de rede) liam o mesmo
+ * estado "antes" e as duas aplicavam o mesmo incremento, inflando o
+ * foguinho e podendo deixar o freeze negativo (mesma classe de bug já
+ * medida e corrigida quando isso ainda era disparado por toda resposta de
+ * questão). Se o `updateMany` não afetar nenhuma linha (`count === 0`),
+ * outra requisição concorrente já aplicou essa mesma transição — não é
+ * erro, só um no-op silencioso.
  */
 export async function atualizarStreak(
   usuarioId: string,
@@ -41,22 +48,22 @@ export async function atualizarStreak(
 ): Promise<void> {
   const hoje = new Date();
 
-  if (!usuario.ultimoDiaAtivo) {
+  if (!usuario.ultimoDesafioDiarioConcluidoEm) {
     await prisma.usuario.updateMany({
-      where: { id: usuarioId, ultimoDiaAtivo: null },
-      data: { streakAtual: 1, ultimoDiaAtivo: hoje },
+      where: { id: usuarioId, ultimoDesafioDiarioConcluidoEm: null },
+      data: { streakAtual: 1, ultimoDesafioDiarioConcluidoEm: hoje },
     });
     return;
   }
 
-  const gap = diasEntre(usuario.ultimoDiaAtivo, hoje);
+  const gap = diasEntre(usuario.ultimoDesafioDiarioConcluidoEm, hoje);
 
   if (gap === 0) return;
 
   if (gap === 1) {
     await prisma.usuario.updateMany({
-      where: { id: usuarioId, ultimoDiaAtivo: usuario.ultimoDiaAtivo },
-      data: { streakAtual: { increment: 1 }, ultimoDiaAtivo: hoje },
+      where: { id: usuarioId, ultimoDesafioDiarioConcluidoEm: usuario.ultimoDesafioDiarioConcluidoEm },
+      data: { streakAtual: { increment: 1 }, ultimoDesafioDiarioConcluidoEm: hoje },
     });
     return;
   }
@@ -65,20 +72,20 @@ export async function atualizarStreak(
     await prisma.usuario.updateMany({
       where: {
         id: usuarioId,
-        ultimoDiaAtivo: usuario.ultimoDiaAtivo,
+        ultimoDesafioDiarioConcluidoEm: usuario.ultimoDesafioDiarioConcluidoEm,
         streakFreezesDisponiveis: { gt: 0 },
       },
       data: {
         streakFreezesDisponiveis: { decrement: 1 },
         streakAtual: { increment: 1 },
-        ultimoDiaAtivo: hoje,
+        ultimoDesafioDiarioConcluidoEm: hoje,
       },
     });
     return;
   }
 
   await prisma.usuario.updateMany({
-    where: { id: usuarioId, ultimoDiaAtivo: usuario.ultimoDiaAtivo },
-    data: { streakAtual: 1, ultimoDiaAtivo: hoje },
+    where: { id: usuarioId, ultimoDesafioDiarioConcluidoEm: usuario.ultimoDesafioDiarioConcluidoEm },
+    data: { streakAtual: 1, ultimoDesafioDiarioConcluidoEm: hoje },
   });
 }

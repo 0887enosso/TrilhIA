@@ -6,6 +6,7 @@ export type UsuarioParaAdmin = {
   nickname: string;
   papel: "COLABORADOR" | "ADMIN";
   ativo: boolean;
+  contaTeste: boolean;
   statusCadastro: "PENDENTE" | "APROVADO" | "REJEITADO";
   equipe: string;
   xpTotal: number;
@@ -36,6 +37,7 @@ export async function obterUsuariosParaAdmin(): Promise<UsuarioParaAdmin[]> {
     nickname: u.nickname,
     papel: u.papel,
     ativo: u.ativo,
+    contaTeste: u.contaTeste,
     statusCadastro: u.statusCadastro,
     equipe: u.equipe.nome,
     xpTotal: u.xpTotal,

@@ -1,6 +1,7 @@
 import { prisma } from "./prisma";
 import { todasQuestoesDoModulo, parseQuestaoId } from "./content";
 import { inicioDoDiaBrasil } from "./tempo";
+import { atualizarStreak, type DadosStreakUsuario } from "./streak";
 
 const QUESTOES_POR_DESAFIO = 5;
 const XP_BONUS_DESAFIO_DIARIO = 30;
@@ -63,16 +64,21 @@ export async function obterOuCriarDesafioDeHoje(usuarioId: string) {
  * Chamada pelo endpoint de responder questão sempre que uma resposta é
  * registrada. Se a questão pertence ao desafio de hoje do usuário e todas as
  * questões do desafio já foram respondidas ao menos uma vez, concede o bônus
- * de conclusão (uma única vez, via checagem do campo `concluido`).
+ * de conclusão (uma única vez, via checagem do campo `concluido`) e avança o
+ * foguinho de engajamento (`atualizarStreak`) — é este o único gatilho do
+ * foguinho hoje; responder questões fora do desafio diário não avança nem
+ * mantém o foguinho vivo.
  *
  * NÃO grava xpTotal/nivel do usuário nem soma XP semanal de liga — isso é
  * responsabilidade de quem chama (`route.ts`), que combina este bônus com o
  * XP da própria questão e grava tudo em uma única escrita ao final da
- * requisição. Esta função só decide e persiste a conclusão do desafio em si.
+ * requisição. Esta função só decide e persiste a conclusão do desafio em si
+ * (e o avanço do foguinho, que está diretamente ligado a essa conclusão).
  */
 export async function processarRespostaParaDesafioDiario(
   usuarioId: string,
-  questaoId: string
+  questaoId: string,
+  dadosStreak: DadosStreakUsuario
 ): Promise<{ desafioConcluidoAgora: boolean; xpBonus: number } | null> {
   const hoje = inicioDoDiaBrasil(new Date());
 
@@ -108,6 +114,8 @@ export async function processarRespostaParaDesafioDiario(
   });
 
   if (resultado.count === 0) return null; // outra requisição já concedeu o bônus primeiro
+
+  await atualizarStreak(usuarioId, dadosStreak);
 
   return { desafioConcluidoAgora: true, xpBonus: XP_BONUS_DESAFIO_DIARIO };
 }

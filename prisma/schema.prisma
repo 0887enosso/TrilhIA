@@ -56,6 +56,11 @@ model Usuario {
   precisaTrocarSenha       Boolean      @default(false) // true após reset de senha feito pelo admin
   senhaAlteradaEm          DateTime     @default(now()) // usado para invalidar sessões antigas ao trocar/resetar senha
   ativo                    Boolean      @default(true)  // false = conta desativada (ex: colaborador que saiu), bloqueia login sem apagar histórico
+  // Conta usada só para testar a plataforma (ex: QA interno) — continua
+  // ganhando XP/streak/conquistas normalmente, mas nunca entra em nenhuma
+  // ParticipacaoLiga (ver adicionarXpSemanal em src/lib/ligas.ts), pra não
+  // distorcer a competição real dos colegas.
+  contaTeste               Boolean      @default(false)
 
   equipeId                 String
   equipe                   Equipe       @relation(fields: [equipeId], references: [id])
@@ -71,7 +76,13 @@ model Usuario {
   // sozinho não bastava, porque alguém abaixo do teto por outro motivo
   // (acabou de gastar um freeze) passaria no filtro nas duas execuções.
   freezeRepostoNaSemana    String?
-  ultimoDiaAtivo           DateTime?
+  // Última data (Brasília) em que o desafio diário foi CONCLUÍDO — não mais
+  // "usou o app nesse dia". O foguinho (streakAtual) é o monitor de
+  // engajamento com o desafio diário especificamente: só avança quando o
+  // desafio do dia é concluído (ver processarRespostaParaDesafioDiario em
+  // src/lib/desafioDiario.ts) e zera se um dia passar sem concluir nenhum
+  // (mesma regra de perdão de 1 dia via streakFreezesDisponiveis).
+  ultimoDesafioDiarioConcluidoEm DateTime?
   coracoesAtuais           Int          @default(5)
   // Timestamp de quando coracoesAtuais chegou a 0 — usado para regenerar
   // vidas automaticamente após TEMPO_REGENERACAO_MS (ver src/lib/coracoes.ts).

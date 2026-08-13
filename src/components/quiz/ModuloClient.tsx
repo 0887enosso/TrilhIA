@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { Mascote } from "@/components/mascote/Mascote";
 import { CarregandoMascote } from "@/components/mascote/CarregandoMascote";
 import { Botao } from "@/components/ui/Botao";
@@ -70,6 +71,7 @@ function calcularIndiceRetomada(passosMontados: Passo[], questoesRespondidasCorr
 }
 
 export function ModuloClient({ trilha, moduloId }: { trilha: TrilhaId; moduloId: string }) {
+  const router = useRouter();
   const [fase, setFase] = useState<Fase>("carregando");
   const [mensagemErro, setMensagemErro] = useState("");
   const [conteudo, setConteudo] = useState<ModuloConteudo | null>(null);
@@ -175,6 +177,15 @@ export function ModuloClient({ trilha, moduloId }: { trilha: TrilhaId; moduloId:
     // cartão precisa renderizar a explicação da resposta errada primeiro.
     // O bloqueio ("sem_energia") só acontece quando o usuário tenta
     // responder de novo e a API rejeita com 403 sem_coracoes (acima).
+
+    // A barra de status do topo (TopHud) vem do layout — um Server Component
+    // que só refaz a busca em navegação de página inteira, não a cada
+    // interação dentro deste client component. Sem este refresh, ela ficava
+    // "congelada" no valor de corações/XP/streak de quando a página abriu,
+    // podendo mostrar um coração cheio (ou nenhum cronômetro) mesmo depois
+    // do usuário já ter zerado as vidas de verdade nesta sessão.
+    router.refresh();
+
     return corpo;
   }
 
@@ -218,6 +229,7 @@ export function ModuloClient({ trilha, moduloId }: { trilha: TrilhaId; moduloId:
 
     setConclusao({ badgesGanhas: corpo.badgesGanhas ?? [], certificadoEmitido: corpo.certificadoEmitido ?? false });
     setFase("concluido");
+    router.refresh(); // sincroniza XP/estrelas do TopHud com o que acabou de ser concedido
   }
 
   // Passo "questao" -> índice da aula mais próxima ANTES dela (procurando pra

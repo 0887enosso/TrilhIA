@@ -9,6 +9,7 @@ import type { UsuarioParaAdmin } from "@/lib/admin";
 type CamposEditaveis = {
   papel?: "COLABORADOR" | "ADMIN";
   ativo?: boolean;
+  contaTeste?: boolean;
   statusCadastro?: "PENDENTE" | "APROVADO" | "REJEITADO";
 };
 
@@ -136,7 +137,10 @@ export function UsuariosTable({ usuariosIniciais, meuId }: { usuariosIniciais: U
                 return (
                   <tr key={usuario.id} className="border-t border-rule">
                     <td className="px-4 py-3">
-                      <div className="font-medium text-ink">{usuario.nome}</div>
+                      <div className="flex items-center gap-2">
+                        <span className="font-medium text-ink">{usuario.nome}</span>
+                        {usuario.contaTeste ? <BadgePill cor="ink">Teste</BadgePill> : null}
+                      </div>
                       <div className="font-mono text-xs text-ink-faint">@{usuario.nickname}</div>
                     </td>
                     <td className="px-4 py-3 text-ink-soft">{usuario.equipe}</td>
@@ -186,6 +190,13 @@ export function UsuariosTable({ usuariosIniciais, meuId }: { usuariosIniciais: U
                             Aprovar
                           </Botao>
                         ) : null}
+                        <Botao
+                          variante="texto"
+                          disabled={carregandoId === usuario.id}
+                          onClick={() => atualizar(usuario.id, { contaTeste: !usuario.contaTeste })}
+                        >
+                          {usuario.contaTeste ? "Desmarcar teste" : "Marcar como teste"}
+                        </Botao>
                         <Botao
                           variante="texto"
                           disabled={carregandoId === usuario.id}

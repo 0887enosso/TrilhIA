@@ -7,11 +7,16 @@ const schema = z
   .object({
     papel: z.enum(["COLABORADOR", "ADMIN"]).optional(),
     ativo: z.boolean().optional(),
+    contaTeste: z.boolean().optional(),
     statusCadastro: z.enum(["PENDENTE", "APROVADO", "REJEITADO"]).optional(),
   })
   .refine(
-    (dados) => dados.papel !== undefined || dados.ativo !== undefined || dados.statusCadastro !== undefined,
-    { message: "Informe ao menos um campo para atualizar (papel, ativo ou statusCadastro)." }
+    (dados) =>
+      dados.papel !== undefined ||
+      dados.ativo !== undefined ||
+      dados.contaTeste !== undefined ||
+      dados.statusCadastro !== undefined,
+    { message: "Informe ao menos um campo para atualizar (papel, ativo, contaTeste ou statusCadastro)." }
   );
 
 /**
@@ -65,6 +70,7 @@ export async function PATCH(
       nickname: usuarioAtualizado.nickname,
       papel: usuarioAtualizado.papel,
       ativo: usuarioAtualizado.ativo,
+      contaTeste: usuarioAtualizado.contaTeste,
       statusCadastro: usuarioAtualizado.statusCadastro,
     },
   });

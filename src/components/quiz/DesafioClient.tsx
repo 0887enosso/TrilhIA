@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { Mascote } from "@/components/mascote/Mascote";
 import { CarregandoMascote } from "@/components/mascote/CarregandoMascote";
 import { Botao } from "@/components/ui/Botao";
@@ -16,6 +17,7 @@ type ItemDesafio = { trilha: TrilhaId; moduloId: string; jaRespondidaHoje: boole
 type Fase = "carregando" | "vazio" | "pronto" | "tudo_respondido";
 
 export function DesafioClient() {
+  const router = useRouter();
   const [fase, setFase] = useState<Fase>("carregando");
   const [itens, setItens] = useState<ItemDesafio[]>([]);
   const [respondidasAgora, setRespondidasAgora] = useState<Set<string>>(new Set());
@@ -62,6 +64,10 @@ export function DesafioClient() {
     if (corpo.desafioDiario?.desafioConcluidoAgora) {
       setXpBonus(corpo.desafioDiario.xpBonus);
     }
+    // Mesma razão do ModuloClient: sem isso, o TopHud (corações, XP, foguinho)
+    // ficava com os valores de quando a página abriu, mesmo depois de uma
+    // resposta errada zerar os corações de verdade nesta sessão.
+    router.refresh();
     return corpo;
   }
 

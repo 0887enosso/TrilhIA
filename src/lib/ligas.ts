@@ -147,14 +147,19 @@ export async function obterRankingSemanalDoUsuario(usuarioId: string): Promise<R
  * atomicamente junto com o resto da concessão de XP da requisição — sem
  * isso, uma queda do processo entre gravar o XP total do usuário e somar o
  * XP semanal na liga deixava as duas fontes de XP divergentes.
+ *
+ * Conta de teste (`Usuario.contaTeste`) nunca ganha `ParticipacaoLiga` —
+ * continua acumulando XP/nível/foguinho normalmente (para servir mesmo de
+ * teste), só não compete contra colegas reais na liga.
  */
 export async function adicionarXpSemanal(
   usuarioId: string,
   equipeId: string,
   xp: number,
+  contaTeste: boolean,
   db: PrismaOuTransacao = prisma
 ): Promise<void> {
-  if (xp <= 0) return;
+  if (xp <= 0 || contaTeste) return;
 
   const semana = semanaIsoAtual();
   const ligas = await ligasElegiveis(usuarioId, equipeId, db);

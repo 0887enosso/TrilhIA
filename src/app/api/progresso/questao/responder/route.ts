@@ -6,7 +6,6 @@ import { obterSessaoAtual } from "@/lib/auth";
 import { buscarQuestao, validarResposta, extrairExplicacao } from "@/lib/content";
 import { xpPorTipoQuestao, calcularNivel } from "@/lib/xp";
 import { adicionarXpSemanal } from "@/lib/ligas";
-import { atualizarStreak } from "@/lib/streak";
 import { processarRespostaParaDesafioDiario } from "@/lib/desafioDiario";
 import { aplicarRegeneracaoSeNecessario, calcularCoracoesLiberamEm } from "@/lib/coracoes";
 import { AcessoModuloBloqueadoError, garantirAcessoAoModulo } from "@/lib/acessoModulo";
@@ -81,33 +80,30 @@ export async function POST(request: NextRequest) {
     where: { usuarioId: sessao.usuarioId, questaoId },
   });
 
-  // --- Independentes entre si: gravar a tentativa e atualizar o streak não
-  // dependem um do outro, então rodam em paralelo em vez de em série.
-  await Promise.all([
-    prisma.respostaQuestao.create({
-      data: {
-        usuarioId: sessao.usuarioId,
-        questaoId,
-        moduloId,
-        tipoQuestao: questao.tipo,
-        correta,
-        tentativas: tentativasAnteriores + 1,
-      },
-    }),
-    atualizarStreak(sessao.usuarioId, {
-      ultimoDiaAtivo: usuarioAntes.ultimoDiaAtivo,
-      streakFreezesDisponiveis: usuarioAntes.streakFreezesDisponiveis,
-    }),
-  ]);
+  await prisma.respostaQuestao.create({
+    data: {
+      usuarioId: sessao.usuarioId,
+      questaoId,
+      moduloId,
+      tipoQuestao: questao.tipo,
+      correta,
+      tentativas: tentativasAnteriores + 1,
+    },
+  });
 
   // --- Desafio diário: decide e persiste a conclusão em si (se for o caso),
   // mas não grava xpTotal/nivel/liga — isso é feito uma única vez abaixo,
   // somado ao XP da questão, para não duplicar a mesma escrita de usuário
   // nem refazer a checagem de elegibilidade de liga duas vezes na mesma
-  // requisição.
+  // requisição. O foguinho de engajamento só avança aqui dentro, quando o
+  // desafio do dia é concluído — ver src/lib/desafioDiario.ts.
   const resultadoDesafioDiario = await processarRespostaParaDesafioDiario(
     sessao.usuarioId,
-    questaoId
+    questaoId,
+    {
+      ultimoDesafioDiarioConcluidoEm: usuarioAntes.ultimoDesafioDiarioConcluidoEm,
+      streakFreezesDisponiveis: usuarioAntes.streakFreezesDisponiveis,
+    }
   );
   const xpBonusDesafio = resultadoDesafioDiario?.xpBonus ?? 0;
   const deveTentarConcederXp = ehAutoavaliada ? true : correta === true;
@@ -150,7 +146,13 @@ export async function POST(request: NextRequest) {
       where: { id: sessao.usuarioId },
       data: { nivel: calcularNivel(comXpAtualizado.xpTotal) },
     });
-    await adicionarXpSemanal(sessao.usuarioId, usuarioAntes.equipeId, xpTotalGanhoNaRequisicao, tx);
+    await adicionarXpSemanal(
+      sessao.usuarioId,
+      usuarioAntes.equipeId,
+      xpTotalGanhoNaRequisicao,
+      usuarioAntes.contaTeste,
+      tx
+    );
   });
 
   // --- Corações: decremento condicional (gt: 0), nunca fica negativo mesmo
