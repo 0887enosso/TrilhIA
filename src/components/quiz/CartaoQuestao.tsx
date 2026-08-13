@@ -9,9 +9,13 @@ type CartaoQuestaoProps = {
   questao: Questao;
   onResponder: (resposta: unknown) => Promise<ResultadoResposta>;
   onContinuar: () => void;
-  // Definido só quando essa questão tem uma aula associada (não é o caso de
-  // atividade_final). Se null, o comportamento de erro cai de volta para
-  // "Tentar novamente" na mesma pergunta (ver ModuloClient.tsx).
+  // Definido quando existe alguma aula antes dessa questão no módulo — para
+  // questões ligadas diretamente a uma aula, é ela mesma; para questões de
+  // atividade_final (sem aula própria), é a última aula ensinada no módulo
+  // (ver questaoIndiceParaAulaIndice em ModuloClient.tsx). Só fica null no
+  // caso raro de a questão não ter NENHUMA aula antes dela — aí o
+  // comportamento de erro cai de volta para "Tentar novamente" na mesma
+  // pergunta.
   aoErrarVoltarParaAula?: (() => void) | null;
 };
 
@@ -98,10 +102,12 @@ export function CartaoQuestao({ questao, onResponder, onContinuar, aoErrarVoltar
 
   const jaRespondida = resultado !== null;
   const acertou = resultado?.correta === true || resultado?.correta === null;
-  // Só oferece "Revisar aula" quando a questão errada tem uma aula associada
-  // (aoErrarVoltarParaAula não é null) — questões de atividade_final caem no
-  // fallback de tentar de novo na mesma pergunta. resposta_curta_autoavaliada
-  // nunca cai aqui: seu resultado é sempre `correta === null`, nunca `false`.
+  // Só oferece "Revisar aula" quando existe alguma aula antes dessa questão
+  // (aoErrarVoltarParaAula não é null) — na prática isso cobre quase sempre,
+  // inclusive atividade_final (volta pra última aula do módulo). Só cai no
+  // fallback de tentar de novo na mesma pergunta se não existir nenhuma aula
+  // antes dela. resposta_curta_autoavaliada nunca cai aqui: seu resultado é
+  // sempre `correta === null`, nunca `false`.
   const errouComRevisao = resultado?.correta === false && !!aoErrarVoltarParaAula;
 
   return (

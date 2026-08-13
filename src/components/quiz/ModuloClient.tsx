@@ -70,6 +70,12 @@ export function ModuloClient({ trilha, moduloId }: { trilha: TrilhaId; moduloId:
   const [coracoesAtuais, setCoracoesAtuais] = useState(5);
   const [coracoesLiberamEm, setCoracoesLiberamEm] = useState<string | null>(null);
   const [xpSessao, setXpSessao] = useState(0);
+  // Quando o usuário erra uma questão e volta pra revisar a aula relacionada,
+  // guarda o índice de onde ele estava — pra o botão "Continuar" da aula
+  // levar ele de volta pra essa questão específica, em vez de simplesmente
+  // avançar um passo (que levaria pra outra questão, se a aula relacionada
+  // não for a imediatamente anterior — caso das questões de atividade_final).
+  const [indiceRevisaoRetorno, setIndiceRevisaoRetorno] = useState<number | null>(null);
   const [conclusao, setConclusao] = useState<{ badgesGanhas: string[]; certificadoEmitido: boolean } | null>(
     null
   );
@@ -171,6 +177,20 @@ export function ModuloClient({ trilha, moduloId }: { trilha: TrilhaId; moduloId:
     await concluirModulo();
   }
 
+  // Botão "Continuar" de uma aula: normalmente só avança um passo. Mas se o
+  // usuário chegou nessa aula "de revisão" (errou uma questão e voltou pra
+  // reler o conteúdo), volta direto pra questão que ele estava tentando
+  // responder, em vez de avançar linearmente pra próxima coisa da lista.
+  async function continuarDaLicao() {
+    if (indiceRevisaoRetorno !== null) {
+      const alvo = indiceRevisaoRetorno;
+      setIndiceRevisaoRetorno(null);
+      setIndice(alvo);
+      return;
+    }
+    await avancar();
+  }
+
   async function concluirModulo() {
     setFase("carregando");
     const res = await fetch("/api/progresso/modulo/concluir", {
@@ -190,15 +210,24 @@ export function ModuloClient({ trilha, moduloId }: { trilha: TrilhaId; moduloId:
     setFase("concluido");
   }
 
-  // Passo "questao" -> índice da aula imediatamente anterior (null para
-  // questões de atividade_final, que não têm aula própria na lista). Usado
-  // para "Revisar aula" quando o usuário erra (ver CartaoQuestao).
+  // Passo "questao" -> índice da aula mais próxima ANTES dela (procurando pra
+  // trás, não só o passo imediatamente anterior) — cobre tanto as questões
+  // ligadas diretamente a uma aula (o caso comum) quanto as de
+  // atividade_final, que não têm aula própria na lista mas devem voltar pra
+  // última aula ensinada no módulo. Fica `null` só se não existir NENHUMA
+  // aula antes da questão (módulo sem nenhuma aula, caso não esperado hoje).
   const questaoIndiceParaAulaIndice = useMemo(() => {
     const mapa = new Map<number, number | null>();
     passos.forEach((passo, i) => {
       if (passo.tipo !== "questao") return;
-      const anterior = passos[i - 1];
-      mapa.set(i, anterior?.tipo === "licao" ? i - 1 : null);
+      let aulaIndice: number | null = null;
+      for (let j = i - 1; j >= 0; j--) {
+        if (passos[j].tipo === "licao") {
+          aulaIndice = j;
+          break;
+        }
+      }
+      mapa.set(i, aulaIndice);
     });
     return mapa;
   }, [passos]);
@@ -289,7 +318,13 @@ export function ModuloClient({ trilha, moduloId }: { trilha: TrilhaId; moduloId:
 
   const passoAtual = passos[indice];
   const aulaIndiceParaRevisao = questaoIndiceParaAulaIndice.get(indice) ?? null;
-  const aoErrarVoltarParaAula = aulaIndiceParaRevisao !== null ? () => setIndice(aulaIndiceParaRevisao) : null;
+  const aoErrarVoltarParaAula =
+    aulaIndiceParaRevisao !== null
+      ? () => {
+          setIndiceRevisaoRetorno(indice);
+          setIndice(aulaIndiceParaRevisao);
+        }
+      : null;
 
   return (
     <div className="flex flex-col gap-6">
@@ -312,7 +347,7 @@ export function ModuloClient({ trilha, moduloId }: { trilha: TrilhaId; moduloId:
               {passoAtual.aula.destaque}
             </p>
           ) : null}
-          <Botao onClick={avancar} className="self-start">
+          <Botao onClick={continuarDaLicao} className="self-start">
             Continuar
           </Botao>
         </div>
