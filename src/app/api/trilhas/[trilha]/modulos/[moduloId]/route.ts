@@ -43,6 +43,19 @@ export async function GET(
     return NextResponse.json({ modulo });
   }
 
+  // Questões já respondidas certo antes (XpConcedido só existe quando a
+  // questão foi acertada na primeira vez — ver schema.prisma) são o sinal
+  // usado pelo frontend para "retomar de onde parou" em vez de recomeçar o
+  // módulo do zero (ver ModuloClient.tsx).
+  const todosOsIdsDeQuestao = [
+    ...modulo.aulas.map((aula: any) => aula.atividade.id),
+    ...modulo.atividade_final.map((questao: any) => questao.id),
+  ];
+  const xpConcedidos = await prisma.xpConcedido.findMany({
+    where: { usuarioId: sessao.usuarioId, questaoId: { in: todosOsIdsDeQuestao } },
+    select: { questaoId: true },
+  });
+
   return NextResponse.json({
     modulo: {
       modulo_id: modulo.modulo_id,
@@ -58,6 +71,7 @@ export async function GET(
         atividade: sanitizarQuestaoParaCliente(aula.atividade),
       })),
       atividade_final: modulo.atividade_final.map(sanitizarQuestaoParaCliente),
+      questoesRespondidasCorretamente: xpConcedidos.map((x) => x.questaoId),
     },
   });
 }

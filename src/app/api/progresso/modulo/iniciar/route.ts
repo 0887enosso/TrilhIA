@@ -6,6 +6,7 @@ import { carregarModulo } from "@/lib/content";
 import { tentarConsumirEstrelaDiaria } from "@/lib/limiteDiario";
 import { trilhaBasicaConcluida } from "@/lib/ligas";
 import { obterProgressoAgregado } from "@/lib/progresso";
+import { aplicarRegeneracaoSeNecessario, calcularCoracoesLiberamEm } from "@/lib/coracoes";
 
 const schema = z.object({
   trilha: z.enum(["basica", "intermediaria"]),
@@ -84,14 +85,19 @@ export async function POST(request: NextRequest) {
     create: { usuarioId: sessao.usuarioId, moduloId, trilha, concluido: false },
   });
 
-  const usuario = await prisma.usuario.update({
+  // Vidas não são mais restauradas por "iniciar/reiniciar módulo" — só pela
+  // regeneração automática por tempo (ver src/lib/coracoes.ts). Aqui só
+  // aplicamos essa regeneração caso já tenha passado tempo suficiente, e
+  // devolvemos os corações efetivos (que podem já estar no máximo).
+  const usuarioAntes = await prisma.usuario.findUniqueOrThrow({
     where: { id: sessao.usuarioId },
-    data: { coracoesAtuais: 5 },
   });
+  const usuario = await aplicarRegeneracaoSeNecessario(sessao.usuarioId, usuarioAntes);
 
   return NextResponse.json({
     ok: true,
     coracoesAtuais: usuario.coracoesAtuais,
+    coracoesLiberamEm: calcularCoracoesLiberamEm(usuario),
     modulosRestantesHoje: Math.max(0, 2 - usuario.modulosIniciadosHoje),
   });
 }

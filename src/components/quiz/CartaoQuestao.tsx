@@ -9,6 +9,10 @@ type CartaoQuestaoProps = {
   questao: Questao;
   onResponder: (resposta: unknown) => Promise<ResultadoResposta>;
   onContinuar: () => void;
+  // Definido só quando essa questão tem uma aula associada (não é o caso de
+  // atividade_final). Se null, o comportamento de erro cai de volta para
+  // "Tentar novamente" na mesma pergunta (ver ModuloClient.tsx).
+  aoErrarVoltarParaAula?: (() => void) | null;
 };
 
 const OPCAO_CLASSNAME =
@@ -20,7 +24,7 @@ function classeOpcao(ativo: boolean) {
   }`;
 }
 
-export function CartaoQuestao({ questao, onResponder, onContinuar }: CartaoQuestaoProps) {
+export function CartaoQuestao({ questao, onResponder, onContinuar, aoErrarVoltarParaAula }: CartaoQuestaoProps) {
   const [enviando, setEnviando] = useState(false);
   const [resultado, setResultado] = useState<ResultadoResposta | null>(null);
 
@@ -94,6 +98,11 @@ export function CartaoQuestao({ questao, onResponder, onContinuar }: CartaoQuest
 
   const jaRespondida = resultado !== null;
   const acertou = resultado?.correta === true || resultado?.correta === null;
+  // Só oferece "Revisar aula" quando a questão errada tem uma aula associada
+  // (aoErrarVoltarParaAula não é null) — questões de atividade_final caem no
+  // fallback de tentar de novo na mesma pergunta. resposta_curta_autoavaliada
+  // nunca cai aqui: seu resultado é sempre `correta === null`, nunca `false`.
+  const errouComRevisao = resultado?.correta === false && !!aoErrarVoltarParaAula;
 
   return (
     <div className="flex flex-col gap-5 rounded-3xl border-2 border-rule bg-parchment-surface p-6">
@@ -305,8 +314,11 @@ export function CartaoQuestao({ questao, onResponder, onContinuar }: CartaoQuest
             </div>
           ) : null}
 
-          <Botao onClick={acertou ? onContinuar : tentarNovamente} className="self-start">
-            {acertou ? "Continuar" : "Tentar novamente"}
+          <Botao
+            onClick={acertou ? onContinuar : errouComRevisao ? aoErrarVoltarParaAula! : tentarNovamente}
+            className="self-start"
+          >
+            {acertou ? "Continuar" : errouComRevisao ? "Revisar aula" : "Tentar novamente"}
           </Botao>
         </div>
       )}

@@ -8,6 +8,7 @@ import { xpPorTipoQuestao, calcularNivel } from "@/lib/xp";
 import { adicionarXpSemanal } from "@/lib/ligas";
 import { atualizarStreak } from "@/lib/streak";
 import { processarRespostaParaDesafioDiario } from "@/lib/desafioDiario";
+import { aplicarRegeneracaoSeNecessario, calcularCoracoesLiberamEm } from "@/lib/coracoes";
 
 const schema = z.object({
   trilha: z.enum(["basica", "intermediaria"]),
@@ -41,13 +42,22 @@ export async function POST(request: NextRequest) {
 
   const ehAutoavaliada = questao.tipo === "resposta_curta_autoavaliada";
 
-  const usuarioAntes = await prisma.usuario.findUniqueOrThrow({
+  const usuarioCarregado = await prisma.usuario.findUniqueOrThrow({
     where: { id: sessao.usuarioId },
   });
+  // Antes de checar corações: se já passaram as 2h de regeneração desde que
+  // zeraram, isso libera a pergunta mesmo que o registro ainda não tivesse
+  // sido tocado por nenhuma outra rota (ex: usuário nunca reabriu a rota de
+  // iniciar módulo nem recarregou o resumo — ainda assim a regeneração vale).
+  const usuarioAntes = await aplicarRegeneracaoSeNecessario(sessao.usuarioId, usuarioCarregado);
 
   if (!ehAutoavaliada && usuarioAntes.coracoesAtuais <= 0) {
     return NextResponse.json(
-      { erro: "Sem corações disponíveis. Reinicie o módulo para continuar.", codigo: "sem_coracoes" },
+      {
+        erro: "Sem corações disponíveis. Eles voltam sozinhos em até 2 horas.",
+        codigo: "sem_coracoes",
+        coracoesLiberamEm: calcularCoracoesLiberamEm(usuarioAntes),
+      },
       { status: 403 }
     );
   }
@@ -140,6 +150,17 @@ export async function POST(request: NextRequest) {
       usuarioAtualizado = await prisma.usuario.findUniqueOrThrow({
         where: { id: sessao.usuarioId },
       });
+      // Corações chegaram a exatamente zero agora: grava o timestamp que
+      // dispara a regeneração automática em 2h (ver src/lib/coracoes.ts). Só
+      // sabemos que chegou a zero depois de ler o valor pós-decremento acima,
+      // por isso essa escrita extra só acontece nesse caso específico (não
+      // em toda resposta errada).
+      if (usuarioAtualizado.coracoesAtuais === 0) {
+        usuarioAtualizado = await prisma.usuario.update({
+          where: { id: sessao.usuarioId },
+          data: { coracoesZeradosEm: new Date() },
+        });
+      }
     }
   }
 

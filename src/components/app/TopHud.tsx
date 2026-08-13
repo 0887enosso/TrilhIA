@@ -1,4 +1,5 @@
 import { Coracoes } from "@/components/ui/Coracoes";
+import { ContadorCoracoes } from "@/components/ui/ContadorCoracoes";
 import { EstrelasDiarias } from "@/components/ui/EstrelasDiarias";
 import { StreakBadge } from "@/components/ui/StreakBadge";
 import { CountUp } from "@/components/reactbits/CountUp";
@@ -10,7 +11,10 @@ export function TopHud({ usuario }: { usuario: ResumoUsuario }) {
   return (
     <div className="sticky top-0 z-20 flex items-center justify-end gap-4 border-b-2 border-rule bg-parchment/95 px-4 py-2.5 font-mono text-sm backdrop-blur print:hidden sm:gap-5">
       <StreakBadge dias={usuario.streakAtual} freezes={usuario.streakFreezesDisponiveis} />
-      <Coracoes atuais={usuario.coracoesAtuais} />
+      <div className="flex flex-col items-end gap-0.5">
+        <Coracoes atuais={usuario.coracoesAtuais} />
+        <ContadorCoracoes liberamEm={usuario.coracoesLiberamEm} />
+      </div>
       <StarBorder thickness={1.5} speed="4s">
         <span className="block bg-parchment px-2 py-0.5 rounded-[15px]">
           <EstrelasDiarias restantes={usuario.estrelasDiariasRestantes} />

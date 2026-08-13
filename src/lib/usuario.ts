@@ -1,6 +1,7 @@
 import { cache } from "react";
 import { prisma } from "./prisma";
 import { estrelasRestantesHoje } from "./limiteDiario";
+import { aplicarRegeneracaoSeNecessario, calcularCoracoesLiberamEm } from "./coracoes";
 
 export type ResumoUsuario = {
   id: string;
@@ -14,6 +15,9 @@ export type ResumoUsuario = {
   streakAtual: number;
   streakFreezesDisponiveis: number;
   coracoesAtuais: number;
+  // ISO string de quando os corações voltam ao máximo, ou null quando não há
+  // regeneração pendente (ver src/lib/coracoes.ts).
+  coracoesLiberamEm: string | null;
   estrelasDiariasRestantes: number;
   precisaTrocarSenha: boolean;
 };
@@ -28,11 +32,13 @@ export type ResumoUsuario = {
  * era outra ida ao Postgres remoto na mesma requisição.
  */
 export const obterResumoUsuario = cache(async (usuarioId: string): Promise<ResumoUsuario | null> => {
-  const usuario = await prisma.usuario.findUnique({
+  const usuarioCarregado = await prisma.usuario.findUnique({
     where: { id: usuarioId },
     include: { equipe: true },
   });
-  if (!usuario) return null;
+  if (!usuarioCarregado) return null;
+
+  const usuario = await aplicarRegeneracaoSeNecessario(usuarioId, usuarioCarregado);
 
   return {
     id: usuario.id,
@@ -46,6 +52,7 @@ export const obterResumoUsuario = cache(async (usuarioId: string): Promise<Resum
     streakAtual: usuario.streakAtual,
     streakFreezesDisponiveis: usuario.streakFreezesDisponiveis,
     coracoesAtuais: usuario.coracoesAtuais,
+    coracoesLiberamEm: calcularCoracoesLiberamEm(usuario),
     estrelasDiariasRestantes: estrelasRestantesHoje(usuario),
     precisaTrocarSenha: usuario.precisaTrocarSenha,
   };

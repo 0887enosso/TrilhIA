@@ -1,11 +1,12 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { Mascote } from "@/components/mascote/Mascote";
 import { CarregandoMascote } from "@/components/mascote/CarregandoMascote";
 import { Botao } from "@/components/ui/Botao";
 import { Coracoes } from "@/components/ui/Coracoes";
+import { ContadorCoracoes } from "@/components/ui/ContadorCoracoes";
 import { BadgePill } from "@/components/ui/BadgePill";
 import { CountUp } from "@/components/reactbits/CountUp";
 import { EtapaIndicador } from "@/components/reactbits/EtapaIndicador";
@@ -30,11 +31,35 @@ type ModuloConteudo = {
   tipo_modulo?: string;
   aulas?: Aula[];
   atividade_final?: Questao[];
+  // Ids de questões que o usuário já respondeu certo antes (XpConcedido já
+  // existe para elas) — usado para retomar de onde parou em vez de
+  // recomeçar o módulo do zero (ver calcularIndiceRetomada abaixo).
+  questoesRespondidasCorretamente?: string[];
 };
 
 type Passo = { tipo: "licao"; aula: Aula } | { tipo: "questao"; questao: Questao };
 
 type Fase = "carregando" | "erro" | "bloqueado" | "sem_energia" | "estudando" | "concluido";
+
+/**
+ * Acha de onde o usuário deve retomar o módulo: o primeiro passo "questao"
+ * ainda não respondido certo — e, se essa questão tiver uma aula associada
+ * (o passo imediatamente anterior), retoma a partir da AULA, não direto na
+ * pergunta, pra não pular a explicação. Questões de atividade_final não têm
+ * aula própria na lista, então retomam direto nelas. Se tudo já foi
+ * respondido certo, retoma no último passo (só falta concluir).
+ */
+function calcularIndiceRetomada(passosMontados: Passo[], questoesRespondidasCorretamente: string[]): number {
+  const respondidas = new Set(questoesRespondidasCorretamente);
+  for (let i = 0; i < passosMontados.length; i++) {
+    const passo = passosMontados[i];
+    if (passo.tipo === "questao" && !respondidas.has(passo.questao.id)) {
+      const anterior = passosMontados[i - 1];
+      return anterior?.tipo === "licao" ? i - 1 : i;
+    }
+  }
+  return Math.max(0, passosMontados.length - 1);
+}
 
 export function ModuloClient({ trilha, moduloId }: { trilha: TrilhaId; moduloId: string }) {
   const [fase, setFase] = useState<Fase>("carregando");
@@ -43,6 +68,7 @@ export function ModuloClient({ trilha, moduloId }: { trilha: TrilhaId; moduloId:
   const [passos, setPassos] = useState<Passo[]>([]);
   const [indice, setIndice] = useState(0);
   const [coracoesAtuais, setCoracoesAtuais] = useState(5);
+  const [coracoesLiberamEm, setCoracoesLiberamEm] = useState<string | null>(null);
   const [xpSessao, setXpSessao] = useState(0);
   const [conclusao, setConclusao] = useState<{ badgesGanhas: string[]; certificadoEmitido: boolean } | null>(
     null
@@ -70,6 +96,16 @@ export function ModuloClient({ trilha, moduloId }: { trilha: TrilhaId; moduloId:
       return;
     }
     setCoracoesAtuais(corpoIniciar.coracoesAtuais);
+    setCoracoesLiberamEm(corpoIniciar.coracoesLiberamEm ?? null);
+
+    // Vidas não são mais restauradas ao (re)iniciar um módulo — só pela
+    // regeneração automática por tempo. Se o usuário voltar antes das 2h
+    // passarem, mostra direto a tela de "sem energia" com o cronômetro, em
+    // vez de deixá-lo entrar no módulo só para ser barrado na 1ª pergunta.
+    if (corpoIniciar.coracoesAtuais <= 0) {
+      setFase("sem_energia");
+      return;
+    }
 
     const respostaConteudo = await fetch(`/api/trilhas/${trilha}/modulos/${moduloId}`);
     const corpoConteudo = await respostaConteudo.json();
@@ -96,7 +132,7 @@ export function ModuloClient({ trilha, moduloId }: { trilha: TrilhaId; moduloId:
       ...(modulo.atividade_final ?? []).map((questao) => ({ tipo: "questao" as const, questao })),
     ];
     setPassos(passosMontados);
-    setIndice(0);
+    setIndice(calcularIndiceRetomada(passosMontados, modulo.questoesRespondidasCorretamente ?? []));
     setXpSessao(0);
     setFase("estudando");
   }
@@ -110,7 +146,10 @@ export function ModuloClient({ trilha, moduloId }: { trilha: TrilhaId; moduloId:
     const corpo = await res.json();
 
     if (!res.ok) {
-      if (corpo.codigo === "sem_coracoes") setFase("sem_energia");
+      if (corpo.codigo === "sem_coracoes") {
+        setCoracoesLiberamEm(corpo.coracoesLiberamEm ?? null);
+        setFase("sem_energia");
+      }
       return { correta: false, xpGanho: 0, coracoesAtuais: 0, xpTotal: 0, nivel: 1, explicacao: corpo.erro };
     }
 
@@ -151,6 +190,19 @@ export function ModuloClient({ trilha, moduloId }: { trilha: TrilhaId; moduloId:
     setFase("concluido");
   }
 
+  // Passo "questao" -> índice da aula imediatamente anterior (null para
+  // questões de atividade_final, que não têm aula própria na lista). Usado
+  // para "Revisar aula" quando o usuário erra (ver CartaoQuestao).
+  const questaoIndiceParaAulaIndice = useMemo(() => {
+    const mapa = new Map<number, number | null>();
+    passos.forEach((passo, i) => {
+      if (passo.tipo !== "questao") return;
+      const anterior = passos[i - 1];
+      mapa.set(i, anterior?.tipo === "licao" ? i - 1 : null);
+    });
+    return mapa;
+  }, [passos]);
+
   if (fase === "carregando") {
     return <CarregandoMascote texto="Carregando…" />;
   }
@@ -184,14 +236,13 @@ export function ModuloClient({ trilha, moduloId }: { trilha: TrilhaId; moduloId:
       <div className="flex flex-col items-center gap-4 py-16 text-center">
         <Mascote pose="cansado" size={110} />
         <p className="max-w-sm text-sm text-ink-soft">
-          Você ficou sem corações. Reinicie o módulo para tentar de novo — os corações voltam ao máximo.
+          Você ficou sem corações. Eles voltam sozinhos com o tempo — sem precisar reiniciar o módulo. Quando
+          voltar, você continua de onde parou.
         </p>
-        <div className="flex gap-3">
-          <Link href={`/trilha/${trilha}`}>
-            <Botao variante="secundaria">Voltar à trilha</Botao>
-          </Link>
-          <Botao onClick={iniciarEcarregar}>Reiniciar módulo</Botao>
-        </div>
+        {coracoesLiberamEm ? <ContadorCoracoes liberamEm={coracoesLiberamEm} /> : null}
+        <Link href={`/trilha/${trilha}`}>
+          <Botao variante="secundaria">Voltar à trilha</Botao>
+        </Link>
       </div>
     );
   }
@@ -237,6 +288,8 @@ export function ModuloClient({ trilha, moduloId }: { trilha: TrilhaId; moduloId:
   }
 
   const passoAtual = passos[indice];
+  const aulaIndiceParaRevisao = questaoIndiceParaAulaIndice.get(indice) ?? null;
+  const aoErrarVoltarParaAula = aulaIndiceParaRevisao !== null ? () => setIndice(aulaIndiceParaRevisao) : null;
 
   return (
     <div className="flex flex-col gap-6">
@@ -271,6 +324,7 @@ export function ModuloClient({ trilha, moduloId }: { trilha: TrilhaId; moduloId:
           questao={passoAtual.questao}
           onResponder={(resposta) => responderQuestao(passoAtual.questao, resposta)}
           onContinuar={avancar}
+          aoErrarVoltarParaAula={aoErrarVoltarParaAula}
         />
       ) : null}
     </div>

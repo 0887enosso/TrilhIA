@@ -67,6 +67,11 @@ model Usuario {
   streakFreezesDisponiveis Int          @default(0)
   ultimoDiaAtivo           DateTime?
   coracoesAtuais           Int          @default(5)
+  // Timestamp de quando coracoesAtuais chegou a 0 — usado para regenerar
+  // vidas automaticamente após TEMPO_REGENERACAO_MS (ver src/lib/coracoes.ts).
+  // Null enquanto o usuário nunca zerou os corações, ou depois de já ter
+  // regenerado.
+  coracoesZeradosEm        DateTime?
 
   // Estrelas diárias — limite de módulos NOVOS que podem ser iniciados por
   // dia (ver src/lib/limiteDiario.ts). Reabrir um módulo já iniciado antes
