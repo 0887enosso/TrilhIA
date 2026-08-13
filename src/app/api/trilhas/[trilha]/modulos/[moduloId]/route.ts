@@ -40,7 +40,14 @@ export async function GET(
   // Módulo 30 (projeto prático) não tem gabarito de quiz para vazar — os
   // "casos" são o próprio enunciado do exercício, seguro devolver como está.
   if (modulo.tipo_modulo === "projeto_pratico") {
-    return NextResponse.json({ modulo });
+    // Entrega já registrada antes (ver POST /api/progresso/projeto-final) —
+    // devolvida junto para o frontend retomar de onde parou em vez de
+    // sempre reiniciar do zero (ProjetoFinalFlow.tsx).
+    const entregaExistente = await prisma.entregaProjetoFinal.findUnique({
+      where: { usuarioId_moduloId: { usuarioId: sessao.usuarioId, moduloId } },
+      select: { casoId: true, respostasTarefas: true, checklistMarcado: true },
+    });
+    return NextResponse.json({ modulo, entregaExistente });
   }
 
   // Questões já respondidas certo antes (XpConcedido só existe quando a

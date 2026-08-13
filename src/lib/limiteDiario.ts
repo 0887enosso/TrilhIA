@@ -1,11 +1,8 @@
 import { prisma } from "./prisma";
+import { inicioDoDiaBrasil } from "./tempo";
 
 /** Quantos módulos NOVOS um usuário pode iniciar por dia. */
 export const LIMITE_MODULOS_POR_DIA = 2;
-
-function inicioDoDiaUTC(data: Date): Date {
-  return new Date(Date.UTC(data.getUTCFullYear(), data.getUTCMonth(), data.getUTCDate()));
-}
 
 export type ResultadoTentativaEstrela = {
   permitido: boolean;
@@ -26,7 +23,7 @@ export type ResultadoTentativaEstrela = {
 export async function tentarConsumirEstrelaDiaria(
   usuarioId: string
 ): Promise<ResultadoTentativaEstrela> {
-  const hoje = inicioDoDiaUTC(new Date());
+  const hoje = inicioDoDiaBrasil(new Date());
 
   // Passo 1: se o contador é de um dia anterior (ou nunca foi usado), zera
   // para hoje. Idempotente — não tem problema rodar isso toda vez.
@@ -71,11 +68,11 @@ export function estrelasRestantesHoje(usuario: {
   modulosIniciadosHoje: number;
   dataUltimoModuloIniciado: Date | null;
 }): number {
-  const hoje = inicioDoDiaUTC(new Date());
+  const hoje = inicioDoDiaBrasil(new Date());
 
   const contadorEhDeHoje =
     usuario.dataUltimoModuloIniciado &&
-    inicioDoDiaUTC(usuario.dataUltimoModuloIniciado).getTime() === hoje.getTime();
+    inicioDoDiaBrasil(usuario.dataUltimoModuloIniciado).getTime() === hoje.getTime();
 
   const usados = contadorEhDeHoje ? usuario.modulosIniciadosHoje : 0;
   return Math.max(0, LIMITE_MODULOS_POR_DIA - usados);

@@ -19,7 +19,7 @@ Este documento consolida todas as decisões de gamificação definidas durante o
 - **Badges temáticas:** conquistas nomeadas e contextualizadas ao universo jurídico. Badges já definidas durante a criação de conteúdo:
   - **"Letrado em IA"** — concluir a Trilha Básica (10 módulos). Ver `content/transicoes/transicao-trilha-basica-para-intermediaria.json`.
   - **"Arquiteto de Prompts"** — concluir o Bloco A da Trilha Intermediária. Ver `content/trilha-intermediaria/modulos/modulo-06.json`, campo `conquista_de_bloco`.
-  - Demais badges de bloco (Blocos B, C, D, E) serão definidas conforme os módulos forem gerados — procurar pelo campo `conquista_de_bloco` no último módulo de cada bloco.
+  - Demais badges de bloco (Blocos B, C, D, E) já estão definidas no conteúdo da Trilha Intermediária — procurar pelo campo `conquista_de_bloco` no último módulo de cada bloco.
 - **Certificado:** emitido ao concluir uma trilha completa. Modelo de texto-base já definido no arquivo de transição entre trilhas.
 
 ## Convenção de dados usada no conteúdo (para o backend ler corretamente)
@@ -36,9 +36,9 @@ Este documento consolida todas as decisões de gamificação definidas durante o
 - Estrutura de ligas por equipe (ver acima) — substitui a proposta genérica por faixa de XP.
 - XP por tipo de questão, corações e streak freeze: adotados como padrão inicial, conforme proposto abaixo — ajustável, mas não bloqueia o início da modelagem.
   - XP: `verdadeiro_falso` / `completar_lacuna` = 10 · `multipla_escolha` / `associacao` / `ordenar_etapas` = 15 · `correcao_prompt` = 20 · `resposta_curta_autoavaliada` = 25.
-  - Corações: 5 por sessão de módulo, resetam a cada novo módulo iniciado (não por dia).
+  - Corações: 5 no total, compartilhados entre módulos (não resetam ao iniciar um módulo novo, nem por sessão) — ao chegarem a 0, regeneram automaticamente para 5 depois de 2h, sem nenhuma ação do usuário (`src/lib/coracoes.ts`).
   - Streak freeze: 1 por semana, acumulável até no máximo 2.
-  - Estrelas diárias: 2 módulos novos por dia, reset por virada de dia (calendário UTC).
+  - Estrelas diárias: 2 módulos novos por dia, reset na virada do dia no fuso de Brasília (UTC-3 fixo — o público é 100% do escritório, aqui).
   - Desafio diário: 5 questões, bônus de +30 XP ao concluir, uma vez por dia.
 - Existe perfil de **administrador/gestor** com visão agregada da equipe, já no MVP.
 

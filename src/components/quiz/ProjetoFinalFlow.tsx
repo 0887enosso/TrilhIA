@@ -14,21 +14,52 @@ type ConteudoProjetoFinal = {
   checklist_autoavaliacao: string[];
 };
 
+type EntregaExistente = {
+  casoId: string;
+  respostasTarefas: string[];
+  checklistMarcado: boolean[];
+} | null;
+
 export function ProjetoFinalFlow({
   conteudo,
+  entregaExistente,
   onConcluido,
 }: {
   trilha: TrilhaId;
   conteudo: Record<string, unknown>;
+  entregaExistente?: EntregaExistente;
   onConcluido: () => void;
 }) {
   const dados = conteudo as unknown as ConteudoProjetoFinal;
+  const casoDaEntregaExistente = entregaExistente
+    ? dados.casos.find((c) => c.caso_id === entregaExistente.casoId) ?? null
+    : null;
 
-  const [casoId, setCasoId] = useState<string | null>(null);
-  const [respostas, setRespostas] = useState<string[]>([]);
-  const [checklist, setChecklist] = useState<boolean[]>(
-    () => new Array(dados.checklist_autoavaliacao.length).fill(false)
-  );
+  const [casoId, setCasoId] = useState<string | null>(casoDaEntregaExistente?.caso_id ?? null);
+  // Se já existe uma entrega salva para este caso, retoma com o que foi
+  // enviado da última vez em vez de recomeçar em branco — só usa o valor
+  // salvo se a quantidade de tarefas ainda bate com o conteúdo atual (se o
+  // caso mudou de tamanho depois da entrega, um conteúdo desatualizado é
+  // mais seguro que um array de respostas fora de ordem).
+  const [respostas, setRespostas] = useState<string[]>(() => {
+    if (
+      casoDaEntregaExistente &&
+      entregaExistente &&
+      entregaExistente.respostasTarefas.length === casoDaEntregaExistente.tarefas.length
+    ) {
+      return entregaExistente.respostasTarefas;
+    }
+    return casoDaEntregaExistente ? new Array(casoDaEntregaExistente.tarefas.length).fill("") : [];
+  });
+  const [checklist, setChecklist] = useState<boolean[]>(() => {
+    if (
+      entregaExistente &&
+      entregaExistente.checklistMarcado.length === dados.checklist_autoavaliacao.length
+    ) {
+      return entregaExistente.checklistMarcado;
+    }
+    return new Array(dados.checklist_autoavaliacao.length).fill(false);
+  });
   const [enviando, setEnviando] = useState(false);
   const [erro, setErro] = useState<string | null>(null);
 
@@ -37,6 +68,22 @@ export function ProjetoFinalFlow({
   function escolherCaso(novoCaso: Caso) {
     setCasoId(novoCaso.caso_id);
     setRespostas(new Array(novoCaso.tarefas.length).fill(""));
+    setChecklist(new Array(dados.checklist_autoavaliacao.length).fill(false));
+  }
+
+  // Trocar de caso depois de já ter escolhido um descarta o que foi digitado
+  // (e, se havia uma entrega enviada antes para o caso atual, ela é
+  // sobrescrita na hora de enviar de novo) — antes isso acontecia sem
+  // nenhum aviso; agora exige confirmação explícita.
+  function pedirTrocaDeCaso() {
+    const confirmado = window.confirm(
+      "Trocar de caso agora descarta as respostas deste caso (inclusive a entrega já enviada, se houver). Quer continuar?"
+    );
+    if (!confirmado) return;
+    setCasoId(null);
+    setRespostas([]);
+    setChecklist(new Array(dados.checklist_autoavaliacao.length).fill(false));
+    setErro(null);
   }
 
   async function enviar() {
@@ -94,8 +141,19 @@ export function ProjetoFinalFlow({
   return (
     <div className="flex flex-col gap-6">
       <div className="rounded-lg border border-rule bg-parchment-surface p-6">
-        <h1 className="font-display text-xl text-ink">{caso.titulo}</h1>
-        <p className="mt-2 text-sm text-ink-soft">{caso.dossie}</p>
+        <div className="flex items-start justify-between gap-4">
+          <div>
+            <h1 className="font-display text-xl text-ink">{caso.titulo}</h1>
+            <p className="mt-2 text-sm text-ink-soft">{caso.dossie}</p>
+          </div>
+          <button
+            type="button"
+            onClick={pedirTrocaDeCaso}
+            className="shrink-0 text-xs text-ink-faint underline hover:text-ink-soft"
+          >
+            Trocar de caso
+          </button>
+        </div>
       </div>
 
       <div className="flex flex-col gap-4">

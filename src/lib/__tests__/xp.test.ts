@@ -12,8 +12,8 @@ describe("xpPorTipoQuestao", () => {
     expect(xpPorTipoQuestao("resposta_curta_autoavaliada")).toBe(25);
   });
 
-  it("retorna um valor de fallback para um tipo desconhecido, em vez de quebrar", () => {
-    expect(xpPorTipoQuestao("tipo_que_nao_existe")).toBe(10);
+  it("falha alto para um tipo desconhecido, em vez de pagar um valor errado silenciosamente", () => {
+    expect(() => xpPorTipoQuestao("tipo_que_nao_existe")).toThrow();
   });
 });
 

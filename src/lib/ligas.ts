@@ -46,7 +46,10 @@ export async function trilhaBasicaConcluida(
  * Retorna todas as ligas em que o usuário pode pontuar agora: a liga padrão
  * da própria equipe, mais qualquer liga exclusiva cuja condição de
  * desbloqueio ele já cumpre. Novas condições futuras (ex: trilha
- * intermediária concluída) entram como um novo "else if" aqui.
+ * intermediária concluída) entram como um novo "else if" aqui — e também em
+ * `CONDICOES_DESBLOQUEIO_VALORES` (src/lib/condicoesLiga.ts), que é o que a
+ * API de criação de liga usa para rejeitar uma condição digitada errado em
+ * vez de silenciosamente criar uma liga sem nenhum participante possível.
  *
  * Aceita opcionalmente o client de transação (`tx`). Isso importa mais do
  * que em `trilhaBasicaConcluida`/afins: quando chamada de dentro de um

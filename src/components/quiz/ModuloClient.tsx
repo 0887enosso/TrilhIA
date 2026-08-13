@@ -37,6 +37,14 @@ type ModuloConteudo = {
   questoesRespondidasCorretamente?: string[];
 };
 
+// Só presente para módulo tipo_modulo === "projeto_pratico" — entrega já
+// registrada antes, usada pra ProjetoFinalFlow retomar de onde parou.
+type EntregaExistente = {
+  casoId: string;
+  respostasTarefas: string[];
+  checklistMarcado: boolean[];
+} | null;
+
 type Passo = { tipo: "licao"; aula: Aula } | { tipo: "questao"; questao: Questao };
 
 type Fase = "carregando" | "erro" | "bloqueado" | "sem_energia" | "estudando" | "concluido";
@@ -79,6 +87,7 @@ export function ModuloClient({ trilha, moduloId }: { trilha: TrilhaId; moduloId:
   const [conclusao, setConclusao] = useState<{ badgesGanhas: string[]; certificadoEmitido: boolean } | null>(
     null
   );
+  const [entregaExistente, setEntregaExistente] = useState<EntregaExistente>(null);
 
   useEffect(() => {
     iniciarEcarregar();
@@ -126,6 +135,7 @@ export function ModuloClient({ trilha, moduloId }: { trilha: TrilhaId; moduloId:
     setConteudo(modulo);
 
     if (modulo.tipo_modulo === "projeto_pratico") {
+      setEntregaExistente(corpoConteudo.entregaExistente ?? null);
       setFase("estudando"); // ProjetoFinalFlow assume o controle a partir daqui
       return;
     }
@@ -311,6 +321,7 @@ export function ModuloClient({ trilha, moduloId }: { trilha: TrilhaId; moduloId:
       <ProjetoFinalFlow
         trilha={trilha}
         conteudo={conteudo as unknown as Record<string, unknown>}
+        entregaExistente={entregaExistente}
         onConcluido={concluirModulo}
       />
     );

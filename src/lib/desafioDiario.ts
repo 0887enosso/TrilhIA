@@ -1,12 +1,9 @@
 import { prisma } from "./prisma";
 import { todasQuestoesDoModulo, parseQuestaoId } from "./content";
+import { inicioDoDiaBrasil } from "./tempo";
 
 const QUESTOES_POR_DESAFIO = 5;
 const XP_BONUS_DESAFIO_DIARIO = 30;
-
-function inicioDoDiaUTC(data: Date): Date {
-  return new Date(Date.UTC(data.getUTCFullYear(), data.getUTCMonth(), data.getUTCDate()));
-}
 
 /**
  * Escolhe as questões do desafio de hoje: parte do módulo mais recente que o
@@ -42,7 +39,7 @@ async function selecionarQuestoesDoDesafio(usuarioId: string): Promise<string[]>
 
 /** Busca o desafio de hoje do usuário, criando um novo (com questões sorteadas) se ainda não existir. */
 export async function obterOuCriarDesafioDeHoje(usuarioId: string) {
-  const hoje = inicioDoDiaUTC(new Date());
+  const hoje = inicioDoDiaBrasil(new Date());
 
   const existente = await prisma.desafioDiario.findUnique({
     where: { usuarioId_data: { usuarioId, data: hoje } },
@@ -50,7 +47,12 @@ export async function obterOuCriarDesafioDeHoje(usuarioId: string) {
   if (existente) return existente;
 
   const questaoIds = await selecionarQuestoesDoDesafio(usuarioId);
-  if (questaoIds.length === 0) return null; // usuário ainda sem nenhum módulo iniciado
+  // Hoje impossível na prática (todo módulo tem 7+ questões, então mesmo um
+  // único módulo tocado já preenche o pool) — mas se o conteúdo algum dia
+  // tiver um módulo com poucas questões, é melhor não oferecer um "desafio
+  // diário" incompleto (menos que QUESTOES_POR_DESAFIO) do que criar um
+  // silenciosamente menor do que o prometido.
+  if (questaoIds.length < QUESTOES_POR_DESAFIO) return null;
 
   return prisma.desafioDiario.create({
     data: { usuarioId, data: hoje, questaoIds },
@@ -72,7 +74,7 @@ export async function processarRespostaParaDesafioDiario(
   usuarioId: string,
   questaoId: string
 ): Promise<{ desafioConcluidoAgora: boolean; xpBonus: number } | null> {
-  const hoje = inicioDoDiaUTC(new Date());
+  const hoje = inicioDoDiaBrasil(new Date());
 
   const desafio = await prisma.desafioDiario.findUnique({
     where: { usuarioId_data: { usuarioId, data: hoje } },

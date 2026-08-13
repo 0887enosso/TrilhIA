@@ -1,17 +1,5 @@
 import { prisma } from "./prisma";
-
-/**
- * Início do dia no fuso de Brasília (UTC-3 fixo — o Brasil não usa mais
- * horário de verão desde 2019, então não precisa de lógica de fuso variável).
- * Antes disso usava UTC puro, o que deslocava a virada do dia da streak para
- * as 21h de Brasília — bem no meio do horário mais comum de uso do app,
- * quebrando sequência de quem usa o app em horários variáveis à noite mesmo
- * sem ter faltado nenhum dia de verdade.
- */
-function inicioDoDiaBrasil(data: Date): Date {
-  const deslocado = new Date(data.getTime() - 3 * 60 * 60 * 1000);
-  return new Date(Date.UTC(deslocado.getUTCFullYear(), deslocado.getUTCMonth(), deslocado.getUTCDate()));
-}
+import { inicioDoDiaBrasil } from "./tempo";
 
 function diasEntre(a: Date, b: Date): number {
   const msPorDia = 24 * 60 * 60 * 1000;

@@ -4,6 +4,7 @@ import { FormEvent, useState } from "react";
 import { useRouter } from "next/navigation";
 import { CampoTexto, CampoSelecao } from "@/components/ui/Campo";
 import { Botao } from "@/components/ui/Botao";
+import { CONDICOES_DESBLOQUEIO_ROTULOS } from "@/lib/condicoesLiga";
 
 type Equipe = { id: string; nome: string };
 
@@ -68,11 +69,14 @@ export function CriarLigaForm({ equipes }: { equipes: Equipe[] }) {
           ))}
         </CampoSelecao>
         {tipo === "EXCLUSIVA" ? (
-          <CampoTexto
-            rotulo="Condição de desbloqueio (opcional)"
-            name="condicaoDesbloqueio"
-            placeholder="Ex: trilha_basica_concluida"
-          />
+          <CampoSelecao rotulo="Condição de desbloqueio (opcional)" name="condicaoDesbloqueio" defaultValue="">
+            <option value="">Nenhuma — todos da equipe (ou de qualquer equipe) já são elegíveis</option>
+            {Object.entries(CONDICOES_DESBLOQUEIO_ROTULOS).map(([valor, rotulo]) => (
+              <option key={valor} value={valor}>
+                {rotulo}
+              </option>
+            ))}
+          </CampoSelecao>
         ) : null}
       </div>
 

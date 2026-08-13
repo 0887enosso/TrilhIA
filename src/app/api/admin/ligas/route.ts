@@ -2,12 +2,26 @@ import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
 import { prisma } from "@/lib/prisma";
 import { obterSessaoAtual } from "@/lib/auth";
+import { CONDICOES_DESBLOQUEIO_VALORES } from "@/lib/condicoesLiga";
 
 const schema = z.object({
   nome: z.string().min(2, "Informe o nome da liga."),
   tipo: z.enum(["PADRAO", "EXCLUSIVA"]),
   equipeId: z.string().nullable().optional(),
-  condicaoDesbloqueio: z.string().nullable().optional(),
+  // Vazio/null = liga exclusiva sem condição (elegível pra todo mundo da
+  // equipe, ou de qualquer equipe). Um valor fora da lista fica pra sempre
+  // sem participante possível (ver src/lib/ligas.ts) — em vez de aceitar
+  // qualquer texto, valida contra a mesma lista usada no formulário do
+  // painel admin, pra pegar um erro de digitação na hora da criação.
+  condicaoDesbloqueio: z
+    .string()
+    .nullable()
+    .optional()
+    .refine(
+      (valor) =>
+        !valor || (CONDICOES_DESBLOQUEIO_VALORES as readonly string[]).includes(valor),
+      { message: "Condição de desbloqueio não reconhecida — escolha uma das opções da lista." }
+    ),
 });
 
 /**
@@ -42,7 +56,12 @@ export async function POST(request: NextRequest) {
   }
 
   const liga = await prisma.liga.create({
-    data: { nome, tipo, equipeId: equipeId ?? null, condicaoDesbloqueio: condicaoDesbloqueio ?? null },
+    data: {
+      nome,
+      tipo,
+      equipeId: equipeId ?? null,
+      condicaoDesbloqueio: condicaoDesbloqueio ? condicaoDesbloqueio : null,
+    },
   });
 
   return NextResponse.json({ liga }, { status: 201 });
