@@ -202,6 +202,7 @@ export type BadgeConquistada = {
   nomeBadge: string;
   descricao: string;
   conquistadoEm: Date;
+  tipo: "EMBLEMA" | "TROFEU";
 };
 
 export type CertificadoEmitido = DadosCertificado & {
@@ -244,6 +245,7 @@ export async function obterConquistasDoUsuario(
       nomeBadge: b.nomeBadge,
       descricao: b.descricao,
       conquistadoEm: b.conquistadoEm,
+      tipo: b.tipo,
     })),
     certificados,
   };

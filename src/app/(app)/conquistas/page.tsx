@@ -4,33 +4,62 @@ import { obterConquistasDoUsuario } from "@/lib/conquistas";
 import { Mascote } from "@/components/mascote/Mascote";
 import { ImprimirBotao } from "@/components/app/ImprimirBotao";
 import { MagicCard } from "@/components/reactbits/MagicCard";
+import { IconeConquista } from "@/components/conquistas/IconeConquista";
 
 export default async function ConquistasPage() {
   const sessao = await obterSessaoAtual();
   if (!sessao) redirect("/login");
 
   const { badges, certificados } = await obterConquistasDoUsuario(sessao.usuarioId);
+  const emblemas = badges.filter((b) => b.tipo === "EMBLEMA");
+  const trofeus = badges.filter((b) => b.tipo === "TROFEU");
 
   return (
     <div className="flex flex-col gap-10">
       <section>
-        <h1 className="font-sans text-2xl font-extrabold text-ink">Badges</h1>
-        {badges.length === 0 ? (
+        <h1 className="font-sans text-2xl font-extrabold text-ink">Emblemas</h1>
+        {emblemas.length === 0 ? (
           <p className="mt-3 text-sm text-ink-soft">
-            Nenhuma badge ainda — conclua um bloco da trilha para conquistar a primeira.
+            Nenhum emblema ainda — conclua um módulo da trilha para conquistar o primeiro.
           </p>
         ) : (
           <div className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {badges.map((badge) => (
+            {emblemas.map((badge) => (
+              <MagicCard
+                key={badge.badgeId}
+                glowColor="51, 81, 60"
+                className="rounded-3xl border-2 border-trail-soft bg-parchment-surface transition-all hover:-translate-y-0.5 hover:border-trail hover:shadow-lg"
+              >
+                <div className="flex flex-col items-center gap-2 p-5 text-center">
+                  <IconeConquista badgeId={badge.badgeId} tipo={badge.tipo} size={80} />
+                  <h3 className="font-sans text-base font-extrabold text-ink">{badge.nomeBadge}</h3>
+                  <p className="text-sm text-ink-soft">{badge.descricao}</p>
+                  <p className="font-mono text-xs font-bold text-ink-faint">
+                    {new Date(badge.conquistadoEm).toLocaleDateString("pt-BR")}
+                  </p>
+                </div>
+              </MagicCard>
+            ))}
+          </div>
+        )}
+      </section>
+
+      <section>
+        <h1 className="font-sans text-2xl font-extrabold text-ink">Troféus</h1>
+        {trofeus.length === 0 ? (
+          <p className="mt-3 text-sm text-ink-soft">
+            Nenhum troféu ainda — troféus marcam as conquistas mais raras e difíceis do TrilhIA.
+          </p>
+        ) : (
+          <div className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {trofeus.map((badge) => (
               <MagicCard
                 key={badge.badgeId}
                 glowColor="169, 112, 15"
                 className="rounded-3xl border-2 border-amber-soft bg-parchment-surface transition-all hover:-translate-y-0.5 hover:border-amber hover:shadow-lg"
               >
                 <div className="flex flex-col items-center gap-2 p-5 text-center">
-                  <div className="flex h-20 w-20 items-center justify-center rounded-full bg-amber-soft">
-                    <Mascote pose="comemorando" size={56} />
-                  </div>
+                  <IconeConquista badgeId={badge.badgeId} tipo={badge.tipo} size={80} />
                   <h3 className="font-sans text-base font-extrabold text-ink">{badge.nomeBadge}</h3>
                   <p className="text-sm text-ink-soft">{badge.descricao}</p>
                   <p className="font-mono text-xs font-bold text-ink-faint">
