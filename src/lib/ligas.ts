@@ -25,6 +25,32 @@ export function semanaIsoAnterior(): string {
   return semanaIsoDe(seteDiasAtras);
 }
 
+/** Inverso de `semanaIsoDe`: a segunda-feira (UTC) da semana ISO "YYYY-Www". */
+function semanaIsoParaData(semanaIso: string): Date {
+  const [anoStr, semanaStr] = semanaIso.split("-W");
+  const ano = Number(anoStr);
+  const semana = Number(semanaStr);
+  const jan4 = new Date(Date.UTC(ano, 0, 4));
+  const diaSemanaJan4 = jan4.getUTCDay() || 7;
+  const segundaSemana1 = new Date(jan4);
+  segundaSemana1.setUTCDate(jan4.getUTCDate() - diaSemanaJan4 + 1);
+  const resultado = new Date(segundaSemana1);
+  resultado.setUTCDate(segundaSemana1.getUTCDate() + (semana - 1) * 7);
+  return resultado;
+}
+
+/**
+ * Verifica se `atual` é exatamente a semana ISO seguinte a `anterior` — usado
+ * pelas conquistas de liga que dependem de semanas CONSECUTIVAS (Presença
+ * Confirmada, Maratonista da Liga, Sentença Unânime, Banca Permanente,
+ * Reeleição). Comparar as strings "YYYY-Www" diretamente não basta na virada
+ * do ano (ex: "2026-W52" → "2027-W01"), por isso a comparação é por data.
+ */
+export function saoSemanasConsecutivas(anterior: string, atual: string): boolean {
+  const diffMs = semanaIsoParaData(atual).getTime() - semanaIsoParaData(anterior).getTime();
+  return diffMs === 7 * 24 * 60 * 60 * 1000;
+}
+
 /** Verifica se o usuário concluiu todos os módulos da trilha básica. */
 export async function trilhaBasicaConcluida(
   usuarioId: string,
@@ -158,11 +184,20 @@ export async function adicionarXpSemanal(
   xp: number,
   contaTeste: boolean,
   db: PrismaOuTransacao = prisma
-): Promise<void> {
-  if (xp <= 0 || contaTeste) return;
+): Promise<{ eraPrimeiraParticipacao: boolean }> {
+  if (xp <= 0 || contaTeste) return { eraPrimeiraParticipacao: false };
 
   const semana = semanaIsoAtual();
   const ligas = await ligasElegiveis(usuarioId, equipeId, db);
+  if (ligas.length === 0) return { eraPrimeiraParticipacao: false };
+
+  // Lido ANTES do upsert — sinal para o emblema "Primeira Sustentação"
+  // (src/lib/conquistasLiga.ts). Quem chama decide se concede o emblema;
+  // esta função só informa o fato, mantendo o mesmo formato de
+  // "retorna um resultado, quem chama aciona a conquista" usado em
+  // `atualizarStreak` (src/lib/streak.ts) — evita import circular entre
+  // ligas.ts e conquistasLiga.ts.
+  const eraPrimeiraParticipacao = (await db.participacaoLiga.count({ where: { usuarioId } })) === 0;
 
   await Promise.all(
     ligas.map((liga) =>
@@ -173,4 +208,6 @@ export async function adicionarXpSemanal(
       })
     )
   );
+
+  return { eraPrimeiraParticipacao };
 }

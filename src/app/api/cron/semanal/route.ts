@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { semanaIsoAnterior, semanaIsoAtual } from "@/lib/ligas";
+import { processarConquistasLiga } from "@/lib/conquistasLiga";
+import { processarReservaTecnicaCompleta } from "@/lib/badgesEngajamento";
 
 /**
  * Rotina semanal, acionada pelo Vercel Cron (ver vercel.json — roda toda
@@ -62,7 +64,10 @@ export async function GET(request: NextRequest) {
       )
     );
 
-    if (participacoes.length > 0) ligasComParticipantes++;
+    if (participacoes.length > 0) {
+      ligasComParticipantes++;
+      await processarConquistasLiga(liga, semanaApurada, prisma);
+    }
   }
 
   // Reposição de freeze idempotente por semana: além do teto numérico
@@ -82,6 +87,17 @@ export async function GET(request: NextRequest) {
       freezeRepostoNaSemana: semanaAtual,
     },
   });
+
+  // Reserva Técnica Completa: só quem acabou de CHEGAR a 2 nesta rodada
+  // (a condição streakFreezesDisponiveis < 2 do updateMany acima garante que
+  // ninguém aqui já estava no teto antes — só quem tinha 1 e virou 2).
+  if (usuariosComFreezeReposto > 0) {
+    const usuariosNoTeto = await prisma.usuario.findMany({
+      where: { freezeRepostoNaSemana: semanaAtual, streakFreezesDisponiveis: 2 },
+      select: { id: true },
+    });
+    await Promise.all(usuariosNoTeto.map((usuario) => processarReservaTecnicaCompleta(usuario.id, prisma)));
+  }
 
   return NextResponse.json({
     ok: true,

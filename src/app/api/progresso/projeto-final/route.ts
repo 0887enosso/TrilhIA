@@ -66,6 +66,25 @@ export async function POST(request: NextRequest) {
     );
   }
 
+  // Trava de segurança: uma vez que o módulo 30 já foi concluído, a entrega
+  // (inclusive o caso escolhido) fica congelada. Sem isso, dava para
+  // concluir com um caso, ganhar o emblema correspondente, trocar o caso
+  // aqui sem refazer nenhuma tarefa de verdade e chamar
+  // POST /api/progresso/modulo/concluir de novo (idempotente para módulo já
+  // concluído) para ganhar também o emblema do novo caso.
+  const progressoExistente = await prisma.progressoModulo.findUnique({
+    where: { usuarioId_moduloId: { usuarioId: sessao.usuarioId, moduloId: MODULO_ID } },
+  });
+  if (progressoExistente?.concluido) {
+    return NextResponse.json(
+      {
+        erro: "O módulo 30 já foi concluído — a entrega (inclusive o caso escolhido) não pode mais ser alterada.",
+        codigo: "modulo_ja_concluido",
+      },
+      { status: 409 }
+    );
+  }
+
   const entrega = await prisma.entregaProjetoFinal.upsert({
     where: { usuarioId_moduloId: { usuarioId: sessao.usuarioId, moduloId: MODULO_ID } },
     update: { casoId, respostasTarefas, checklistMarcado },

@@ -6,9 +6,12 @@ import {
   listarIdsModulos,
   TrilhaId,
 } from "./content";
+import { EMBLEMAS_BADGE_IDS, TRIBUNAL_PLENO_BADGE_ID, TRIBUNAL_PLENO_PERCENTUAL_MINIMO } from "./catalogoConquistas";
+import { processarConquistasBasica } from "./conquistasBasica";
+import { processarConquistasIntermediaria } from "./conquistasIntermediaria";
 
 /** Cliente Prisma "normal" ou um cliente de transação (`tx` de `prisma.$transaction`) — mesma API para as duas coisas. */
-type PrismaOuTransacao = typeof prisma | Prisma.TransactionClient;
+export type PrismaOuTransacao = typeof prisma | Prisma.TransactionClient;
 
 function paraSlug(texto: string): string {
   return texto
@@ -32,6 +35,121 @@ async function concederBadge(
     create: { usuarioId, badgeId, nomeBadge, descricao },
   });
   return badgeId;
+}
+
+/**
+ * Concede um emblema ou troféu do catálogo novo (ver docs/gamificacao.md) —
+ * ao contrário de `concederBadge` (usado só pelas 7 badges estruturais já
+ * existentes antes desta rodada), aqui a chave é sempre passada
+ * explicitamente, nunca derivada do nome de exibição. Isso evita o problema
+ * já conhecido de `concederBadge`: se o nome mudar depois, o slug muda
+ * junto e quebra a unicidade com o que já foi concedido.
+ *
+ * `upsert` com `update: {}` é idempotente de propósito — chamar de novo pra
+ * uma conquista já concedida não é erro, só um no-op (é assim que a maioria
+ * dos critérios "só uma vez" é garantida, sem precisar rastrear "já
+ * concedi?" em código).
+ *
+ * Emblemas frescos disparam a checagem de "Tribunal Pleno" (troféu
+ * colecionador) — chamada aqui dentro, não em cada domínio separadamente,
+ * pra não esquecer de checar em algum lugar novo no futuro.
+ */
+export async function concederConquista(
+  db: PrismaOuTransacao,
+  usuarioId: string,
+  badgeId: string,
+  nomeBadge: string,
+  descricao: string,
+  tipo: "EMBLEMA" | "TROFEU" = "EMBLEMA"
+): Promise<void> {
+  await db.conquistaUsuario.upsert({
+    where: { usuarioId_badgeId: { usuarioId, badgeId } },
+    update: {},
+    create: { usuarioId, badgeId, nomeBadge, descricao, tipo },
+  });
+
+  if (tipo === "EMBLEMA") {
+    await verificarTribunalPleno(db, usuarioId);
+  }
+}
+
+/**
+ * Troféu "colecionador": concede quando o usuário já tem pelo menos 80% de
+ * todos os emblemas do catálogo (`EMBLEMAS_BADGE_IDS`) — troféus não contam
+ * pra essa conta, pra não virar um alvo móvel. Chamada automaticamente por
+ * `concederConquista` sempre que um emblema novo é concedido; seguro chamar
+ * repetidamente (idempotente via upsert).
+ */
+async function verificarTribunalPleno(db: PrismaOuTransacao, usuarioId: string): Promise<void> {
+  const conquistados = await db.conquistaUsuario.count({
+    where: { usuarioId, tipo: "EMBLEMA", badgeId: { in: [...EMBLEMAS_BADGE_IDS] } },
+  });
+
+  if (conquistados / EMBLEMAS_BADGE_IDS.length >= TRIBUNAL_PLENO_PERCENTUAL_MINIMO) {
+    await db.conquistaUsuario.upsert({
+      where: { usuarioId_badgeId: { usuarioId, badgeId: TRIBUNAL_PLENO_BADGE_ID } },
+      update: {},
+      create: {
+        usuarioId,
+        badgeId: TRIBUNAL_PLENO_BADGE_ID,
+        nomeBadge: "Tribunal Pleno",
+        descricao:
+          "Reuniu pelo menos 80% de todas as conquistas menores do TrilhIA — quando o plenário se forma, poucos ficam de fora.",
+        tipo: "TROFEU",
+      },
+    });
+  }
+}
+
+/**
+ * Troféus "Ficha Limpa" (Maestria) e "Doutor(a) em IA" (Maestria) dependem
+ * dos 2 certificados — checados aqui, logo após qualquer emissão de
+ * certificado (as únicas 2 vezes que o conjunto de certificados do usuário
+ * pode ter acabado de completar as duas trilhas).
+ */
+async function verificarFichaLimpaEDoutorEmIA(db: PrismaOuTransacao, usuarioId: string): Promise<void> {
+  const totalCertificados = await db.certificado.count({ where: { usuarioId } });
+  if (totalCertificados < 2) return;
+
+  const errosTotal = await db.respostaQuestao.count({ where: { usuarioId, correta: false } });
+  if (errosTotal === 0) {
+    await concederConquista(
+      db,
+      usuarioId,
+      "ficha-limpa",
+      "Ficha Limpa",
+      "Concluiu as trilhas Básica e Intermediária inteiras sem nunca errar uma única questão — nenhuma mancha no seu histórico.",
+      "TROFEU"
+    );
+  }
+
+  await verificarDoutorEmIA(db, usuarioId);
+}
+
+/**
+ * Doutor(a) em IA (Maestria) — as duas trilhas concluídas + nível ≥20.
+ * Exportada porque as duas condições mudam em momentos diferentes: os
+ * certificados aqui (`verificarFichaLimpaEDoutorEmIA`, ao concluir módulo)
+ * e o nível em `processarConquistasDeNivel`
+ * (src/lib/conquistasMaestria.ts, ao responder questão) — cada gatilho
+ * revalida a condição inteira, não só a metade que mudou.
+ */
+export async function verificarDoutorEmIA(db: PrismaOuTransacao, usuarioId: string): Promise<void> {
+  const [totalCertificados, usuario] = await Promise.all([
+    db.certificado.count({ where: { usuarioId } }),
+    db.usuario.findUnique({ where: { id: usuarioId }, select: { nivel: true } }),
+  ]);
+
+  if (totalCertificados >= 2 && (usuario?.nivel ?? 0) >= 20) {
+    await concederConquista(
+      db,
+      usuarioId,
+      "doutor-em-ia",
+      "Doutor(a) em IA",
+      "Concluiu as duas trilhas e seguiu estudando muito além do currículo — título reservado a quem transforma conhecimento em hábito duradouro.",
+      "TROFEU"
+    );
+  }
 }
 
 async function emitirCertificado(
@@ -153,6 +271,22 @@ export async function processarConquistasDoModulo(
   const modulo = carregarModulo(trilha, moduloId);
   const resultado: ResultadoConquistas = { badgesGanhas: [], certificadoEmitido: false };
 
+  // Parecer Sem Ressalvas (Maestria) — cross-trilha: concluiu ESTE módulo
+  // sem nenhuma resposta errada registrada. Independente do resto da
+  // função (não é estrutural nem de bloco), por isso avaliado logo aqui.
+  const errosNesteModulo = await db.respostaQuestao.count({
+    where: { usuarioId, moduloId, correta: false },
+  });
+  if (errosNesteModulo === 0) {
+    await concederConquista(
+      db,
+      usuarioId,
+      "parecer-sem-ressalvas",
+      "Parecer Sem Ressalvas",
+      "Concluiu um módulo sem nenhuma resposta errada."
+    );
+  }
+
   if (modulo.conquista_de_bloco) {
     const badgeId = await concederBadge(
       db,
@@ -175,6 +309,7 @@ export async function processarConquistasDoModulo(
     if (modulo.conquista_final.certificado_elegivel) {
       await emitirCertificado(db, usuarioId, trilha);
       resultado.certificadoEmitido = true;
+      await verificarFichaLimpaEDoutorEmIA(db, usuarioId);
     }
   }
 
@@ -192,7 +327,14 @@ export async function processarConquistasDoModulo(
 
       await emitirCertificado(db, usuarioId, "basica");
       resultado.certificadoEmitido = true;
+      await verificarFichaLimpaEDoutorEmIA(db, usuarioId);
     }
+
+    await processarConquistasBasica(usuarioId, moduloId, db);
+  }
+
+  if (trilha === "intermediaria") {
+    await processarConquistasIntermediaria(usuarioId, moduloId, db);
   }
 
   return resultado;

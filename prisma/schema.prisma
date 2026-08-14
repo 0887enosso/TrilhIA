@@ -96,6 +96,16 @@ model Usuario {
   modulosIniciadosHoje     Int          @default(0)
   dataUltimoModuloIniciado DateTime?
 
+  // Campos de suporte a emblemas/troféus (ver src/lib/conquistas.ts e
+  // docs/gamificacao.md) — cada um existe porque o critério correspondente
+  // não é reconstruível a partir de dados já existentes (streak e corações
+  // só guardam o estado ATUAL, não histórico).
+  maiorStreakJaAlcancado          Int     @default(0) // recorde pessoal de streakAtual, nunca diminui — usado por "Recorde Pessoal" e "Trânsito em Julgado"
+  streakUsouFreezeNaSequenciaAtual Boolean @default(false) // true se a sequência atual de streak já consumiu algum freeze; reseta junto com streakAtual
+  sequenciaAcertosAtual           Int     @default(0) // acertos seguidos sem erro, cruzando módulos/trilhas — zera em qualquer resposta errada
+  maiorSequenciaAcertos           Int     @default(0) // recorde de sequenciaAcertosAtual, nunca diminui — usado por "Coisa Julgada"
+  zerouCoracoesNaBasica           Boolean @default(false) // true se os corações já chegaram a 0 em algum momento antes de concluir a trilha básica; nunca resetado
+
   criadoEm                 DateTime     @default(now())
   atualizadoEm             DateTime     @updatedAt
 
@@ -156,17 +166,28 @@ model RespostaQuestao {
 // CONQUISTAS E CERTIFICADOS
 // ==========================================================================
 
+// EMBLEMA = frequente/acessível, celebra progresso incremental.
+// TROFEU = raro/difícil, exige consistência sustentada ou desempenho de
+// excelência — ver docs/gamificacao.md para a distinção completa e o
+// catálogo. Existe pra diferenciar na UI e pra excluir troféus da contagem
+// do troféu "colecionador" (Tribunal Pleno), que conta só emblemas.
+enum TipoConquista {
+  EMBLEMA
+  TROFEU
+}
+
 model ConquistaUsuario {
-  id            String   @id @default(cuid())
+  id            String        @id @default(cuid())
 
   usuarioId     String
-  usuario       Usuario  @relation(fields: [usuarioId], references: [id])
+  usuario       Usuario       @relation(fields: [usuarioId], references: [id])
 
-  badgeId       String   // slug estável, ex: "arquiteto-de-prompts" — ver conquista_de_bloco no JSON
+  badgeId       String        // slug estável, ex: "arquiteto-de-prompts" — ver conquista_de_bloco no JSON
   nomeBadge     String
   descricao     String
+  tipo          TipoConquista @default(EMBLEMA)
 
-  conquistadoEm DateTime @default(now())
+  conquistadoEm DateTime      @default(now())
 
   @@unique([usuarioId, badgeId])
 }

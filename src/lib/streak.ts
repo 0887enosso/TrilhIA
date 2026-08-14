@@ -11,7 +11,29 @@ function diasEntre(a: Date, b: Date): number {
 export type DadosStreakUsuario = {
   ultimoDesafioDiarioConcluidoEm: Date | null;
   streakFreezesDisponiveis: number;
+  streakAtual: number;
+  maiorStreakJaAlcancado: number;
+  streakUsouFreezeNaSequenciaAtual: boolean;
 };
+
+/** `null` = a chamada não mudou nada (mesmo dia já registrado, ou perdeu a
+ * corrida para uma requisição concorrente que já aplicou a mesma transição —
+ * ver nota de concorrência abaixo). Quem chama deve pular qualquer concessão
+ * de emblema/troféu de streak quando o resultado é `null`. */
+export type ResultadoAtualizarStreak = {
+  streakAtual: number;
+  // Estado acumulado da sequência ATUAL (pode ter sido marcado numa chamada
+  // anterior) — usado por troféus que julgam a sequência inteira (Prazo
+  // Peremptório / Recurso Provido).
+  usouFreezeNaSequenciaAtual: boolean;
+  // true só nesta chamada específica ter sido a que consumiu o freeze
+  // (branch de 2 dias de gap) — usado pelo emblema "Pedido de Vista", que é
+  // sobre o EVENTO de consumir, não sobre o estado acumulado.
+  freezeConsumidoAgora: boolean;
+  // true só quando o novo streak supera um recorde pessoal que já era > 1 —
+  // ou seja, é uma recuperação de verdade após uma quebra, não só o 1º dia.
+  bateuRecordePessoal: boolean;
+} | null;
 
 /**
  * Atualiza o foguinho (streak) do usuário com base na última vez que ele
@@ -26,9 +48,14 @@ export type DadosStreakUsuario = {
  *   caso é só uma proteção defensiva).
  * - Exatamente 1 dia depois do último desafio concluído → foguinho +1.
  * - 2 dias depois (perdeu 1 dia) e há streak freeze disponível → consome 1
- *   freeze e mantém o foguinho vivo.
+ *   freeze, mantém o foguinho vivo e marca `streakUsouFreezeNaSequenciaAtual`.
  * - Qualquer outro caso (sem freeze, ou mais de 1 dia sem concluir o
- *   desafio) → foguinho zera e recomeça em 1 (o dia de hoje).
+ *   desafio) → foguinho zera e recomeça em 1 (o dia de hoje), e a marca de
+ *   freeze da sequência reseta junto.
+ *
+ * Em todos os ramos, `maiorStreakJaAlcancado` é atualizado inline (`Math.max`
+ * calculado aqui, não uma segunda ida ao banco) — é o recorde pessoal usado
+ * pelos emblemas/troféus "Recorde Pessoal" e "Trânsito em Julgado".
  *
  * Todas as escritas usam `updateMany` condicionado ao
  * `ultimoDesafioDiarioConcluidoEm` (e, quando aplicável,
@@ -39,37 +66,56 @@ export type DadosStreakUsuario = {
  * foguinho e podendo deixar o freeze negativo (mesma classe de bug já
  * medida e corrigida quando isso ainda era disparado por toda resposta de
  * questão). Se o `updateMany` não afetar nenhuma linha (`count === 0`),
- * outra requisição concorrente já aplicou essa mesma transição — não é
- * erro, só um no-op silencioso.
+ * outra requisição concorrente já aplicou essa mesma transição — devolve
+ * `null` em vez de inventar um resultado que esta chamada não causou de
+ * verdade.
  */
 export async function atualizarStreak(
   usuarioId: string,
   usuario: DadosStreakUsuario
-): Promise<void> {
+): Promise<ResultadoAtualizarStreak> {
   const hoje = new Date();
 
   if (!usuario.ultimoDesafioDiarioConcluidoEm) {
-    await prisma.usuario.updateMany({
+    const resultado = await prisma.usuario.updateMany({
       where: { id: usuarioId, ultimoDesafioDiarioConcluidoEm: null },
-      data: { streakAtual: 1, ultimoDesafioDiarioConcluidoEm: hoje },
+      data: {
+        streakAtual: 1,
+        ultimoDesafioDiarioConcluidoEm: hoje,
+        streakUsouFreezeNaSequenciaAtual: false,
+        maiorStreakJaAlcancado: Math.max(usuario.maiorStreakJaAlcancado, 1),
+      },
     });
-    return;
+    if (resultado.count === 0) return null;
+    return { streakAtual: 1, usouFreezeNaSequenciaAtual: false, freezeConsumidoAgora: false, bateuRecordePessoal: false };
   }
 
   const gap = diasEntre(usuario.ultimoDesafioDiarioConcluidoEm, hoje);
 
-  if (gap === 0) return;
+  if (gap === 0) return null;
 
   if (gap === 1) {
-    await prisma.usuario.updateMany({
+    const novoStreak = usuario.streakAtual + 1;
+    const resultado = await prisma.usuario.updateMany({
       where: { id: usuarioId, ultimoDesafioDiarioConcluidoEm: usuario.ultimoDesafioDiarioConcluidoEm },
-      data: { streakAtual: { increment: 1 }, ultimoDesafioDiarioConcluidoEm: hoje },
+      data: {
+        streakAtual: { increment: 1 },
+        ultimoDesafioDiarioConcluidoEm: hoje,
+        maiorStreakJaAlcancado: Math.max(usuario.maiorStreakJaAlcancado, novoStreak),
+      },
     });
-    return;
+    if (resultado.count === 0) return null;
+    return {
+      streakAtual: novoStreak,
+      usouFreezeNaSequenciaAtual: usuario.streakUsouFreezeNaSequenciaAtual,
+      freezeConsumidoAgora: false,
+      bateuRecordePessoal: novoStreak > usuario.maiorStreakJaAlcancado && usuario.maiorStreakJaAlcancado > 1,
+    };
   }
 
   if (gap === 2 && usuario.streakFreezesDisponiveis > 0) {
-    await prisma.usuario.updateMany({
+    const novoStreak = usuario.streakAtual + 1;
+    const resultado = await prisma.usuario.updateMany({
       where: {
         id: usuarioId,
         ultimoDesafioDiarioConcluidoEm: usuario.ultimoDesafioDiarioConcluidoEm,
@@ -79,13 +125,28 @@ export async function atualizarStreak(
         streakFreezesDisponiveis: { decrement: 1 },
         streakAtual: { increment: 1 },
         ultimoDesafioDiarioConcluidoEm: hoje,
+        streakUsouFreezeNaSequenciaAtual: true,
+        maiorStreakJaAlcancado: Math.max(usuario.maiorStreakJaAlcancado, novoStreak),
       },
     });
-    return;
+    if (resultado.count === 0) return null;
+    return {
+      streakAtual: novoStreak,
+      usouFreezeNaSequenciaAtual: true,
+      freezeConsumidoAgora: true,
+      bateuRecordePessoal: novoStreak > usuario.maiorStreakJaAlcancado && usuario.maiorStreakJaAlcancado > 1,
+    };
   }
 
-  await prisma.usuario.updateMany({
+  const resultado = await prisma.usuario.updateMany({
     where: { id: usuarioId, ultimoDesafioDiarioConcluidoEm: usuario.ultimoDesafioDiarioConcluidoEm },
-    data: { streakAtual: 1, ultimoDesafioDiarioConcluidoEm: hoje },
+    data: {
+      streakAtual: 1,
+      ultimoDesafioDiarioConcluidoEm: hoje,
+      streakUsouFreezeNaSequenciaAtual: false,
+      maiorStreakJaAlcancado: Math.max(usuario.maiorStreakJaAlcancado, 1),
+    },
   });
+  if (resultado.count === 0) return null;
+  return { streakAtual: 1, usouFreezeNaSequenciaAtual: false, freezeConsumidoAgora: false, bateuRecordePessoal: false };
 }

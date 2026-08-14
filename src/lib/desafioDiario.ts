@@ -2,6 +2,7 @@ import { prisma } from "./prisma";
 import { todasQuestoesDoModulo, parseQuestaoId } from "./content";
 import { inicioDoDiaBrasil } from "./tempo";
 import { atualizarStreak, type DadosStreakUsuario } from "./streak";
+import { processarConquistasEngajamento } from "./badgesEngajamento";
 
 const QUESTOES_POR_DESAFIO = 5;
 const XP_BONUS_DESAFIO_DIARIO = 30;
@@ -115,7 +116,11 @@ export async function processarRespostaParaDesafioDiario(
 
   if (resultado.count === 0) return null; // outra requisição já concedeu o bônus primeiro
 
-  await atualizarStreak(usuarioId, dadosStreak);
+  const eraPrimeiraVez = dadosStreak.ultimoDesafioDiarioConcluidoEm === null;
+  const resultadoStreak = await atualizarStreak(usuarioId, dadosStreak);
+  if (resultadoStreak) {
+    await processarConquistasEngajamento(usuarioId, eraPrimeiraVez, resultadoStreak, prisma);
+  }
 
   return { desafioConcluidoAgora: true, xpBonus: XP_BONUS_DESAFIO_DIARIO };
 }

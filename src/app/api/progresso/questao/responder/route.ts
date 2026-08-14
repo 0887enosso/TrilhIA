@@ -7,8 +7,17 @@ import { buscarQuestao, validarResposta, extrairExplicacao } from "@/lib/content
 import { xpPorTipoQuestao, calcularNivel } from "@/lib/xp";
 import { adicionarXpSemanal } from "@/lib/ligas";
 import { processarRespostaParaDesafioDiario } from "@/lib/desafioDiario";
-import { aplicarRegeneracaoSeNecessario, calcularCoracoesLiberamEm } from "@/lib/coracoes";
+import { aplicarRegeneracaoSeNecessario, calcularCoracoesLiberamEm, CORACOES_MAXIMO } from "@/lib/coracoes";
 import { AcessoModuloBloqueadoError, garantirAcessoAoModulo } from "@/lib/acessoModulo";
+import {
+  processarPrimeiraPeticao,
+  processarIntervaloDoCafezinho,
+  processarVoltouPorCima,
+  processarConquistasDeNivel,
+  processarSemEmbargos,
+  processarCoisaJulgada,
+} from "@/lib/conquistasMaestria";
+import { processarPrimeiraSustentacao } from "@/lib/conquistasLiga";
 
 const schema = z.object({
   trilha: z.enum(["basica", "intermediaria"]),
@@ -63,6 +72,14 @@ export async function POST(request: NextRequest) {
   // iniciar módulo nem recarregou o resumo — ainda assim a regeneração vale).
   const usuarioAntes = await aplicarRegeneracaoSeNecessario(sessao.usuarioId, usuarioCarregado);
 
+  // Voltou Por Cima (Maestria): a regeneração automática acabou de acontecer
+  // NESTA chamada especificamente — corações estavam a 0 antes e já estão
+  // no máximo agora. Detectado por comparação, não por um flag novo no
+  // schema (calcularCoracoesEfetivos não precisa saber de badges).
+  if (usuarioCarregado.coracoesAtuais === 0 && usuarioAntes.coracoesAtuais === CORACOES_MAXIMO) {
+    await processarVoltouPorCima(sessao.usuarioId, prisma);
+  }
+
   if (!ehAutoavaliada && usuarioAntes.coracoesAtuais <= 0) {
     return NextResponse.json(
       {
@@ -79,8 +96,11 @@ export async function POST(request: NextRequest) {
   const tentativasAnteriores = await prisma.respostaQuestao.count({
     where: { usuarioId: sessao.usuarioId, questaoId },
   });
+  const totalRespostasAntesDesta = await prisma.respostaQuestao.count({
+    where: { usuarioId: sessao.usuarioId },
+  });
 
-  await prisma.respostaQuestao.create({
+  const respostaCriada = await prisma.respostaQuestao.create({
     data: {
       usuarioId: sessao.usuarioId,
       questaoId,
@@ -90,6 +110,11 @@ export async function POST(request: NextRequest) {
       tentativas: tentativasAnteriores + 1,
     },
   });
+
+  // Primeira Petição / No Intervalo do Cafezinho (Maestria) — independentes
+  // de XP/acerto, então avaliados aqui, fora da transação de XP abaixo.
+  await processarPrimeiraPeticao(sessao.usuarioId, totalRespostasAntesDesta, prisma);
+  await processarIntervaloDoCafezinho(sessao.usuarioId, respostaCriada.respondidoEm, prisma);
 
   // --- Desafio diário: decide e persiste a conclusão em si (se for o caso),
   // mas não grava xpTotal/nivel/liga — isso é feito uma única vez abaixo,
@@ -103,6 +128,9 @@ export async function POST(request: NextRequest) {
     {
       ultimoDesafioDiarioConcluidoEm: usuarioAntes.ultimoDesafioDiarioConcluidoEm,
       streakFreezesDisponiveis: usuarioAntes.streakFreezesDisponiveis,
+      streakAtual: usuarioAntes.streakAtual,
+      maiorStreakJaAlcancado: usuarioAntes.maiorStreakJaAlcancado,
+      streakUsouFreezeNaSequenciaAtual: usuarioAntes.streakUsouFreezeNaSequenciaAtual,
     }
   );
   const xpBonusDesafio = resultadoDesafioDiario?.xpBonus ?? 0;
@@ -132,6 +160,32 @@ export async function POST(request: NextRequest) {
       }
     }
 
+    // Sequência de acertos (Coisa Julgada) — independente de XP novo ter
+    // sido concedido nesta resposta (um acerto repetido ainda soma pra
+    // sequência). Autoavaliada (correta === null) não altera nem quebra.
+    if (correta === true) {
+      const atualizado = await tx.usuario.update({
+        where: { id: sessao.usuarioId },
+        data: { sequenciaAcertosAtual: { increment: 1 } },
+      });
+      if (atualizado.sequenciaAcertosAtual > atualizado.maiorSequenciaAcertos) {
+        await tx.usuario.update({
+          where: { id: sessao.usuarioId },
+          data: { maiorSequenciaAcertos: atualizado.sequenciaAcertosAtual },
+        });
+      }
+      await processarCoisaJulgada(sessao.usuarioId, atualizado.sequenciaAcertosAtual, tx);
+    } else if (correta === false) {
+      await tx.usuario.update({
+        where: { id: sessao.usuarioId },
+        data: { sequenciaAcertosAtual: 0 },
+      });
+    }
+
+    if (tentativasAnteriores === 0 && correta === true) {
+      await processarSemEmbargos(sessao.usuarioId, true, tx);
+    }
+
     const xpTotalGanhoNaRequisicao = xpGanho + xpBonusDesafio;
     if (xpTotalGanhoNaRequisicao <= 0) return;
 
@@ -142,17 +196,21 @@ export async function POST(request: NextRequest) {
       where: { id: sessao.usuarioId },
       data: { xpTotal: { increment: xpTotalGanhoNaRequisicao } },
     });
-    await tx.usuario.update({
+    const comNivelAtualizado = await tx.usuario.update({
       where: { id: sessao.usuarioId },
       data: { nivel: calcularNivel(comXpAtualizado.xpTotal) },
     });
-    await adicionarXpSemanal(
+    await processarConquistasDeNivel(sessao.usuarioId, comNivelAtualizado.nivel, tx);
+    const resultadoLiga = await adicionarXpSemanal(
       sessao.usuarioId,
       usuarioAntes.equipeId,
       xpTotalGanhoNaRequisicao,
       usuarioAntes.contaTeste,
       tx
     );
+    if (resultadoLiga.eraPrimeiraParticipacao) {
+      await processarPrimeiraSustentacao(sessao.usuarioId, tx);
+    }
   });
 
   // --- Corações: decremento condicional (gt: 0), nunca fica negativo mesmo
@@ -176,6 +234,21 @@ export async function POST(request: NextRequest) {
           where: { id: sessao.usuarioId },
           data: { coracoesZeradosEm: new Date() },
         });
+
+        // Segunda Chamada (Trilha Básica): marca que os corações já
+        // zeraram alguma vez antes de concluir a trilha básica — nunca
+        // resetado depois, ao contrário de coracoesZeradosEm (que volta a
+        // null na regeneração). Só grava se a trilha básica ainda não foi
+        // concluída (depois de concluída, não há mais o que marcar).
+        const certificadoBasica = await prisma.certificado.findUnique({
+          where: { usuarioId_trilha: { usuarioId: sessao.usuarioId, trilha: "basica" } },
+        });
+        if (!certificadoBasica) {
+          await prisma.usuario.update({
+            where: { id: sessao.usuarioId },
+            data: { zerouCoracoesNaBasica: true },
+          });
+        }
       }
     }
   }
