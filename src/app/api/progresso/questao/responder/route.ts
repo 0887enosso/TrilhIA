@@ -157,6 +157,17 @@ export async function POST(request: NextRequest) {
           data: { usuarioId: sessao.usuarioId, questaoId, xp: valorXpQuestao },
         });
         xpGanho = valorXpQuestao; // só chega aqui se a criação teve sucesso — 1ª vez de verdade
+
+        // Soma ao XP acumulado do módulo — campo existia no schema desde a
+        // Fase 2 e nunca era preenchido (ver docs/auditoria-tecnica-backend.md,
+        // item #4 da lista de robustez). Mesma transação que grava o
+        // XpConcedido, pela mesma razão: sem isso, uma queda do processo
+        // entre as duas escritas deixava o total do módulo desalinhado com o
+        // XP de fato concedido, sem forma de detectar a divergência depois.
+        await tx.progressoModulo.update({
+          where: { usuarioId_moduloId: { usuarioId: sessao.usuarioId, moduloId } },
+          data: { xpGanho: { increment: valorXpQuestao } },
+        });
       } catch (erro) {
         const jaConcedidoAntes =
           erro instanceof Prisma.PrismaClientKnownRequestError && erro.code === "P2002";

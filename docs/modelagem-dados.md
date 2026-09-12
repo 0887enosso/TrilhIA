@@ -60,6 +60,16 @@ Os achados de prioridade média/baixa da auditoria (rate limiting, restrição d
 
 Também foram adicionados, fora do escopo original da auditoria mas na mesma leva: `POST /api/admin/equipes` e `POST /api/admin/ligas`, para criar equipes e ligas pelo painel em vez de só via seed.
 
+## Correções aplicadas da auditoria técnica — 3ª rodada (itens da seção 6, "Robustez e observabilidade")
+
+- **Resposta bruta do usuário nunca salva:** novo campo `RespostaQuestao.respostaBruta` (`Json?`, nullable porque respostas antigas não têm esse dado retroativamente). Preenchido a partir de agora em `POST /api/progresso/questao/responder`. Formato varia por tipo de questão — ver `validarResposta` em `src/lib/content.ts`.
+- **`ProgressoModulo.xpGanho` nunca preenchido:** passou a ser incrementado (`increment`, na mesma transação que grava `XpConcedido`) sempre que XP de questão é concedido de verdade — mesma condição que já decidia `xpGanho` local na rota, não uma checagem nova. Histórico já gravado no banco antes desta correção foi corrigido uma única vez por `scripts/backfill-xp-ganho.ts` (idempotente — recalcula a partir de `XpConcedido`, não incrementa às cegas).
+- **`atualizarStreak` só chamado ao responder questão (Módulo 30 nunca atualiza streak):** investigado e **não é mais considerado um bug** — o foguinho foi redefinido num commit posterior ao desta auditoria para ser monitor exclusivo do desafio diário (ver `docs/gamificacao.md`); responder qualquer questão de módulo, Módulo 30 incluso, não deve mesmo mover o streak. Ver nota equivalente em `CLAUDE.md`.
+
+De passagem, também notado (já resolvido por um commit anterior a esta rodada, nunca documentado): `extrairExplicacao()` (`src/lib/content.ts`) já devolve `criterios_autoavaliacao` e `exemplo_de_resposta_forte` para `resposta_curta_autoavaliada` — o item da auditoria sobre isso também não é mais válido.
+
+Segue pendente, dos itens da seção 6: log estruturado/observabilidade, e "erros de conteúdo mascarados como 404".
+
 ## O que era só lógica de aplicação (agora implementado)
 
 Esta seção listava, na primeira versão deste documento, o que o schema por si só não resolvia. Todos os pontos abaixo foram implementados desde então — mantidos aqui como referência de onde encontrar cada lógica:
