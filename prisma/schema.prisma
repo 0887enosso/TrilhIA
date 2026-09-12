@@ -156,6 +156,13 @@ model RespostaQuestao {
 
   correta      Boolean? // null = tipo sem gabarito automático (resposta_curta_autoavaliada)
   tentativas   Int      @default(1)
+  // O que o usuário de fato enviou (formato varia por tipo, ver
+  // validarResposta em src/lib/content.ts — ex: { alternativaId }, { ordem },
+  // { texto } para resposta_curta_autoavaliada). Nullable porque respostas
+  // criadas antes desta coluna existir não têm esse dado (não há como
+  // recuperá-lo retroativamente) — nunca usar para decidir corretude, só
+  // para analytics de conteúdo.
+  respostaBruta Json?
   respondidoEm DateTime @default(now())
 
   @@index([usuarioId, questaoId])

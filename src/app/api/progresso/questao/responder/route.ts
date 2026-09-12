@@ -108,6 +108,11 @@ export async function POST(request: NextRequest) {
       tipoQuestao: questao.tipo,
       correta,
       tentativas: tentativasAnteriores + 1,
+      // Guarda o formato bruto (varia por tipo — ver validarResposta em
+      // src/lib/content.ts) só para analytics de conteúdo depois; nunca usado
+      // para decidir corretude, que já foi calculada acima a partir do
+      // gabarito.
+      respostaBruta: resposta,
     },
   });
 
