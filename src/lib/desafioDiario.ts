@@ -1,3 +1,4 @@
+import { Prisma } from "@prisma/client";
 import { prisma } from "./prisma";
 import { todasQuestoesDoModulo, buscarQuestao, sanitizarQuestaoParaCliente, parseQuestaoId, type TrilhaId } from "./content";
 import { inicioDoDiaBrasil } from "./tempo";
@@ -56,9 +57,29 @@ export async function obterOuCriarDesafioDeHoje(usuarioId: string) {
   // silenciosamente menor do que o prometido.
   if (questaoIds.length < QUESTOES_POR_DESAFIO) return null;
 
-  return prisma.desafioDiario.create({
-    data: { usuarioId, data: hoje, questaoIds },
-  });
+  // Entre o findUnique acima e o create abaixo cabe outra requisição do mesmo
+  // usuário criando o desafio do mesmo dia — aí a constraint única
+  // (usuarioId, data) derruba esta com P2002. Duas requisições quase
+  // simultâneas deixaram de ser caso raro quando a página passou a carregar o
+  // desafio no servidor (ver src/app/(app)/desafio-diario/page.tsx): um
+  // prefetch do Next e a navegação de verdade bastam.
+  //
+  // Perder a corrida não é erro nenhum do ponto de vista do usuário — o
+  // desafio que ele queria existe, só foi criado pela outra requisição. Então
+  // relemos e devolvemos aquele, em vez de estourar a renderização da página.
+  try {
+    return await prisma.desafioDiario.create({
+      data: { usuarioId, data: hoje, questaoIds },
+    });
+  } catch (erro) {
+    const perdeuACorrida =
+      erro instanceof Prisma.PrismaClientKnownRequestError && erro.code === "P2002";
+    if (!perdeuACorrida) throw erro;
+
+    return prisma.desafioDiario.findUnique({
+      where: { usuarioId_data: { usuarioId, data: hoje } },
+    });
+  }
 }
 
 /**

@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
-import { Prisma } from "@prisma/client";
 import { prisma } from "@/lib/prisma";
 import { obterSessaoAtual } from "@/lib/auth";
 import { buscarQuestao, validarResposta, extrairExplicacao } from "@/lib/content";
@@ -152,11 +151,29 @@ export async function POST(request: NextRequest) {
   let xpGanho = 0;
   await prisma.$transaction(async (tx) => {
     if (deveTentarConcederXp) {
-      try {
-        await tx.xpConcedido.create({
-          data: { usuarioId: sessao.usuarioId, questaoId, xp: valorXpQuestao },
-        });
-        xpGanho = valorXpQuestao; // só chega aqui se a criação teve sucesso — 1ª vez de verdade
+      // `createMany` + `skipDuplicates` em vez de `create` dentro de
+      // try/catch de P2002. A diferença não é de estilo: no PostgreSQL, um
+      // INSERT que viola constraint ABORTA a transação inteira, e todo
+      // comando seguinte falha com 25P02 ("current transaction is aborted").
+      // Engolir o P2002 no catch não desfazia isso — a transação já estava
+      // envenenada, então a primeira escrita depois daqui (a sequência de
+      // acertos, logo abaixo) quebrava a requisição inteira com 500.
+      //
+      // Na prática isso derrubava justamente o desafio diário, que é feito
+      // de questões JÁ respondidas antes: reencontrar uma questão que já
+      // concedeu XP é o caso comum ali, não a exceção.
+      //
+      // `skipDuplicates` vira ON CONFLICT DO NOTHING: não levanta erro, não
+      // aborta nada, e `count` diz se o INSERT de fato aconteceu — que é
+      // exatamente o sinal de "é a primeira vez" que o código precisa. A
+      // decisão continua sendo do banco, então segue seguro sob concorrência.
+      const concessao = await tx.xpConcedido.createMany({
+        data: [{ usuarioId: sessao.usuarioId, questaoId, xp: valorXpQuestao }],
+        skipDuplicates: true,
+      });
+
+      if (concessao.count === 1) {
+        xpGanho = valorXpQuestao; // só entra aqui na 1ª vez de verdade
 
         // Soma ao XP acumulado do módulo — campo existia no schema desde a
         // Fase 2 e nunca era preenchido (ver docs/auditoria-tecnica-backend.md,
@@ -164,16 +181,15 @@ export async function POST(request: NextRequest) {
         // XpConcedido, pela mesma razão: sem isso, uma queda do processo
         // entre as duas escritas deixava o total do módulo desalinhado com o
         // XP de fato concedido, sem forma de detectar a divergência depois.
-        await tx.progressoModulo.update({
-          where: { usuarioId_moduloId: { usuarioId: sessao.usuarioId, moduloId } },
+        //
+        // `updateMany` (e não `update`) porque o desafio diário pode cair
+        // numa questão de um módulo sem registro de progresso; aqui isso é
+        // um não-evento (afeta 0 linhas), enquanto `update` levantaria P2025
+        // e derrubaria a requisição.
+        await tx.progressoModulo.updateMany({
+          where: { usuarioId: sessao.usuarioId, moduloId },
           data: { xpGanho: { increment: valorXpQuestao } },
         });
-      } catch (erro) {
-        const jaConcedidoAntes =
-          erro instanceof Prisma.PrismaClientKnownRequestError && erro.code === "P2002";
-        if (!jaConcedidoAntes) throw erro;
-        // já existia: outra resposta (desta ou de outra requisição concorrente)
-        // já concedeu XP por essa questão — não concede de novo.
       }
     }
 
