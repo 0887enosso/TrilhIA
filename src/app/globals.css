@@ -47,6 +47,21 @@ body {
   font-variant-numeric: tabular-nums;
 }
 
+/* Zigue-zague do mapa da trilha (src/components/trilha/MapaTrilha.tsx). O
+   deslocamento de cada nó vem por variável (--desloc, em número puro) para
+   poder ser reduzido no celular por media query — com o valor cheio, um nó
+   deslocado + o título embaixo dele estouravam a largura da tela e criavam
+   rolagem horizontal. */
+.desloca-trilha {
+  transform: translateX(calc(var(--desloc, 0) * 1px * var(--escala-trilha, 1)));
+}
+
+@media (max-width: 639px) {
+  .desloca-trilha {
+    --escala-trilha: 0.42;
+  }
+}
+
 /* ==========================================================================
    Botão/cartão "blaze" — CTA do desafio diário. Técnica: um box-shadow que
    "respira" (o brilho pulsa de tamanho/opacidade, a borda de baixo do botão

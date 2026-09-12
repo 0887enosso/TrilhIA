@@ -15,90 +15,164 @@ type ModuloDoMapa = {
   desbloqueado: boolean;
 };
 
-const RÓTULO_STATUS: Record<StatusModulo, string> = {
-  concluido: "Concluído",
-  em_andamento: "Em andamento",
-  nao_iniciado: "Não iniciado",
-};
+/**
+ * Deslocamento horizontal de cada nó, em px, ciclando para formar uma trilha
+ * que serpenteia. Antes desta rodada o mapa era uma lista vertical com um
+ * trilho reto à esquerda — funcionava, mas não era um MAPA, e o mapa é
+ * justamente a metáfora central do produto (trilha + mascote explorador).
+ *
+ * O ciclo tem 8 posições e é simétrico (sobe até +2, volta, desce até -2,
+ * volta), então a costura entre uma volta e a seguinte não dá salto.
+ */
+const DESLOCAMENTOS = [0, 56, 88, 56, 0, -56, -88, -56];
+
+function deslocamentoDe(indice: number): number {
+  return DESLOCAMENTOS[indice % DESLOCAMENTOS.length];
+}
+
+/** Três pontinhos interpolados entre um nó e o seguinte — dão a leitura de
+ *  caminho curvo sem precisar calcular geometria de curva de verdade. */
+function TrechoDeTrilha({ de, para }: { de: number; para: number }) {
+  return (
+    <div aria-hidden="true" className="flex flex-col items-center gap-2 py-1">
+      {[0.25, 0.5, 0.75].map((t) => (
+        <span
+          key={t}
+          className="desloca-trilha h-2 w-2 rounded-full bg-rule-strong"
+          style={{ "--desloc": de + (para - de) * t } as React.CSSProperties}
+        />
+      ))}
+    </div>
+  );
+}
+
+function No({ modulo }: { modulo: ModuloDoMapa }) {
+  const bloqueado = !modulo.desbloqueado;
+  const concluido = modulo.status === "concluido";
+  const atual = modulo.status === "em_andamento";
+
+  if (concluido) {
+    return (
+      <span className="flex h-16 w-16 flex-none items-center justify-center rounded-full border-4 border-jade-strong bg-jade shadow-press-jade">
+        <svg viewBox="0 0 24 24" className="h-8 w-8" fill="none" aria-hidden="true">
+          <path
+            d="m5.5 12.5 4.2 4.2L18.5 7.8"
+            stroke="#FFFCF2"
+            strokeWidth={3.2}
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
+      </span>
+    );
+  }
+
+  if (bloqueado) {
+    return (
+      <span className="flex h-16 w-16 flex-none items-center justify-center rounded-full border-4 border-dashed border-rule-strong bg-parchment text-ink-faint">
+        <IconeCadeado className="h-6 w-6" />
+      </span>
+    );
+  }
+
+  return (
+    <span
+      className={`font-variant-tabular flex h-16 w-16 flex-none items-center justify-center rounded-full border-4 text-xl font-extrabold transition-transform group-hover:-translate-y-1 ${
+        atual
+          ? "border-amber-strong bg-amber-vivid text-ink shadow-press-amber"
+          : "border-rule-strong bg-parchment-raised text-ink-soft shadow-press-rule"
+      }`}
+    >
+      {modulo.ordem}
+    </span>
+  );
+}
 
 export function MapaTrilha({ trilha, modulos }: { trilha: TrilhaId; modulos: ModuloDoMapa[] }) {
   let blocoAtual: string | null = null;
 
   return (
-    <ol className="relative flex flex-col gap-3 pl-10">
-      <div
-        aria-hidden="true"
-        className="absolute bottom-4 left-[19px] top-4 w-1 rounded-full bg-rule"
-      />
-      {modulos.map((modulo) => {
+    <ol className="flex flex-col items-center">
+      {modulos.map((modulo, indice) => {
         const mudaBloco = modulo.bloco && modulo.bloco !== blocoAtual;
         if (modulo.bloco) blocoAtual = modulo.bloco;
-        const atual = modulo.status === "em_andamento";
+
         const bloqueado = !modulo.desbloqueado;
+        const atual = modulo.status === "em_andamento";
+        const deslocamento = deslocamentoDe(indice);
+        const proximo = modulos[indice + 1];
 
-        const marcador = (
-          <span
-            className={`relative -left-10 flex h-10 w-10 flex-none items-center justify-center rounded-full border-[3px] font-mono text-sm font-extrabold ${
-              modulo.status === "concluido"
-                ? "border-trail bg-trail text-parchment-surface"
-                : atual
-                  ? "border-amber bg-parchment-raised text-amber-strong"
-                  : "border-dashed border-rule-strong bg-parchment-raised text-ink-faint"
-            }`}
-          >
-            {modulo.status === "concluido" ? (
-              "✓"
-            ) : bloqueado ? (
-              <IconeCadeado className="h-4 w-4" />
-            ) : (
-              modulo.ordem
-            )}
-          </span>
-        );
-
-        const texto = (
-          <span className="flex-1">
-            <span className={`block font-sans text-base font-extrabold ${bloqueado ? "text-ink-faint" : "text-ink"}`}>
-              {modulo.titulo}
+        const conteudo = (
+          <>
+            <No modulo={modulo} />
+            <span className="mt-2 block max-w-[15rem] text-center">
+              <span
+                className={`block text-sm font-extrabold leading-tight ${
+                  bloqueado ? "text-ink-faint" : "text-ink"
+                }`}
+              >
+                {modulo.titulo}
+              </span>
+              {atual ? (
+                <>
+                  <span className="mt-1 block text-xs leading-snug text-ink-soft">
+                    {modulo.descricao_curta}
+                  </span>
+                  <span className="font-variant-tabular mt-1.5 inline-block rounded-full bg-amber-soft px-2.5 py-0.5 text-[11px] font-extrabold uppercase tracking-wide text-amber-strong">
+                    Continuar · {modulo.tempo_estimado_min} min
+                  </span>
+                </>
+              ) : null}
             </span>
-            <span className="block text-sm text-ink-soft">{modulo.descricao_curta}</span>
-            <span className="mt-1 block font-mono text-xs font-bold text-ink-faint">
-              {bloqueado ? "Bloqueado" : RÓTULO_STATUS[modulo.status]} · {modulo.tempo_estimado_min} min
-            </span>
-          </span>
+          </>
         );
 
         return (
-          <li key={modulo.modulo_id} className="relative">
+          <li key={modulo.modulo_id} className="flex w-full flex-col items-center">
             {mudaBloco ? (
-              <p className="relative -left-10 mb-2 mt-5 font-mono text-xs font-bold uppercase tracking-wide text-ink-faint first:mt-0">
-                Bloco {modulo.bloco}
-              </p>
+              <div className="my-6 flex w-full items-center gap-3">
+                <span className="h-0.5 flex-1 rounded-full bg-rule" />
+                <span className="rounded-full border-2 border-rule bg-parchment-surface px-4 py-1 text-xs font-extrabold uppercase tracking-widest text-ink-soft">
+                  Bloco {modulo.bloco}
+                </span>
+                <span className="h-0.5 flex-1 rounded-full bg-rule" />
+              </div>
             ) : null}
 
-            {bloqueado ? (
-              <div
-                title="Conclua o módulo anterior para desbloquear este."
-                aria-label={`${modulo.titulo} — bloqueado. Conclua o módulo anterior para desbloquear.`}
-                className="flex cursor-not-allowed items-center gap-4 rounded-2xl border-2 border-dashed border-rule bg-parchment p-4 opacity-70"
-              >
-                {marcador}
-                {texto}
-              </div>
-            ) : (
-              <Link
-                href={`/trilha/${trilha}/${modulo.modulo_id}`}
-                className={`flex items-center gap-4 rounded-2xl border-2 p-4 transition-all ${
-                  atual
-                    ? "border-amber bg-amber-soft shadow-[0_5px_0_#8A5B0C]"
-                    : "border-rule bg-parchment-surface hover:-translate-y-0.5 hover:border-trail hover:shadow-md"
-                }`}
-              >
-                {marcador}
-                {texto}
-                {atual ? <Mascote pose="andando" size={52} className="flex-none" /> : null}
-              </Link>
-            )}
+            <div
+              className="desloca-trilha relative flex flex-col items-center"
+              style={{ "--desloc": deslocamento } as React.CSSProperties}
+            >
+              {/* O mascote marca onde o usuário parou — é o "você está aqui"
+                  do mapa. Posicionado ao lado do nó, não sobre ele, pra não
+                  cobrir o número nem o selo de concluído. */}
+              {atual ? (
+                <span className="pointer-events-none absolute -left-[4.5rem] bottom-6 hidden animate-flutuar sm:block">
+                  <Mascote pose="andando" size={72} />
+                </span>
+              ) : null}
+
+              {bloqueado ? (
+                <div
+                  title="Conclua o módulo anterior para desbloquear este."
+                  aria-label={`${modulo.titulo} — bloqueado. Conclua o módulo anterior para desbloquear.`}
+                  className="flex cursor-not-allowed flex-col items-center opacity-60"
+                >
+                  {conteudo}
+                </div>
+              ) : (
+                <Link
+                  href={`/trilha/${trilha}/${modulo.modulo_id}`}
+                  className="group flex flex-col items-center rounded-2xl px-2 py-1 transition-colors"
+                >
+                  {conteudo}
+                </Link>
+              )}
+            </div>
+
+            {proximo ? (
+              <TrechoDeTrilha de={deslocamento} para={deslocamentoDe(indice + 1)} />
+            ) : null}
           </li>
         );
       })}
