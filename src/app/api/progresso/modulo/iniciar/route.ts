@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
 import { prisma } from "@/lib/prisma";
-import { obterSessaoAtual } from "@/lib/auth";
+import { obterSessaoComUsuario } from "@/lib/auth";
 import { carregarModulo, obterConteudoModuloParaCliente } from "@/lib/content";
 import { tentarConsumirEstrelaDiaria } from "@/lib/limiteDiario";
 import { aplicarRegeneracaoSeNecessario, calcularCoracoesLiberamEm } from "@/lib/coracoes";
@@ -13,10 +13,12 @@ const schema = z.object({
 });
 
 export async function POST(request: NextRequest) {
-  const sessao = await obterSessaoAtual();
-  if (!sessao) {
+  // Uma leitura só para sessão + estado do usuário (ver obterSessaoComUsuario).
+  const autenticado = await obterSessaoComUsuario();
+  if (!autenticado) {
     return NextResponse.json({ erro: "Não autenticado." }, { status: 401 });
   }
+  const { sessao } = autenticado;
 
   const body = await request.json();
   const parsed = schema.safeParse(body);
@@ -74,6 +76,10 @@ export async function POST(request: NextRequest) {
   // regeneração automática por tempo (ver src/lib/coracoes.ts). Aqui só
   // aplicamos essa regeneração caso já tenha passado tempo suficiente, e
   // devolvemos os corações efetivos (que podem já estar no máximo).
+  // Releitura deliberada, e não o retrato carregado junto da sessão: o
+  // consumo de estrela diária acima acabou de incrementar
+  // `modulosIniciadosHoje` nesta mesma requisição, então o retrato do início
+  // já está velho para os campos que a resposta devolve.
   const usuarioAntes = await prisma.usuario.findUniqueOrThrow({
     where: { id: sessao.usuarioId },
   });

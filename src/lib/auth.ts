@@ -103,7 +103,35 @@ export async function limparCookieSessao(): Promise<void> {
  * `cache()` garante que só a primeira chamada por requisição bate no banco;
  * as demais reaproveitam o resultado.
  */
-export const obterSessaoAtual = cache(async (): Promise<SessaoPayload | null> => {
+/**
+ * Carrega a linha inteira do usuário da sessão, uma única vez por
+ * requisição (`cache()` do React).
+ *
+ * Buscava só três colunas antes, e as rotas que precisavam do usuário
+ * completo faziam um segundo `findUnique` na MESMA linha logo em seguida —
+ * duas idas ao banco para ler o mesmo registro. Com o banco remoto isso
+ * pesa: o custo é por ida, não por volume, então ler a linha inteira de uma
+ * vez sai mais barato que ler três colunas duas vezes.
+ *
+ * Atenção: é um retrato do início da requisição. Depois de qualquer escrita
+ * no usuário, releia do banco em vez de reaproveitar isto — ver a leitura
+ * final de `POST /api/progresso/questao/responder`, que existe exatamente
+ * para devolver estado fresco.
+ */
+/**
+ * Valida a sessão E devolve a linha do usuário na mesma ida ao banco.
+ *
+ * Existe porque `cache()` do React NÃO deduplica dentro de Route Handlers
+ * (deduplica na renderização de Server Components) — medido neste projeto:
+ * `obterSessaoAtual()` seguido de uma leitura do mesmo usuário produzia dois
+ * SELECT idênticos na mesma requisição. Rotas que precisam do usuário
+ * completo devem chamar ESTA função uma vez e usar as duas metades, em vez
+ * de chamar `obterSessaoAtual()` e buscar o usuário em seguida.
+ *
+ * O usuário devolvido é um retrato do início da requisição: depois de
+ * qualquer escrita nele, releia do banco em vez de reaproveitar isto.
+ */
+export const obterSessaoComUsuario = cache(async () => {
   const cookieStore = await cookies();
   const token = cookieStore.get(COOKIE_NAME)?.value;
   if (!token) return null;
@@ -121,10 +149,7 @@ export const obterSessaoAtual = cache(async (): Promise<SessaoPayload | null> =>
   // Import local para evitar dependência circular no topo do arquivo
   // (prisma.ts não depende de auth.ts, mas mantém o import próximo do uso).
   const { prisma } = await import("./prisma");
-  const usuario = await prisma.usuario.findUnique({
-    where: { id: payload.usuarioId },
-    select: { senhaAlteradaEm: true, ativo: true, statusCadastro: true },
-  });
+  const usuario = await prisma.usuario.findUnique({ where: { id: payload.usuarioId } });
 
   if (!usuario || !usuario.ativo) return null;
   // Cobre o caso de um admin rejeitar/desaprovar um cadastro depois que a
@@ -133,5 +158,9 @@ export const obterSessaoAtual = cache(async (): Promise<SessaoPayload | null> =>
   if (usuario.statusCadastro !== "APROVADO") return null;
   if (usuario.senhaAlteradaEm.getTime() !== payload.senhaVersao) return null;
 
-  return payload;
+  return { sessao: payload, usuario };
+});
+
+export const obterSessaoAtual = cache(async (): Promise<SessaoPayload | null> => {
+  return (await obterSessaoComUsuario())?.sessao ?? null;
 });

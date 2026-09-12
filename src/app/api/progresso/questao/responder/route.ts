@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
 import { prisma } from "@/lib/prisma";
-import { obterSessaoAtual } from "@/lib/auth";
+import { obterSessaoComUsuario } from "@/lib/auth";
 import { buscarQuestao, validarResposta, extrairExplicacao } from "@/lib/content";
 import { xpPorTipoQuestao, calcularNivel } from "@/lib/xp";
 import { adicionarXpSemanal } from "@/lib/ligas";
@@ -26,10 +26,13 @@ const schema = z.object({
 });
 
 export async function POST(request: NextRequest) {
-  const sessao = await obterSessaoAtual();
-  if (!sessao) {
+  // Uma única leitura serve para validar a sessão e para o estado do usuário
+  // usado adiante (corações, streak, equipe) — ver obterSessaoComUsuario.
+  const autenticado = await obterSessaoComUsuario();
+  if (!autenticado) {
     return NextResponse.json({ erro: "Não autenticado." }, { status: 401 });
   }
+  const { sessao, usuario: usuarioCarregado } = autenticado;
 
   const body = await request.json();
   const parsed = schema.safeParse(body);
@@ -62,9 +65,6 @@ export async function POST(request: NextRequest) {
 
   const ehAutoavaliada = questao.tipo === "resposta_curta_autoavaliada";
 
-  const usuarioCarregado = await prisma.usuario.findUniqueOrThrow({
-    where: { id: sessao.usuarioId },
-  });
   // Antes de checar corações: se já passaram as 2h de regeneração desde que
   // zeraram, isso libera a pergunta mesmo que o registro ainda não tivesse
   // sido tocado por nenhuma outra rota (ex: usuário nunca reabriu a rota de
@@ -92,13 +92,20 @@ export async function POST(request: NextRequest) {
 
   const correta = validarResposta(questao, resposta);
 
-  // Duas contagens independentes (nenhuma depende do resultado da outra) —
-  // rodar em paralelo em vez de em série economiza uma ida ao banco em toda
-  // resposta de questão, a chamada mais frequente do app.
-  const [tentativasAnteriores, totalRespostasAntesDesta] = await Promise.all([
-    prisma.respostaQuestao.count({ where: { usuarioId: sessao.usuarioId, questaoId } }),
-    prisma.respostaQuestao.count({ where: { usuarioId: sessao.usuarioId } }),
-  ]);
+  // As duas contagens que a rota precisa (tentativas nesta questão e total
+  // de respostas do usuário) saem de uma varredura só: são o mesmo conjunto
+  // de linhas, filtrado de dois jeitos. Eram dois COUNT em paralelo — o
+  // paralelismo escondia uma ida ao banco, mas não deixava de pagá-la.
+  const [contagens] = await prisma.$queryRaw<
+    { tentativas: bigint; total: bigint }[]
+  >`
+    SELECT COUNT(*) FILTER (WHERE "questaoId" = ${questaoId}) AS tentativas,
+           COUNT(*) AS total
+    FROM "RespostaQuestao"
+    WHERE "usuarioId" = ${sessao.usuarioId}
+  `;
+  const tentativasAnteriores = Number(contagens.tentativas);
+  const totalRespostasAntesDesta = Number(contagens.total);
 
   const respostaCriada = await prisma.respostaQuestao.create({
     data: {
@@ -197,17 +204,24 @@ export async function POST(request: NextRequest) {
     // sido concedido nesta resposta (um acerto repetido ainda soma pra
     // sequência). Autoavaliada (correta === null) não altera nem quebra.
     if (correta === true) {
-      const atualizado = await tx.usuario.update({
-        where: { id: sessao.usuarioId },
-        data: { sequenciaAcertosAtual: { increment: 1 } },
-      });
-      if (atualizado.sequenciaAcertosAtual > atualizado.maiorSequenciaAcertos) {
-        await tx.usuario.update({
-          where: { id: sessao.usuarioId },
-          data: { maiorSequenciaAcertos: atualizado.sequenciaAcertosAtual },
-        });
-      }
-      await processarCoisaJulgada(sessao.usuarioId, atualizado.sequenciaAcertosAtual, tx);
+      // Incremento da sequência e atualização do recorde num comando só.
+      // Eram dois UPDATEs na mesma linha (incrementa, lê o resultado,
+      // decide se bate o recorde, escreve de novo) — e a segunda escrita
+      // dispara sempre que o usuário está justamente batendo o próprio
+      // recorde, que é o caso comum de quem está numa sequência boa. Com o
+      // banco remoto, cada ida custa o mesmo piso de rede, então valeu
+      // descer a SQL: `GREATEST` resolve o "é recorde?" dentro do próprio
+      // UPDATE, e o RETURNING devolve o valor que o código precisa em
+      // seguida, sem uma terceira ida.
+      const [linha] = await tx.$queryRaw<{ sequenciaAcertosAtual: number }[]>`
+        UPDATE "Usuario"
+        SET "sequenciaAcertosAtual" = "sequenciaAcertosAtual" + 1,
+            "maiorSequenciaAcertos" = GREATEST("maiorSequenciaAcertos", "sequenciaAcertosAtual" + 1),
+            "atualizadoEm" = NOW()
+        WHERE "id" = ${sessao.usuarioId}
+        RETURNING "sequenciaAcertosAtual"
+      `;
+      await processarCoisaJulgada(sessao.usuarioId, linha.sequenciaAcertosAtual, tx);
     } else if (correta === false) {
       await tx.usuario.update({
         where: { id: sessao.usuarioId },
