@@ -11,7 +11,15 @@ import { useRouter } from "next/navigation";
  * do servidor (que já regenerou os corações) e some — a barra de corações
  * volta a aparecer normal a partir do dado atualizado do servidor.
  */
-export function ContadorCoracoes({ liberamEm }: { liberamEm: string | null }) {
+export function ContadorCoracoes({
+  liberamEm,
+  curto = false,
+}: {
+  liberamEm: string | null;
+  /** No HUD o rótulo já tem os corações ao lado, então basta "volta em X".
+   *  Solto (tela de "sem energia"), a frase precisa se explicar sozinha. */
+  curto?: boolean;
+}) {
   const router = useRouter();
   const [restanteMs, setRestanteMs] = useState<number | null>(null);
   const jaAtualizouRef = useRef(false);
@@ -54,5 +62,15 @@ export function ContadorCoracoes({ liberamEm }: { liberamEm: string | null }) {
   const minutos = Math.floor((restanteMs % (60 * 60 * 1000)) / (60 * 1000));
   const texto = horas > 0 ? `${horas}h ${minutos}min` : `${Math.max(minutos, 1)}min`;
 
-  return <span className="font-mono text-xs text-ink-faint">Vidas voltam em {texto}</span>;
+  if (curto) {
+    return (
+      <span className="font-variant-tabular text-[10px] font-bold text-ink-faint">volta em {texto}</span>
+    );
+  }
+
+  return (
+    <span className="font-variant-tabular rounded-full bg-coral-soft px-3 py-1 text-sm font-bold text-coral-strong">
+      Vidas voltam em {texto}
+    </span>
+  );
 }

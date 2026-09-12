@@ -1,15 +1,25 @@
+import { IconeEstrela } from "./iconesJogo";
+
 const LIMITE_DIARIO = 2;
 
-export function EstrelasDiarias({ restantes, className = "" }: { restantes: number; className?: string }) {
+/** Estrelas diárias — quantos módulos NOVOS ainda cabem hoje (ver docs/gamificacao.md). */
+export function EstrelasDiarias({
+  restantes,
+  tamanho = 20,
+  className = "",
+}: {
+  restantes: number;
+  tamanho?: number;
+  className?: string;
+}) {
   return (
     <div
-      className={`flex items-center gap-1 ${className}`}
+      className={`flex items-center gap-0.5 ${className}`}
       aria-label={`${restantes} de ${LIMITE_DIARIO} estrelas diárias restantes`}
+      title={`${restantes} de ${LIMITE_DIARIO} módulos novos disponíveis hoje`}
     >
       {Array.from({ length: LIMITE_DIARIO }, (_, i) => (
-        <span key={i} className={i < restantes ? "text-amber" : "text-rule-strong"} aria-hidden="true">
-          {i < restantes ? "★" : "☆"}
-        </span>
+        <IconeEstrela key={i} cheia={i < restantes} tamanho={tamanho} />
       ))}
     </div>
   );
