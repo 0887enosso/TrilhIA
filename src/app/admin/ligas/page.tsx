@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { prisma } from "@/lib/prisma";
 import { BadgePill } from "@/components/ui/BadgePill";
 import { CriarLigaForm } from "@/components/admin/CriarLigaForm";
@@ -25,7 +26,11 @@ export default async function AdminLigasPage() {
           <tbody>
             {ligas.map((liga) => (
               <tr key={liga.id} className="border-t border-rule">
-                <td className="px-4 py-3 font-medium text-ink">{liga.nome}</td>
+                <td className="px-4 py-3 font-medium text-ink">
+                  <Link href={`/admin/ligas/${liga.id}`} className="hover:underline">
+                    {liga.nome}
+                  </Link>
+                </td>
                 <td className="px-4 py-3">
                   <BadgePill cor={liga.tipo === "EXCLUSIVA" ? "amber" : "trail"}>{liga.tipo}</BadgePill>
                 </td>

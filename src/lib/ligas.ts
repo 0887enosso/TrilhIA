@@ -177,6 +177,45 @@ export async function obterRankingSemanalDoUsuario(usuarioId: string): Promise<R
   });
 }
 
+export type RankingAdminDaLiga = {
+  liga: { id: string; nome: string; tipo: string };
+  semana: string;
+  ranking: { posicao: number; usuario: string; equipe: string; xpNaSemana: number }[];
+} | null;
+
+/**
+ * Ranking da semana corrente de UMA liga específica, com nome do usuário e da
+ * equipe de cada participante — usado pelo painel admin (visão de uma liga
+ * só, diferente de `obterRankingSemanalDoUsuario`, que é "todas as ligas do
+ * usuário logado"). Extraída de GET /api/admin/ligas/[ligaId]/ranking para
+ * ser reaproveitada também pela página `/admin/ligas/[ligaId]` (Server
+ * Component), no mesmo padrão já usado pelas outras telas do painel — a
+ * página só existia como rota de API, sem tela própria (ver docs/frontend.md,
+ * "o que fica para depois"). Retorna `null` se a liga não existir.
+ */
+export async function obterRankingAdminDaLiga(ligaId: string): Promise<RankingAdminDaLiga> {
+  const liga = await prisma.liga.findUnique({ where: { id: ligaId } });
+  if (!liga) return null;
+
+  const semana = semanaIsoAtual();
+  const participacoes = await prisma.participacaoLiga.findMany({
+    where: { ligaId, semana },
+    include: { usuario: { select: { nome: true, equipe: { select: { nome: true } } } } },
+    orderBy: { xpNaSemana: "desc" },
+  });
+
+  return {
+    liga: { id: liga.id, nome: liga.nome, tipo: liga.tipo },
+    semana,
+    ranking: participacoes.map((p, i) => ({
+      posicao: i + 1,
+      usuario: p.usuario.nome,
+      equipe: p.usuario.equipe.nome,
+      xpNaSemana: p.xpNaSemana,
+    })),
+  };
+}
+
 /**
  * Soma XP à(s) participação(ões) do usuário na semana corrente, em todas as
  * ligas elegíveis. Aceita opcionalmente o client de transação (`tx`) de um

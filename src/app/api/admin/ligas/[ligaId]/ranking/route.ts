@@ -1,7 +1,6 @@
 import { NextResponse } from "next/server";
-import { prisma } from "@/lib/prisma";
 import { obterSessaoAtual } from "@/lib/auth";
-import { semanaIsoAtual } from "@/lib/ligas";
+import { obterRankingAdminDaLiga } from "@/lib/ligas";
 
 export async function GET(
   _request: Request,
@@ -13,28 +12,10 @@ export async function GET(
   }
 
   const { ligaId } = await context.params;
-
-  const liga = await prisma.liga.findUnique({ where: { id: ligaId } });
-  if (!liga) {
+  const resultado = await obterRankingAdminDaLiga(ligaId);
+  if (!resultado) {
     return NextResponse.json({ erro: "Liga não encontrada." }, { status: 404 });
   }
 
-  const semana = semanaIsoAtual();
-
-  const participacoes = await prisma.participacaoLiga.findMany({
-    where: { ligaId, semana },
-    include: { usuario: { select: { nome: true, equipe: { select: { nome: true } } } } },
-    orderBy: { xpNaSemana: "desc" },
-  });
-
-  return NextResponse.json({
-    liga: { id: liga.id, nome: liga.nome, tipo: liga.tipo },
-    semana,
-    ranking: participacoes.map((p, i) => ({
-      posicao: i + 1,
-      usuario: p.usuario.nome,
-      equipe: p.usuario.equipe.nome,
-      xpNaSemana: p.xpNaSemana,
-    })),
-  });
+  return NextResponse.json(resultado);
 }
