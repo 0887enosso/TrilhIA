@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
 import { prisma } from "@/lib/prisma";
 import { obterSessaoAtual } from "@/lib/auth";
-import { carregarModulo } from "@/lib/content";
+import { carregarModulo, obterConteudoModuloParaCliente } from "@/lib/content";
 import { tentarConsumirEstrelaDiaria } from "@/lib/limiteDiario";
 import { aplicarRegeneracaoSeNecessario, calcularCoracoesLiberamEm } from "@/lib/coracoes";
 import { AcessoModuloBloqueadoError, garantirAcessoAoModulo } from "@/lib/acessoModulo";
@@ -79,10 +79,25 @@ export async function POST(request: NextRequest) {
   });
   const usuario = await aplicarRegeneracaoSeNecessario(sessao.usuarioId, usuarioAntes);
 
+  // O conteúdo do módulo é devolvido junto com a confirmação de início — antes
+  // disso, o cliente esperava esta resposta só pra, em seguida, disparar uma
+  // 2ª requisição (GET /api/trilhas/.../modulos/...) pedindo exatamente o
+  // conteúdo que esta rota já tinha condições de montar. Duas idas e voltas
+  // de rede sequenciais (cada uma com sua própria verificação de sessão) só
+  // pra abrir um módulo — agora é uma. Só monta o conteúdo se houver corações
+  // pra estudar; sem corações o cliente vai direto pra tela de "sem energia"
+  // e o conteúdo seria descartado sem uso.
+  const conteudo =
+    usuario.coracoesAtuais > 0
+      ? await obterConteudoModuloParaCliente(sessao.usuarioId, trilha, moduloId)
+      : null;
+
   return NextResponse.json({
     ok: true,
     coracoesAtuais: usuario.coracoesAtuais,
     coracoesLiberamEm: calcularCoracoesLiberamEm(usuario),
     modulosRestantesHoje: Math.max(0, 2 - usuario.modulosIniciadosHoje),
+    modulo: conteudo?.modulo ?? null,
+    entregaExistente: conteudo?.entregaExistente ?? null,
   });
 }

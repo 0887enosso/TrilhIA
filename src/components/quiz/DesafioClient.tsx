@@ -1,50 +1,50 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { Mascote } from "@/components/mascote/Mascote";
-import { CarregandoMascote } from "@/components/mascote/CarregandoMascote";
 import { Botao } from "@/components/ui/Botao";
 import { IconeRaio } from "@/components/app/icones";
 import { CountUp } from "@/components/reactbits/CountUp";
 import { CartaoQuestao } from "./CartaoQuestao";
 import type { Questao, ResultadoResposta } from "./tipos";
 import type { TrilhaId } from "@/lib/content";
+import type { DesafioParaCliente } from "@/lib/desafioDiario";
 
 type ItemDesafio = { trilha: TrilhaId; moduloId: string; jaRespondidaHoje: boolean; questao: Questao };
 
-type Fase = "carregando" | "vazio" | "pronto" | "tudo_respondido";
+type Fase = "vazio" | "pronto" | "tudo_respondido";
 
-export function DesafioClient() {
+function faseInicial(desafio: DesafioParaCliente["desafio"]): Fase {
+  if (!desafio) return "vazio";
+  return desafio.concluido ? "tudo_respondido" : "pronto";
+}
+
+function respondidasInicial(desafio: DesafioParaCliente["desafio"]): Set<string> {
+  if (!desafio) return new Set();
+  return new Set(desafio.questoes.filter((i) => i.jaRespondidaHoje).map((i) => i.questao.id));
+}
+
+/**
+ * `dadosIniciais` vem pronto do Server Component da página (mesma leitura que
+ * antes era feita só depois de montar no navegador, via `useEffect` + fetch —
+ * ver histórico deste arquivo). Os `useState(() => ...)` abaixo rodam a
+ * inicialização uma única vez, no primeiro render: como o componente
+ * inteiro é desmontado/remontado a cada navegação para esta rota (Next.js
+ * troca o Server Component da página), não há risco de ficar com dado velho
+ * de uma visita anterior.
+ */
+export function DesafioClient({ dadosIniciais }: { dadosIniciais: DesafioParaCliente }) {
   const router = useRouter();
-  const [fase, setFase] = useState<Fase>("carregando");
-  const [itens, setItens] = useState<ItemDesafio[]>([]);
-  const [respondidasAgora, setRespondidasAgora] = useState<Set<string>>(new Set());
-  const [xpBonus, setXpBonus] = useState<number | null>(null);
-
-  useEffect(() => {
-    carregar();
-  }, []);
-
-  async function carregar() {
-    setFase("carregando");
-    const res = await fetch("/api/desafio-diario");
-    const corpo = await res.json();
-
-    if (!corpo.desafio) {
-      setFase("vazio");
-      return;
-    }
-
-    setItens(corpo.desafio.questoes);
-    setXpBonus(corpo.desafio.concluido ? corpo.desafio.xpBonusConcedido : null);
-    const jaFeitas = new Set<string>(
-      corpo.desafio.questoes.filter((i: ItemDesafio) => i.jaRespondidaHoje).map((i: ItemDesafio) => i.questao.id)
-    );
-    setRespondidasAgora(jaFeitas);
-    setFase(corpo.desafio.concluido ? "tudo_respondido" : "pronto");
-  }
+  const [fase, setFase] = useState<Fase>(() => faseInicial(dadosIniciais.desafio));
+  const [itens] = useState<ItemDesafio[]>(() => dadosIniciais.desafio?.questoes ?? []);
+  const [respondidasAgora, setRespondidasAgora] = useState<Set<string>>(() =>
+    respondidasInicial(dadosIniciais.desafio)
+  );
+  const [xpBonus, setXpBonus] = useState<number | null>(() =>
+    dadosIniciais.desafio?.concluido ? dadosIniciais.desafio.xpBonusConcedido : null
+  );
 
   async function responder(item: ItemDesafio, resposta: unknown): Promise<ResultadoResposta> {
     const res = await fetch("/api/progresso/questao/responder", {
@@ -73,10 +73,6 @@ export function DesafioClient() {
 
   function marcarRespondida(id: string) {
     setRespondidasAgora((prev) => new Set(prev).add(id));
-  }
-
-  if (fase === "carregando") {
-    return <CarregandoMascote texto="Carregando desafio de hoje…" />;
   }
 
   if (fase === "vazio") {

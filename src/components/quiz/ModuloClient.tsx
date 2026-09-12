@@ -124,20 +124,14 @@ export function ModuloClient({ trilha, moduloId }: { trilha: TrilhaId; moduloId:
       return;
     }
 
-    const respostaConteudo = await fetch(`/api/trilhas/${trilha}/modulos/${moduloId}`);
-    const corpoConteudo = await respostaConteudo.json();
-
-    if (!respostaConteudo.ok) {
-      setMensagemErro(corpoConteudo.erro ?? "Não foi possível carregar o módulo.");
-      setFase("erro");
-      return;
-    }
-
-    const modulo: ModuloConteudo = corpoConteudo.modulo;
+    // O conteúdo do módulo já vem nesta mesma resposta (ver POST
+    // /api/progresso/modulo/iniciar) — antes disso era uma 2ª requisição
+    // sequencial só pra buscar o que esta rota já sabia que ia liberar.
+    const modulo: ModuloConteudo = corpoIniciar.modulo;
     setConteudo(modulo);
 
     if (modulo.tipo_modulo === "projeto_pratico") {
-      setEntregaExistente(corpoConteudo.entregaExistente ?? null);
+      setEntregaExistente(corpoIniciar.entregaExistente ?? null);
       setFase("estudando"); // ProjetoFinalFlow assume o controle a partir daqui
       return;
     }

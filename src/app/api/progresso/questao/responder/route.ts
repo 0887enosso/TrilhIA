@@ -93,12 +93,13 @@ export async function POST(request: NextRequest) {
 
   const correta = validarResposta(questao, resposta);
 
-  const tentativasAnteriores = await prisma.respostaQuestao.count({
-    where: { usuarioId: sessao.usuarioId, questaoId },
-  });
-  const totalRespostasAntesDesta = await prisma.respostaQuestao.count({
-    where: { usuarioId: sessao.usuarioId },
-  });
+  // Duas contagens independentes (nenhuma depende do resultado da outra) —
+  // rodar em paralelo em vez de em série economiza uma ida ao banco em toda
+  // resposta de questão, a chamada mais frequente do app.
+  const [tentativasAnteriores, totalRespostasAntesDesta] = await Promise.all([
+    prisma.respostaQuestao.count({ where: { usuarioId: sessao.usuarioId, questaoId } }),
+    prisma.respostaQuestao.count({ where: { usuarioId: sessao.usuarioId } }),
+  ]);
 
   const respostaCriada = await prisma.respostaQuestao.create({
     data: {

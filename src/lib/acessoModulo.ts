@@ -1,4 +1,3 @@
-import { trilhaBasicaConcluida } from "./ligas";
 import { obterProgressoAgregado } from "./progresso";
 import { TrilhaId } from "./content";
 
@@ -38,9 +37,19 @@ export async function garantirAcessoAoModulo(
   trilha: TrilhaId,
   moduloId: string
 ): Promise<void> {
+  // Uma única leitura de progresso serve tanto a checagem de trilha quanto a
+  // de módulo — antes disso, a checagem de trilha chamava
+  // `trilhaBasicaConcluida()` (src/lib/ligas.ts), que roda seu próprio
+  // `progressoModulo.count()` isolado, e esta função em seguida chamava
+  // `obterProgressoAgregado()` de novo, que já calcula a mesma informação
+  // (`basica.trilhaConcluida`) a partir de um `findMany` sobre a mesma
+  // tabela. Duas idas ao banco fazendo a mesma pergunta, nesta função que é
+  // chamada em toda resposta de questão, início e conclusão de módulo.
+  const progresso = await obterProgressoAgregado(usuarioId);
+
   // Trilha Intermediária só libera depois da Básica 100% concluída — não é
   // escolha livre de trilha.
-  if (trilha === "intermediaria" && !(await trilhaBasicaConcluida(usuarioId))) {
+  if (trilha === "intermediaria" && !progresso.basica.trilhaConcluida) {
     throw new AcessoModuloBloqueadoError(
       "trilha_bloqueada",
       "Conclua a Trilha Básica antes de começar a Trilha Intermediária."
@@ -48,7 +57,6 @@ export async function garantirAcessoAoModulo(
   }
 
   // Módulo seguinte só libera depois que o anterior está concluído.
-  const progresso = await obterProgressoAgregado(usuarioId);
   const moduloAlvo = progresso[trilha].modulos.find((m) => m.modulo_id === moduloId);
   if (moduloAlvo && !moduloAlvo.desbloqueado) {
     throw new AcessoModuloBloqueadoError(

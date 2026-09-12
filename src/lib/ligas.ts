@@ -140,30 +140,41 @@ export async function obterRankingSemanalDoUsuario(usuarioId: string): Promise<R
     select: { equipeId: true },
   });
   const ligas = await ligasElegiveis(usuarioId, usuario.equipeId);
+  if (ligas.length === 0) return [];
 
-  return Promise.all(
-    ligas.map(async (liga) => {
-      const participacoes = await prisma.participacaoLiga.findMany({
-        where: { ligaId: liga.id, semana },
-        include: { usuario: { select: { id: true, nome: true } } },
-        orderBy: [{ xpNaSemana: "desc" }, { id: "asc" }],
-      });
+  // Uma única consulta para todas as ligas elegíveis (normalmente 1-2), em
+  // vez de um findMany por liga — o usuário podia esperar N idas ao banco em
+  // série (Promise.all ajuda, mas ainda são N round-trips) para montar uma
+  // tela que só lista o próprio ranking semanal.
+  const todasParticipacoes = await prisma.participacaoLiga.findMany({
+    where: { ligaId: { in: ligas.map((l) => l.id) }, semana },
+    include: { usuario: { select: { id: true, nome: true } } },
+    orderBy: [{ xpNaSemana: "desc" }, { id: "asc" }],
+  });
 
-      return {
-        ligaId: liga.id,
-        nome: liga.nome,
-        tipo: liga.tipo,
-        semana,
-        participantes: participacoes.map((p, indice) => ({
-          usuarioId: p.usuario.id,
-          nome: p.usuario.nome,
-          xpNaSemana: p.xpNaSemana,
-          posicao: p.posicaoFinal ?? indice + 1,
-          voce: p.usuario.id === usuarioId,
-        })),
-      };
-    })
-  );
+  const participacoesPorLiga = new Map<string, typeof todasParticipacoes>();
+  for (const participacao of todasParticipacoes) {
+    const lista = participacoesPorLiga.get(participacao.ligaId) ?? [];
+    lista.push(participacao);
+    participacoesPorLiga.set(participacao.ligaId, lista);
+  }
+
+  return ligas.map((liga) => {
+    const participacoes = participacoesPorLiga.get(liga.id) ?? [];
+    return {
+      ligaId: liga.id,
+      nome: liga.nome,
+      tipo: liga.tipo,
+      semana,
+      participantes: participacoes.map((p, indice) => ({
+        usuarioId: p.usuario.id,
+        nome: p.usuario.nome,
+        xpNaSemana: p.xpNaSemana,
+        posicao: p.posicaoFinal ?? indice + 1,
+        voce: p.usuario.id === usuarioId,
+      })),
+    };
+  });
 }
 
 /**

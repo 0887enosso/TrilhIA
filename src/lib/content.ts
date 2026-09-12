@@ -328,3 +328,71 @@ export function sanitizarQuestaoParaCliente(questao: any): any {
       return base;
   }
 }
+
+export type ConteudoModuloParaCliente = {
+  modulo: any;
+  entregaExistente: { casoId: string; respostasTarefas: unknown; checklistMarcado: unknown } | null;
+};
+
+/**
+ * Monta o conteúdo de um módulo já sanitizado para o cliente (aulas +
+ * atividades, sem gabarito) — extraído de GET
+ * /api/trilhas/[trilha]/modulos/[moduloId] para ser reaproveitado também por
+ * POST /api/progresso/modulo/iniciar. Antes, entrar num módulo custava DUAS
+ * requisições HTTP sequenciais do navegador (iniciar, depois esta leitura),
+ * cada uma com sua própria verificação de sessão e idas ao banco — iniciar
+ * já sabe se pode liberar o conteúdo (corações > 0), então devolver os dois
+ * juntos numa resposta só elimina uma rodada inteira de rede na ação mais
+ * comum do app (entrar/retomar um módulo). Lança se o módulo não existir no
+ * conteúdo — mesmo contrato de `carregarModulo`.
+ */
+export async function obterConteudoModuloParaCliente(
+  usuarioId: string,
+  trilha: TrilhaId,
+  moduloId: string
+): Promise<ConteudoModuloParaCliente> {
+  const modulo = carregarModulo(trilha, moduloId);
+
+  // Módulo 30 (projeto prático) não tem gabarito de quiz para vazar — os
+  // "casos" são o próprio enunciado do exercício, seguro devolver como está.
+  if (modulo.tipo_modulo === "projeto_pratico") {
+    const entregaExistente = await prisma.entregaProjetoFinal.findUnique({
+      where: { usuarioId_moduloId: { usuarioId, moduloId } },
+      select: { casoId: true, respostasTarefas: true, checklistMarcado: true },
+    });
+    return { modulo, entregaExistente };
+  }
+
+  // Questões já respondidas certo antes (XpConcedido só existe quando a
+  // questão foi acertada na primeira vez — ver schema.prisma) são o sinal
+  // usado pelo frontend para "retomar de onde parou" em vez de recomeçar o
+  // módulo do zero (ver ModuloClient.tsx).
+  const todosOsIdsDeQuestao = [
+    ...modulo.aulas.map((aula: any) => aula.atividade.id),
+    ...modulo.atividade_final.map((questao: any) => questao.id),
+  ];
+  const xpConcedidos = await prisma.xpConcedido.findMany({
+    where: { usuarioId, questaoId: { in: todosOsIdsDeQuestao } },
+    select: { questaoId: true },
+  });
+
+  return {
+    modulo: {
+      modulo_id: modulo.modulo_id,
+      titulo: modulo.titulo,
+      descricao_curta: modulo.descricao_curta,
+      tempo_estimado_min: modulo.tempo_estimado_min,
+      objetivos_aprendizagem: modulo.objetivos_aprendizagem,
+      aulas: modulo.aulas.map((aula: any) => ({
+        ordem: aula.ordem,
+        titulo_aula: aula.titulo_aula,
+        corpo: aula.corpo,
+        destaque: aula.destaque,
+        atividade: sanitizarQuestaoParaCliente(aula.atividade),
+      })),
+      atividade_final: modulo.atividade_final.map(sanitizarQuestaoParaCliente),
+      questoesRespondidasCorretamente: xpConcedidos.map((x) => x.questaoId),
+    },
+    entregaExistente: null,
+  };
+}

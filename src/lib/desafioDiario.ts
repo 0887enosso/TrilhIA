@@ -1,5 +1,5 @@
 import { prisma } from "./prisma";
-import { todasQuestoesDoModulo, parseQuestaoId } from "./content";
+import { todasQuestoesDoModulo, buscarQuestao, sanitizarQuestaoParaCliente, parseQuestaoId, type TrilhaId } from "./content";
 import { inicioDoDiaBrasil } from "./tempo";
 import { atualizarStreak, type DadosStreakUsuario } from "./streak";
 import { processarConquistasEngajamento } from "./badgesEngajamento";
@@ -123,6 +123,76 @@ export async function processarRespostaParaDesafioDiario(
   }
 
   return { desafioConcluidoAgora: true, xpBonus: XP_BONUS_DESAFIO_DIARIO };
+}
+
+export type ItemDesafioParaCliente = {
+  trilha: TrilhaId;
+  moduloId: string;
+  jaRespondidaHoje: boolean;
+  questao: ReturnType<typeof sanitizarQuestaoParaCliente>;
+};
+
+export type DesafioParaCliente = {
+  desafio: {
+    concluido: boolean;
+    xpBonusConcedido: number | null;
+    questoes: ItemDesafioParaCliente[];
+  } | null;
+  aviso?: string;
+};
+
+/**
+ * Monta o desafio de hoje já no formato que o cliente consome (sanitizado,
+ * com o "já respondida hoje" calculado) — extraído de GET
+ * /api/desafio-diario para ser chamado tanto pela rota (fetch avulso,
+ * refresh) quanto diretamente pelo Server Component de
+ * `/desafio-diario` (ver src/app/(app)/desafio-diario/page.tsx). Antes,
+ * a página só fazia o login-check e devolvia uma casca vazia — o
+ * conteúdo de verdade só chegava depois, via fetch do próprio cliente já
+ * no navegador, o que custava uma rodada de rede inteira (e uma 2ª
+ * verificação de sessão) só para mostrar o "Carregando…" em toda visita a
+ * uma aba muito usada.
+ */
+export async function obterDesafioDeHojeParaCliente(usuarioId: string): Promise<DesafioParaCliente> {
+  const desafio = await obterOuCriarDesafioDeHoje(usuarioId);
+
+  if (!desafio) {
+    return { desafio: null, aviso: "Inicie pelo menos um módulo para desbloquear o desafio diário." };
+  }
+
+  const inicioDoDia = new Date(
+    Date.UTC(desafio.data.getUTCFullYear(), desafio.data.getUTCMonth(), desafio.data.getUTCDate())
+  );
+
+  const respondidasHoje = await prisma.respostaQuestao.findMany({
+    where: {
+      usuarioId,
+      questaoId: { in: desafio.questaoIds },
+      respondidoEm: { gte: inicioDoDia },
+    },
+    select: { questaoId: true },
+    distinct: ["questaoId"],
+  });
+  const idsRespondidos = new Set(respondidasHoje.map((r) => r.questaoId));
+
+  const questoes = desafio.questaoIds.map((questaoId) => {
+    const { trilha, moduloId } = parseQuestaoId(questaoId);
+    const questao = buscarQuestao(trilha, moduloId, questaoId);
+    return {
+      trilha,
+      moduloId,
+      jaRespondidaHoje: idsRespondidos.has(questaoId),
+      questao: sanitizarQuestaoParaCliente(questao),
+    };
+  });
+
+  return {
+    desafio: {
+      concluido: desafio.concluido,
+      xpBonusConcedido: desafio.xpBonusConcedido,
+      questoes,
+    },
+  };
 }
 
 export { parseQuestaoId };
