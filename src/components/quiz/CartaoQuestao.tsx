@@ -2,7 +2,9 @@
 
 import { useState } from "react";
 import { Botao } from "@/components/ui/Botao";
+import { PELE_CAMPO } from "@/components/ui/Campo";
 import { ClickSpark } from "@/components/reactbits/ClickSpark";
+import { BarraFeedback } from "./BarraFeedback";
 import type { ExplicacaoAutoavaliada, Questao, ResultadoResposta } from "./tipos";
 
 type CartaoQuestaoProps = {
@@ -19,13 +21,43 @@ type CartaoQuestaoProps = {
   aoErrarVoltarParaAula?: (() => void) | null;
 };
 
-const OPCAO_CLASSNAME =
-  "w-full rounded-md border px-4 py-2.5 text-left text-sm transition-colors disabled:cursor-not-allowed";
+/**
+ * Alternativas como "tiles" pressionáveis, com a mesma borda inferior sólida
+ * dos botões (ver Botao.tsx). Antes eram retângulos de borda 1px e raio de
+ * 6px, sem reação ao toque — o elemento mais clicado do app inteiro era o
+ * mais apagado dele, e nada indicava que era clicável antes do hover.
+ */
+function classeTile({
+  ativo,
+  respondida,
+  resultado,
+}: {
+  ativo: boolean;
+  respondida: boolean;
+  resultado: "acerto" | "erro" | null;
+}) {
+  const base =
+    "w-full rounded-xl border-2 px-4 py-3.5 text-left text-sm font-semibold transition-all duration-100 disabled:cursor-not-allowed";
 
-function classeOpcao(ativo: boolean) {
-  return `${OPCAO_CLASSNAME} ${
-    ativo ? "border-trail bg-trail-soft text-trail-strong" : "border-rule bg-parchment-raised text-ink hover:border-trail"
-  }`;
+  // Depois de responder, a alternativa escolhida ganha a cor do resultado; as
+  // demais apagam. O gabarito NUNCA é revelado aqui — a API manda só se a
+  // resposta enviada estava certa (ver sanitizarQuestaoParaCliente), porque o
+  // usuário pode tentar de novo.
+  if (respondida) {
+    if (resultado === "acerto") {
+      return `${base} border-jade bg-jade text-parchment-surface shadow-press-jade`;
+    }
+    if (resultado === "erro") {
+      return `${base} border-coral bg-coral text-parchment-surface shadow-press-coral`;
+    }
+    return `${base} border-rule bg-parchment opacity-50`;
+  }
+
+  if (ativo) {
+    return `${base} border-jade bg-jade-soft text-jade-strong shadow-press-jade`;
+  }
+
+  return `${base} border-rule bg-parchment-raised text-ink shadow-press-rule hover:-translate-y-0.5 hover:border-jade active:translate-y-[4px] active:shadow-none`;
 }
 
 export function CartaoQuestao({ questao, onResponder, onContinuar, aoErrarVoltarParaAula }: CartaoQuestaoProps) {
@@ -110,201 +142,228 @@ export function CartaoQuestao({ questao, onResponder, onContinuar, aoErrarVoltar
   // sempre `correta === null`, nunca `false`.
   const errouComRevisao = resultado?.correta === false && !!aoErrarVoltarParaAula;
 
+  /** Resultado a aplicar num tile de escolha única, pelo id da opção. */
+  function resultadoDoTile(id: string): "acerto" | "erro" | null {
+    if (!jaRespondida || selecionado !== id) return null;
+    if (resultado?.correta === false) return "erro";
+    return "acerto";
+  }
+
+  const enunciado = <p className="font-display text-xl leading-relaxed text-ink">{questao.enunciado}</p>;
+
   return (
-    <div className="flex flex-col gap-5 rounded-3xl border-2 border-rule bg-parchment-surface p-6">
-      {questao.tipo === "multipla_escolha" || questao.tipo === "correcao_prompt" ? (
-        <>
-          {questao.prompt_analisado ? (
-            <pre className="whitespace-pre-wrap rounded-md border border-rule bg-parchment p-3 font-mono text-xs text-ink-soft">
-              {questao.prompt_analisado}
-            </pre>
-          ) : null}
-          <p className="font-display text-lg text-ink">{questao.enunciado}</p>
-          <div className="flex flex-col gap-2">
-            {questao.alternativas.map((alt) => (
-              <button
-                key={alt.id}
-                type="button"
-                disabled={jaRespondida}
-                onClick={() => setSelecionado(alt.id)}
-                className={classeOpcao(selecionado === alt.id)}
-              >
-                {alt.texto}
-              </button>
-            ))}
-          </div>
-        </>
-      ) : null}
-
-      {questao.tipo === "verdadeiro_falso" ? (
-        <>
-          <p className="font-display text-lg text-ink">{questao.enunciado}</p>
-          <div className="flex flex-col gap-2">
-            {questao.justificativas.map((just) => (
-              <button
-                key={just.id}
-                type="button"
-                disabled={jaRespondida}
-                onClick={() => setSelecionado(just.id)}
-                className={classeOpcao(selecionado === just.id)}
-              >
-                {just.texto}
-              </button>
-            ))}
-          </div>
-        </>
-      ) : null}
-
-      {questao.tipo === "completar_lacuna" ? (
-        <>
-          <p className="font-display text-lg text-ink">{questao.enunciado}</p>
-          <div className="flex flex-col gap-3">
-            {questao.lacunas.map((lacuna) => (
-              <label key={lacuna.posicao} className="flex flex-col gap-1.5">
-                <span className="text-sm font-medium text-ink">Lacuna {lacuna.posicao}</span>
-                <select
+    <>
+      <div className="flex flex-col gap-5 rounded-3xl border-2 border-rule bg-parchment-surface p-6 shadow-lift">
+        {questao.tipo === "multipla_escolha" || questao.tipo === "correcao_prompt" ? (
+          <>
+            {questao.prompt_analisado ? (
+              <pre className="whitespace-pre-wrap rounded-xl border-2 border-rule bg-parchment-deep p-4 font-mono text-xs leading-relaxed text-ink-soft shadow-well">
+                {questao.prompt_analisado}
+              </pre>
+            ) : null}
+            {enunciado}
+            <div className="flex flex-col gap-2.5">
+              {questao.alternativas.map((alt) => (
+                <button
+                  key={alt.id}
+                  type="button"
                   disabled={jaRespondida}
-                  value={lacunas[lacuna.posicao] ?? ""}
-                  onChange={(e) => setLacunas((prev) => ({ ...prev, [lacuna.posicao]: e.target.value }))}
-                  className="rounded-md border border-rule bg-parchment-raised px-3 py-2 text-sm text-ink focus:border-trail focus:outline-none"
+                  onClick={() => setSelecionado(alt.id)}
+                  className={classeTile({
+                    ativo: selecionado === alt.id,
+                    respondida: jaRespondida,
+                    resultado: resultadoDoTile(alt.id),
+                  })}
                 >
-                  <option value="" disabled>
-                    Selecione
-                  </option>
-                  {lacuna.opcoes.map((opcao) => (
-                    <option key={opcao} value={opcao}>
-                      {opcao}
-                    </option>
-                  ))}
-                </select>
-              </label>
-            ))}
-          </div>
-        </>
-      ) : null}
+                  {alt.texto}
+                </button>
+              ))}
+            </div>
+          </>
+        ) : null}
 
-      {questao.tipo === "associacao" ? (
-        <>
-          <p className="font-display text-lg text-ink">{questao.enunciado}</p>
-          <div className="flex flex-col gap-3">
-            {questao.termos.map((termo) => (
-              <label key={termo} className="flex flex-col gap-1.5 sm:flex-row sm:items-center sm:gap-3">
-                <span className="text-sm font-medium text-ink sm:w-40">{termo}</span>
-                <select
+        {questao.tipo === "verdadeiro_falso" ? (
+          <>
+            {enunciado}
+            <div className="flex flex-col gap-2.5">
+              {questao.justificativas.map((just) => (
+                <button
+                  key={just.id}
+                  type="button"
                   disabled={jaRespondida}
-                  value={pares[termo] ?? ""}
-                  onChange={(e) => setPares((prev) => ({ ...prev, [termo]: e.target.value }))}
-                  className="flex-1 rounded-md border border-rule bg-parchment-raised px-3 py-2 text-sm text-ink focus:border-trail focus:outline-none"
+                  onClick={() => setSelecionado(just.id)}
+                  className={classeTile({
+                    ativo: selecionado === just.id,
+                    respondida: jaRespondida,
+                    resultado: resultadoDoTile(just.id),
+                  })}
                 >
-                  <option value="" disabled>
-                    Selecione a definição
-                  </option>
-                  {questao.definicoes.map((definicao) => (
-                    <option key={definicao} value={definicao}>
-                      {definicao}
-                    </option>
-                  ))}
-                </select>
-              </label>
-            ))}
-          </div>
-        </>
-      ) : null}
+                  {just.texto}
+                </button>
+              ))}
+            </div>
+          </>
+        ) : null}
 
-      {questao.tipo === "ordenar_etapas" ? (
-        <>
-          <p className="font-display text-lg text-ink">{questao.enunciado}</p>
-          <ol className="flex flex-col gap-2">
-            {ordem.map((etapa, indice) => (
-              <li
-                key={etapa}
-                className="flex items-center gap-3 rounded-md border border-rule bg-parchment-raised px-3 py-2 text-sm text-ink"
-              >
-                <span className="font-mono text-xs text-ink-faint">{indice + 1}</span>
-                <span className="flex-1">{etapa}</span>
-                {!jaRespondida ? (
-                  <span className="flex gap-1">
-                    <button
-                      type="button"
-                      aria-label="Mover para cima"
-                      disabled={indice === 0}
-                      onClick={() =>
-                        setOrdem((prev) => {
-                          const copia = [...prev];
-                          [copia[indice - 1], copia[indice]] = [copia[indice], copia[indice - 1]];
-                          return copia;
-                        })
-                      }
-                      className="rounded border border-rule px-2 py-0.5 text-ink-soft hover:border-trail disabled:opacity-30"
-                    >
-                      ↑
-                    </button>
-                    <button
-                      type="button"
-                      aria-label="Mover para baixo"
-                      disabled={indice === ordem.length - 1}
-                      onClick={() =>
-                        setOrdem((prev) => {
-                          const copia = [...prev];
-                          [copia[indice], copia[indice + 1]] = [copia[indice + 1], copia[indice]];
-                          return copia;
-                        })
-                      }
-                      className="rounded border border-rule px-2 py-0.5 text-ink-soft hover:border-trail disabled:opacity-30"
-                    >
-                      ↓
-                    </button>
+        {questao.tipo === "completar_lacuna" ? (
+          <>
+            {enunciado}
+            <div className="flex flex-col gap-3">
+              {questao.lacunas.map((lacuna) => (
+                <label key={lacuna.posicao} className="flex flex-col gap-1.5">
+                  <span className="text-sm font-bold text-ink-soft">Lacuna {lacuna.posicao}</span>
+                  <select
+                    disabled={jaRespondida}
+                    value={lacunas[lacuna.posicao] ?? ""}
+                    onChange={(e) => setLacunas((prev) => ({ ...prev, [lacuna.posicao]: e.target.value }))}
+                    className={PELE_CAMPO}
+                  >
+                    <option value="" disabled>
+                      Selecione
+                    </option>
+                    {lacuna.opcoes.map((opcao) => (
+                      <option key={opcao} value={opcao}>
+                        {opcao}
+                      </option>
+                    ))}
+                  </select>
+                </label>
+              ))}
+            </div>
+          </>
+        ) : null}
+
+        {questao.tipo === "associacao" ? (
+          <>
+            {enunciado}
+            <div className="flex flex-col gap-2.5">
+              {questao.termos.map((termo) => (
+                <label
+                  key={termo}
+                  className="flex flex-col gap-2 rounded-xl border-2 border-rule bg-parchment-raised p-3 sm:flex-row sm:items-center sm:gap-3"
+                >
+                  <span className="text-sm font-extrabold text-ink sm:w-44">{termo}</span>
+                  <select
+                    disabled={jaRespondida}
+                    value={pares[termo] ?? ""}
+                    onChange={(e) => setPares((prev) => ({ ...prev, [termo]: e.target.value }))}
+                    className={`${PELE_CAMPO} flex-1`}
+                  >
+                    <option value="" disabled>
+                      Selecione a definição
+                    </option>
+                    {questao.definicoes.map((definicao) => (
+                      <option key={definicao} value={definicao}>
+                        {definicao}
+                      </option>
+                    ))}
+                  </select>
+                </label>
+              ))}
+            </div>
+          </>
+        ) : null}
+
+        {questao.tipo === "ordenar_etapas" ? (
+          <>
+            {enunciado}
+            <ol className="flex flex-col gap-2.5">
+              {ordem.map((etapa, indice) => (
+                <li
+                  key={etapa}
+                  className="flex items-center gap-3 rounded-xl border-2 border-rule bg-parchment-raised px-3 py-3 text-sm font-semibold text-ink shadow-press-rule"
+                >
+                  <span className="font-variant-tabular flex h-7 w-7 flex-none items-center justify-center rounded-full bg-trail text-xs font-extrabold text-parchment-surface">
+                    {indice + 1}
                   </span>
-                ) : null}
-              </li>
-            ))}
-          </ol>
-        </>
-      ) : null}
+                  <span className="flex-1">{etapa}</span>
+                  {!jaRespondida ? (
+                    <span className="flex flex-none gap-1">
+                      <button
+                        type="button"
+                        aria-label="Mover para cima"
+                        disabled={indice === 0}
+                        onClick={() =>
+                          setOrdem((prev) => {
+                            const copia = [...prev];
+                            [copia[indice - 1], copia[indice]] = [copia[indice], copia[indice - 1]];
+                            return copia;
+                          })
+                        }
+                        className="flex h-8 w-8 items-center justify-center rounded-lg border-2 border-rule bg-parchment text-ink-soft transition-colors hover:border-jade hover:text-jade-strong disabled:opacity-30 disabled:hover:border-rule"
+                      >
+                        ↑
+                      </button>
+                      <button
+                        type="button"
+                        aria-label="Mover para baixo"
+                        disabled={indice === ordem.length - 1}
+                        onClick={() =>
+                          setOrdem((prev) => {
+                            const copia = [...prev];
+                            [copia[indice], copia[indice + 1]] = [copia[indice + 1], copia[indice]];
+                            return copia;
+                          })
+                        }
+                        className="flex h-8 w-8 items-center justify-center rounded-lg border-2 border-rule bg-parchment text-ink-soft transition-colors hover:border-jade hover:text-jade-strong disabled:opacity-30 disabled:hover:border-rule"
+                      >
+                        ↓
+                      </button>
+                    </span>
+                  ) : null}
+                </li>
+              ))}
+            </ol>
+          </>
+        ) : null}
 
-      {questao.tipo === "resposta_curta_autoavaliada" ? (
-        <>
-          <p className="font-display text-lg text-ink">{questao.enunciado}</p>
-          <textarea
-            disabled={jaRespondida}
-            value={texto}
-            onChange={(e) => setTexto(e.target.value)}
-            rows={5}
-            placeholder="Escreva sua resposta…"
-            className="rounded-md border border-rule bg-parchment-raised px-3 py-2 text-sm text-ink focus:border-trail focus:outline-none disabled:opacity-70"
-          />
-        </>
-      ) : null}
+        {questao.tipo === "resposta_curta_autoavaliada" ? (
+          <>
+            {enunciado}
+            <textarea
+              disabled={jaRespondida}
+              value={texto}
+              onChange={(e) => setTexto(e.target.value)}
+              rows={5}
+              placeholder="Escreva sua resposta…"
+              className={`${PELE_CAMPO} resize-y leading-relaxed`}
+            />
+          </>
+        ) : null}
 
-      {!jaRespondida ? (
-        <ClickSpark className="inline-block self-start" sparkColor="#A9700F">
-          <Botao onClick={enviar} disabled={enviando || !respostaCompleta()}>
-            {enviando ? "Enviando…" : "Responder"}
-          </Botao>
-        </ClickSpark>
-      ) : (
-        <div
-          className={`flex flex-col gap-3 rounded-md p-4 ${
-            acertou ? "bg-trail-soft text-trail-strong" : "bg-coral-soft text-coral"
-          }`}
-          role="status"
-        >
-          <p className="font-semibold">
-            {resultado?.correta === true
-              ? `Certo! +${resultado.xpGanho} XP`
+        {!jaRespondida ? (
+          <ClickSpark className="inline-block self-start" sparkColor="#F0B03C">
+            <Botao onClick={enviar} disabled={enviando || !respostaCompleta()} tamanho="lg">
+              {enviando ? "Enviando…" : "Responder"}
+            </Botao>
+          </ClickSpark>
+        ) : null}
+      </div>
+
+      {/* Espaçador: a barra de resultado é `fixed`, então sem isto ela cobriria
+          o fim do cartão em telas curtas. */}
+      {jaRespondida ? <div className="h-44" aria-hidden="true" /> : null}
+
+      {jaRespondida ? (
+        <BarraFeedback
+          estado={resultado?.correta === true ? "acerto" : resultado?.correta === false ? "erro" : "registrado"}
+          xpGanho={resultado?.xpGanho ?? 0}
+          titulo={
+            resultado?.correta === true
+              ? "Certo!"
               : resultado?.correta === false
                 ? "Não foi dessa vez."
-                : "Resposta registrada."}
-          </p>
-
-          {typeof resultado?.explicacao === "string" ? (
-            <p className="text-sm text-ink">{resultado.explicacao}</p>
-          ) : null}
+                : "Resposta registrada."
+          }
+          rotuloAcao={acertou ? "Continuar" : errouComRevisao ? "Revisar aula" : "Tentar novamente"}
+          aoAgir={acertou ? onContinuar : errouComRevisao ? aoErrarVoltarParaAula! : tentarNovamente}
+        >
+          {typeof resultado?.explicacao === "string" ? <p>{resultado.explicacao}</p> : null}
 
           {resultado?.explicacao && typeof resultado.explicacao === "object" ? (
-            <div className="flex flex-col gap-2 text-sm text-ink">
+            <div className="flex flex-col gap-2">
               <div>
-                <p className="font-semibold">Critérios de autoavaliação</p>
+                <p className="font-extrabold">Critérios de autoavaliação</p>
                 <ul className="list-inside list-disc">
                   {(resultado.explicacao as ExplicacaoAutoavaliada).criterios_autoavaliacao.map((c) => (
                     <li key={c}>{c}</li>
@@ -312,22 +371,15 @@ export function CartaoQuestao({ questao, onResponder, onContinuar, aoErrarVoltar
                 </ul>
               </div>
               <div>
-                <p className="font-semibold">Exemplo de resposta forte</p>
+                <p className="font-extrabold">Exemplo de resposta forte</p>
                 <p className="text-ink-soft">
                   {(resultado.explicacao as ExplicacaoAutoavaliada).exemplo_de_resposta_forte}
                 </p>
               </div>
             </div>
           ) : null}
-
-          <Botao
-            onClick={acertou ? onContinuar : errouComRevisao ? aoErrarVoltarParaAula! : tentarNovamente}
-            className="self-start"
-          >
-            {acertou ? "Continuar" : errouComRevisao ? "Revisar aula" : "Tentar novamente"}
-          </Botao>
-        </div>
-      )}
-    </div>
+        </BarraFeedback>
+      ) : null}
+    </>
   );
 }
