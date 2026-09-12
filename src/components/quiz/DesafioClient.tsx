@@ -7,6 +7,8 @@ import { Mascote } from "@/components/mascote/Mascote";
 import { Botao } from "@/components/ui/Botao";
 import { IconeRaio } from "@/components/app/icones";
 import { CountUp } from "@/components/reactbits/CountUp";
+import { Confete } from "@/components/reactbits/Confete";
+import { IconeXp } from "@/components/ui/iconesJogo";
 import { CartaoQuestao } from "./CartaoQuestao";
 import type { Questao, ResultadoResposta } from "./tipos";
 import type { TrilhaId } from "@/lib/content";
@@ -95,18 +97,30 @@ export function DesafioClient({ dadosIniciais }: { dadosIniciais: DesafioParaCli
 
   if (fase === "tudo_respondido" || (!proxima && xpBonus !== null)) {
     return (
-      <div className="flex flex-col items-center gap-4 py-16 text-center">
-        <Mascote pose="comemorando" size={130} />
-        <h1 className="font-display text-2xl text-ink">Desafio de hoje concluído!</h1>
-        {xpBonus ? (
-          <p className="font-variant-tabular text-amber-strong">
-            +<CountUp to={xpBonus} duration={1} /> XP de bônus
-          </p>
-        ) : null}
-        <Link href="/inicio">
-          <Botao>Voltar ao início</Botao>
-        </Link>
-      </div>
+      <>
+        {xpBonus ? <Confete /> : null}
+        <div className="flex flex-col items-center gap-5 py-12 text-center">
+          <span className="animate-estourar">
+            <Mascote pose="comemorando" size={140} />
+          </span>
+          <div>
+            <p className="text-sm font-extrabold uppercase tracking-[0.2em] text-jade-strong">
+              Foguinho mantido
+            </p>
+            <h1 className="mt-1 font-sans text-3xl font-extrabold text-ink">
+              Desafio de hoje concluído!
+            </h1>
+          </div>
+          {xpBonus ? (
+            <p className="font-variant-tabular inline-flex items-center gap-2 rounded-full border-2 border-amber-strong bg-amber-soft px-5 py-2 text-xl font-extrabold text-amber-strong shadow-press-amber">
+              <IconeXp tamanho={22} />+<CountUp to={xpBonus} duration={1} /> XP de bônus
+            </p>
+          ) : null}
+          <Link href="/inicio" className="mt-2">
+            <Botao tamanho="lg">Voltar ao início</Botao>
+          </Link>
+        </div>
+      </>
     );
   }
 

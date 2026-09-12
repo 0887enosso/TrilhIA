@@ -10,7 +10,9 @@ import { Coracoes } from "@/components/ui/Coracoes";
 import { ContadorCoracoes } from "@/components/ui/ContadorCoracoes";
 import { BadgePill } from "@/components/ui/BadgePill";
 import { CountUp } from "@/components/reactbits/CountUp";
+import { Confete } from "@/components/reactbits/Confete";
 import { EtapaIndicador } from "@/components/reactbits/EtapaIndicador";
+import { IconeXp } from "@/components/ui/iconesJogo";
 import { CartaoQuestao } from "./CartaoQuestao";
 import { ProjetoFinalFlow } from "./ProjetoFinalFlow";
 import type { Questao, ResultadoResposta } from "./tipos";
@@ -294,28 +296,43 @@ export function ModuloClient({ trilha, moduloId }: { trilha: TrilhaId; moduloId:
 
   if (fase === "concluido") {
     return (
-      <div className="flex flex-col items-center gap-4 py-16 text-center">
-        <Mascote pose="comemorando" size={130} />
-        <h1 className="font-sans text-3xl font-extrabold text-ink">Módulo concluído!</h1>
-        <p className="font-variant-tabular rounded-full bg-amber-soft px-4 py-1.5 text-lg font-extrabold text-amber-strong">
-          +<CountUp to={xpSessao} duration={1.1} /> XP nesta sessão
-        </p>
-        {conclusao?.badgesGanhas.length ? (
-          <div className="flex flex-wrap justify-center gap-2">
-            {conclusao.badgesGanhas.map((b) => (
-              <BadgePill key={b} cor="amber">
-                Nova badge: {b.replace(/-/g, " ")}
-              </BadgePill>
-            ))}
+      <>
+        <Confete />
+        <div className="flex flex-col items-center gap-5 py-12 text-center">
+          <span className="animate-estourar">
+            <Mascote pose="comemorando" size={150} />
+          </span>
+
+          <div>
+            <p className="text-sm font-extrabold uppercase tracking-[0.2em] text-jade-strong">
+              Trecho concluído
+            </p>
+            <h1 className="mt-1 font-sans text-4xl font-extrabold text-ink">Módulo concluído!</h1>
           </div>
-        ) : null}
-        {conclusao?.certificadoEmitido ? (
-          <BadgePill cor="trail">Certificado emitido — veja em Conquistas</BadgePill>
-        ) : null}
-        <Link href={`/trilha/${trilha}`}>
-          <Botao>Voltar à trilha</Botao>
-        </Link>
-      </div>
+
+          <p className="font-variant-tabular inline-flex items-center gap-2 rounded-full border-2 border-amber-strong bg-amber-soft px-5 py-2 text-xl font-extrabold text-amber-strong shadow-press-amber">
+            <IconeXp tamanho={22} />+<CountUp to={xpSessao} duration={1.1} /> XP nesta sessão
+          </p>
+
+          {conclusao?.badgesGanhas.length ? (
+            <div className="flex flex-wrap justify-center gap-2">
+              {conclusao.badgesGanhas.map((b) => (
+                <span key={b} className="animate-estourar">
+                  <BadgePill cor="amber">Nova conquista: {b.replace(/-/g, " ")}</BadgePill>
+                </span>
+              ))}
+            </div>
+          ) : null}
+
+          {conclusao?.certificadoEmitido ? (
+            <BadgePill cor="trail">Certificado emitido — veja em Conquistas</BadgePill>
+          ) : null}
+
+          <Link href={`/trilha/${trilha}`} className="mt-2">
+            <Botao tamanho="lg">Voltar à trilha</Botao>
+          </Link>
+        </div>
+      </>
     );
   }
 

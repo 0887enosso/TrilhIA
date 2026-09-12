@@ -62,6 +62,26 @@ body {
   }
 }
 
+/* Confete das telas de recompensa (src/components/reactbits/Confete.tsx).
+   A peça cai a tela inteira girando; posição, cor, atraso e duração de cada
+   uma vêm por style inline, gerados no cliente. */
+@keyframes confete-cair {
+  0% {
+    transform: translate3d(0, -12vh, 0) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translate3d(0, 104vh, 0) rotate(720deg);
+    opacity: 0.15;
+  }
+}
+
+.confete {
+  animation-name: confete-cair;
+  animation-timing-function: cubic-bezier(0.25, 0.55, 0.45, 1);
+  animation-fill-mode: forwards;
+}
+
 /* ==========================================================================
    Botão/cartão "blaze" — CTA do desafio diário. Técnica: um box-shadow que
    "respira" (o brilho pulsa de tamanho/opacidade, a borda de baixo do botão

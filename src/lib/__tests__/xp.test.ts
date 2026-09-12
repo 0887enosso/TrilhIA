@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { xpPorTipoQuestao, calcularNivel } from "../xp";
+import { xpPorTipoQuestao, calcularNivel, progressoDoNivel } from "../xp";
 
 describe("xpPorTipoQuestao", () => {
   it("retorna o valor certo para cada tipo conhecido", () => {
@@ -27,5 +27,19 @@ describe("calcularNivel", () => {
     expect(calcularNivel(300)).toBe(2);
     expect(calcularNivel(599)).toBe(2);
     expect(calcularNivel(600)).toBe(3);
+  });
+});
+
+describe("progressoDoNivel", () => {
+  it("zera ao entrar num nível novo e completa ao encostar no próximo", () => {
+    expect(progressoDoNivel(0)).toEqual({ xpNoNivel: 0, xpParaProximo: 300, percentual: 0 });
+    expect(progressoDoNivel(300)).toEqual({ xpNoNivel: 0, xpParaProximo: 300, percentual: 0 });
+    expect(progressoDoNivel(299)).toEqual({ xpNoNivel: 299, xpParaProximo: 1, percentual: 100 });
+  });
+
+  it("conta a partir do XP dentro do nível atual, não do total acumulado", () => {
+    // 450 XP = nível 2 com 150 já andados dentro dele.
+    expect(calcularNivel(450)).toBe(2);
+    expect(progressoDoNivel(450)).toEqual({ xpNoNivel: 150, xpParaProximo: 150, percentual: 50 });
   });
 });

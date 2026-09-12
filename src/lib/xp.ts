@@ -25,11 +25,32 @@ export function xpPorTipoQuestao(tipo: string): number {
   return xp;
 }
 
+const XP_POR_NIVEL = 300;
+
 /**
  * Fórmula de nível — placeholder simples e deliberadamente linear.
  * Ajustável sem quebrar nada: nenhum outro lugar do código depende da
  * fórmula em si, só do valor de retorno.
  */
 export function calcularNivel(xpTotal: number): number {
-  return 1 + Math.floor(xpTotal / 300);
+  return 1 + Math.floor(xpTotal / XP_POR_NIVEL);
+}
+
+/**
+ * Quanto do nível atual já foi percorrido — usado pela barra de nível do
+ * dashboard. Mora aqui junto de `calcularNivel` de propósito: quem exibe não
+ * precisa saber que a progressão é linear, então trocar a fórmula continua
+ * sendo uma mudança de um arquivo só.
+ */
+export function progressoDoNivel(xpTotal: number): {
+  xpNoNivel: number;
+  xpParaProximo: number;
+  percentual: number;
+} {
+  const xpNoNivel = xpTotal % XP_POR_NIVEL;
+  return {
+    xpNoNivel,
+    xpParaProximo: XP_POR_NIVEL - xpNoNivel,
+    percentual: Math.round((xpNoNivel / XP_POR_NIVEL) * 100),
+  };
 }

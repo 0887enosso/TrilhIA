@@ -3,6 +3,7 @@ import { redirect } from "next/navigation";
 import { obterSessaoAtual } from "@/lib/auth";
 import { obterResumoUsuario } from "@/lib/usuario";
 import { obterProgressoAgregado } from "@/lib/progresso";
+import { progressoDoNivel } from "@/lib/xp";
 import { Mascote } from "@/components/mascote/Mascote";
 import { Botao } from "@/components/ui/Botao";
 import { IconeRaio, IconeTrofeu, IconeCadeado, IconeBussola } from "@/components/app/icones";
@@ -33,18 +34,41 @@ export default async function InicioPage() {
     modulosDaTrilhaAtiva.find((m) => m.status === "em_andamento") ??
     modulosDaTrilhaAtiva.find((m) => m.status === "nao_iniciado");
   const percentualAtivo = Math.round((dadosTrilhaAtiva.concluidos / dadosTrilhaAtiva.totalModulos) * 100);
+  const nivel = progressoDoNivel(usuario.xpTotal);
 
   return (
     <div className="flex flex-col gap-8">
-      <section className="relative flex flex-col items-center gap-4 overflow-hidden rounded-3xl border-2 border-rule bg-parchment-surface p-8 text-center sm:flex-row sm:text-left">
-        <IconeBussola className="pointer-events-none absolute -bottom-8 -right-8 h-40 w-40 text-trail opacity-[0.07]" />
-        <Mascote pose="andando" size={110} className="relative" />
+      {/* Faixa escura como âncora da página: o mascote é claro e quente, então
+          sobre pergaminho ele quase se dissolvia no fundo. Sobre o verde da
+          marca ele finalmente recorta. */}
+      <section className="relative flex flex-col items-center gap-5 overflow-hidden rounded-3xl border-2 border-trail-strong bg-trail p-7 text-center shadow-lift sm:flex-row sm:text-left">
+        <IconeBussola className="pointer-events-none absolute -bottom-10 -right-10 h-48 w-48 text-parchment opacity-[0.08]" />
+        <span className="relative animate-flutuar">
+          <Mascote pose="andando" size={120} />
+        </span>
         <div className="relative flex-1">
-          <p className="font-mono text-xs uppercase tracking-wide text-trail">Bem-vindo(a) de volta</p>
-          <h1 className="mt-1 font-sans text-3xl font-extrabold text-ink">Olá, {usuario.nome.split(" ")[0]}</h1>
-          <p className="mt-1 text-sm font-semibold text-ink-soft">
-            Nível {usuario.nivel} · {usuario.xpTotal} XP acumulados · Equipe {usuario.equipe}
+          <p className="text-xs font-extrabold uppercase tracking-[0.2em] text-parchment/70">
+            Bem-vindo(a) de volta
           </p>
+          <h1 className="mt-1 font-sans text-3xl font-extrabold text-parchment-surface">
+            Olá, {usuario.nome.split(" ")[0]}
+          </h1>
+          <p className="mt-1 text-sm font-bold text-parchment/80">Equipe {usuario.equipe}</p>
+
+          <div className="mt-4">
+            <div className="flex items-baseline justify-between gap-3 text-parchment-surface">
+              <span className="text-sm font-extrabold">Nível {usuario.nivel}</span>
+              <span className="font-variant-tabular text-xs font-bold text-parchment/75">
+                faltam {nivel.xpParaProximo} XP para o nível {usuario.nivel + 1}
+              </span>
+            </div>
+            <div className="mt-1.5 h-3 w-full overflow-hidden rounded-full bg-trail-strong shadow-well">
+              <div
+                className="h-full rounded-full bg-gradient-to-b from-amber-vivid to-amber transition-[width] duration-700"
+                style={{ width: `${nivel.percentual}%` }}
+              />
+            </div>
+          </div>
         </div>
       </section>
 
