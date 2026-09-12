@@ -81,9 +81,9 @@ export default async function InicioPage() {
             <p className="font-variant-tabular text-sm font-semibold text-ink-soft">
               {dadosTrilhaAtiva.concluidos} de {dadosTrilhaAtiva.totalModulos} módulos concluídos
             </p>
-            <div className="h-2.5 w-full overflow-hidden rounded-full bg-rule">
+            <div className="h-3 w-full overflow-hidden rounded-full bg-parchment-deep shadow-well">
               <div
-                className="h-full rounded-full bg-trail transition-[width] duration-500"
+                className="h-full rounded-full bg-gradient-to-b from-jade-vivid to-jade transition-[width] duration-700"
                 style={{ width: `${percentualAtivo}%` }}
               />
             </div>

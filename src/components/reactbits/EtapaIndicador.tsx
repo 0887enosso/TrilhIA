@@ -17,16 +17,16 @@ export function EtapaIndicador({ total, atual }: { total: number; atual: number 
           <span
             className={`block rounded-full transition-all duration-300 ${
               i < atual
-                ? "h-2 w-2 bg-trail"
+                ? "h-2 w-2 bg-jade"
                 : i === atual
-                  ? "h-2.5 w-2.5 bg-amber ring-2 ring-amber-soft"
-                  : "h-2 w-2 bg-rule"
+                  ? "h-3 w-3 bg-amber ring-4 ring-amber-soft"
+                  : "h-2 w-2 bg-rule-strong"
             }`}
           />
           {i < total - 1 ? (
             <span
-              className={`mx-0.5 h-0.5 w-3 rounded-full transition-colors duration-300 ${
-                i < atual ? "bg-trail" : "bg-rule"
+              className={`mx-0.5 h-1 w-3 rounded-full transition-colors duration-300 ${
+                i < atual ? "bg-jade" : "bg-rule-strong"
               }`}
             />
           ) : null}

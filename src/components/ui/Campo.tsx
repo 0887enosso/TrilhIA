@@ -9,15 +9,20 @@ type CampoBaseProps = {
 function CampoBase({ rotulo, erro, children }: CampoBaseProps) {
   return (
     <label className="flex flex-col gap-1.5">
-      <span className="text-sm font-medium text-ink">{rotulo}</span>
+      <span className="text-sm font-bold text-ink-soft">{rotulo}</span>
       {children}
-      {erro ? <span className="text-xs text-coral">{erro}</span> : null}
+      {erro ? <span className="text-xs font-semibold text-coral">{erro}</span> : null}
     </label>
   );
 }
 
+// Campos com o mesmo peso visual dos botões: borda de 2px e raio grande, em
+// vez da borda de 1px com raio de 6px que usavam antes — ao lado de um botão
+// 3px/22px eles pareciam de outro sistema de design. O fundo rebaixado
+// (`parchment-deep`) e a sombra interna fazem o campo parecer cavado na
+// página; ao focar, ele "sobe" para branco com anel verde.
 const CAMPO_CLASSNAME =
-  "rounded-md border border-rule bg-parchment-raised px-3 py-2 text-sm text-ink placeholder:text-ink-faint focus:border-trail focus:outline-none focus:ring-2 focus:ring-trail-soft";
+  "w-full rounded-xl border-2 border-rule bg-parchment-deep px-4 py-3 text-sm font-semibold text-ink shadow-well transition-[background-color,border-color,box-shadow] placeholder:font-normal placeholder:text-ink-faint focus:border-jade focus:bg-parchment-raised focus:shadow-none focus:outline-none focus:ring-4 focus:ring-jade-soft disabled:opacity-60";
 
 type CampoTextoProps = InputHTMLAttributes<HTMLInputElement> & { rotulo: string; erro?: string };
 
@@ -44,3 +49,7 @@ export function CampoSelecao({ rotulo, erro, className = "", children, ...props 
     </CampoBase>
   );
 }
+
+/** Mesma pele dos campos acima, para uso solto (textarea do quiz, selects do
+ *  CartaoQuestao) sem o rótulo/erro do CampoBase. */
+export const PELE_CAMPO = CAMPO_CLASSNAME;
