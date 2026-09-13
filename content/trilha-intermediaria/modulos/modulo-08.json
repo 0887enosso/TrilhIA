@@ -52,6 +52,41 @@
       "titulo_aula": "Onde a IA ajuda de verdade",
       "corpo": "Sintetizar um conjunto grande de decisões em pontos-chave. Identificar padrões entre vários julgados. Organizar achados por tema ou critério.",
       "atividade": {
+        "id": "intermediaria-08-q4",
+        "tipo": "correcao_prompt",
+        "enunciado": "Um colega já tem 40 acórdãos fictícios, todos confirmados na base oficial, e escreve o prompt abaixo. Por que esse pedido desperdiça o que a IA faria bem aqui?",
+        "prompt_analisado": "\"Seguem 40 acórdãos. Qual deles eu devo usar e qual tese tem mais chance de ganhar?\"",
+        "alternativas": [
+          {
+            "id": "a",
+            "texto": "Ele pede decisão estratégica, em vez de pedir o que a IA faz bem: sintetizar os 40 em pontos-chave, apontar padrões e organizar por tema.",
+            "correta": true
+          },
+          {
+            "id": "b",
+            "texto": "Ele deveria primeiro pedir que a IA buscasse mais acórdãos, para ampliar a base antes de qualquer análise.",
+            "correta": false
+          },
+          {
+            "id": "c",
+            "texto": "O volume de 40 decisões é alto demais para qualquer ferramenta de IA conseguir processar de uma vez.",
+            "correta": false
+          },
+          {
+            "id": "d",
+            "texto": "Faltou pedir que a IA confirmasse a veracidade de cada acórdão antes de responder qualquer coisa.",
+            "correta": false
+          }
+        ],
+        "explicacao_acerto": "Exatamente — síntese, padrão e organização por tema são o terreno dela. Escolher tese é julgamento estratégico, e esse continua seu.",
+        "explicacao_erro": "Pedir mais busca à IA é justamente o que o módulo desaconselha; 40 decisões não é volume proibitivo; e confirmação de veracidade vem da fonte oficial, não da própria IA."
+      }
+    },
+    {
+      "ordem": 3,
+      "titulo_aula": "Onde mora o risco",
+      "corpo": "Pedir para a IA 'buscar jurisprudência' diretamente, sem ancorar em uma fonte real, é a receita perfeita para alucinação (Módulo 8 da trilha básica). Cada citação precisa vir de algo já confirmado em fonte oficial.",
+      "atividade": {
         "id": "intermediaria-08-q2",
         "tipo": "verdadeiro_falso",
         "enunciado": "Pedir para a IA buscar jurisprudência diretamente, sem ancorar em uma fonte já confirmada, é seguro desde que o prompt esteja bem escrito.",
@@ -77,9 +112,9 @@
       }
     },
     {
-      "ordem": 3,
-      "titulo_aula": "Onde mora o risco",
-      "corpo": "Pedir para a IA 'buscar jurisprudência' diretamente, sem ancorar em uma fonte real, é a receita perfeita para alucinação (Módulo 8 da trilha básica). Cada citação precisa vir de algo já confirmado em fonte oficial.",
+      "ordem": 4,
+      "titulo_aula": "Um fluxo seguro",
+      "corpo": "Buscar na base oficial → trazer os resultados para a IA organizar e sintetizar → conferir cada citação antes de usar.",
       "atividade": {
         "id": "intermediaria-08-q3",
         "tipo": "completar_lacuna",
@@ -95,41 +130,6 @@
             "correta": "organizar/sintetizar"
           }
         ]
-      }
-    },
-    {
-      "ordem": 4,
-      "titulo_aula": "Um fluxo seguro",
-      "corpo": "Buscar na base oficial → trazer os resultados para a IA organizar e sintetizar → conferir cada citação antes de usar.",
-      "atividade": {
-        "id": "intermediaria-08-q4",
-        "tipo": "correcao_prompt",
-        "enunciado": "Um colega usou o prompt abaixo para pesquisar jurisprudência sobre um tema fictício, direto na IA, sem passar por nenhuma base oficial antes. Qual o problema desse fluxo?",
-        "prompt_analisado": "\"Me traga jurisprudência recente sobre cláusulas abusivas em contratos de prestação de serviço.\"",
-        "alternativas": [
-          {
-            "id": "a",
-            "texto": "O prompt pede que a IA 'busque' precedentes diretamente, sem ancorar em uma fonte oficial já confirmada — alto risco de alucinação.",
-            "correta": true
-          },
-          {
-            "id": "b",
-            "texto": "O prompt é longo demais para a IA processar corretamente.",
-            "correta": false
-          },
-          {
-            "id": "c",
-            "texto": "O tema pedido (cláusulas abusivas) não pode ser objeto de nenhum tipo de pesquisa assistida por IA.",
-            "correta": false
-          },
-          {
-            "id": "d",
-            "texto": "Não há nenhum problema, contanto que a resposta venha bem formatada.",
-            "correta": false
-          }
-        ],
-        "explicacao_acerto": "Esse é exatamente o padrão de risco descrito no módulo: pedir busca direta sem fonte oficial por trás.",
-        "explicacao_erro": "O tamanho do prompt não é o problema, o tema é perfeitamente pesquisável com o fluxo correto, e formatação bonita não garante veracidade."
       }
     }
   ],

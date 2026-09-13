@@ -52,35 +52,6 @@
       "titulo_aula": "Instruções customizadas",
       "corpo": "Você pode configurar, uma vez, como quer que a IA se comporte (ex: 'sempre responda em tom formal', 'sempre avise se algo não estiver confirmado na fonte') — sem repetir isso em cada prompt.",
       "atividade": {
-        "id": "intermediaria-07-q2",
-        "tipo": "verdadeiro_falso",
-        "enunciado": "Configurações de projeto valem apenas para a conversa em que foram criadas.",
-        "resposta_correta": false,
-        "justificativas": [
-          {
-            "id": "a",
-            "texto": "Falso — é justamente o contrário: configurações de projeto persistem entre conversas diferentes.",
-            "correta": true
-          },
-          {
-            "id": "b",
-            "texto": "Falso, porque projetos são apagados automaticamente a cada 30 dias.",
-            "correta": false
-          },
-          {
-            "id": "c",
-            "texto": "Verdadeiro, cada nova conversa exige reconfigurar o projeto do zero.",
-            "correta": false
-          }
-        ],
-        "explicacao": "Não há apagamento automático por prazo fixo — a característica central de um projeto é justamente persistir além de uma conversa isolada."
-      }
-    },
-    {
-      "ordem": 3,
-      "titulo_aula": "Memória de conversa x configuração persistente",
-      "corpo": "A memória de uma conversa dura enquanto ela está aberta (Módulo 5 da trilha básica). Uma configuração de projeto ou instrução persiste entre conversas diferentes, até você mudar.",
-      "atividade": {
         "id": "intermediaria-07-q3",
         "tipo": "completar_lacuna",
         "enunciado": "Instruções customizadas evitam ter que ___ o mesmo contexto em toda conversa nova.",
@@ -98,10 +69,9 @@
       }
     },
     {
-      "ordem": 4,
-      "titulo_aula": "Por que isso importa no trabalho",
-      "corpo": "Organizar por projeto (um projeto por cliente, ou por tipo de tarefa) evita reexplicar contexto toda vez e mantém padrão de resposta consistente.",
-      "destaque": "Cuidado: se envolver dados de cliente, vale a mesma regra do Módulo 9 da trilha básica — só em ferramenta aprovada, sem misturar projetos de clientes diferentes sem necessidade.",
+      "ordem": 3,
+      "titulo_aula": "Memória de conversa x configuração persistente",
+      "corpo": "A memória de uma conversa dura enquanto ela está aberta (Módulo 5 da trilha básica). Uma configuração de projeto ou instrução persiste entre conversas diferentes, até você mudar.",
       "atividade": {
         "id": "intermediaria-07-q4",
         "tipo": "associacao",
@@ -116,6 +86,36 @@
             "definicao": "Persiste entre conversas diferentes, até ser alterada"
           }
         ]
+      }
+    },
+    {
+      "ordem": 4,
+      "titulo_aula": "Por que isso importa no trabalho",
+      "corpo": "Organizar por projeto (um projeto por cliente, ou por tipo de tarefa) evita reexplicar contexto toda vez e mantém padrão de resposta consistente.",
+      "destaque": "Cuidado: se envolver dados de cliente, vale a mesma regra do Módulo 9 da trilha básica — só em ferramenta aprovada, sem misturar projetos de clientes diferentes sem necessidade.",
+      "atividade": {
+        "id": "intermediaria-07-q2",
+        "tipo": "verdadeiro_falso",
+        "enunciado": "Separar o trabalho em um projeto por cliente evita reexplicar contexto toda vez e ajuda a não misturar informação de clientes diferentes.",
+        "resposta_correta": true,
+        "justificativas": [
+          {
+            "id": "a",
+            "texto": "Verdadeiro — economiza a reexplicação e, principalmente, mantém o contexto de cada cliente no seu próprio espaço.",
+            "correta": true
+          },
+          {
+            "id": "b",
+            "texto": "Falso — separar por cliente não muda nada em termos de sigilo, já que tudo continua dentro da mesma ferramenta.",
+            "correta": false
+          },
+          {
+            "id": "c",
+            "texto": "Verdadeiro, e por isso deixa de ser necessário verificar se a ferramenta é aprovada para dado de cliente.",
+            "correta": false
+          }
+        ],
+        "explicacao": "Separar por projeto ajuda nas duas frentes, mas não substitui a regra do Módulo 9 da trilha básica: dado de cliente só entra em ferramenta aprovada, organizada ou não."
       }
     }
   ],

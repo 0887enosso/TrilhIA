@@ -93,6 +93,51 @@ describe("vínculo entre questão e aula", () => {
     expect(semAtividade).toEqual([]);
   });
 
+  it("toda questão tem um gabarito alcançável pelo que é oferecido ao usuário", () => {
+    // Sem esta trava, um gabarito pode ficar apontando para uma opção que não
+    // existe mais — e a questão vira impossível de acertar sem que nada
+    // acuse. Aconteceu de verdade ao reescrever uma lacuna: as opções foram
+    // trocadas e o campo `correta` ficou com o valor antigo.
+    const quebrados: string[] = [];
+
+    function verificar(questao: any, origem: string) {
+      if (!questao) return;
+
+      if (Array.isArray(questao.lacunas)) {
+        for (const lacuna of questao.lacunas) {
+          if (!lacuna.opcoes?.includes(lacuna.correta)) {
+            quebrados.push(`${origem}: lacuna ${lacuna.posicao} espera "${lacuna.correta}", fora das opções`);
+          }
+        }
+      }
+
+      for (const campo of ["alternativas", "justificativas"] as const) {
+        const lista = questao[campo];
+        if (!Array.isArray(lista)) continue;
+        const corretas = lista.filter((item: any) => item.correta === true).length;
+        if (corretas !== 1) {
+          quebrados.push(`${origem}: ${campo} com ${corretas} opção(ões) correta(s), esperado exatamente 1`);
+        }
+      }
+
+      if (questao.tipo === "associacao" && !Array.isArray(questao.pares)) {
+        quebrados.push(`${origem}: associação sem pares`);
+      }
+      if (questao.tipo === "ordenar_etapas" && !questao.etapas_corretas?.length) {
+        quebrados.push(`${origem}: ordenar_etapas sem etapas_corretas`);
+      }
+    }
+
+    for (const modulo of modulos) {
+      (modulo.aulas ?? []).forEach((aula: any, i: number) =>
+        verificar(aula.atividade, `${modulo.modulo_id} aula ${i + 1}`)
+      );
+      (modulo.atividade_final ?? []).forEach((q: any) => verificar(q, `${modulo.modulo_id} ${q.id}`));
+    }
+
+    expect(quebrados).toEqual([]);
+  });
+
   it("ids de questão são únicos em todo o conteúdo", () => {
     // Ids duplicados quebrariam o progresso: XpConcedido e RespostaQuestao
     // referenciam a questão só pelo id.

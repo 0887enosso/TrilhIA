@@ -52,6 +52,27 @@
       "titulo_aula": "Por que isso ajuda",
       "corpo": "Quando a IA é forçada a 'mostrar o caminho', ela tende a cometer menos saltos lógicos apressados — cada etapa intermediária vira uma checagem própria, tanto para ela quanto para você revisar depois.",
       "atividade": {
+        "id": "intermediaria-04-q3",
+        "tipo": "completar_lacuna",
+        "enunciado": "Pedir para a IA \"mostrar o caminho\" ajuda a reduzir ___ lógicos apressados.",
+        "lacunas": [
+          {
+            "posicao": 1,
+            "opcoes": [
+              "saltos",
+              "prazos",
+              "custos"
+            ],
+            "correta": "saltos"
+          }
+        ]
+      }
+    },
+    {
+      "ordem": 3,
+      "titulo_aula": "Não é a mesma coisa que pedir texto mais longo",
+      "corpo": "Pedir raciocínio passo a passo é pedir uma estrutura de análise (primeiro isso, depois aquilo, por fim a conclusão) — bem diferente de simplesmente aumentar o tamanho da resposta.",
+      "atividade": {
         "id": "intermediaria-04-q2",
         "tipo": "verdadeiro_falso",
         "enunciado": "Pedir raciocínio passo a passo é o mesmo que pedir uma resposta mais longa.",
@@ -74,27 +95,6 @@
           }
         ],
         "explicacao": "Tamanho e estrutura são coisas diferentes — um texto longo pode não ter nenhuma estrutura de raciocínio em etapas, e vice-versa."
-      }
-    },
-    {
-      "ordem": 3,
-      "titulo_aula": "Não é a mesma coisa que pedir texto mais longo",
-      "corpo": "Pedir raciocínio passo a passo é pedir uma estrutura de análise (primeiro isso, depois aquilo, por fim a conclusão) — bem diferente de simplesmente aumentar o tamanho da resposta.",
-      "atividade": {
-        "id": "intermediaria-04-q3",
-        "tipo": "completar_lacuna",
-        "enunciado": "Pedir para a IA \"mostrar o caminho\" ajuda a reduzir ___ lógicos apressados.",
-        "lacunas": [
-          {
-            "posicao": 1,
-            "opcoes": [
-              "saltos",
-              "prazos",
-              "custos"
-            ],
-            "correta": "saltos"
-          }
-        ]
       }
     },
     {

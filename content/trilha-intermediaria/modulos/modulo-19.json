@@ -18,6 +18,35 @@
       "titulo_aula": "O problema",
       "corpo": "O modelo aprendeu até uma certa data, e não conhece documentos internos do escritório, nem atualizações recentes por padrão.",
       "atividade": {
+        "id": "intermediaria-19-q2",
+        "tipo": "verdadeiro_falso",
+        "enunciado": "RAG elimina completamente o risco de alucinação.",
+        "resposta_correta": false,
+        "justificativas": [
+          {
+            "id": "a",
+            "texto": "Falso — RAG reduz o risco ao ancorar a resposta em documentos reais, mas ainda depende da busca ter encontrado o material certo.",
+            "correta": true
+          },
+          {
+            "id": "b",
+            "texto": "Falso, porque RAG na verdade aumenta o risco de alucinação em comparação com não usar nada.",
+            "correta": false
+          },
+          {
+            "id": "c",
+            "texto": "Verdadeiro, uma vez implementado RAG, nenhuma verificação humana é mais necessária.",
+            "correta": false
+          }
+        ],
+        "explicacao": "RAG não piora o risco em relação a não usar nada — pelo contrário, reduz. Mas reduzir não é o mesmo que eliminar, e verificação humana continua necessária."
+      }
+    },
+    {
+      "ordem": 2,
+      "titulo_aula": "A solução RAG, em duas etapas",
+      "corpo": "Antes de responder, o sistema busca (retrieval) documentos relevantes em uma base específica — e só depois passa isso para a IA gerar (generation) a resposta com base naquele material real.",
+      "atividade": {
         "id": "intermediaria-19-q1",
         "tipo": "multipla_escolha",
         "enunciado": "O que é RAG, de forma simples?",
@@ -45,35 +74,6 @@
         ],
         "explicacao_acerto": "Isso mesmo — busca primeiro, geração depois, ancorada em material real.",
         "explicacao_erro": "RAG não é um erro, não é uma técnica manual de prompt, e está disponível tanto em modelos abertos quanto fechados."
-      }
-    },
-    {
-      "ordem": 2,
-      "titulo_aula": "A solução RAG, em duas etapas",
-      "corpo": "Antes de responder, o sistema busca (retrieval) documentos relevantes em uma base específica — e só depois passa isso para a IA gerar (generation) a resposta com base naquele material real.",
-      "atividade": {
-        "id": "intermediaria-19-q2",
-        "tipo": "verdadeiro_falso",
-        "enunciado": "RAG elimina completamente o risco de alucinação.",
-        "resposta_correta": false,
-        "justificativas": [
-          {
-            "id": "a",
-            "texto": "Falso — RAG reduz o risco ao ancorar a resposta em documentos reais, mas ainda depende da busca ter encontrado o material certo.",
-            "correta": true
-          },
-          {
-            "id": "b",
-            "texto": "Falso, porque RAG na verdade aumenta o risco de alucinação em comparação com não usar nada.",
-            "correta": false
-          },
-          {
-            "id": "c",
-            "texto": "Verdadeiro, uma vez implementado RAG, nenhuma verificação humana é mais necessária.",
-            "correta": false
-          }
-        ],
-        "explicacao": "RAG não piora o risco em relação a não usar nada — pelo contrário, reduz. Mas reduzir não é o mesmo que eliminar, e verificação humana continua necessária."
       }
     },
     {

@@ -16,6 +16,60 @@
       "titulo_aula": "\"IA\" não é um produto. É uma categoria",
       "corpo": "Quando alguém diz 'vamos usar IA', isso pode significar coisas bem diferentes: um chat geral, um recurso dentro do Word, um sistema de busca jurídica inteligente. Entender essa diferença evita expectativa errada sobre o que cada ferramenta realmente faz.",
       "atividade": {
+        "id": "basica-03-q2",
+        "tipo": "verdadeiro_falso",
+        "enunciado": "Toda ferramenta com IA serve igualmente bem para qualquer tarefa.",
+        "resposta_correta": false,
+        "justificativas": [
+          {
+            "id": "a",
+            "texto": "Falso — cada categoria de ferramenta foi desenhada com um propósito e um escopo diferente.",
+            "correta": true
+          },
+          {
+            "id": "b",
+            "texto": "Falso — porque apenas as ferramentas mais recentes conseguem lidar com mais de um tipo de tarefa ao mesmo tempo.",
+            "correta": false
+          },
+          {
+            "id": "c",
+            "texto": "Verdadeiro — toda ferramenta de IA usa exatamente a mesma tecnologia por trás, então o resultado é sempre equivalente.",
+            "correta": false
+          }
+        ],
+        "explicacao": "Tecnologia parecida por trás, ou lançamento recente, não garantem escopo igual — o desenho e o propósito da ferramenta é o que define isso."
+      }
+    },
+    {
+      "ordem": 2,
+      "titulo_aula": "As quatro grandes categorias",
+      "corpo": "Vale a pena guardar essas quatro famílias:",
+      "destaque": "Assistentes conversacionais gerais (ChatGPT, Claude, Gemini) fazem de tudo um pouco, em conversa livre. Copilots integrados (recursos de IA dentro do Word, Excel, Gmail, plataformas do escritório) fazem uma tarefa específica, dentro de um programa que você já usa. Assistentes especializados (como pesquisa jurídica com IA) são ajustados para um domínio. Ferramentas de automação executam fluxos de tarefas repetitivas sozinhas, usando IA como parte do processo.",
+      "atividade": {
+        "id": "basica-03-q3",
+        "tipo": "associacao",
+        "enunciado": "Ligue cada exemplo à categoria correta.",
+        "pares": [
+          {
+            "termo": "ChatGPT / Claude / Gemini",
+            "definicao": "Assistente conversacional geral"
+          },
+          {
+            "termo": "IA dentro do Word ou Excel",
+            "definicao": "Copilot integrado a um software"
+          },
+          {
+            "termo": "Fluxo automático que processa e-mails sozinho usando IA",
+            "definicao": "Ferramenta de automação"
+          }
+        ]
+      }
+    },
+    {
+      "ordem": 3,
+      "titulo_aula": "Por que essa distinção importa",
+      "corpo": "Cada categoria tem um propósito diferente. Pedir para um copilot de e-mail redigir uma peça processual complexa provavelmente vai frustrar — não porque a IA é ruim, mas porque a ferramenta simplesmente não foi desenhada para isso.",
+      "atividade": {
         "id": "basica-03-q1",
         "tipo": "multipla_escolha",
         "enunciado": "Qual das opções melhor descreve a diferença entre um assistente geral e um copilot integrado a um software?",
@@ -43,60 +97,6 @@
         ],
         "explicacao_acerto": "Exatamente — o que diferencia os dois é o escopo de atuação: amplo e livre versus específico e integrado.",
         "explicacao_erro": "O ponto central é o escopo de atuação de cada categoria, não qual delas é tecnicamente 'mais poderosa' ou onde cada uma pode ser acessada."
-      }
-    },
-    {
-      "ordem": 2,
-      "titulo_aula": "As quatro grandes categorias",
-      "corpo": "Vale a pena guardar essas quatro famílias:",
-      "destaque": "Assistentes conversacionais gerais (ChatGPT, Claude, Gemini) fazem de tudo um pouco, em conversa livre. Copilots integrados (recursos de IA dentro do Word, Excel, Gmail, plataformas do escritório) fazem uma tarefa específica, dentro de um programa que você já usa. Assistentes especializados (como pesquisa jurídica com IA) são ajustados para um domínio. Ferramentas de automação executam fluxos de tarefas repetitivas sozinhas, usando IA como parte do processo.",
-      "atividade": {
-        "id": "basica-03-q2",
-        "tipo": "verdadeiro_falso",
-        "enunciado": "Toda ferramenta com IA serve igualmente bem para qualquer tarefa.",
-        "resposta_correta": false,
-        "justificativas": [
-          {
-            "id": "a",
-            "texto": "Falso — cada categoria de ferramenta foi desenhada com um propósito e um escopo diferente.",
-            "correta": true
-          },
-          {
-            "id": "b",
-            "texto": "Falso — porque apenas as ferramentas mais recentes conseguem lidar com mais de um tipo de tarefa ao mesmo tempo.",
-            "correta": false
-          },
-          {
-            "id": "c",
-            "texto": "Verdadeiro — toda ferramenta de IA usa exatamente a mesma tecnologia por trás, então o resultado é sempre equivalente.",
-            "correta": false
-          }
-        ],
-        "explicacao": "Tecnologia parecida por trás, ou lançamento recente, não garantem escopo igual — o desenho e o propósito da ferramenta é o que define isso."
-      }
-    },
-    {
-      "ordem": 3,
-      "titulo_aula": "Por que essa distinção importa",
-      "corpo": "Cada categoria tem um propósito diferente. Pedir para um copilot de e-mail redigir uma peça processual complexa provavelmente vai frustrar — não porque a IA é ruim, mas porque a ferramenta simplesmente não foi desenhada para isso.",
-      "atividade": {
-        "id": "basica-03-q3",
-        "tipo": "associacao",
-        "enunciado": "Ligue cada exemplo à categoria correta.",
-        "pares": [
-          {
-            "termo": "ChatGPT / Claude / Gemini",
-            "definicao": "Assistente conversacional geral"
-          },
-          {
-            "termo": "IA dentro do Word ou Excel",
-            "definicao": "Copilot integrado a um software"
-          },
-          {
-            "termo": "Fluxo automático que processa e-mails sozinho usando IA",
-            "definicao": "Ferramenta de automação"
-          }
-        ]
       }
     },
     {

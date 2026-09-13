@@ -52,6 +52,27 @@
       "titulo_aula": "Por que ela existe",
       "corpo": "Sem uma API Key, qualquer um poderia usar o serviço de IA de outra pessoa ou empresa livremente. A chave garante que o uso — e o custo associado — seja rastreado e vinculado a quem tem permissão.",
       "atividade": {
+        "id": "intermediaria-26-q3",
+        "tipo": "completar_lacuna",
+        "enunciado": "A API Key existe para que o uso — e o ___ associado a ele — fique vinculado a quem tem permissão.",
+        "lacunas": [
+          {
+            "posicao": 1,
+            "opcoes": [
+              "custo",
+              "idioma",
+              "formato"
+            ],
+            "correta": "custo"
+          }
+        ]
+      }
+    },
+    {
+      "ordem": 3,
+      "titulo_aula": "O risco de uma chave exposta",
+      "corpo": "Se uma API Key vaza — publicada sem querer em um e-mail, documento ou repositório público — qualquer pessoa pode usá-la, gerando custo indevido ou até acesso a informações vinculadas àquela conta.",
+      "atividade": {
         "id": "intermediaria-26-q2",
         "tipo": "verdadeiro_falso",
         "enunciado": "Uma API Key pode ser compartilhada livremente, desde que seja com uma pessoa de confiança da equipe.",
@@ -77,30 +98,9 @@
       }
     },
     {
-      "ordem": 3,
-      "titulo_aula": "O risco de uma chave exposta",
-      "corpo": "Se uma API Key vaza — publicada sem querer em um e-mail, documento ou repositório público — qualquer pessoa pode usá-la, gerando custo indevido ou até acesso a informações vinculadas àquela conta.",
-      "atividade": {
-        "id": "intermediaria-26-q3",
-        "tipo": "completar_lacuna",
-        "enunciado": "Uma API Key deve ser tratada com o mesmo cuidado que uma ___.",
-        "lacunas": [
-          {
-            "posicao": 1,
-            "opcoes": [
-              "senha",
-              "assinatura digitalizada",
-              "logomarca"
-            ],
-            "correta": "senha"
-          }
-        ]
-      }
-    },
-    {
       "ordem": 4,
       "titulo_aula": "A regra de ouro",
-      "corpo": "Trate uma API Key exatamente como trataria uma senha de banco: nunca compartilhe, nunca cole em lugar público, nunca envie por canal não seguro.",
+      "corpo": "Trate uma API Key exatamente como trataria uma senha de banco: nunca compartilhe, nunca cole em lugar público, nunca envie por canal não seguro.\n\nE se escapar? Avise a equipe técnica na hora. Uma chave exposta precisa ser revogada e substituída por outra — apagar a mensagem não resolve, porque não há como saber quem já leu.",
       "atividade": {
         "id": "intermediaria-26-q4",
         "tipo": "multipla_escolha",
