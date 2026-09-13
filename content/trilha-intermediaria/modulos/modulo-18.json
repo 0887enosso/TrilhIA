@@ -104,31 +104,31 @@
       "atividade": {
         "id": "intermediaria-18-q4",
         "tipo": "multipla_escolha",
-        "enunciado": "Ao analisar um documento muito longo, a IA parece \"esquecer\" um trecho do início. Qual a explicação mais provável?",
+        "enunciado": "Você precisa analisar um documento muito longo sem perder o que estava no começo dele. Qual abordagem ajuda mais?",
         "alternativas": [
           {
             "id": "a",
-            "texto": "O documento, somado à conversa, ultrapassou a janela de contexto, empurrando a informação mais antiga para fora.",
+            "texto": "Dividir o documento em partes menores e resumir periodicamente o que já foi analisado.",
             "correta": true
           },
           {
             "id": "b",
-            "texto": "A IA decidiu, por conta própria, que aquele trecho não era importante.",
+            "texto": "Colar o documento inteiro de uma vez e pedir que a IA preste atenção em tudo com cuidado.",
             "correta": false
           },
           {
             "id": "c",
-            "texto": "Houve uma falha de internet durante o processamento do documento.",
+            "texto": "Repetir a mesma pergunta várias vezes, até que a IA volte a considerar o início do texto.",
             "correta": false
           },
           {
             "id": "d",
-            "texto": "O documento foi corrompido durante o envio.",
+            "texto": "Escrever em letras maiúsculas os trechos mais importantes, para fixá-los na memória da IA.",
             "correta": false
           }
         ],
-        "explicacao_acerto": "Esse é o mecanismo técnico correto — limite de janela de contexto, não decisão nem falha externa.",
-        "explicacao_erro": "Não há decisão autônoma da IA sobre relevância, nem relação direta com falha de internet ou corrupção de arquivo."
+        "explicacao_acerto": "Exatamente — as duas táticas atacam a mesma causa: manter o essencial sempre dentro da janela, em vez de disputar espaço com o documento inteiro.",
+        "explicacao_erro": "Pedir atenção, repetir a pergunta ou usar maiúsculas não muda o limite técnico: se o conteúdo não cabe na janela, ele sai de vista de qualquer jeito."
       }
     }
   ],

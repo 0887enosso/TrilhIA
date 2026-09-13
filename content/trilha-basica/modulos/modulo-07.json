@@ -51,35 +51,6 @@
       "corpo": "Tarefas que dependem de precisão factual absoluta (números de processo, citações legais exatas, prazos), julgamento estratégico do caso, e qualquer decisão que envolva responsabilidade profissional direta.",
       "destaque": "Nesses casos, a IA pode ajudar a preparar — nunca a decidir.",
       "atividade": {
-        "id": "basica-07-q2",
-        "tipo": "verdadeiro_falso",
-        "enunciado": "A IA é igualmente confiável para resumir um texto e para decidir uma estratégia processual.",
-        "resposta_correta": false,
-        "justificativas": [
-          {
-            "id": "a",
-            "texto": "Falso — resumir é uma tarefa de organização de linguagem; decisão estratégica exige julgamento profissional que a IA não deve substituir.",
-            "correta": true
-          },
-          {
-            "id": "b",
-            "texto": "Falso — porque a IA nunca deve ser usada em nenhuma dessas duas tarefas, sob nenhuma circunstância.",
-            "correta": false
-          },
-          {
-            "id": "c",
-            "texto": "Verdadeiro — ambas são tarefas de linguagem, então apresentam exatamente o mesmo nível de risco.",
-            "correta": false
-          }
-        ],
-        "explicacao": "O nível de risco muda conforme o tipo de tarefa — resumir e decidir estrategicamente não são equivalentes, e a IA não é proibida na primeira."
-      }
-    },
-    {
-      "ordem": 3,
-      "titulo_aula": "Um jeito simples de pensar sobre isso",
-      "corpo": "Pergunta-guia: 'Isso é uma tarefa de organizar e estruturar linguagem, ou uma tarefa que exige julgamento e responsabilidade profissional?' Quanto mais a tarefa pende para o segundo lado, mais a IA deve ser ponto de partida — nunca ponto final.",
-      "atividade": {
         "id": "basica-07-q3",
         "tipo": "associacao",
         "enunciado": "Classifique cada tarefa quanto ao nível de cuidado recomendado.",
@@ -100,9 +71,9 @@
       }
     },
     {
-      "ordem": 4,
-      "titulo_aula": "Isso não é uma regra fixa, é um raciocínio",
-      "corpo": "Essas categorias não são uma lista fechada. O objetivo é você desenvolver o instinto de avaliar cada tarefa nova com essa lente, em vez de depender de uma lista pronta de 'tarefas permitidas'.",
+      "ordem": 3,
+      "titulo_aula": "Um jeito simples de pensar sobre isso",
+      "corpo": "Pergunta-guia: 'Isso é uma tarefa de organizar e estruturar linguagem, ou uma tarefa que exige julgamento e responsabilidade profissional?' Quanto mais a tarefa pende para o segundo lado, mais a IA deve ser ponto de partida — nunca ponto final.",
       "atividade": {
         "id": "basica-07-q4",
         "tipo": "ordenar_etapas",
@@ -113,6 +84,35 @@
           "Aplicar julgamento profissional humano sobre o conteúdo",
           "Validar e assumir responsabilidade pela versão final"
         ]
+      }
+    },
+    {
+      "ordem": 4,
+      "titulo_aula": "Isso não é uma regra fixa, é um raciocínio",
+      "corpo": "Essas categorias não são uma lista fechada. O objetivo é você desenvolver o instinto de avaliar cada tarefa nova com essa lente, em vez de depender de uma lista pronta de 'tarefas permitidas'.",
+      "atividade": {
+        "id": "basica-07-q2",
+        "tipo": "verdadeiro_falso",
+        "enunciado": "Diante de uma tarefa que não se encaixa em nenhum exemplo visto no módulo, o certo é aplicar a mesma lente de avaliação, em vez de procurar uma regra pronta.",
+        "resposta_correta": true,
+        "justificativas": [
+          {
+            "id": "a",
+            "texto": "Verdadeiro — o objetivo é desenvolver o instinto de avaliar cada tarefa nova, não decorar uma lista fechada de tarefas permitidas.",
+            "correta": true
+          },
+          {
+            "id": "b",
+            "texto": "Falso — sem enquadramento claro em alguma categoria já conhecida, o uso de IA deve ser descartado.",
+            "correta": false
+          },
+          {
+            "id": "c",
+            "texto": "Falso — nesses casos a decisão passa a ser exclusivamente da equipe de tecnologia do escritório.",
+            "correta": false
+          }
+        ],
+        "explicacao": "Nem descartar por precaução, nem terceirizar a decisão: as categorias do módulo são uma lente para você aplicar, não uma lista fechada onde a tarefa precisa caber."
       }
     }
   ],

@@ -80,28 +80,6 @@
       "titulo_aula": "LGPD, em termos práticos",
       "corpo": "Dados pessoais — nome, CPF, informações de saúde, dados processuais identificáveis — exigem cuidado redobrado. Eles só devem entrar em ferramentas aprovadas, dentro da finalidade autorizada. Nunca em ferramentas pessoais que o escritório não avaliou.",
       "atividade": {
-        "id": "basica-09-q3",
-        "tipo": "completar_lacuna",
-        "enunciado": "O dever de ___ do advogado se aplica também ao uso de ferramentas de IA, não apenas a conversas presenciais ou documentos físicos.",
-        "lacunas": [
-          {
-            "posicao": 1,
-            "opcoes": [
-              "sigilo profissional",
-              "pontualidade",
-              "formatação"
-            ],
-            "correta": "sigilo profissional"
-          }
-        ]
-      }
-    },
-    {
-      "ordem": 4,
-      "titulo_aula": "Regra prática de segurança",
-      "corpo": "Antes de inserir qualquer informação em uma IA, pergunte: essa ferramenta foi aprovada para esse tipo de dado? Essa informação identifica um cliente ou um caso? Eu inseriria isso numa conversa pública?",
-      "destaque": "Se a resposta gerar qualquer dúvida, não insira.",
-      "atividade": {
         "id": "basica-09-q4",
         "tipo": "multipla_escolha",
         "enunciado": "Um colaborador cola trechos de um processo com o nome completo do cliente em uma ferramenta de IA pessoal, não aprovada pelo escritório. Qual o problema nessa ação?",
@@ -129,6 +107,28 @@
         ],
         "explicacao_acerto": "Ferramenta não aprovada combinada com dado identificável de cliente é justamente o cenário de maior risco descrito no módulo.",
         "explicacao_erro": "Apagar a conversa depois não desfaz o processamento já feito pela plataforma, velocidade não é o problema central, e publicidade parcial do processo não autoriza inserir o dado em qualquer ferramenta."
+      }
+    },
+    {
+      "ordem": 4,
+      "titulo_aula": "Regra prática de segurança",
+      "corpo": "Antes de inserir qualquer informação em uma IA, pergunte: essa ferramenta foi aprovada para esse tipo de dado? Essa informação identifica um cliente ou um caso? Eu inseriria isso numa conversa pública?",
+      "destaque": "Se a resposta gerar qualquer dúvida, não insira.",
+      "atividade": {
+        "id": "basica-09-q3",
+        "tipo": "completar_lacuna",
+        "enunciado": "Antes de inserir qualquer informação numa IA, a primeira pergunta é: essa ferramenta foi ___ para esse tipo de dado?",
+        "lacunas": [
+          {
+            "posicao": 1,
+            "opcoes": [
+              "aprovada",
+              "atualizada",
+              "paga"
+            ],
+            "correta": "aprovada"
+          }
+        ]
       }
     }
   ],

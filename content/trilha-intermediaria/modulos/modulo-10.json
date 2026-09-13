@@ -54,26 +54,26 @@
       "atividade": {
         "id": "intermediaria-10-q2",
         "tipo": "verdadeiro_falso",
-        "enunciado": "Erros de transcrição nunca afetam o resumo gerado depois.",
-        "resposta_correta": false,
+        "enunciado": "Quando as decisões e os responsáveis foram ditos com clareza durante a reunião, a IA costuma montar bem o resumo e a lista de ações.",
+        "resposta_correta": true,
         "justificativas": [
           {
             "id": "a",
-            "texto": "Falso — o resumo é gerado a partir do texto transcrito, então um erro na transcrição tende a se repetir no resumo.",
+            "texto": "Verdadeiro — resumo geral, decisões tomadas e itens de ação com responsável são justamente o que ela organiza bem.",
             "correta": true
           },
           {
             "id": "b",
-            "texto": "Falso, porque resumos são sempre gerados a partir do áudio original, nunca do texto transcrito.",
+            "texto": "Falso — ela consegue gerar só o resumo geral; decisões e responsáveis precisam ser listados à mão depois.",
             "correta": false
           },
           {
             "id": "c",
-            "texto": "Verdadeiro, o resumo é gerado de forma independente da transcrição.",
+            "texto": "Verdadeiro, e por isso esse resultado já pode ser enviado ao grupo sem conferência.",
             "correta": false
           }
         ],
-        "explicacao": "O resumo normalmente é gerado a partir do texto já transcrito, não do áudio bruto — por isso um erro na transcrição se propaga."
+        "explicacao": "Decisões e itens de ação com responsável estão entre o que ela monta bem — desde que tenham sido ditos com clareza. Mas sair bem não é o mesmo que sair certo: a conferência antes de compartilhar continua valendo."
       }
     },
     {

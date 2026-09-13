@@ -83,16 +83,16 @@
       "atividade": {
         "id": "intermediaria-09-q3",
         "tipo": "completar_lacuna",
-        "enunciado": "Ao revisar um texto, uma restrição importante é pedir que o ___ original não seja alterado — só a forma.",
+        "enunciado": "Ao pedir que a IA redija do zero, vale incluir a restrição de não inventar ___ que não foram fornecidos por você.",
         "lacunas": [
           {
             "posicao": 1,
             "opcoes": [
-              "sentido/conteúdo",
-              "tamanho",
-              "idioma"
+              "fatos ou fundamentos",
+              "termos técnicos",
+              "títulos de seção"
             ],
-            "correta": "sentido/conteúdo"
+            "correta": "fatos ou fundamentos"
           }
         ]
       }

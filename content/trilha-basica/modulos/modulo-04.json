@@ -17,33 +17,15 @@
       "titulo_aula": "O padrão por trás de qualquer plataforma com IA",
       "corpo": "Praticamente toda plataforma com IA segue a mesma lógica de fundo: uma interface (o que você vê e clica), um modelo de IA (o 'motor' que processa), um dado de entrada (o que você fornece) e uma saída (o resultado que aparece na tela). Aprenda esse padrão uma vez, e ele se repete em quase tudo que você for encontrar depois.",
       "atividade": {
-        "id": "basica-04-q1",
-        "tipo": "multipla_escolha",
-        "enunciado": "Qual sequência representa corretamente o funcionamento de uma plataforma com IA integrada?",
-        "alternativas": [
-          {
-            "id": "a",
-            "texto": "Interface → dado de entrada → modelo de IA processa → saída exibida na interface.",
-            "correta": true
-          },
-          {
-            "id": "b",
-            "texto": "Saída exibida primeiro → depois o modelo processa → depois a interface recebe a entrada.",
-            "correta": false
-          },
-          {
-            "id": "c",
-            "texto": "O modelo gera a saída sozinho, sem depender de nenhum dado de entrada fornecido pelo usuário.",
-            "correta": false
-          },
-          {
-            "id": "d",
-            "texto": "A entrada vira saída diretamente, sem qualquer tipo de processamento por um modelo.",
-            "correta": false
-          }
-        ],
-        "explicacao_acerto": "Essa é a lógica de fundo: você entra com um dado, o modelo processa, e a interface devolve a saída.",
-        "explicacao_erro": "Repare na ordem e na dependência: sempre parte de uma entrada real, passa pelo processamento do modelo, e só então gera a saída."
+        "id": "basica-04-q3",
+        "tipo": "ordenar_etapas",
+        "enunciado": "Coloque em ordem o funcionamento de uma plataforma com IA integrada.",
+        "etapas_corretas": [
+          "Você fornece uma entrada na interface",
+          "A interface envia essa entrada para o modelo de IA",
+          "O modelo processa a entrada",
+          "A saída é exibida de volta na interface"
+        ]
       }
     },
     {
@@ -80,22 +62,6 @@
       "titulo_aula": "Os limites são da plataforma, não da IA",
       "corpo": "A mesma tecnologia de IA pode parecer 'mais fraca' em uma ferramenta e 'mais forte' em outra — não porque a IA mudou, mas porque cada plataforma decide o que habilitar, restringir ou personalizar.",
       "atividade": {
-        "id": "basica-04-q3",
-        "tipo": "ordenar_etapas",
-        "enunciado": "Coloque em ordem o funcionamento de uma plataforma com IA integrada.",
-        "etapas_corretas": [
-          "Você fornece uma entrada na interface",
-          "A interface envia essa entrada para o modelo de IA",
-          "O modelo processa a entrada",
-          "A saída é exibida de volta na interface"
-        ]
-      }
-    },
-    {
-      "ordem": 4,
-      "titulo_aula": "Por que isso importa para você",
-      "corpo": "Entender esse padrão evita que você tenha que 'aprender do zero' toda vez que uma ferramenta nova aparece — a lógica de fundo costuma se repetir. Vale tanto para a plataforma que você usa hoje quanto para qualquer outra que vier a existir amanhã.",
-      "atividade": {
         "id": "basica-04-q4",
         "tipo": "completar_lacuna",
         "enunciado": "Os limites do que uma ferramenta com IA pode fazer são definidos pela ___1___, não apenas pela ___2___ de IA em si.",
@@ -119,6 +85,40 @@
             "correta": "tecnologia"
           }
         ]
+      }
+    },
+    {
+      "ordem": 4,
+      "titulo_aula": "Por que isso importa para você",
+      "corpo": "Entender esse padrão evita que você tenha que 'aprender do zero' toda vez que uma ferramenta nova aparece — a lógica de fundo costuma se repetir. Vale tanto para a plataforma que você usa hoje quanto para qualquer outra que vier a existir amanhã.",
+      "atividade": {
+        "id": "basica-04-q1",
+        "tipo": "multipla_escolha",
+        "enunciado": "Ao trocar de uma ferramenta de IA para outra, o que costuma mudar e o que costuma permanecer?",
+        "alternativas": [
+          {
+            "id": "a",
+            "texto": "Muda a interface e o que aquela plataforma habilita; permanece a lógica de entrada → modelo → saída.",
+            "correta": true
+          },
+          {
+            "id": "b",
+            "texto": "Muda o modelo de IA por trás; permanecem exatamente a mesma interface e os mesmos limites de uso.",
+            "correta": false
+          },
+          {
+            "id": "c",
+            "texto": "Muda tudo: cada ferramenta segue uma lógica de funcionamento completamente própria.",
+            "correta": false
+          },
+          {
+            "id": "d",
+            "texto": "Não muda nada que importe — ferramentas de IA são intercambiáveis entre si.",
+            "correta": false
+          }
+        ],
+        "explicacao_acerto": "É por isso que você não precisa aprender do zero a cada ferramenta nova: o que muda fica na superfície, a lógica de fundo se repete.",
+        "explicacao_erro": "Se cada ferramenta tivesse lógica própria, toda novidade exigiria recomeçar. E elas também não são intercambiáveis: é justamente o que cada plataforma habilita que as diferencia."
       }
     }
   ],

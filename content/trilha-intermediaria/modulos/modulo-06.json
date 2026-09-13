@@ -18,6 +18,40 @@
       "titulo_aula": "Prompt ruim nem sempre é \"culpa da IA\"",
       "corpo": "Quando o resultado não sai como esperado, o primeiro lugar a olhar é o próprio prompt, não a ferramenta.",
       "atividade": {
+        "id": "intermediaria-06-q2",
+        "tipo": "multipla_escolha",
+        "enunciado": "Diante de uma resposta ruim, qual deveria ser o primeiro diagnóstico a fazer?",
+        "alternativas": [
+          {
+            "id": "a",
+            "texto": "Revisar o próprio prompt: faltou contexto, objetivo claro, formato ou havia alguma ambiguidade?",
+            "correta": true
+          },
+          {
+            "id": "b",
+            "texto": "Assumir que a ferramenta de IA usada é fraca e trocar imediatamente de ferramenta.",
+            "correta": false
+          },
+          {
+            "id": "c",
+            "texto": "Concluir que a tarefa pedida é impossível de ser feita por qualquer IA.",
+            "correta": false
+          },
+          {
+            "id": "d",
+            "texto": "Repetir exatamente o mesmo prompt, sem nenhuma alteração, e esperar um resultado diferente.",
+            "correta": false
+          }
+        ],
+        "explicacao_acerto": "O primeiro lugar a investigar é o próprio prompt — é onde está a maior parte das causas de resposta ruim.",
+        "explicacao_erro": "Trocar de ferramenta, desistir da tarefa ou repetir sem ajuste raramente resolvem o problema real, que costuma estar na formulação do pedido."
+      }
+    },
+    {
+      "ordem": 2,
+      "titulo_aula": "Perguntas de diagnóstico",
+      "corpo": "Faltou contexto? O objetivo estava claro? O formato pedido era mesmo o que eu queria? Havia alguma ambiguidade na forma como pedi?",
+      "atividade": {
         "id": "intermediaria-06-q1",
         "tipo": "correcao_prompt",
         "enunciado": "O prompt abaixo gerou uma resposta genérica e pouco útil. Diagnostique o problema principal.",
@@ -49,64 +83,9 @@
       }
     },
     {
-      "ordem": 2,
-      "titulo_aula": "Perguntas de diagnóstico",
-      "corpo": "Faltou contexto? O objetivo estava claro? O formato pedido era mesmo o que eu queria? Havia alguma ambiguidade na forma como pedi?",
-      "atividade": {
-        "id": "intermediaria-06-q2",
-        "tipo": "multipla_escolha",
-        "enunciado": "Diante de uma resposta ruim, qual deveria ser o primeiro diagnóstico a fazer?",
-        "alternativas": [
-          {
-            "id": "a",
-            "texto": "Revisar o próprio prompt: faltou contexto, objetivo claro, formato ou havia alguma ambiguidade?",
-            "correta": true
-          },
-          {
-            "id": "b",
-            "texto": "Assumir que a ferramenta de IA usada é fraca e trocar imediatamente de ferramenta.",
-            "correta": false
-          },
-          {
-            "id": "c",
-            "texto": "Concluir que a tarefa pedida é impossível de ser feita por qualquer IA.",
-            "correta": false
-          },
-          {
-            "id": "d",
-            "texto": "Repetir exatamente o mesmo prompt, sem nenhuma alteração, e esperar um resultado diferente.",
-            "correta": false
-          }
-        ],
-        "explicacao_acerto": "O primeiro lugar a investigar é o próprio prompt — é onde está a maior parte das causas de resposta ruim.",
-        "explicacao_erro": "Trocar de ferramenta, desistir da tarefa ou repetir sem ajuste raramente resolvem o problema real, que costuma estar na formulação do pedido."
-      }
-    },
-    {
       "ordem": 3,
       "titulo_aula": "Erros comuns",
       "corpo": "Prompt genérico demais. Pedir várias coisas diferentes ao mesmo tempo, sem organizar. Usar termos ambíguos ('fazer um resumo bom' — bom como?). Esquecer de dizer o que a IA não deve fazer.",
-      "atividade": {
-        "id": "intermediaria-06-q3",
-        "tipo": "completar_lacuna",
-        "enunciado": "Pedir várias coisas diferentes ao mesmo tempo, sem organizar, é um erro comum de ___.",
-        "lacunas": [
-          {
-            "posicao": 1,
-            "opcoes": [
-              "formulação/estrutura",
-              "hardware",
-              "conexão"
-            ],
-            "correta": "formulação/estrutura"
-          }
-        ]
-      }
-    },
-    {
-      "ordem": 4,
-      "titulo_aula": "Refinar é processo, não falha",
-      "corpo": "Ajustar o prompt uma, duas, três vezes até chegar no resultado certo é o uso esperado da ferramenta — cada ajuste é informação sobre o que faltou da primeira vez.",
       "atividade": {
         "id": "intermediaria-06-q4",
         "tipo": "associacao",
@@ -123,6 +102,27 @@
           {
             "termo": "Não dizer o que a IA não deve fazer",
             "definicao": "Risco de a IA complementar com algo indesejado"
+          }
+        ]
+      }
+    },
+    {
+      "ordem": 4,
+      "titulo_aula": "Refinar é processo, não falha",
+      "corpo": "Ajustar o prompt uma, duas, três vezes até chegar no resultado certo é o uso esperado da ferramenta — cada ajuste é informação sobre o que faltou da primeira vez.",
+      "atividade": {
+        "id": "intermediaria-06-q3",
+        "tipo": "completar_lacuna",
+        "enunciado": "Ajustar o prompt duas ou três vezes até chegar no resultado certo é o uso ___ da ferramenta — cada ajuste diz o que faltou na tentativa anterior.",
+        "lacunas": [
+          {
+            "posicao": 1,
+            "opcoes": [
+              "esperado",
+              "proibido",
+              "excepcional"
+            ],
+            "correta": "esperado"
           }
         ]
       }

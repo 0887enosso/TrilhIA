@@ -20,32 +20,32 @@
       "atividade": {
         "id": "intermediaria-05-q1",
         "tipo": "correcao_prompt",
-        "enunciado": "Um colega usou o prompt abaixo para extrair datas de um contrato fictício. Ele recebeu de volta uma data que não constava em nenhum lugar do documento. O que provavelmente faltou no prompt?",
-        "prompt_analisado": "\"Liste as datas importantes deste contrato.\"",
+        "enunciado": "O pedido abaixo, sobre dois contratos fictícios, tende a decepcionar. Por quê?",
+        "prompt_analisado": "\"Analise estes dois contratos e me diga o que é importante.\"",
         "alternativas": [
           {
             "id": "a",
-            "texto": "Faltou pedir explicitamente que a IA não complemente com nenhuma informação fora do texto original.",
+            "texto": "Porque resumir, extrair e comparar pedem enquadramentos diferentes — e o prompt não diz qual dessas é a tarefa.",
             "correta": true
           },
           {
             "id": "b",
-            "texto": "Faltou definir um papel para a IA assumir antes de extrair as datas.",
+            "texto": "Porque dois contratos já é volume alto demais para uma única análise assistida por IA.",
             "correta": false
           },
           {
             "id": "c",
-            "texto": "Faltou pedir a resposta em um idioma diferente.",
+            "texto": "Porque o verbo \"analisar\" não é reconhecido como instrução válida pelas ferramentas de IA.",
             "correta": false
           },
           {
             "id": "d",
-            "texto": "Nada faltou — isso é um comportamento normal e esperado da extração de dados.",
+            "texto": "Porque faltou atribuir um papel à IA antes de fazer o pedido.",
             "correta": false
           }
         ],
-        "explicacao_acerto": "Extração exige uma restrição explícita contra complementar com informação externa — sem isso, o risco de invenção aumenta.",
-        "explicacao_erro": "Papel e idioma não são a causa provável aqui, e esse tipo de erro não deveria ser tratado como 'normal' — é um sinal de alucinação, tema do Módulo 8 da trilha básica."
+        "explicacao_acerto": "Exatamente — \"o que é importante\" pode virar síntese, lista de dados ou comparação. Sem dizer qual delas você quer, sai qualquer uma das três, meio pela metade.",
+        "explicacao_erro": "Volume não é o obstáculo aqui, \"analisar\" é entendido normalmente, e papel ajudaria pouco enquanto a própria tarefa continuar indefinida."
       }
     },
     {
