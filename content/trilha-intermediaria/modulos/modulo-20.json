@@ -81,27 +81,6 @@
       "titulo_aula": "Por que isso é mais arriscado que uma conversa simples",
       "corpo": "Cada ação executada tem efeito real — enviar, salvar, apagar. Um erro no meio do caminho pode se propagar sem que ninguém perceba a tempo.",
       "atividade": {
-        "id": "intermediaria-20-q3",
-        "tipo": "completar_lacuna",
-        "enunciado": "Quanto mais ___ um agente tem, mais importante é ter pontos de checagem humana antes de ações irreversíveis.",
-        "lacunas": [
-          {
-            "posicao": 1,
-            "opcoes": [
-              "autonomia",
-              "velocidade",
-              "cor"
-            ],
-            "correta": "autonomia"
-          }
-        ]
-      }
-    },
-    {
-      "ordem": 4,
-      "titulo_aula": "Autonomia com supervisão",
-      "corpo": "Quanto mais autonomia um agente tem, mais importante é ter pontos de checagem humana antes de ações irreversíveis.",
-      "atividade": {
         "id": "intermediaria-20-q4",
         "tipo": "multipla_escolha",
         "enunciado": "Um agente configurado para enviar e-mails automaticamente comete um erro no meio do fluxo. Qual o risco central desse tipo de configuração?",
@@ -129,6 +108,27 @@
         ],
         "explicacao_acerto": "Ações com efeito real e irreversível são justamente o que torna agentes mais arriscados do que uma conversa simples.",
         "explicacao_erro": "Não há autocorreção garantida antes da ação, o risco não é sobre velocidade, e a fama do fornecedor não elimina o risco de execução."
+      }
+    },
+    {
+      "ordem": 4,
+      "titulo_aula": "Autonomia com supervisão",
+      "corpo": "Quanto mais autonomia um agente tem, mais importante é ter pontos de checagem humana antes de ações irreversíveis.",
+      "atividade": {
+        "id": "intermediaria-20-q3",
+        "tipo": "completar_lacuna",
+        "enunciado": "Quanto mais ___ um agente tem, mais importante é ter pontos de checagem humana antes de ações irreversíveis.",
+        "lacunas": [
+          {
+            "posicao": 1,
+            "opcoes": [
+              "autonomia",
+              "velocidade",
+              "cor"
+            ],
+            "correta": "autonomia"
+          }
+        ]
       }
     }
   ],

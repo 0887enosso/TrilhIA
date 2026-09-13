@@ -51,35 +51,6 @@
       "titulo_aula": "Já aconteceu, e não é hipotético",
       "corpo": "Existem casos reais e documentados de advogados sancionados por apresentar citações jurídicas inexistentes geradas por IA, sem verificação prévia — em diferentes países, inclusive com repercussão disciplinar.",
       "atividade": {
-        "id": "basica-10-q2",
-        "tipo": "verdadeiro_falso",
-        "enunciado": "Se um erro é gerado pela IA, a responsabilidade profissional pelo conteúdo entregue é da própria IA, não do advogado.",
-        "resposta_correta": false,
-        "justificativas": [
-          {
-            "id": "a",
-            "texto": "Falso — a responsabilidade profissional permanece do advogado que assina e entrega o conteúdo ao cliente ou ao processo.",
-            "correta": true
-          },
-          {
-            "id": "b",
-            "texto": "Falso — porque nenhuma ferramenta de IA pode ser processada judicialmente por danos causados.",
-            "correta": false
-          },
-          {
-            "id": "c",
-            "texto": "Verdadeiro — a ferramenta de IA assume integralmente a responsabilidade pelo conteúdo que gerou.",
-            "correta": false
-          }
-        ],
-        "explicacao": "O motivo central não é sobre quem pode ser processado — é que a responsabilidade profissional nunca se transfere para a ferramenta usada."
-      }
-    },
-    {
-      "ordem": 3,
-      "titulo_aula": "Transparência importa",
-      "corpo": "Usar IA no trabalho não é um problema em si. O problema é usá-la de forma que o cliente ou o superior sejam enganados sobre a origem ou o nível de verificação de um conteúdo. Transparência interna sobre o uso de IA constrói confiança — não o contrário.",
-      "atividade": {
         "id": "basica-10-q3",
         "tipo": "multipla_escolha",
         "enunciado": "Um advogado entrega uma peça com uma citação inventada gerada por IA, sem checar. Qual a consequência mais provável, considerando o que foi visto no módulo?",
@@ -110,10 +81,9 @@
       }
     },
     {
-      "ordem": 4,
-      "titulo_aula": "Por que existem políticas internas de governança",
-      "corpo": "Regras internas de uso de IA — o que pode, o que não pode, o que precisa de aprovação — não existem para dificultar o trabalho. Existem para proteger o cliente, o escritório e o próprio profissional.",
-      "destaque": "Seguir essas políticas também é parte do uso ético da ferramenta.",
+      "ordem": 3,
+      "titulo_aula": "Transparência importa",
+      "corpo": "Usar IA no trabalho não é um problema em si. O problema é usá-la de forma que o cliente ou o superior sejam enganados sobre a origem ou o nível de verificação de um conteúdo. Transparência interna sobre o uso de IA constrói confiança — não o contrário.",
       "atividade": {
         "id": "basica-10-q4",
         "tipo": "completar_lacuna",
@@ -129,6 +99,36 @@
             "correta": "engano/falta de transparência"
           }
         ]
+      }
+    },
+    {
+      "ordem": 4,
+      "titulo_aula": "Por que existem políticas internas de governança",
+      "corpo": "Regras internas de uso de IA — o que pode, o que não pode, o que precisa de aprovação — não existem para dificultar o trabalho. Existem para proteger o cliente, o escritório e o próprio profissional.",
+      "destaque": "Seguir essas políticas também é parte do uso ético da ferramenta.",
+      "atividade": {
+        "id": "basica-10-q2",
+        "tipo": "verdadeiro_falso",
+        "enunciado": "Uma política interna de uso de IA costuma definir o que pode ser usado, o que não pode, e o que precisa de aprovação antes.",
+        "resposta_correta": true,
+        "justificativas": [
+          {
+            "id": "a",
+            "texto": "Verdadeiro — é exatamente esse o recorte de uma política interna: o permitido, o proibido e o que exige aprovação prévia.",
+            "correta": true
+          },
+          {
+            "id": "b",
+            "texto": "Falso — políticas internas tratam só de qual ferramenta o escritório vai contratar, não de como usá-la.",
+            "correta": false
+          },
+          {
+            "id": "c",
+            "texto": "Falso — esse tipo de regra se aplica apenas à equipe de tecnologia, não a quem produz o trabalho jurídico.",
+            "correta": false
+          }
+        ],
+        "explicacao": "A política não é sobre contratação de ferramenta nem assunto exclusivo de TI — ela orienta justamente o uso cotidiano de quem produz o trabalho jurídico, e existe para proteger o cliente, o escritório e você."
       }
     }
   ],

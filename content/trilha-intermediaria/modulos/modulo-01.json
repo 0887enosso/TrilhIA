@@ -18,76 +18,6 @@
       "titulo_aula": "Da trilha básica pra cá",
       "corpo": "Lá no letramento você aprendeu três ingredientes: objetivo, contexto, formato. Agora, para tarefas mais complexas, vamos adicionar mais dois: papel e restrições.",
       "atividade": {
-        "id": "intermediaria-01-q1",
-        "tipo": "correcao_prompt",
-        "enunciado": "Leia o prompt fictício abaixo e identifique seu problema principal.",
-        "prompt_analisado": "\"Aja como um advogado. Resuma o documento.\"",
-        "alternativas": [
-          {
-            "id": "a",
-            "texto": "Falta o elemento de restrição — o prompt não diz quais limites a resposta deve respeitar.",
-            "correta": false
-          },
-          {
-            "id": "b",
-            "texto": "Falta o elemento de contexto — o prompt não informa nada sobre o documento, como tipo, tamanho ou finalidade do resumo.",
-            "correta": true
-          },
-          {
-            "id": "c",
-            "texto": "Falta o elemento de papel — o prompt não diz quem a IA deve ser ao responder.",
-            "correta": false
-          },
-          {
-            "id": "d",
-            "texto": "Nada falta — esse prompt já está completo e pronto para uso.",
-            "correta": false
-          }
-        ],
-        "explicacao_acerto": "O papel já está presente ('aja como um advogado'). O buraco mais crítico aqui é a ausência total de contexto: a IA não sabe nada sobre o documento em si.",
-        "explicacao_erro": "Revise: o papel já foi definido no prompt. Restrição seria um refinamento útil, mas o problema mais grave é não haver nenhuma informação sobre o documento a ser resumido."
-      }
-    },
-    {
-      "ordem": 2,
-      "titulo_aula": "Os cinco elementos de um prompt avançado",
-      "corpo": "Nenhum deles é novidade isolada — juntos, formam um checklist mais completo:",
-      "destaque": "Papel: quem a IA deve 'ser' ao responder. Tarefa: o que exatamente você quer que ela faça. Contexto: informação relevante para a tarefa. Restrições: limites que a resposta deve respeitar. Formato: como você quer receber o resultado.",
-      "atividade": {
-        "id": "intermediaria-01-q2",
-        "tipo": "multipla_escolha",
-        "enunciado": "Qual das opções melhor descreve o elemento \"papel\" em um prompt avançado?",
-        "alternativas": [
-          {
-            "id": "a",
-            "texto": "Quem a IA deve 'ser' ao responder, como 'aja como um advogado revisor de contratos'.",
-            "correta": true
-          },
-          {
-            "id": "b",
-            "texto": "O limite que a resposta deve respeitar, como tom ou extensão máxima do texto.",
-            "correta": false
-          },
-          {
-            "id": "c",
-            "texto": "A informação relevante para a tarefa, como o tipo de documento envolvido.",
-            "correta": false
-          },
-          {
-            "id": "d",
-            "texto": "Como você quer receber o resultado, como uma lista ou uma tabela.",
-            "correta": false
-          }
-        ],
-        "explicacao_acerto": "Isso mesmo — papel define a perspectiva que a IA deve assumir ao responder.",
-        "explicacao_erro": "As demais opções descrevem, respectivamente, restrição, contexto e formato — elementos diferentes de papel."
-      }
-    },
-    {
-      "ordem": 3,
-      "titulo_aula": "Por que \"restrições\" muda o jogo",
-      "corpo": "Sem restrição, a IA generativa tende a ser mais genérica e mais verbosa. Uma restrição como 'não use jargão técnico' ou 'não sugira nada fora do que está no documento' reduz bastante o risco de a IA 'inventar' algo fora do escopo.",
-      "atividade": {
         "id": "intermediaria-01-q3",
         "tipo": "completar_lacuna",
         "enunciado": "Um prompt avançado pode combinar até cinco elementos: papel, tarefa, ___1___, restrições e ___2___.",
@@ -114,9 +44,10 @@
       }
     },
     {
-      "ordem": 4,
-      "titulo_aula": "Nem toda tarefa precisa dos cinco elementos",
-      "corpo": "Isso é um checklist mental, não uma fórmula obrigatória. Tarefas simples podem precisar de só dois ou três elementos — usar os cinco em tudo pode até deixar o prompt desnecessariamente pesado.",
+      "ordem": 2,
+      "titulo_aula": "Os cinco elementos de um prompt avançado",
+      "corpo": "Nenhum deles é novidade isolada — juntos, formam um checklist mais completo:",
+      "destaque": "Papel: quem a IA deve 'ser' ao responder. Tarefa: o que exatamente você quer que ela faça. Contexto: informação relevante para a tarefa. Restrições: limites que a resposta deve respeitar. Formato: como você quer receber o resultado.",
       "atividade": {
         "id": "intermediaria-01-q4",
         "tipo": "associacao",
@@ -135,6 +66,75 @@
             "definicao": "Fornece a informação relevante para a tarefa"
           }
         ]
+      }
+    },
+    {
+      "ordem": 3,
+      "titulo_aula": "Por que \"restrições\" muda o jogo",
+      "corpo": "Sem restrição, a IA generativa tende a ser mais genérica e mais verbosa. Uma restrição como 'não use jargão técnico' ou 'não sugira nada fora do que está no documento' reduz bastante o risco de a IA 'inventar' algo fora do escopo.",
+      "atividade": {
+        "id": "intermediaria-01-q2",
+        "tipo": "multipla_escolha",
+        "enunciado": "Você acrescenta ao prompt a restrição \"não sugira nada que não esteja no documento\". O que isso muda no resultado?",
+        "alternativas": [
+          {
+            "id": "a",
+            "texto": "Reduz a chance de a IA ser genérica e de ela trazer algo inventado, fora do escopo do documento.",
+            "correta": true
+          },
+          {
+            "id": "b",
+            "texto": "Faz a resposta vir mais longa e detalhada, porque a IA precisa justificar cada ponto que trouxe.",
+            "correta": false
+          },
+          {
+            "id": "c",
+            "texto": "Dispensa a necessidade de fornecer contexto, já que o limite dado substitui essa informação.",
+            "correta": false
+          },
+          {
+            "id": "d",
+            "texto": "Faz o pedido ser processado com prioridade pela ferramenta, devolvendo a resposta mais rápido.",
+            "correta": false
+          }
+        ],
+        "explicacao_acerto": "Exatamente — sem restrição a IA tende ao genérico e ao verboso; o limite fecha a porta para o que está fora do escopo.",
+        "explicacao_erro": "Restrição encurta e foca, não alonga; não substitui contexto (são elementos diferentes); e não tem nada a ver com prioridade de processamento."
+      }
+    },
+    {
+      "ordem": 4,
+      "titulo_aula": "Nem toda tarefa precisa dos cinco elementos",
+      "corpo": "Isso é um checklist mental, não uma fórmula obrigatória. Tarefas simples podem precisar de só dois ou três elementos — usar os cinco em tudo pode até deixar o prompt desnecessariamente pesado.",
+      "atividade": {
+        "id": "intermediaria-01-q1",
+        "tipo": "correcao_prompt",
+        "enunciado": "O prompt fictício abaixo foi escrito para uma tarefa trivial: descobrir o dia da semana de uma data. O que há de errado nele?",
+        "prompt_analisado": "\"Aja como um especialista em calendários com 20 anos de experiência. Sua tarefa é, considerando o contexto de que preciso me organizar para a semana, e respeitando a restrição de não usar linguagem informal, me dizer, em formato de tabela, que dia da semana cai 12 de março de 2027.\"",
+        "alternativas": [
+          {
+            "id": "a",
+            "texto": "Está pesado demais para o tamanho da tarefa — os cinco elementos são um checklist mental, não uma fórmula obrigatória.",
+            "correta": true
+          },
+          {
+            "id": "b",
+            "texto": "Falta o elemento de restrição, que é sempre indispensável em qualquer prompt bem construído.",
+            "correta": false
+          },
+          {
+            "id": "c",
+            "texto": "O papel atribuído é fraco demais e precisaria de uma especialização ainda mais específica.",
+            "correta": false
+          },
+          {
+            "id": "d",
+            "texto": "Nada está errado — quanto mais elementos um prompt tiver, melhor tende a ser a resposta.",
+            "correta": false
+          }
+        ],
+        "explicacao_acerto": "Exatamente. Uma pergunta direta resolveria: empilhar papel, contexto, restrição e formato aqui só deixou o pedido comprido sem melhorar nada.",
+        "explicacao_erro": "A restrição já está no prompt, e o papel também. O problema não é falta de elemento — é excesso: tarefa simples pede prompt simples."
       }
     }
   ],
