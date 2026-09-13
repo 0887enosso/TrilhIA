@@ -104,31 +104,31 @@
       "atividade": {
         "id": "intermediaria-27-q4",
         "tipo": "multipla_escolha",
-        "enunciado": "Um colaborador percebe que enviou uma API Key por engano em um e-mail. Qual a atitude correta?",
+        "enunciado": "Você não escreve código. Em qual situação do dia a dia você ainda pode acabar com uma API Key na mão?",
         "alternativas": [
           {
             "id": "a",
-            "texto": "Avisar imediatamente a equipe técnica para revogar a chave e gerar uma nova.",
+            "texto": "Ao configurar uma automação sem código que precisa se conectar a um serviço de IA.",
             "correta": true
           },
           {
             "id": "b",
-            "texto": "Pedir para o destinatário apagar o e-mail e considerar resolvido.",
+            "texto": "Ao abrir qualquer ferramenta de IA pelo navegador, que pede a chave a cada login.",
             "correta": false
           },
           {
             "id": "c",
-            "texto": "Não fazer nada, já que e-mails corporativos são sempre seguros por padrão.",
+            "texto": "Ao receber um relatório gerado por uma automação que outra pessoa já deixou configurada.",
             "correta": false
           },
           {
             "id": "d",
-            "texto": "Trocar a senha do próprio e-mail, sem mexer na API Key.",
+            "texto": "Em nenhuma — chaves ficam restritas à equipe técnica em qualquer cenário.",
             "correta": false
           }
         ],
-        "explicacao_acerto": "Assim como no vazamento por mensagem de grupo, a resposta correta é revogar e substituir a chave o quanto antes.",
-        "explicacao_erro": "Apagar o e-mail, confiar na segurança padrão do e-mail corporativo, ou trocar apenas a senha do e-mail não resolvem a exposição da própria chave."
+        "explicacao_acerto": "Exatamente: montar uma automação sem código é o caminho mais comum de uma chave chegar às mãos de quem não programa.",
+        "explicacao_erro": "Ferramenta pelo navegador usa login, não chave; receber um relatório pronto não expõe credencial nenhuma; e supor que chave é assunto só de time técnico é justamente o engano que deixa alguém desprevenido na hora que ela aparece."
       }
     }
   ],

@@ -80,27 +80,6 @@
       "titulo_aula": "Retomando a supervisão periódica",
       "corpo": "Como vimos no Módulo 17, uma automação configurada uma vez não deve ser 'esquecida'. Revisar periodicamente evita que um erro silencioso se acumule por meses.",
       "atividade": {
-        "id": "intermediaria-29-q3",
-        "tipo": "completar_lacuna",
-        "enunciado": "Antes de automatizar um fluxo com dado sensível, é necessário verificar a ___ do escritório para esse tipo de processo.",
-        "lacunas": [
-          {
-            "posicao": 1,
-            "opcoes": [
-              "aprovação",
-              "cor",
-              "velocidade"
-            ],
-            "correta": "aprovação"
-          }
-        ]
-      }
-    },
-    {
-      "ordem": 4,
-      "titulo_aula": "Antes de automatizar algo no seu trabalho",
-      "corpo": "Pergunte: essa automação foi aprovada pelo escritório? Envolve dado sensível de cliente? Existe alguém responsável por revisar seu funcionamento periodicamente?",
-      "atividade": {
         "id": "intermediaria-29-q4",
         "tipo": "multipla_escolha",
         "enunciado": "Uma automação fictícia com erro de classificação passa meses sem revisão, afetando um grande volume de documentos. Qual prática teria evitado isso?",
@@ -128,6 +107,27 @@
         ],
         "explicacao_acerto": "Supervisão periódica é exatamente o mecanismo que evita esse tipo de erro silencioso e acumulado.",
         "explicacao_erro": "Configurar e esquecer é justamente o comportamento de risco, aumentar volume não resolve o problema de fundo, e existe sim uma prática capaz de evitar isso."
+      }
+    },
+    {
+      "ordem": 4,
+      "titulo_aula": "Antes de automatizar algo no seu trabalho",
+      "corpo": "Pergunte: essa automação foi aprovada pelo escritório? Envolve dado sensível de cliente? Existe alguém responsável por revisar seu funcionamento periodicamente?",
+      "atividade": {
+        "id": "intermediaria-29-q3",
+        "tipo": "completar_lacuna",
+        "enunciado": "Antes de automatizar um fluxo com dado sensível, é necessário verificar a ___ do escritório para esse tipo de processo.",
+        "lacunas": [
+          {
+            "posicao": 1,
+            "opcoes": [
+              "aprovação",
+              "cor",
+              "velocidade"
+            ],
+            "correta": "aprovação"
+          }
+        ]
       }
     }
   ],

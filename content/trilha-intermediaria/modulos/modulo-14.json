@@ -52,6 +52,40 @@
       "titulo_aula": "Onde a IA ajuda de verdade",
       "corpo": "Triagem inicial de documentos, sinalização de cláusulas fora do padrão esperado, organização por categoria (financeiro, trabalhista, societário).",
       "atividade": {
+        "id": "intermediaria-14-q4",
+        "tipo": "multipla_escolha",
+        "enunciado": "Numa due diligence fictícia com 800 documentos, em qual frente a IA rende mais?",
+        "alternativas": [
+          {
+            "id": "a",
+            "texto": "Fazer a triagem inicial, sinalizar cláusulas fora do padrão esperado e organizar os documentos por categoria.",
+            "correta": true
+          },
+          {
+            "id": "b",
+            "texto": "Decidir se a operação deve ou não ser aprovada, a partir do conjunto dos documentos analisados.",
+            "correta": false
+          },
+          {
+            "id": "c",
+            "texto": "Substituir a conferência manual por completo, desde que o volume de documentos seja alto o suficiente.",
+            "correta": false
+          },
+          {
+            "id": "d",
+            "texto": "Confirmar a autenticidade de cada documento junto aos órgãos de registro competentes.",
+            "correta": false
+          }
+        ],
+        "explicacao_acerto": "Exatamente — triagem, sinalização e organização por categoria são onde o volume vira gargalo humano e ela rende.",
+        "explicacao_erro": "Decidir sobre a operação é julgamento estratégico; substituir a conferência é justamente o que o módulo desaconselha; e confirmar autenticidade depende de fonte externa, não da IA."
+      }
+    },
+    {
+      "ordem": 3,
+      "titulo_aula": "O risco do \"falso negativo\"",
+      "corpo": "A IA pode simplesmente não sinalizar algo importante, porque aquele padrão específico é raro no que ela aprendeu. Silêncio da IA sobre um documento não significa 'documento sem problema'.",
+      "atividade": {
         "id": "intermediaria-14-q2",
         "tipo": "verdadeiro_falso",
         "enunciado": "Se a IA não sinalizou nenhum problema em um documento, é porque o documento está de fato sem problemas.",
@@ -77,9 +111,9 @@
       }
     },
     {
-      "ordem": 3,
-      "titulo_aula": "O risco do \"falso negativo\"",
-      "corpo": "A IA pode simplesmente não sinalizar algo importante, porque aquele padrão específico é raro no que ela aprendeu. Silêncio da IA sobre um documento não significa 'documento sem problema'.",
+      "ordem": 4,
+      "titulo_aula": "Amostragem de verificação",
+      "corpo": "Mesmo com apoio de IA na triagem, uma amostra dos documentos — não só os sinalizados — deve ser conferida manualmente, especialmente em due diligences de maior risco.",
       "atividade": {
         "id": "intermediaria-14-q3",
         "tipo": "completar_lacuna",
@@ -95,40 +129,6 @@
             "correta": "amostra"
           }
         ]
-      }
-    },
-    {
-      "ordem": 4,
-      "titulo_aula": "Amostragem de verificação",
-      "corpo": "Mesmo com apoio de IA na triagem, uma amostra dos documentos — não só os sinalizados — deve ser conferida manualmente, especialmente em due diligences de maior risco.",
-      "atividade": {
-        "id": "intermediaria-14-q4",
-        "tipo": "multipla_escolha",
-        "enunciado": "Uma due diligence de alto risco confia inteiramente na triagem da IA, sem nenhuma amostragem manual dos documentos não sinalizados. Qual o problema?",
-        "alternativas": [
-          {
-            "id": "a",
-            "texto": "O risco de falso negativo fica sem nenhuma camada de verificação adicional, especialmente perigoso em cenários de alto risco.",
-            "correta": true
-          },
-          {
-            "id": "b",
-            "texto": "Não há problema, já que a IA sempre sinaliza corretamente 100% dos documentos com problema.",
-            "correta": false
-          },
-          {
-            "id": "c",
-            "texto": "O único problema é que o processo fica mais lento do que o necessário.",
-            "correta": false
-          },
-          {
-            "id": "d",
-            "texto": "O problema é que due diligence nunca deveria envolver nenhum tipo de IA.",
-            "correta": false
-          }
-        ],
-        "explicacao_acerto": "Sem amostragem manual, um falso negativo pode passar despercebido — justamente o risco mais grave em cenários de alto risco.",
-        "explicacao_erro": "Não existe garantia de 100% de acerto, o problema não é velocidade, e usar IA na triagem não é o problema — a ausência de amostragem, sim."
       }
     }
   ],

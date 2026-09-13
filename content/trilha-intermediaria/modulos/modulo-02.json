@@ -54,26 +54,26 @@
       "atividade": {
         "id": "intermediaria-02-q2",
         "tipo": "verdadeiro_falso",
-        "enunciado": "Definir um papel para a IA garante que a resposta estará livre de erros factuais.",
-        "resposta_correta": false,
+        "enunciado": "Role prompting funciona porque o modelo aprendeu com textos escritos por muitos tipos de profissionais, e o papel ajuda a puxar o registro certo.",
+        "resposta_correta": true,
         "justificativas": [
           {
             "id": "a",
-            "texto": "Falso — role prompting muda o enquadramento da resposta, mas não elimina o risco de alucinação visto na trilha básica.",
+            "texto": "Verdadeiro — atribuir um papel direciona o modelo para o padrão de linguagem e as prioridades daquela função.",
             "correta": true
           },
           {
             "id": "b",
-            "texto": "Falso, porque atribuir papel a uma IA é uma função ainda em fase experimental.",
+            "texto": "Falso — o papel funciona porque a ferramenta consulta um banco de perfis profissionais antes de responder.",
             "correta": false
           },
           {
             "id": "c",
-            "texto": "Verdadeiro, um papel bem definido ativa uma checagem factual automática.",
+            "texto": "Falso — o papel muda apenas o tom da resposta, sem afetar o que ela prioriza.",
             "correta": false
           }
         ],
-        "explicacao": "Role prompting não é experimental nem ativa checagem factual — ele muda a perspectiva da resposta, e a revisão humana continua necessária."
+        "explicacao": "Não há banco de perfis sendo consultado: o que existe é a variedade de textos do próprio treinamento. E o efeito vai além do tom — muda o que a resposta prioriza. Ainda assim, não elimina o risco de alucinação: revisão humana continua necessária."
       }
     },
     {
@@ -119,19 +119,19 @@
       "atividade": {
         "id": "intermediaria-02-q4",
         "tipo": "associacao",
-        "enunciado": "Ligue cada exemplo de papel ao seu nível de eficácia.",
+        "enunciado": "Ligue cada prompt ao que ele entrega à IA.",
         "pares": [
           {
-            "termo": "\"Aja como um advogado.\"",
-            "definicao": "Papel genérico, sem foco na tarefa"
+            "termo": "Só o papel: \"aja como um advogado revisor de contratos\"",
+            "definicao": "Direciona a perspectiva, mas a IA segue sem saber nada do caso concreto"
           },
           {
-            "termo": "\"Aja como um advogado revisor de contratos, focado em cláusulas de risco.\"",
-            "definicao": "Papel específico, conectado à tarefa"
+            "termo": "Só o contexto: \"segue o contrato de prestação de serviço entre A e B\"",
+            "definicao": "Informa sobre o caso, mas não direciona de que ângulo responder"
           },
           {
-            "termo": "\"Aja como um advogado com 100% de precisão garantida.\"",
-            "definicao": "Papel com promessa irreal, que não deve ser levada a sério"
+            "termo": "Papel e contexto juntos",
+            "definicao": "Direciona a perspectiva e informa sobre o caso real — um não substitui o outro"
           }
         ]
       }

@@ -52,55 +52,26 @@
       "titulo_aula": "Exemplos do dia a dia",
       "corpo": "Organizar e-mails recebidos por categoria automaticamente. Gerar uma resposta padrão para uma pergunta frequente. Mover um documento para a pasta certa com base no tipo de conteúdo.",
       "atividade": {
-        "id": "intermediaria-17-q2",
-        "tipo": "verdadeiro_falso",
-        "enunciado": "Uma vez configurada, uma automação nunca mais precisa de supervisão humana.",
-        "resposta_correta": false,
-        "justificativas": [
+        "id": "intermediaria-17-q3",
+        "tipo": "completar_lacuna",
+        "enunciado": "Organizar e-mails por categoria, gerar uma ___ padrão para uma pergunta frequente e mover documento para a pasta certa: exemplos de automação do dia a dia.",
+        "lacunas": [
           {
-            "id": "a",
-            "texto": "Falso — regras podem ficar desatualizadas, e erros silenciosos se acumulam sem revisão periódica.",
-            "correta": true
-          },
-          {
-            "id": "b",
-            "texto": "Falso, porque automações param de funcionar sozinhas depois de 30 dias sem supervisão.",
-            "correta": false
-          },
-          {
-            "id": "c",
-            "texto": "Verdadeiro, automação bem configurada elimina qualquer necessidade futura de revisão.",
-            "correta": false
+            "posicao": 1,
+            "opcoes": [
+              "resposta",
+              "propaganda",
+              "tradução"
+            ],
+            "correta": "resposta"
           }
-        ],
-        "explicacao": "Não existe um prazo técnico fixo de expiração — o ponto é que erros podem se acumular silenciosamente sem revisão periódica, independentemente do tempo."
+        ]
       }
     },
     {
       "ordem": 3,
       "titulo_aula": "Automação não é \"esquecer e deixar rodando\"",
       "corpo": "Um fluxo automatizado ainda precisa de supervisão periódica — regras podem ficar desatualizadas, e erros silenciosos se acumulam se ninguém olhar de tempos em tempos.",
-      "atividade": {
-        "id": "intermediaria-17-q3",
-        "tipo": "completar_lacuna",
-        "enunciado": "Um fluxo automatizado ainda precisa de ___ periódica, mesmo depois de configurado.",
-        "lacunas": [
-          {
-            "posicao": 1,
-            "opcoes": [
-              "supervisão",
-              "propaganda",
-              "tradução"
-            ],
-            "correta": "supervisão"
-          }
-        ]
-      }
-    },
-    {
-      "ordem": 4,
-      "titulo_aula": "A porta de entrada para o próximo bloco",
-      "corpo": "Entender esse conceito aqui, de forma simples, prepara terreno para o Bloco E — onde vamos ver, de forma técnica (mas ainda sem programar), como essas automações se conectam de fato com uma IA por trás dos panos.",
       "atividade": {
         "id": "intermediaria-17-q4",
         "tipo": "multipla_escolha",
@@ -129,6 +100,35 @@
         ],
         "explicacao_acerto": "Desatualização de regras é a explicação mais comum e mais realista para esse tipo de degradação silenciosa.",
         "explicacao_erro": "Não existe prazo fixo de 90 dias, vírus não é a explicação mais provável, e esse tipo de problema acontece com frequência em automações sem supervisão."
+      }
+    },
+    {
+      "ordem": 4,
+      "titulo_aula": "A porta de entrada para o próximo bloco",
+      "corpo": "Entender esse conceito aqui, de forma simples, prepara terreno para o Bloco E — onde vamos ver, de forma técnica (mas ainda sem programar), como essas automações se conectam de fato com uma IA por trás dos panos.\n\nO fio da meada é este: quando você monta um fluxo numa ferramenta visual e escolhe \"resumir com IA\", alguém precisa entregar aquele texto ao modelo e trazer a resposta de volta. Você não vê essa parte acontecer — a ferramenta faz por você —, mas ela existe. É exatamente ela que o Bloco E vai abrir.",
+      "atividade": {
+        "id": "intermediaria-17-q2",
+        "tipo": "verdadeiro_falso",
+        "enunciado": "Quando um fluxo visual diz \"resumir com IA\", existe uma conversa técnica acontecendo por trás — a ferramenta só a esconde de você.",
+        "resposta_correta": true,
+        "justificativas": [
+          {
+            "id": "a",
+            "texto": "Verdadeiro — alguém precisa entregar o texto ao modelo e trazer a resposta de volta; a ferramenta faz esse caminho por você.",
+            "correta": true
+          },
+          {
+            "id": "b",
+            "texto": "Falso — é a própria ferramenta de automação que escreve o resumo, sem envolver nenhum modelo de IA.",
+            "correta": false
+          },
+          {
+            "id": "c",
+            "texto": "Verdadeiro, mas essa conversa só acontece depois que alguém da equipe técnica aprova cada execução.",
+            "correta": false
+          }
+        ],
+        "explicacao": "A ferramenta visual não escreve o resumo sozinha — ela intermedeia. E essa conversa roda automaticamente a cada execução, sem aprovação caso a caso; é justamente por isso que um fluxo mal configurado erra em escala."
       }
     }
   ],

@@ -52,6 +52,27 @@
       "titulo_aula": "O que é fine-tuning",
       "corpo": "Pegar um modelo já treinado e continuar o treinamento com um conjunto específico de exemplos, para que ele se especialize em um padrão ou domínio.",
       "atividade": {
+        "id": "intermediaria-22-q3",
+        "tipo": "completar_lacuna",
+        "enunciado": "Fine-tuning consiste em continuar o treinamento de um modelo já existente com um conjunto ___ de exemplos.",
+        "lacunas": [
+          {
+            "posicao": 1,
+            "opcoes": [
+              "específico",
+              "aleatório",
+              "público"
+            ],
+            "correta": "específico"
+          }
+        ]
+      }
+    },
+    {
+      "ordem": 3,
+      "titulo_aula": "Por que isso não é o padrão do dia a dia",
+      "corpo": "Fine-tuning exige dados de treinamento, tempo, custo e conhecimento técnico — é uma decisão de projeto, tomada por poucas pessoas, não algo que você faz na sua rotina.",
+      "atividade": {
         "id": "intermediaria-22-q2",
         "tipo": "verdadeiro_falso",
         "enunciado": "Fine-tuning é algo que qualquer colaborador faz no dia a dia para melhorar uma resposta.",
@@ -74,27 +95,6 @@
           }
         ],
         "explicacao": "Fine-tuning não foi removido das ferramentas — ele continua existindo, mas como uma decisão técnica de poucas pessoas, não uma ação de poucos cliques do dia a dia."
-      }
-    },
-    {
-      "ordem": 3,
-      "titulo_aula": "Por que isso não é o padrão do dia a dia",
-      "corpo": "Fine-tuning exige dados de treinamento, tempo, custo e conhecimento técnico — é uma decisão de projeto, tomada por poucas pessoas, não algo que você faz na sua rotina.",
-      "atividade": {
-        "id": "intermediaria-22-q3",
-        "tipo": "completar_lacuna",
-        "enunciado": "Fine-tuning consiste em continuar o treinamento de um modelo já existente com um conjunto ___ de exemplos.",
-        "lacunas": [
-          {
-            "posicao": 1,
-            "opcoes": [
-              "específico",
-              "aleatório",
-              "público"
-            ],
-            "correta": "específico"
-          }
-        ]
       }
     },
     {
