@@ -149,7 +149,8 @@
           "termo": "Existe responsável pela revisão periódica?",
           "definicao": "Evitar erro silencioso acumulado ao longo do tempo"
         }
-      ]
+      ],
+      "aula_relacionada": 4
     },
     {
       "id": "intermediaria-29-q6",
@@ -173,7 +174,8 @@
           "correta": false
         }
       ],
-      "explicacao": "Não existe prazo fixo de uma semana nem garantia permanente — supervisão periódica contínua é a prática recomendada, retomando o Módulo 17."
+      "explicacao": "Não existe prazo fixo de uma semana nem garantia permanente — supervisão periódica contínua é a prática recomendada, retomando o Módulo 17.",
+      "aula_relacionada": 3
     },
     {
       "id": "intermediaria-29-q7",
@@ -184,7 +186,8 @@
         "Considerei a sensibilidade do dado envolvido?",
         "Minha resposta evita pular direto para a configuração técnica da automação?"
       ],
-      "exemplo_de_resposta_forte": "\"Antes de configurar qualquer coisa, eu verificaria se esse tipo de automação com dado de cliente é aprovado pelo escritório e quem ficaria responsável pela revisão periódica.\""
+      "exemplo_de_resposta_forte": "\"Antes de configurar qualquer coisa, eu verificaria se esse tipo de automação com dado de cliente é aprovado pelo escritório e quem ficaria responsável pela revisão periódica.\"",
+      "aula_relacionada": 4
     }
   ],
   "conquista_de_bloco": {

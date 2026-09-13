@@ -145,7 +145,8 @@
           "termo": "Modelo aberto",
           "definicao": "Mais controle e customização, exige mais conhecimento técnico"
         }
-      ]
+      ],
+      "aula_relacionada": 2
     },
     {
       "id": "intermediaria-23-q6",
@@ -169,7 +170,8 @@
           "correta": false
         }
       ],
-      "explicacao": "Não há restrição de porte de empresa — a lógica de decisão contextual vale para qualquer organização, grande ou pequena."
+      "explicacao": "Não há restrição de porte de empresa — a lógica de decisão contextual vale para qualquer organização, grande ou pequena.",
+      "aula_relacionada": 4
     },
     {
       "id": "intermediaria-23-q7",
@@ -180,7 +182,8 @@
         "Evitei sugerir que um dos dois é sempre superior?",
         "Minha pergunta é aplicável a uma decisão real de negócio, não apenas teórica?"
       ],
-      "exemplo_de_resposta_forte": "\"Nós temos orçamento e equipe técnica para manter um modelo aberto customizado, ou faz mais sentido depender do suporte de um fornecedor de modelo fechado?\""
+      "exemplo_de_resposta_forte": "\"Nós temos orçamento e equipe técnica para manter um modelo aberto customizado, ou faz mais sentido depender do suporte de um fornecedor de modelo fechado?\"",
+      "aula_relacionada": 4
     }
   ],
   "conquista_de_bloco": {

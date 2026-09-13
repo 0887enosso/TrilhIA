@@ -150,7 +150,8 @@
           "termo": "Ferramenta (no contexto de agente)",
           "definicao": "Recurso externo que o agente pode usar, como um sistema ou planilha"
         }
-      ]
+      ],
+      "aula_relacionada": 1
     },
     {
       "id": "intermediaria-20-q6",
@@ -174,7 +175,8 @@
           "correta": false
         }
       ],
-      "explicacao": "Não é uma questão de quem configurou o agente — o ponto central é que a ação em si pode ser irreversível, e nem toda ação tem reversão automática."
+      "explicacao": "Não é uma questão de quem configurou o agente — o ponto central é que a ação em si pode ser irreversível, e nem toda ação tem reversão automática.",
+      "aula_relacionada": 3
     },
     {
       "id": "intermediaria-20-q7",
@@ -185,7 +187,8 @@
         "Minha resposta é aplicável na prática, não apenas teórica?",
         "Considerei que a autonomia total, sem checagem, seria arriscada nesse cenário?"
       ],
-      "exemplo_de_resposta_forte": "\"Eu configuraria o agente para gerar a resposta e aguardar aprovação humana antes de efetivamente enviá-la ao cliente, em vez de enviar automaticamente.\""
+      "exemplo_de_resposta_forte": "\"Eu configuraria o agente para gerar a resposta e aguardar aprovação humana antes de efetivamente enviá-la ao cliente, em vez de enviar automaticamente.\"",
+      "aula_relacionada": 4
     }
   ]
 }

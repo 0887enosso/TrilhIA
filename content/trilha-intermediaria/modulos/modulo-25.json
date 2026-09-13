@@ -155,7 +155,8 @@
           "termo": "Resposta",
           "definicao": "Traz de volta o que o modelo gerou"
         }
-      ]
+      ],
+      "aula_relacionada": 3
     },
     {
       "id": "intermediaria-25-q6",
@@ -179,7 +180,8 @@
           "correta": false
         }
       ],
-      "explicacao": "Não depende de uma classificação especial de internet — mesmo em conexões comuns, o processo costuma ser rápido, na ordem de segundos."
+      "explicacao": "Não depende de uma classificação especial de internet — mesmo em conexões comuns, o processo costuma ser rápido, na ordem de segundos.",
+      "aula_relacionada": 3
     },
     {
       "id": "intermediaria-25-q7",
@@ -190,7 +192,8 @@
         "Evitei dizer que são apenas recursos decorativos?",
         "Consegui explicar sem jargão técnico excessivo?"
       ],
-      "exemplo_de_resposta_forte": "\"Saber que existe uma requisição com parâmetros ajustáveis explica por que configurações como 'criatividade' ou 'tom' aparecem em algumas ferramentas — são ajustes enviados junto com o prompt.\""
+      "exemplo_de_resposta_forte": "\"Saber que existe uma requisição com parâmetros ajustáveis explica por que configurações como 'criatividade' ou 'tom' aparecem em algumas ferramentas — são ajustes enviados junto com o prompt.\"",
+      "aula_relacionada": 4
     }
   ]
 }

@@ -150,7 +150,8 @@
           "termo": "Sugerir uma ordem de prioridade com base em prazos informados",
           "definicao": "Apoio à decisão, não decisão final"
         }
-      ]
+      ],
+      "aula_relacionada": 2
     },
     {
       "id": "intermediaria-11-q6",
@@ -174,7 +175,8 @@
           "correta": false
         }
       ],
-      "explicacao": "O que define o risco é a presença de dado sensível, não o rótulo 'administrativo' ou 'jurídico' da tarefa."
+      "explicacao": "O que define o risco é a presença de dado sensível, não o rótulo 'administrativo' ou 'jurídico' da tarefa.",
+      "aula_relacionada": 4
     },
     {
       "id": "intermediaria-11-q7",
@@ -185,7 +187,8 @@
         "Minha pergunta considera se a ferramenta é aprovada pelo escritório?",
         "Essa pergunta funcionaria também para outras tarefas 'administrativas' do dia a dia?"
       ],
-      "exemplo_de_resposta_forte": "\"Este e-mail contém algum dado de cliente ou informação sigilosa, e a ferramenta que vou usar é aprovada pelo escritório para esse tipo de conteúdo?\""
+      "exemplo_de_resposta_forte": "\"Este e-mail contém algum dado de cliente ou informação sigilosa, e a ferramenta que vou usar é aprovada pelo escritório para esse tipo de conteúdo?\"",
+      "aula_relacionada": 4
     }
   ]
 }

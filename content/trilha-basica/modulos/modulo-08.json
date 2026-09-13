@@ -159,7 +159,8 @@
           "termo": "Resumo geral de um texto já revisado por você",
           "definicao": "Revisão de clareza e coesão, sem checagem factual externa"
         }
-      ]
+      ],
+      "aula_relacionada": 4
     },
     {
       "id": "basica-08-q6",
@@ -183,7 +184,8 @@
           "correta": false
         }
       ],
-      "explicacao": "Não existe bloqueio técnico de copiar e colar, nem verificação automática embutida — a checagem é sempre responsabilidade de quem usa."
+      "explicacao": "Não existe bloqueio técnico de copiar e colar, nem verificação automática embutida — a checagem é sempre responsabilidade de quem usa.",
+      "aula_relacionada": 2
     },
     {
       "id": "basica-08-q7",
@@ -212,7 +214,8 @@
         }
       ],
       "explicacao_acerto": "A única forma confiável de checagem é uma fonte externa e independente — não a própria IA, nem a fluência do texto.",
-      "explicacao_erro": "Volume de treinamento, reformular a pergunta para a mesma IA, ou boa redação não substituem uma verificação em fonte independente."
+      "explicacao_erro": "Volume de treinamento, reformular a pergunta para a mesma IA, ou boa redação não substituem uma verificação em fonte independente.",
+      "aula_relacionada": 4
     },
     {
       "id": "basica-08-q8",

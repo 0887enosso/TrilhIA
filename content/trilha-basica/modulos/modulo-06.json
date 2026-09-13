@@ -146,7 +146,8 @@
         }
       ],
       "explicacao_acerto": "O segundo tem objetivo, contexto e formato claros — por isso tende a gerar um resultado mais útil e direcionado.",
-      "explicacao_erro": "As demais opções ainda são vagas: falta contexto sobre o tipo de documento, o que conta como 'problema', ou em que formato a resposta deveria vir."
+      "explicacao_erro": "As demais opções ainda são vagas: falta contexto sobre o tipo de documento, o que conta como 'problema', ou em que formato a resposta deveria vir.",
+      "aula_relacionada": 4
     },
     {
       "id": "basica-06-q6",
@@ -170,7 +171,8 @@
           "correta": false
         }
       ],
-      "explicacao": "Esse é o princípio central do módulo: uma entrada melhor tende a gerar uma saída melhor, em qualquer tipo de ferramenta."
+      "explicacao": "Esse é o princípio central do módulo: uma entrada melhor tende a gerar uma saída melhor, em qualquer tipo de ferramenta.",
+      "aula_relacionada": 2
     },
     {
       "id": "basica-06-q7",
@@ -199,7 +201,8 @@
         }
       ],
       "explicacao_acerto": "Tem objetivo (resumir), contexto (parecer jurídico) e formato (150 palavras, com foco em conclusão e fundamentos).",
-      "explicacao_erro": "As demais opções mantêm o mesmo problema do prompt original: falta de objetivo, contexto ou formato claros, mesmo com palavras diferentes."
+      "explicacao_erro": "As demais opções mantêm o mesmo problema do prompt original: falta de objetivo, contexto ou formato claros, mesmo com palavras diferentes.",
+      "aula_relacionada": 3
     }
   ]
 }

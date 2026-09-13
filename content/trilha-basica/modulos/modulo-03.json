@@ -158,7 +158,8 @@
         }
       ],
       "explicacao_acerto": "Isso mesmo — usar a ferramenta certa para o escopo certo é o cerne deste módulo.",
-      "explicacao_erro": "O problema não é a ausência de IA real na ferramenta, nem uma proibição geral de IA em peças processuais — é o descompasso entre o escopo da ferramenta e a complexidade da tarefa."
+      "explicacao_erro": "O problema não é a ausência de IA real na ferramenta, nem uma proibição geral de IA em peças processuais — é o descompasso entre o escopo da ferramenta e a complexidade da tarefa.",
+      "aula_relacionada": 3
     },
     {
       "id": "basica-03-q6",
@@ -182,7 +183,8 @@
           "correta": false
         }
       ],
-      "explicacao": "Especialização de domínio é o que diferencia essa categoria das demais — e não depende de a ferramenta ser gratuita ou paga."
+      "explicacao": "Especialização de domínio é o que diferencia essa categoria das demais — e não depende de a ferramenta ser gratuita ou paga.",
+      "aula_relacionada": 2
     },
     {
       "id": "basica-03-q7",
@@ -211,7 +213,8 @@
         }
       ],
       "explicacao_acerto": "Essa é a pergunta certa — escopo da tarefa, escopo da ferramenta.",
-      "explicacao_erro": "Popularidade, custo e estética não garantem que a ferramenta seja adequada ao escopo real da tarefa."
+      "explicacao_erro": "Popularidade, custo e estética não garantem que a ferramenta seja adequada ao escopo real da tarefa.",
+      "aula_relacionada": 4
     }
   ]
 }

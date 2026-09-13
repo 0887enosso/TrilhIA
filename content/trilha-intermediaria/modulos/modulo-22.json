@@ -146,7 +146,8 @@
           "termo": "Fine-tuning",
           "definicao": "Decisão técnica rara, tomada por poucas pessoas em um projeto"
         }
-      ]
+      ],
+      "aula_relacionada": 3
     },
     {
       "id": "intermediaria-22-q6",
@@ -170,7 +171,8 @@
           "correta": false
         }
       ],
-      "explicacao": "Não há essa restrição sobre análise de documentos, e prompt engineering tem aplicação real e ampla, como visto em quase todos os módulos anteriores."
+      "explicacao": "Não há essa restrição sobre análise de documentos, e prompt engineering tem aplicação real e ampla, como visto em quase todos os módulos anteriores.",
+      "aula_relacionada": 4
     },
     {
       "id": "intermediaria-22-q7",
@@ -181,7 +183,8 @@
         "Reconheci que essa seria uma decisão de projeto, não uma ação cotidiana de um colaborador?",
         "Evitei sugerir fine-tuning para um problema que um bom prompt já resolveria?"
       ],
-      "exemplo_de_resposta_forte": "\"Se o escritório precisasse de um modelo especializado em um estilo de redação muito específico, usado em milhares de documentos por mês, fine-tuning poderia valer o investimento — diferente de um ajuste pontual.\""
+      "exemplo_de_resposta_forte": "\"Se o escritório precisasse de um modelo especializado em um estilo de redação muito específico, usado em milhares de documentos por mês, fine-tuning poderia valer o investimento — diferente de um ajuste pontual.\"",
+      "aula_relacionada": 3
     }
   ]
 }

@@ -150,7 +150,8 @@
           "termo": "Número de processo vinculado a um cliente específico",
           "definicao": "Cuidado máximo — dado identificável e sigiloso"
         }
-      ]
+      ],
+      "aula_relacionada": 3
     },
     {
       "id": "basica-09-q6",
@@ -174,7 +175,8 @@
           "correta": false
         }
       ],
-      "explicacao": "O que importa para a LGPD é o tratamento do dado pessoal em si, não o setor da empresa nem onde a ferramenta está hospedada."
+      "explicacao": "O que importa para a LGPD é o tratamento do dado pessoal em si, não o setor da empresa nem onde a ferramenta está hospedada.",
+      "aula_relacionada": 3
     },
     {
       "id": "basica-09-q7",
@@ -185,7 +187,8 @@
         "Verificar se a ferramenta foi aprovada pelo escritório para esse tipo de dado",
         "Se restar qualquer dúvida, não inserir a informação",
         "Consultar um responsável antes de prosseguir"
-      ]
+      ],
+      "aula_relacionada": 4
     }
   ]
 }

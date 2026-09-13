@@ -147,7 +147,8 @@
         }
       ],
       "explicacao_acerto": "Configurar uma vez e deixar persistente é exatamente o ganho de eficiência que esse recurso oferece.",
-      "explicacao_erro": "Reexplicar do zero, anotar externamente ou depender de terceiros são soluções mais trabalhosas do que usar a própria persistência da ferramenta."
+      "explicacao_erro": "Reexplicar do zero, anotar externamente ou depender de terceiros são soluções mais trabalhosas do que usar a própria persistência da ferramenta.",
+      "aula_relacionada": 2
     },
     {
       "id": "intermediaria-07-q6",
@@ -171,7 +172,8 @@
           "correta": false
         }
       ],
-      "explicacao": "Não existe revisão automática por segunda IA embutida — o princípio do Módulo 8 da trilha básica (toda saída é rascunho) vale igualmente dentro ou fora de um projeto configurado."
+      "explicacao": "Não existe revisão automática por segunda IA embutida — o princípio do Módulo 8 da trilha básica (toda saída é rascunho) vale igualmente dentro ou fora de um projeto configurado.",
+      "aula_relacionada": 4
     },
     {
       "id": "intermediaria-07-q7",
@@ -182,7 +184,8 @@
         "Levei em conta a regra de sigilo do Módulo 9 da trilha básica?",
         "Minha resposta seria fácil de explicar para um colega novo na equipe?"
       ],
-      "exemplo_de_resposta_forte": "\"Eu criaria um projeto separado para cada cliente fictício, com instruções específicas daquele caso, evitando misturar documentos ou contexto entre eles.\""
+      "exemplo_de_resposta_forte": "\"Eu criaria um projeto separado para cada cliente fictício, com instruções específicas daquele caso, evitando misturar documentos ou contexto entre eles.\"",
+      "aula_relacionada": 4
     }
   ]
 }

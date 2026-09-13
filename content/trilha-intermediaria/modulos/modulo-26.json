@@ -150,7 +150,8 @@
           "termo": "Chave compartilhada em grupo interno do escritório",
           "definicao": "Risco elevado, mesmo sendo um grupo de confiança"
         }
-      ]
+      ],
+      "aula_relacionada": 3
     },
     {
       "id": "intermediaria-26-q6",
@@ -174,7 +175,8 @@
           "correta": false
         }
       ],
-      "explicacao": "Um vazamento pode, sim, gerar consequência real (custo, exposição), e o impacto frequentemente vai além da pessoa que expôs a chave."
+      "explicacao": "Um vazamento pode, sim, gerar consequência real (custo, exposição), e o impacto frequentemente vai além da pessoa que expôs a chave.",
+      "aula_relacionada": 3
     },
     {
       "id": "intermediaria-26-q7",
@@ -185,7 +187,8 @@
         "Mencionei o risco de uso indevido por terceiros?",
         "Minha explicação é clara para alguém sem conhecimento técnico prévio?"
       ],
-      "exemplo_de_resposta_forte": "\"Uma API Key é como a senha do banco do escritório: se vazar, qualquer pessoa pode usá-la em nome da empresa, gerando custo ou acessando informações que não deveriam estar expostas.\""
+      "exemplo_de_resposta_forte": "\"Uma API Key é como a senha do banco do escritório: se vazar, qualquer pessoa pode usá-la em nome da empresa, gerando custo ou acessando informações que não deveriam estar expostas.\"",
+      "aula_relacionada": 1
     }
   ]
 }

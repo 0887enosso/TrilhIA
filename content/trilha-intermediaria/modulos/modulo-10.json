@@ -150,7 +150,8 @@
           "termo": "Extração de ações",
           "definicao": "Lista de tarefas e responsáveis identificados na fala"
         }
-      ]
+      ],
+      "aula_relacionada": 1
     },
     {
       "id": "intermediaria-10-q6",
@@ -174,7 +175,8 @@
           "correta": false
         }
       ],
-      "explicacao": "Não há exceção por número de participantes — a regra de revisão humana da trilha básica se aplica igualmente aqui."
+      "explicacao": "Não há exceção por número de participantes — a regra de revisão humana da trilha básica se aplica igualmente aqui.",
+      "aula_relacionada": 4
     },
     {
       "id": "intermediaria-10-q7",
@@ -185,7 +187,8 @@
         "Considerei se a ferramenta usada é aprovada pelo escritório para esse tipo de dado?",
         "Minha resposta reflete o mesmo cuidado de sigilo visto no Módulo 9 da trilha básica?"
       ],
-      "exemplo_de_resposta_forte": "\"Antes de gravar, eu pediria o consentimento explícito do cliente e confirmaria que a ferramenta de transcrição usada é aprovada pelo escritório para esse tipo de conversa.\""
+      "exemplo_de_resposta_forte": "\"Antes de gravar, eu pediria o consentimento explícito do cliente e confirmaria que a ferramenta de transcrição usada é aprovada pelo escritório para esse tipo de conversa.\"",
+      "aula_relacionada": 3
     }
   ]
 }

@@ -160,7 +160,8 @@
           "correta": false
         }
       ],
-      "explicacao": "Contexto é necessário independentemente da complexidade da tarefa, e o papel sozinho não carrega informação sobre o caso específico."
+      "explicacao": "Contexto é necessário independentemente da complexidade da tarefa, e o papel sozinho não carrega informação sobre o caso específico.",
+      "aula_relacionada": 4
     },
     {
       "id": "intermediaria-02-q6",
@@ -189,7 +190,8 @@
         }
       ],
       "explicacao_acerto": "Papel compatível com a tarefa, mais foco específico ('equilibrada entre as partes') — é a combinação mais eficaz.",
-      "explicacao_erro": "Um papel incompatível com a tarefa (chef de cozinha), a ausência de papel, ou um foco vago não aproveitam o potencial do role prompting."
+      "explicacao_erro": "Um papel incompatível com a tarefa (chef de cozinha), a ausência de papel, ou um foco vago não aproveitam o potencial do role prompting.",
+      "aula_relacionada": 3
     },
     {
       "id": "intermediaria-02-q7",
@@ -200,7 +202,8 @@
         "Ficou claro qual é o objetivo da revisão (tom, clareza, formalidade)?",
         "Eu incluí, mesmo que brevemente, algum contexto sobre a situação do e-mail?"
       ],
-      "exemplo_de_resposta_forte": "\"Aja como um revisor de comunicação corporativa. Revise o tom deste e-mail fictício para um cliente, garantindo que soe profissional mas não excessivamente formal.\""
+      "exemplo_de_resposta_forte": "\"Aja como um revisor de comunicação corporativa. Revise o tom deste e-mail fictício para um cliente, garantindo que soe profissional mas não excessivamente formal.\"",
+      "aula_relacionada": 3
     }
   ]
 }

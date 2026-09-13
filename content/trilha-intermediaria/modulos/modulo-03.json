@@ -151,7 +151,8 @@
           "termo": "Exemplo fornecido contém um erro",
           "definicao": "Risco de o erro ser repetido nos próximos casos"
         }
-      ]
+      ],
+      "aula_relacionada": 2
     },
     {
       "id": "intermediaria-03-q6",
@@ -175,7 +176,8 @@
           "correta": false
         }
       ],
-      "explicacao": "Não existe descarte automático nem identificação de erro no exemplo — por isso a revisão humana do exemplo fornecido é tão importante quanto a revisão do resultado final."
+      "explicacao": "Não existe descarte automático nem identificação de erro no exemplo — por isso a revisão humana do exemplo fornecido é tão importante quanto a revisão do resultado final.",
+      "aula_relacionada": 4
     },
     {
       "id": "intermediaria-03-q7",
@@ -186,7 +188,8 @@
         "Esse exemplo está livre de erros que eu não gostaria de ver repetidos nos próximos resumos?",
         "Seria fácil para outra pessoa aplicar o mesmo padrão só olhando meu exemplo?"
       ],
-      "exemplo_de_resposta_forte": "\"Resumo padrão: Partes envolvidas — Objeto do contrato — Prazo de vigência — Valor e forma de pagamento — Cláusula de rescisão (em uma linha cada).\""
+      "exemplo_de_resposta_forte": "\"Resumo padrão: Partes envolvidas — Objeto do contrato — Prazo de vigência — Valor e forma de pagamento — Cláusula de rescisão (em uma linha cada).\"",
+      "aula_relacionada": 3
     }
   ]
 }

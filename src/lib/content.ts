@@ -277,7 +277,19 @@ function embaralhar<T>(itens: T[]): T[] {
  * aqui.
  */
 export function sanitizarQuestaoParaCliente(questao: any): any {
-  const base = { id: questao.id, tipo: questao.tipo, enunciado: questao.enunciado };
+  const base = {
+    id: questao.id,
+    tipo: questao.tipo,
+    enunciado: questao.enunciado,
+    // Para onde mandar o usuário quando ele erra. Nenhum dos dois revela
+    // gabarito: são ponteiros de navegação. `aula_relacionada` é o índice
+    // (base 1) da aula DESTE módulo que ensina a resposta; `revisao_de` é o
+    // id de um módulo anterior, nas questões que revisam matéria antiga.
+    // Sem passar por aqui, o campo morria na sanitização e o cliente caía no
+    // palpite de "a aula mais próxima antes da questão".
+    ...(questao.aula_relacionada ? { aula_relacionada: questao.aula_relacionada } : {}),
+    ...(questao.revisao_de ? { revisao_de: questao.revisao_de } : {}),
+  };
 
   switch (questao.tipo) {
     case "multipla_escolha":

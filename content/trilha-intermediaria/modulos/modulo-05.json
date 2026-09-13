@@ -161,7 +161,8 @@
           "termo": "Comparar",
           "definicao": "Definir critérios claros de comparação"
         }
-      ]
+      ],
+      "aula_relacionada": 1
     },
     {
       "id": "intermediaria-05-q6",
@@ -185,7 +186,8 @@
           "correta": false
         }
       ],
-      "explicacao": "A necessidade de checagem não depende do tamanho do documento, e nenhuma tarefa de IA dispensa totalmente a revisão humana."
+      "explicacao": "A necessidade de checagem não depende do tamanho do documento, e nenhuma tarefa de IA dispensa totalmente a revisão humana.",
+      "aula_relacionada": 4
     },
     {
       "id": "intermediaria-05-q7",
@@ -196,7 +198,8 @@
         "Ficou claro o que a IA deve fazer com o resultado (listar diferenças, apontar qual é mais vantajosa, etc.)?",
         "Eu me lembrei de que o resultado ainda precisará ser conferido linha a linha?"
       ],
-      "exemplo_de_resposta_forte": "\"Compare exclusivamente as cláusulas de multa por atraso na entrega dos dois contratos fictícios anexados, e liste as diferenças em uma tabela de duas colunas.\""
+      "exemplo_de_resposta_forte": "\"Compare exclusivamente as cláusulas de multa por atraso na entrega dos dois contratos fictícios anexados, e liste as diferenças em uma tabela de duas colunas.\"",
+      "aula_relacionada": 4
     }
   ]
 }

@@ -150,7 +150,8 @@
           "termo": "Modelo de IA",
           "definicao": "O motor que processa a entrada e gera a saída"
         }
-      ]
+      ],
+      "aula_relacionada": 1
     },
     {
       "id": "intermediaria-24-q6",
@@ -174,7 +175,8 @@
           "correta": false
         }
       ],
-      "explicacao": "Não é restrito a quem trabalha com tecnologia — qualquer pessoa que usa um app de celular comum provavelmente já interage com APIs indiretamente."
+      "explicacao": "Não é restrito a quem trabalha com tecnologia — qualquer pessoa que usa um app de celular comum provavelmente já interage com APIs indiretamente.",
+      "aula_relacionada": 4
     },
     {
       "id": "intermediaria-24-q7",
@@ -185,7 +187,8 @@
         "Consegui explicar sem usar jargão técnico?",
         "Meu exemplo é realista e cotidiano?"
       ],
-      "exemplo_de_resposta_forte": "\"Quando abro um app de comida e vejo o status de entrega em tempo real, esse app provavelmente está se comunicando com a API do sistema do restaurante ou do entregador.\""
+      "exemplo_de_resposta_forte": "\"Quando abro um app de comida e vejo o status de entrega em tempo real, esse app provavelmente está se comunicando com a API do sistema do restaurante ou do entregador.\"",
+      "aula_relacionada": 4
     }
   ]
 }

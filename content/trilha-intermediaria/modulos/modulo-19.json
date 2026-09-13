@@ -146,7 +146,8 @@
           "termo": "Generation (geração)",
           "definicao": "A IA gera a resposta com base no que foi encontrado"
         }
-      ]
+      ],
+      "aula_relacionada": 2
     },
     {
       "id": "intermediaria-19-q6",
@@ -170,7 +171,8 @@
           "correta": false
         }
       ],
-      "explicacao": "Documentos internos não se tornam públicos automaticamente, e nenhum modelo tem acesso irrestrito a qualquer documento — é justamente esse problema que o RAG resolve."
+      "explicacao": "Documentos internos não se tornam públicos automaticamente, e nenhum modelo tem acesso irrestrito a qualquer documento — é justamente esse problema que o RAG resolve.",
+      "aula_relacionada": 1
     },
     {
       "id": "intermediaria-19-q7",
@@ -181,7 +183,8 @@
         "Evitei dizer que RAG elimina totalmente o risco de erro?",
         "Minha explicação conecta com o conceito de verificação humana ainda necessária?"
       ],
-      "exemplo_de_resposta_forte": "\"Mesmo com RAG, a etapa de busca pode não encontrar o documento mais relevante, ou a IA pode interpretar mal o material encontrado — por isso a verificação humana continua necessária.\""
+      "exemplo_de_resposta_forte": "\"Mesmo com RAG, a etapa de busca pode não encontrar o documento mais relevante, ou a IA pode interpretar mal o material encontrado — por isso a verificação humana continua necessária.\"",
+      "aula_relacionada": 3
     }
   ]
 }

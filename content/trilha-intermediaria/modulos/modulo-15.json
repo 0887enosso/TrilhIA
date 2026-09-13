@@ -151,7 +151,8 @@
           "termo": "Decidir a resposta apropriada diante do risco",
           "definicao": "Humano"
         }
-      ]
+      ],
+      "aula_relacionada": 4
     },
     {
       "id": "intermediaria-15-q6",
@@ -175,7 +176,8 @@
           "correta": false
         }
       ],
-      "explicacao": "Não há relação com tamanho do contrato, e critério específico torna a resposta mais útil, não menos — é o princípio central do módulo."
+      "explicacao": "Não há relação com tamanho do contrato, e critério específico torna a resposta mais útil, não menos — é o princípio central do módulo.",
+      "aula_relacionada": 2
     },
     {
       "id": "intermediaria-15-q7",
@@ -186,7 +188,8 @@
         "Pedi que cada apontamento venha com o trecho do contrato que o fundamenta?",
         "Ficou claro que a classificação final de gravidade ainda é minha responsabilidade?"
       ],
-      "exemplo_de_resposta_forte": "\"Identifique cláusulas deste contrato fictício que imponham obrigações de rescisão desproporcionais para o contratante, citando o trecho exato de cada uma.\""
+      "exemplo_de_resposta_forte": "\"Identifique cláusulas deste contrato fictício que imponham obrigações de rescisão desproporcionais para o contratante, citando o trecho exato de cada uma.\"",
+      "aula_relacionada": 2
     }
   ]
 }

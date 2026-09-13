@@ -150,7 +150,8 @@
           "termo": "Organização por categoria",
           "definicao": "Agrupar documentos por tema (financeiro, trabalhista, societário)"
         }
-      ]
+      ],
+      "aula_relacionada": 2
     },
     {
       "id": "intermediaria-14-q6",
@@ -174,7 +175,8 @@
           "correta": false
         }
       ],
-      "explicacao": "Não há um viés garantido de 'sinalizar demais' — o risco relevante aqui é justamente o oposto, sinalizar de menos."
+      "explicacao": "Não há um viés garantido de 'sinalizar demais' — o risco relevante aqui é justamente o oposto, sinalizar de menos.",
+      "aula_relacionada": 3
     },
     {
       "id": "intermediaria-14-q7",
@@ -185,7 +187,8 @@
         "O critério é proporcional ao risco do caso (mais amostra em casos de maior risco)?",
         "Minha resposta reconhece explicitamente o risco de falso negativo?"
       ],
-      "exemplo_de_resposta_forte": "\"Eu revisaria manualmente uma amostra aleatória de 15% dos documentos não sinalizados, além de todos os sinalizados, dado o alto risco desse caso fictício.\""
+      "exemplo_de_resposta_forte": "\"Eu revisaria manualmente uma amostra aleatória de 15% dos documentos não sinalizados, além de todos os sinalizados, dado o alto risco desse caso fictício.\"",
+      "aula_relacionada": 4
     }
   ]
 }

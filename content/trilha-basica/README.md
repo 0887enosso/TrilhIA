@@ -93,9 +93,21 @@ trilha-basica/
       "atividade": { /* uma questão — ver tipos abaixo — mostrada logo após esta aula */ }
     }
   ],
-  "atividade_final": [ /* questões — ver tipos abaixo — atividade maior ao final do módulo, integrando o tema */ ]
+  "atividade_final": [ /* questões — ver tipos abaixo — atividade maior ao final do módulo, integrando o tema.
+                          Cada uma precisa de "aula_relacionada": n (ver regra logo abaixo) */ ]
 }
 ```
+
+### Regra não negociável: toda questão tem que ter uma aula que a responde
+
+Quando o usuário erra, o app oferece **"Revisar aula"**. Isso só faz sentido se a aula para onde ele é mandado de fato ensinar aquilo. Portanto:
+
+1. **A questão embutida numa aula (`aulas[].atividade`) precisa ser respondível pelo `corpo` + `destaque` daquela aula, e só por eles.** Não vale cobrar um termo que só aparece em outra aula do módulo. Se a pergunta é boa mas a aula é magra, a correção é engordar a aula — não deixar a pergunta órfã.
+2. **Toda questão de `atividade_final` precisa declarar `"aula_relacionada": n`** (`n` = índice da aula, começando em 1), apontando a aula do próprio módulo que ensina a resposta. A exceção é a questão de revisão espaçada, que em vez disso usa `"revisao_de": "{modulo_id}"` — ali o alvo de revisão é um módulo anterior inteiro, não uma aula deste.
+
+Um teste automatizado (`src/lib/__tests__/vinculoAulaQuestao.test.ts`) recusa conteúdo que quebre a regra 2. A regra 1 não é mecanicamente verificável, mas `scripts/auditar-vinculo-aula-questao.ts` mede a sobreposição de vocabulário entre cada questão e a aula dela e ordena os piores casos — use antes de dar um módulo por pronto.
+
+**Por que isso virou regra:** uma auditoria das 276 questões encontrou 120 questões de atividade final sem vínculo nenhum (o app mandava todas para a última aula do módulo, errada em 81 dos casos) e 66 questões de aula cobrando conteúdo que a própria aula não apresenta. A causa era estrutural: aulas de "moldura" (do tipo *"Juntando os fios"*, *"Ligando com o seu dia a dia"*), sem conceito testável próprio, forçavam a questão delas a pegar emprestado o conteúdo de outra aula. **Toda aula precisa apresentar ao menos um conceito nomeável — e a questão dela precisa usar esse mesmo termo.**
 
 ### Tipos de questão suportados
 

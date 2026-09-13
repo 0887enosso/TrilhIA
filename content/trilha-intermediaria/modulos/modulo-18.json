@@ -150,7 +150,8 @@
           "termo": "\"Esquecimento\" aparente",
           "definicao": "Efeito de informação antiga sendo empurrada para fora da janela"
         }
-      ]
+      ],
+      "aula_relacionada": 2
     },
     {
       "id": "intermediaria-18-q6",
@@ -174,7 +175,8 @@
           "correta": false
         }
       ],
-      "explicacao": "Não há um limite fixo de páginas para essa estratégia funcionar — dividir sempre reduz a pressão sobre a janela de contexto, em qualquer tamanho de documento."
+      "explicacao": "Não há um limite fixo de páginas para essa estratégia funcionar — dividir sempre reduz a pressão sobre a janela de contexto, em qualquer tamanho de documento.",
+      "aula_relacionada": 4
     },
     {
       "id": "intermediaria-18-q7",
@@ -185,7 +187,8 @@
         "Considerei resumir periodicamente o que já foi analisado?",
         "Minha resposta reconhece que isso é um limite técnico, não um erro da IA?"
       ],
-      "exemplo_de_resposta_forte": "\"Eu dividiria o contrato fictício em seções menores, pedindo um resumo de cada uma antes de avançar para a próxima, mantendo os pontos-chave sempre visíveis na conversa.\""
+      "exemplo_de_resposta_forte": "\"Eu dividiria o contrato fictício em seções menores, pedindo um resumo de cada uma antes de avançar para a próxima, mantendo os pontos-chave sempre visíveis na conversa.\"",
+      "aula_relacionada": 4
     }
   ]
 }

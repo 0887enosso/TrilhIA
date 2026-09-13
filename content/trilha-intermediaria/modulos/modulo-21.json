@@ -146,7 +146,8 @@
           "termo": "Busca semântica",
           "definicao": "Encontra por proximidade de significado, mesmo com palavras diferentes"
         }
-      ]
+      ],
+      "aula_relacionada": 3
     },
     {
       "id": "intermediaria-21-q6",
@@ -170,7 +171,8 @@
           "correta": false
         }
       ],
-      "explicacao": "Não há um recorte de data que defina esse uso, e as duas tecnologias estão, sim, frequentemente conectadas na prática."
+      "explicacao": "Não há um recorte de data que defina esse uso, e as duas tecnologias estão, sim, frequentemente conectadas na prática.",
+      "aula_relacionada": 4
     },
     {
       "id": "intermediaria-21-q7",
@@ -181,7 +183,8 @@
         "O exemplo é realista para o contexto jurídico?",
         "Ficou claro por que a busca por palavra exata sozinha não resolveria esse caso?"
       ],
-      "exemplo_de_resposta_forte": "\"Buscar todos os pareceres fictícios sobre 'encerramento de vínculo' e encontrar também os que falam em 'rescisão contratual', mesmo sem usar exatamente essas palavras.\""
+      "exemplo_de_resposta_forte": "\"Buscar todos os pareceres fictícios sobre 'encerramento de vínculo' e encontrar também os que falam em 'rescisão contratual', mesmo sem usar exatamente essas palavras.\"",
+      "aula_relacionada": 3
     }
   ]
 }

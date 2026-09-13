@@ -228,16 +228,33 @@ export function ModuloClient({ trilha, moduloId }: { trilha: TrilhaId; moduloId:
     router.refresh(); // sincroniza XP/estrelas do TopHud com o que acabou de ser concedido
   }
 
-  // Passo "questao" -> índice da aula mais próxima ANTES dela (procurando pra
-  // trás, não só o passo imediatamente anterior) — cobre tanto as questões
-  // ligadas diretamente a uma aula (o caso comum) quanto as de
-  // atividade_final, que não têm aula própria na lista mas devem voltar pra
-  // última aula ensinada no módulo. Fica `null` só se não existir NENHUMA
-  // aula antes da questão (módulo sem nenhuma aula, caso não esperado hoje).
+  // Passo "questao" -> passo da aula para onde o "Revisar aula" deve levar.
+  //
+  // A questão pode dizer a qual aula ela pertence (`aula_relacionada`, índice
+  // base 1 — ver scripts/vincular-atividade-final-a-aula.ts). Quando diz,
+  // é isso que manda. Antes disso, o cálculo era sempre "a aula mais próxima
+  // antes da questão na lista": correto para as questões embutidas numa aula
+  // (a aula é a anterior imediata), mas arbitrário para as 120 questões de
+  // atividade final, que ficam todas DEPOIS de todas as aulas — e por isso
+  // caíam sempre na última aula do módulo, independentemente do que cobravam.
   const questaoIndiceParaAulaIndice = useMemo(() => {
+    const passosDeLicao = passos.reduce<number[]>((acc, passo, i) => {
+      if (passo.tipo === "licao") acc.push(i);
+      return acc;
+    }, []);
+
     const mapa = new Map<number, number | null>();
     passos.forEach((passo, i) => {
       if (passo.tipo !== "questao") return;
+
+      const declarada = passo.questao.aula_relacionada;
+      if (declarada && passosDeLicao[declarada - 1] !== undefined) {
+        mapa.set(i, passosDeLicao[declarada - 1]);
+        return;
+      }
+
+      // Sem vínculo declarado: a aula mais próxima antes da questão. É o
+      // caso das questões embutidas em aula, onde essa aula é a própria.
       let aulaIndice: number | null = null;
       for (let j = i - 1; j >= 0; j--) {
         if (passos[j].tipo === "licao") {

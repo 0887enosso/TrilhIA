@@ -150,7 +150,8 @@
         }
       ],
       "explicacao_acerto": "Exatamente esse é o ponto central do módulo: a plataforma configura os limites, não a IA sozinha.",
-      "explicacao_erro": "Não se trata de uma versão 'falsa', de impossibilidade, nem de instabilidade técnica pontual — é sobre configuração e escopo definidos deliberadamente pela plataforma."
+      "explicacao_erro": "Não se trata de uma versão 'falsa', de impossibilidade, nem de instabilidade técnica pontual — é sobre configuração e escopo definidos deliberadamente pela plataforma.",
+      "aula_relacionada": 3
     },
     {
       "id": "basica-04-q6",
@@ -174,7 +175,8 @@
           "correta": false
         }
       ],
-      "explicacao": "É justamente por reconhecer o padrão repetido — em qualquer tipo de ferramenta, não só técnicas — que você economiza tempo de adaptação."
+      "explicacao": "É justamente por reconhecer o padrão repetido — em qualquer tipo de ferramenta, não só técnicas — que você economiza tempo de adaptação.",
+      "aula_relacionada": 4
     },
     {
       "id": "basica-04-q7",
@@ -203,7 +205,8 @@
         }
       ],
       "explicacao_acerto": "Reconhecer o padrão estrutural de fundo é o que realmente acelera sua adaptação a qualquer ferramenta nova.",
-      "explicacao_erro": "Nome do fornecedor, custo e disponibilidade em mobile são detalhes de superfície — o que importa é reconhecer o padrão estrutural por trás."
+      "explicacao_erro": "Nome do fornecedor, custo e disponibilidade em mobile são detalhes de superfície — o que importa é reconhecer o padrão estrutural por trás.",
+      "aula_relacionada": 4
     }
   ]
 }

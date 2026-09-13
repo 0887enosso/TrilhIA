@@ -155,7 +155,8 @@
           "termo": "Ação",
           "definicao": "O que acontece depois do gatilho, como 'IA resume o conteúdo'"
         }
-      ]
+      ],
+      "aula_relacionada": 2
     },
     {
       "id": "intermediaria-28-q6",
@@ -179,7 +180,8 @@
           "correta": false
         }
       ],
-      "explicacao": "Automação não é voltada para tarefas únicas, e o custo de configuração/manutenção não é zero — é justamente esse custo que define se vale a pena automatizar."
+      "explicacao": "Automação não é voltada para tarefas únicas, e o custo de configuração/manutenção não é zero — é justamente esse custo que define se vale a pena automatizar.",
+      "aula_relacionada": 4
     },
     {
       "id": "intermediaria-28-q7",
@@ -190,7 +192,8 @@
         "Meu critério considera o custo de configurar e manter a automação?",
         "Minha resposta evita a ideia de que 'toda automação vale a pena'?"
       ],
-      "exemplo_de_resposta_forte": "\"Eu automatizaria se a tarefa fictícia acontecer com frequência alta e seguir sempre o mesmo padrão — se for rara ou muito variável, o custo de configurar não compensaria.\""
+      "exemplo_de_resposta_forte": "\"Eu automatizaria se a tarefa fictícia acontecer com frequência alta e seguir sempre o mesmo padrão — se for rara ou muito variável, o custo de configurar não compensaria.\"",
+      "aula_relacionada": 4
     }
   ]
 }

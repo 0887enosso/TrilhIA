@@ -146,7 +146,8 @@
           "termo": "Apresentação interna para a equipe",
           "definicao": "Pode manter termos técnicos e mais detalhe processual"
         }
-      ]
+      ],
+      "aula_relacionada": 2
     },
     {
       "id": "intermediaria-16-q6",
@@ -170,7 +171,8 @@
           "correta": false
         }
       ],
-      "explicacao": "A revisão vale para apresentações internas e externas — o risco de dado sensível ou erro de conteúdo não desaparece pelo público ser interno."
+      "explicacao": "A revisão vale para apresentações internas e externas — o risco de dado sensível ou erro de conteúdo não desaparece pelo público ser interno.",
+      "aula_relacionada": 4
     },
     {
       "id": "intermediaria-16-q7",
@@ -181,7 +183,8 @@
         "Considerei remover ou simplificar dado sensível na versão que vai para o cliente?",
         "Ficou claro que ambas as versões precisam de revisão antes do envio?"
       ],
-      "exemplo_de_resposta_forte": "\"Para o cliente, eu manteria foco em resultado e prazos, com linguagem simples; para a equipe interna, manteria os detalhes processuais e técnicos, revisando as duas antes de enviar.\""
+      "exemplo_de_resposta_forte": "\"Para o cliente, eu manteria foco em resultado e prazos, com linguagem simples; para a equipe interna, manteria os detalhes processuais e técnicos, revisando as duas antes de enviar.\"",
+      "aula_relacionada": 2
     }
   ]
 }

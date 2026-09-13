@@ -150,7 +150,8 @@
           "termo": "Mover documento para a pasta certa",
           "definicao": "Organização automática de arquivos"
         }
-      ]
+      ],
+      "aula_relacionada": 2
     },
     {
       "id": "intermediaria-17-q6",
@@ -174,7 +175,8 @@
           "correta": false
         }
       ],
-      "explicacao": "Não é acompanhamento em tempo integral, mas também não é ausência total — o ideal é supervisão periódica, nem um extremo nem o outro."
+      "explicacao": "Não é acompanhamento em tempo integral, mas também não é ausência total — o ideal é supervisão periódica, nem um extremo nem o outro.",
+      "aula_relacionada": 3
     },
     {
       "id": "intermediaria-17-q7",
@@ -185,7 +187,8 @@
         "Considerei revisar uma amostra dos resultados, não só confiar cegamente?",
         "Minha resposta evita os dois extremos: nem acompanhamento constante, nem ausência total?"
       ],
-      "exemplo_de_resposta_forte": "\"Eu revisaria mensalmente uma amostra de documentos categorizados pela automação, verificando se as regras ainda fazem sentido para os tipos de documento mais recentes.\""
+      "exemplo_de_resposta_forte": "\"Eu revisaria mensalmente uma amostra de documentos categorizados pela automação, verificando se as regras ainda fazem sentido para os tipos de documento mais recentes.\"",
+      "aula_relacionada": 3
     }
   ],
   "conquista_de_bloco": {

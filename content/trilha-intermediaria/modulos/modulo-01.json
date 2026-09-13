@@ -161,7 +161,8 @@
           "correta": false
         }
       ],
-      "explicacao": "Não existe bloqueio técnico nem recusa automática — a estrutura de cinco elementos é um guia para tarefas complexas, não uma exigência universal."
+      "explicacao": "Não existe bloqueio técnico nem recusa automática — a estrutura de cinco elementos é um guia para tarefas complexas, não uma exigência universal.",
+      "aula_relacionada": 4
     },
     {
       "id": "intermediaria-01-q6",
@@ -173,7 +174,8 @@
         "Fornecer o contexto relevante",
         "Definir restrições, se necessário",
         "Especificar o formato esperado da resposta"
-      ]
+      ],
+      "aula_relacionada": 2
     },
     {
       "id": "intermediaria-01-q7",
@@ -184,7 +186,8 @@
         "Incluí pelo menos mais dois elementos além da tarefa (papel, contexto, restrição ou formato)?",
         "Um colega conseguiria entender exatamente o que pedir, sem precisar de explicação adicional?"
       ],
-      "exemplo_de_resposta_forte": "\"Aja como um assistente jurídico. Organize os pontos principais deste parecer fictício em até 5 tópicos, destacando a conclusão final.\""
+      "exemplo_de_resposta_forte": "\"Aja como um assistente jurídico. Organize os pontos principais deste parecer fictício em até 5 tópicos, destacando a conclusão final.\"",
+      "aula_relacionada": 2
     }
   ]
 }

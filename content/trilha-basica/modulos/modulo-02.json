@@ -152,7 +152,8 @@
         }
       ],
       "explicacao_acerto": "Exatamente o conceito de alucinação: texto plausível gerado por padrão, sem checagem factual embutida — e sem que tenha 'copiado' de lugar nenhum.",
-      "explicacao_erro": "As outras opções presumem que a IA consultou ou copiou de alguma fonte — mas ela gera o texto por previsão de padrão, não por consulta a uma fonte específica."
+      "explicacao_erro": "As outras opções presumem que a IA consultou ou copiou de alguma fonte — mas ela gera o texto por previsão de padrão, não por consulta a uma fonte específica.",
+      "aula_relacionada": 3
     },
     {
       "id": "basica-02-q6",
@@ -176,7 +177,8 @@
           "correta": false
         }
       ],
-      "explicacao": "Diferente de uma pessoa insegura, a IA normalmente não sinaliza dúvida — e não existe uma etapa embutida de checagem factual antes da resposta."
+      "explicacao": "Diferente de uma pessoa insegura, a IA normalmente não sinaliza dúvida — e não existe uma etapa embutida de checagem factual antes da resposta.",
+      "aula_relacionada": 3
     },
     {
       "id": "basica-02-q7",
@@ -205,7 +207,8 @@
         }
       ],
       "explicacao_acerto": "Essa é a postura certa — e ela vira 'regra de ouro' no Módulo 8.",
-      "explicacao_erro": "Volume de treinamento, tom detalhado e confirmação por outra IA não substituem uma verificação independente e humana."
+      "explicacao_erro": "Volume de treinamento, tom detalhado e confirmação por outra IA não substituem uma verificação independente e humana.",
+      "aula_relacionada": 4
     }
   ]
 }

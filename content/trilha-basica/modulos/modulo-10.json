@@ -155,7 +155,8 @@
           "correta": false
         }
       ],
-      "explicacao": "A finalidade central é proteção — do cliente, do escritório e do profissional — independentemente do porte do escritório, e não burocracia pela burocracia."
+      "explicacao": "A finalidade central é proteção — do cliente, do escritório e do profissional — independentemente do porte do escritório, e não burocracia pela burocracia.",
+      "aula_relacionada": 4
     },
     {
       "id": "basica-10-q6",
@@ -174,7 +175,8 @@
           "termo": "Uso de IA fora da política aprovada pelo escritório",
           "definicao": "Risco de violação de sigilo, dados ou norma interna"
         }
-      ]
+      ],
+      "aula_relacionada": 3
     },
     {
       "id": "basica-10-q7",
@@ -203,7 +205,8 @@
         }
       ],
       "explicacao_acerto": "Esse é o comportamento de governança correto: consultar política e responsáveis diante de qualquer dúvida real.",
-      "explicacao_erro": "Agir sem ser percebido, evitar tudo por completo ou perguntar à própria IA não são formas confiáveis de resolver uma dúvida de governança."
+      "explicacao_erro": "Agir sem ser percebido, evitar tudo por completo ou perguntar à própria IA não são formas confiáveis de resolver uma dúvida de governança.",
+      "aula_relacionada": 4
     },
     {
       "id": "basica-10-q8",

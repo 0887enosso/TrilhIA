@@ -150,7 +150,8 @@
           "termo": "E-mail comum ou planilha compartilhada",
           "definicao": "Prática insegura, deve ser evitada"
         }
-      ]
+      ],
+      "aula_relacionada": 1
     },
     {
       "id": "intermediaria-27-q6",
@@ -174,7 +175,8 @@
           "correta": false
         }
       ],
-      "explicacao": "O contato com uma API Key não se restringe a administradores de sistema — qualquer colaborador configurando uma automação pode se deparar com uma."
+      "explicacao": "O contato com uma API Key não se restringe a administradores de sistema — qualquer colaborador configurando uma automação pode se deparar com uma.",
+      "aula_relacionada": 4
     },
     {
       "id": "intermediaria-27-q7",
@@ -185,7 +187,8 @@
         "Considerei buscar apoio da equipe técnica antes de prosseguir, em caso de dúvida?",
         "Minha resposta evita tratar isso como algo trivial?"
       ],
-      "exemplo_de_resposta_forte": "\"Antes de inserir, eu verificaria se o campo é realmente protegido (não visível a outros usuários) e, em caso de dúvida, pediria apoio da equipe técnica antes de prosseguir.\""
+      "exemplo_de_resposta_forte": "\"Antes de inserir, eu verificaria se o campo é realmente protegido (não visível a outros usuários) e, em caso de dúvida, pediria apoio da equipe técnica antes de prosseguir.\"",
+      "aula_relacionada": 1
     }
   ]
 }

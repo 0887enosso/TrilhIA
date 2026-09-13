@@ -144,7 +144,8 @@
         }
       ],
       "explicacao_acerto": "Exatamente esse é o uso recomendado: IA gera o rascunho, humano revisa e valida antes da entrega.",
-      "explicacao_erro": "IA em tarefas jurídicas não é proibida por padrão, entregar sem revisão não é correto, e sigilo sobre o uso contraria o princípio de transparência (que veremos no Módulo 10)."
+      "explicacao_erro": "IA em tarefas jurídicas não é proibida por padrão, entregar sem revisão não é correto, e sigilo sobre o uso contraria o princípio de transparência (que veremos no Módulo 10).",
+      "aula_relacionada": 1
     },
     {
       "id": "basica-07-q6",
@@ -168,7 +169,8 @@
           "correta": false
         }
       ],
-      "explicacao": "A ideia central é desenvolver instinto e raciocínio situacional, não seguir uma lista fechada ou uma atualização externa."
+      "explicacao": "A ideia central é desenvolver instinto e raciocínio situacional, não seguir uma lista fechada ou uma atualização externa.",
+      "aula_relacionada": 4
     },
     {
       "id": "basica-07-q7",
@@ -197,7 +199,8 @@
         }
       ],
       "explicacao_acerto": "Essa é a pergunta-guia do módulo, e ela funciona para qualquer tarefa nova que aparecer.",
-      "explicacao_erro": "Velocidade, curiosidade pessoal ou hábito dos colegas não substituem a avaliação de risco e responsabilidade da tarefa em si."
+      "explicacao_erro": "Velocidade, curiosidade pessoal ou hábito dos colegas não substituem a avaliação de risco e responsabilidade da tarefa em si.",
+      "aula_relacionada": 3
     }
   ]
 }

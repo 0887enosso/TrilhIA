@@ -21,6 +21,8 @@ Esta trilha foi desenhada já incorporando os achados do relatório `/mnt/user-d
 
 Segue a mesma estrutura documentada no README da Trilha Básica (`modulo_id`, `trilha`, `ordem`, `titulo`, `descricao_curta`, `tempo_estimado_min`, `objetivos_aprendizagem`, **`aulas` com atividade embutida, `atividade_final`** — atualizado na Fase 2, ver o README da básica para o racional completo da mudança), com os seguintes acréscimos:
 
+> **Vale aqui também a regra de vínculo aula↔questão** documentada no README da Trilha Básica ("Regra não negociável: toda questão tem que ter uma aula que a responde"): questão de aula tem que ser respondível pela própria aula, e toda questão de `atividade_final` tem que declarar `"aula_relacionada": n`. Há teste automatizado recusando conteúdo que quebre a segunda parte.
+
 ### Tipos de questão adicionais
 
 **`correcao_prompt`** — apresenta um prompt fictício com um problema real, e pede diagnóstico ou reformulação:

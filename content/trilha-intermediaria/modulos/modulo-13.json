@@ -151,7 +151,8 @@
           "termo": "Citações e fundamentação jurídica",
           "definicao": "Verificação humana obrigatória"
         }
-      ]
+      ],
+      "aula_relacionada": 3
     },
     {
       "id": "intermediaria-13-q6",
@@ -175,7 +176,8 @@
           "correta": false
         }
       ],
-      "explicacao": "Checagem de citação não depende do tamanho da peça, e o checklist é justamente a ferramenta que apoia quem assina a peça a cumprir essa responsabilidade."
+      "explicacao": "Checagem de citação não depende do tamanho da peça, e o checklist é justamente a ferramenta que apoia quem assina a peça a cumprir essa responsabilidade.",
+      "aula_relacionada": 4
     },
     {
       "id": "intermediaria-13-q7",
@@ -186,7 +188,8 @@
         "Incluí a restrição de não inventar fatos ou fundamentos?",
         "Ficou claro que essa estrutura ainda precisa ser preenchida e revisada por um responsável?"
       ],
-      "exemplo_de_resposta_forte": "\"Gere apenas a estrutura geral de uma petição inicial de cobrança (sem fundamentação jurídica), sem inventar nenhum fato ou fundamento não fornecido por mim.\""
+      "exemplo_de_resposta_forte": "\"Gere apenas a estrutura geral de uma petição inicial de cobrança (sem fundamentação jurídica), sem inventar nenhum fato ou fundamento não fornecido por mim.\"",
+      "aula_relacionada": 2
     }
   ]
 }

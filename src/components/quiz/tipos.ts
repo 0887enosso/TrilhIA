@@ -1,6 +1,16 @@
 // Espelha o formato que sanitizarQuestaoParaCliente() (src/lib/content.ts)
 // devolve para cada tipo de questão — nunca inclui gabarito.
-type QuestaoBase = { id: string; tipo: string; enunciado: string };
+type QuestaoBase = {
+  id: string;
+  tipo: string;
+  enunciado: string;
+  /** Índice (base 1) da aula deste módulo que ensina a resposta. Presente nas
+   *  questões de atividade final; nas questões embutidas numa aula é
+   *  dispensável, porque a aula é a que contém a questão. */
+  aula_relacionada?: number;
+  /** Id de um módulo anterior, nas questões que revisam matéria já vista. */
+  revisao_de?: string;
+};
 
 export type QuestaoMultiplaEscolha = QuestaoBase & {
   tipo: "multipla_escolha" | "correcao_prompt";

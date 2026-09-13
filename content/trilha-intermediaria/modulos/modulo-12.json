@@ -141,7 +141,8 @@
         "Avaliar a sensibilidade do dado envolvido",
         "Verificar se a ferramenta pretendida é aprovada para esse tipo de dado",
         "Só então iniciar o uso da ferramenta escolhida"
-      ]
+      ],
+      "aula_relacionada": 2
     },
     {
       "id": "intermediaria-12-q6",
@@ -165,7 +166,8 @@
           "correta": false
         }
       ],
-      "explicacao": "Comparação entre ferramentas é possível, mas o critério relevante é adequação situacional, não um ranking absoluto de 'melhor ferramenta do mercado'."
+      "explicacao": "Comparação entre ferramentas é possível, mas o critério relevante é adequação situacional, não um ranking absoluto de 'melhor ferramenta do mercado'.",
+      "aula_relacionada": 4
     },
     {
       "id": "intermediaria-12-q7",
@@ -176,7 +178,8 @@
         "Considerei a sensibilidade do dado (documentos de cliente)?",
         "Minha decisão final depende da aprovação da ferramenta pelo escritório?"
       ],
-      "exemplo_de_resposta_forte": "\"Eu escolheria a ferramenta que estiver formalmente aprovada pelo escritório para dados de cliente, mesmo que a outra pareça mais rápida ou popular.\""
+      "exemplo_de_resposta_forte": "\"Eu escolheria a ferramenta que estiver formalmente aprovada pelo escritório para dados de cliente, mesmo que a outra pareça mais rápida ou popular.\"",
+      "aula_relacionada": 2
     }
   ],
   "conquista_de_bloco": {

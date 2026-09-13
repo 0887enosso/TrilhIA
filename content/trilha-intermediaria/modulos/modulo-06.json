@@ -151,7 +151,8 @@
           "correta": false
         }
       ],
-      "explicacao": "Refinar não é uma função experimental nem sinal de despreparo — é o uso esperado e recomendado, retomando o que já vimos no Módulo 5 da trilha básica."
+      "explicacao": "Refinar não é uma função experimental nem sinal de despreparo — é o uso esperado e recomendado, retomando o que já vimos no Módulo 5 da trilha básica.",
+      "aula_relacionada": 4
     },
     {
       "id": "intermediaria-06-q6",
@@ -162,7 +163,8 @@
         "Ajustar um elemento por vez (objetivo, contexto, formato ou restrição)",
         "Reenviar o prompt ajustado",
         "Comparar o novo resultado com o que você realmente precisava"
-      ]
+      ],
+      "aula_relacionada": 2
     },
     {
       "id": "intermediaria-06-q7",
@@ -173,7 +175,8 @@
         "Ficou claro o que exatamente deve ser analisado no contrato?",
         "Incluí pelo menos um elemento a mais (contexto, formato ou restrição) além da tarefa?"
       ],
-      "exemplo_de_resposta_forte": "\"Analise este contrato fictício de prestação de serviços e liste, em tópicos, as cláusulas que podem representar risco financeiro para o contratante.\""
+      "exemplo_de_resposta_forte": "\"Analise este contrato fictício de prestação de serviços e liste, em tópicos, as cláusulas que podem representar risco financeiro para o contratante.\"",
+      "aula_relacionada": 3
     }
   ],
   "conquista_de_bloco": {

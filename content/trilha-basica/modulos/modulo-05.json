@@ -155,7 +155,8 @@
           "correta": false
         }
       ],
-      "explicacao": "Iteração é parte central de como a ferramenta foi pensada para funcionar — em qualquer plano, gratuito ou pago."
+      "explicacao": "Iteração é parte central de como a ferramenta foi pensada para funcionar — em qualquer plano, gratuito ou pago.",
+      "aula_relacionada": 3
     },
     {
       "id": "basica-05-q6",
@@ -174,7 +175,8 @@
           "termo": "Pedido de ajuste na resposta",
           "definicao": "A IA gera uma nova versão considerando o feedback dado"
         }
-      ]
+      ],
+      "aula_relacionada": 2
     },
     {
       "id": "basica-05-q7",
@@ -203,7 +205,8 @@
         }
       ],
       "explicacao_acerto": "Na maioria das vezes, refinar o pedido resolve — antes mesmo de considerar trocar de ferramenta.",
-      "explicacao_erro": "Trocar de ferramenta, desistir da tarefa ou apenas repetir o mesmo pedido raramente resolvem um problema de contexto insuficiente."
+      "explicacao_erro": "Trocar de ferramenta, desistir da tarefa ou apenas repetir o mesmo pedido raramente resolvem um problema de contexto insuficiente.",
+      "aula_relacionada": 3
     },
     {
       "id": "basica-05-q8",

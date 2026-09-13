@@ -151,7 +151,8 @@
           "termo": "Pedido de apenas 'mais texto', sem estrutura",
           "definicao": "Não é a mesma coisa que raciocínio passo a passo"
         }
-      ]
+      ],
+      "aula_relacionada": 4
     },
     {
       "id": "intermediaria-04-q6",
@@ -175,7 +176,8 @@
           "correta": false
         }
       ],
-      "explicacao": "Não há verificação automática por etapa nem limitação a modelos antigos — a técnica melhora a qualidade do raciocínio, mas não substitui a revisão humana final."
+      "explicacao": "Não há verificação automática por etapa nem limitação a modelos antigos — a técnica melhora a qualidade do raciocínio, mas não substitui a revisão humana final.",
+      "aula_relacionada": 2
     },
     {
       "id": "intermediaria-04-q7",
@@ -186,7 +188,8 @@
         "As condições a verificar estão claras no prompt?",
         "Ficou claro que a conclusão final deve vir só depois da análise de cada condição?"
       ],
-      "exemplo_de_resposta_forte": "\"Verifique, uma condição de cada vez, se este contrato atende a: (1) prazo mínimo de 12 meses, (2) cláusula de reajuste anual, (3) multa por rescisão antecipada. Explique o raciocínio de cada condição antes do veredito final.\""
+      "exemplo_de_resposta_forte": "\"Verifique, uma condição de cada vez, se este contrato atende a: (1) prazo mínimo de 12 meses, (2) cláusula de reajuste anual, (3) multa por rescisão antecipada. Explique o raciocínio de cada condição antes do veredito final.\"",
+      "aula_relacionada": 1
     }
   ]
 }

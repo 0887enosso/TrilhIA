@@ -151,7 +151,8 @@
           "termo": "Avaliar se um argumento jurídico está correto",
           "definicao": "Sempre julgamento humano"
         }
-      ]
+      ],
+      "aula_relacionada": 2
     },
     {
       "id": "intermediaria-09-q6",
@@ -175,7 +176,8 @@
           "correta": false
         }
       ],
-      "explicacao": "Não há relação com tamanho do documento nem prejuízo de velocidade — é uma restrição de conteúdo, útil em qualquer revisão."
+      "explicacao": "Não há relação com tamanho do documento nem prejuízo de velocidade — é uma restrição de conteúdo, útil em qualquer revisão.",
+      "aula_relacionada": 4
     },
     {
       "id": "intermediaria-09-q7",
@@ -186,7 +188,8 @@
         "Incluí a restrição de não inventar fatos ou fundamentos não fornecidos?",
         "Ficou claro que o resultado é um ponto de partida, não uma versão final pronta?"
       ],
-      "exemplo_de_resposta_forte": "\"Aja como um advogado redator de contratos. Redija uma cláusula de confidencialidade entre duas empresas fictícias, sem inventar nenhum detalhe além do que eu forneci, em formato de cláusula contratual padrão.\""
+      "exemplo_de_resposta_forte": "\"Aja como um advogado redator de contratos. Redija uma cláusula de confidencialidade entre duas empresas fictícias, sem inventar nenhum detalhe além do que eu forneci, em formato de cláusula contratual padrão.\"",
+      "aula_relacionada": 3
     }
   ]
 }

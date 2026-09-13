@@ -151,7 +151,8 @@
           "termo": "Conferir cada citação antes de usar",
           "definicao": "Você mesmo"
         }
-      ]
+      ],
+      "aula_relacionada": 4
     },
     {
       "id": "intermediaria-08-q6",
@@ -175,7 +176,8 @@
           "correta": false
         }
       ],
-      "explicacao": "Não há restrição de prazo das decisões, e identificar padrões em material já confirmado é exatamente um dos bons usos da IA descritos no módulo."
+      "explicacao": "Não há restrição de prazo das decisões, e identificar padrões em material já confirmado é exatamente um dos bons usos da IA descritos no módulo.",
+      "aula_relacionada": 2
     },
     {
       "id": "intermediaria-08-q7",
@@ -186,7 +188,8 @@
         "Pedi um critério claro de organização (por tema, por data, por resultado)?",
         "Lembrei de que ainda preciso conferir cada citação organizada antes de usar?"
       ],
-      "exemplo_de_resposta_forte": "\"Organize estas 10 decisões fictícias já confirmadas sobre cláusulas de rescisão contratual em três grupos temáticos, destacando o entendimento predominante em cada grupo.\""
+      "exemplo_de_resposta_forte": "\"Organize estas 10 decisões fictícias já confirmadas sobre cláusulas de rescisão contratual em três grupos temáticos, destacando o entendimento predominante em cada grupo.\"",
+      "aula_relacionada": 4
     }
   ]
 }

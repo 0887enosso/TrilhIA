@@ -160,7 +160,8 @@
         }
       ],
       "explicacao_acerto": "O corretor preditivo aprende com seus padrões de digitação e muda as sugestões com o tempo — isso é aprendizado de padrão, a marca registrada da IA.",
-      "explicacao_erro": "As outras opções seguem uma regra fixa e sempre igual (tocar no horário certo, somar, ordenar) — não há aprendizado de padrão envolvido, então não contam como IA."
+      "explicacao_erro": "As outras opções seguem uma regra fixa e sempre igual (tocar no horário certo, somar, ordenar) — não há aprendizado de padrão envolvido, então não contam como IA.",
+      "aula_relacionada": 3
     },
     {
       "id": "basica-01-q6",
@@ -184,7 +185,8 @@
           "correta": false
         }
       ],
-      "explicacao": "O que caracteriza a IA Generativa é gerar algo novo a partir de padrões — não ser a única categoria de ferramenta no mercado, nem copiar textos prontos."
+      "explicacao": "O que caracteriza a IA Generativa é gerar algo novo a partir de padrões — não ser a única categoria de ferramenta no mercado, nem copiar textos prontos.",
+      "aula_relacionada": 2
     },
     {
       "id": "basica-01-q7",
@@ -213,7 +215,8 @@
         }
       ],
       "explicacao_acerto": "Essa é a atitude certa desde já — e ela vai ficar ainda mais clara, com exemplos concretos, no Módulo 8.",
-      "explicacao_erro": "Cuidado: volume de treinamento não elimina o risco, o erro não se restringe a perguntas técnicas, e a frequência não muda o fato de que toda resposta merece verificação."
+      "explicacao_erro": "Cuidado: volume de treinamento não elimina o risco, o erro não se restringe a perguntas técnicas, e a frequência não muda o fato de que toda resposta merece verificação.",
+      "aula_relacionada": 4
     }
   ]
 }
