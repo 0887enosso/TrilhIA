@@ -41,6 +41,23 @@ Este documento cobre a transição de "projeto gerado em conversa" para "projeto
 5. Clique em **Deploy**.
 6. Depois do primeiro deploy, confira em *Project → Settings → Cron Jobs* se o job semanal apareceu — a Vercel lê o `vercel.json` automaticamente. **Não precisa configurar nenhum header manualmente** — a Vercel injeta `Authorization: Bearer <CRON_SECRET>` sozinha em toda chamada de cron, usando o valor configurado no passo 3.
 
+### Região da função: o item que mais pesa na velocidade
+
+`vercel.json` fixa `"regions": ["gru1"]` (São Paulo). **Não remova isso**, e confira depois de cada mudança de configuração do projeto.
+
+Sem essa linha, a Vercel executa as funções em `iad1` (Washington) por padrão. O banco fica em `sa-east-1` (São Paulo), então **cada consulta atravessa o continente duas vezes** — e uma página do app faz cerca de 10 consultas.
+
+Foi medido neste projeto, com o deploy rodando em `iad1`:
+
+| Tela | Tempo com função em `iad1` |
+|---|---|
+| `/inicio` | 1,8 s |
+| `/trilha/basica` | 1,8 s |
+| `/conquistas` | 2,7 s |
+| `/liga` | 3,2 s |
+
+O sintoma é fácil de confundir com "app lento" ou "banco lento", quando a causa é só distância. Para diagnosticar, olhe o header `x-vercel-id` de qualquer resposta: ele vem no formato `<borda>::<região da função>::<id>`. Se a segunda parte não for `gru1`, as funções estão longe do banco.
+
 ### Duas coisas específicas do plano Vercel para conferir
 
 - **Plano Hobby (gratuito) só permite cron no máximo uma vez por dia.** O nosso roda uma vez por *semana* (`0 6 * * 1` no `vercel.json`), então está dentro do limite.
