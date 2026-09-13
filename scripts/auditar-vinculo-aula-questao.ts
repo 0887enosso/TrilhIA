@@ -116,7 +116,10 @@ for (const trilha of TRILHAS) {
     const aulas = modulo.aulas ?? [];
     if (aulas.length === 0) continue;
 
-    const textosAulas = aulas.map(textoDaAula);
+    // Anotado porque `modulo` vem de JSON.parse (ou seja, `any`): sem isto o
+    // tipo se perde aqui e os `.map()` mais abaixo recebem parâmetro
+    // implicitamente `any`, o que o `next build` rejeita ao checar tipos.
+    const textosAulas: string[] = aulas.map(textoDaAula);
 
     // --- Questões embutidas em cada aula ---
     aulas.forEach((aula: any, i: number) => {
