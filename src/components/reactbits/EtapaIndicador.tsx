@@ -11,7 +11,16 @@
 // burro, controlado de fora pelo estado que o ModuloClient já mantém.
 export function EtapaIndicador({ total, atual }: { total: number; atual: number }) {
   return (
-    <div className="flex items-center gap-1" role="progressbar" aria-valuemin={1} aria-valuemax={total} aria-valuenow={atual + 1}>
+    // `flex-wrap`: um módulo pode ter 15+ passos, e em fileira única isso
+    // estoura a largura de uma tela de celular. Quebrando em linhas, o
+    // indicador se adapta em vez de arrastar a página junto.
+    <div
+      className="flex flex-wrap items-center gap-y-1"
+      role="progressbar"
+      aria-valuemin={1}
+      aria-valuemax={total}
+      aria-valuenow={atual + 1}
+    >
       {Array.from({ length: total }, (_, i) => (
         <div key={i} className="flex items-center">
           <span

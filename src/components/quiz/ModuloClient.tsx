@@ -379,9 +379,15 @@ export function ModuloClient({ trilha, moduloId }: { trilha: TrilhaId; moduloId:
 
   return (
     <div className="flex flex-col gap-6">
-      <div className="flex items-center justify-between">
-        <div>
-          <p className="font-mono text-xs uppercase tracking-wide text-ink-faint">{conteudo.titulo}</p>
+      {/* `flex-wrap` + `min-w-0`: num módulo com 15+ passos, o indicador de
+          etapas é largo, e sem isso ele empurrava a página inteira para além
+          da largura da tela no celular — a página ficava com 514px de
+          conteúdo numa tela de 390px e as alternativas saíam cortadas. */}
+      <div className="flex flex-wrap items-center justify-between gap-y-2">
+        <div className="min-w-0 flex-1">
+          <p className="text-xs font-extrabold uppercase tracking-widest text-ink-faint">
+            {conteudo.titulo}
+          </p>
           <div className="mt-2">
             <EtapaIndicador total={passos.length} atual={indice} />
           </div>

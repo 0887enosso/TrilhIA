@@ -34,11 +34,11 @@ function deslocamentoDe(indice: number): number {
  *  caminho curvo sem precisar calcular geometria de curva de verdade. */
 function TrechoDeTrilha({ de, para }: { de: number; para: number }) {
   return (
-    <div aria-hidden="true" className="flex flex-col items-center gap-2 py-1">
-      {[0.25, 0.5, 0.75].map((t) => (
+    <div aria-hidden="true" className="flex flex-col items-center gap-1.5 py-1">
+      {[0.2, 0.4, 0.6, 0.8].map((t) => (
         <span
           key={t}
-          className="desloca-trilha h-2 w-2 rounded-full bg-rule-strong"
+          className="desloca-trilha h-2.5 w-2.5 rounded-full bg-ink-faint/60"
           style={{ "--desloc": de + (para - de) * t } as React.CSSProperties}
         />
       ))}
@@ -108,7 +108,7 @@ export function MapaTrilha({ trilha, modulos }: { trilha: TrilhaId; modulos: Mod
             <span className="mt-2 block max-w-[15rem] text-center">
               <span
                 className={`block text-sm font-extrabold leading-tight ${
-                  bloqueado ? "text-ink-faint" : "text-ink"
+                  bloqueado ? "text-ink-soft" : "text-ink"
                 }`}
               >
                 {modulo.titulo}
@@ -156,7 +156,11 @@ export function MapaTrilha({ trilha, modulos }: { trilha: TrilhaId; modulos: Mod
                 <div
                   title="Conclua o módulo anterior para desbloquear este."
                   aria-label={`${modulo.titulo} — bloqueado. Conclua o módulo anterior para desbloquear.`}
-                  className="flex cursor-not-allowed flex-col items-center opacity-60"
+                  /* Sem `opacity`: o estado bloqueado já é dito pelo cadeado, pela
+                     borda tracejada e pela cor mais fraca do título. Empilhar
+                     opacidade sobre uma cor que já é clara deixava o título
+                     ilegível no mapa (era o defeito mais visível da captura). */
+                  className="flex cursor-not-allowed flex-col items-center"
                 >
                   {conteudo}
                 </div>
