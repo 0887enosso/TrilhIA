@@ -52,6 +52,61 @@
       "corpo": "IA, Machine Learning e IA Generativa não são sinônimos — são camadas, uma dentro da outra, como bonecas russas.",
       "destaque": "IA é o campo inteiro (qualquer sistema com comportamento 'inteligente'). Machine Learning é uma fatia dele (sistemas que aprendem padrões a partir de dados, em vez de seguir regras fixas). IA Generativa é uma fatia ainda mais específica (sistemas que criam conteúdo novo a partir do que aprenderam) — é o que está por trás do ChatGPT, do Claude e do Gemini.",
       "atividade": {
+        "id": "basica-01-q3",
+        "tipo": "associacao",
+        "enunciado": "Ligue cada termo à sua definição correta.",
+        "pares": [
+          {
+            "termo": "IA",
+            "definicao": "Campo amplo que estuda sistemas com comportamento inteligente"
+          },
+          {
+            "termo": "Machine Learning",
+            "definicao": "Sistemas que aprendem padrões a partir de dados, em vez de seguir regras fixas"
+          },
+          {
+            "termo": "IA Generativa",
+            "definicao": "Sistemas que criam conteúdo novo a partir do que aprenderam"
+          }
+        ]
+      }
+    },
+    {
+      "ordem": 3,
+      "titulo_aula": "Você já usa IA. Só não tinha parado pra pensar nisso",
+      "corpo": "Corretor preditivo do celular. Recomendação de série no streaming. Filtro de spam no e-mail. A rota mais rápida sugerida pelo GPS. Nada disso é novidade de 2023 — a novidade foi a IA generativa virar acessível numa simples conversa de chat, como se fosse uma pessoa do outro lado da tela.",
+      "atividade": {
+        "id": "basica-01-q4",
+        "tipo": "completar_lacuna",
+        "enunciado": "Corretor preditivo e filtro de spam já usavam IA muito ___1___ do ChatGPT existir. A novidade da IA generativa foi ela virar ___2___ numa simples conversa de chat.",
+        "lacunas": [
+          {
+            "posicao": 1,
+            "opcoes": [
+              "antes",
+              "depois",
+              "além"
+            ],
+            "correta": "antes"
+          },
+          {
+            "posicao": 2,
+            "opcoes": [
+              "acessível",
+              "obrigatória",
+              "gratuita"
+            ],
+            "correta": "acessível"
+          }
+        ]
+      }
+    },
+    {
+      "ordem": 4,
+      "titulo_aula": "Dois mitos que valem a pena derrubar agora",
+      "corpo": "'A IA pensa como um humano.' Não pensa: ela prevê o que é estatisticamente mais provável, não o que é certo. 'Se a IA respondeu, é porque está certo.' Esse é o mito mais perigoso da lista — uma resposta errada pode vir com exatamente a mesma confiança de uma resposta certa.",
+      "destaque": "Guarda essa segunda ideia. A gente volta nela com força lá no Módulo 8.",
+      "atividade": {
         "id": "basica-01-q2",
         "tipo": "verdadeiro_falso",
         "enunciado": "IA pensa e raciocina exatamente como um ser humano.",
@@ -74,61 +129,6 @@
           }
         ],
         "explicacao": "O ponto não é se ela 'merece' o rótulo de inteligente, nem que aprender com texto humano implique pensar como humano — o mecanismo de previsão de padrão é estruturalmente diferente do raciocínio consciente."
-      }
-    },
-    {
-      "ordem": 3,
-      "titulo_aula": "Você já usa IA. Só não tinha parado pra pensar nisso",
-      "corpo": "Corretor preditivo do celular. Recomendação de série no streaming. Filtro de spam no e-mail. A rota mais rápida sugerida pelo GPS. Nada disso é novidade de 2023 — a novidade foi a IA generativa virar acessível numa simples conversa de chat, como se fosse uma pessoa do outro lado da tela.",
-      "atividade": {
-        "id": "basica-01-q3",
-        "tipo": "associacao",
-        "enunciado": "Ligue cada termo à sua definição correta.",
-        "pares": [
-          {
-            "termo": "IA",
-            "definicao": "Campo amplo que estuda sistemas com comportamento inteligente"
-          },
-          {
-            "termo": "Machine Learning",
-            "definicao": "Sistemas que aprendem padrões a partir de dados, em vez de seguir regras fixas"
-          },
-          {
-            "termo": "IA Generativa",
-            "definicao": "Sistemas que criam conteúdo novo a partir do que aprenderam"
-          }
-        ]
-      }
-    },
-    {
-      "ordem": 4,
-      "titulo_aula": "Dois mitos que valem a pena derrubar agora",
-      "corpo": "'A IA pensa como um humano.' Não pensa: ela prevê o que é estatisticamente mais provável, não o que é certo. 'Se a IA respondeu, é porque está certo.' Esse é o mito mais perigoso da lista — uma resposta errada pode vir com exatamente a mesma confiança de uma resposta certa.",
-      "destaque": "Guarda essa segunda ideia. A gente volta nela com força lá no Módulo 8.",
-      "atividade": {
-        "id": "basica-01-q4",
-        "tipo": "completar_lacuna",
-        "enunciado": "IA Generativa é um tipo de ___1___ que ___2___ novo conteúdo com base em padrões aprendidos.",
-        "lacunas": [
-          {
-            "posicao": 1,
-            "opcoes": [
-              "Machine Learning",
-              "banco de dados",
-              "sistema operacional"
-            ],
-            "correta": "Machine Learning"
-          },
-          {
-            "posicao": 2,
-            "opcoes": [
-              "cria",
-              "armazena",
-              "apaga"
-            ],
-            "correta": "cria"
-          }
-        ]
       }
     }
   ],

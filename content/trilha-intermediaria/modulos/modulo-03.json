@@ -81,27 +81,6 @@
       "titulo_aula": "Quando few-shot vale a pena",
       "corpo": "Especialmente útil em tarefas repetitivas com um padrão específico de formato ou estilo — como preencher um mesmo tipo de resumo padronizado para vários processos parecidos.",
       "atividade": {
-        "id": "intermediaria-03-q3",
-        "tipo": "completar_lacuna",
-        "enunciado": "Em few-shot, os exemplos fornecidos funcionam como um ___ que a IA tende a seguir nos casos seguintes.",
-        "lacunas": [
-          {
-            "posicao": 1,
-            "opcoes": [
-              "padrão/modelo",
-              "obstáculo",
-              "sorteio"
-            ],
-            "correta": "padrão/modelo"
-          }
-        ]
-      }
-    },
-    {
-      "ordem": 4,
-      "titulo_aula": "O cuidado com few-shot",
-      "corpo": "Os exemplos que você dá moldam fortemente o resultado — um exemplo com erro tende a ser repetido pela IA nos próximos casos, porque ela não sabe distinguir se o exemplo está certo ou errado.",
-      "atividade": {
         "id": "intermediaria-03-q4",
         "tipo": "correcao_prompt",
         "enunciado": "Um colaborador precisa resumir 15 processos sempre no mesmo formato padronizado, mas está pedindo um por um com prompts soltos e diferentes entre si. Qual abordagem corrigiria esse fluxo?",
@@ -130,6 +109,27 @@
         ],
         "explicacao_acerto": "Exatamente o caso de uso ideal para few-shot: tarefa repetitiva, com um padrão de formato que vale a pena fixar uma vez.",
         "explicacao_erro": "O problema aqui não é falta de tecnologia nem volume inviável — é a ausência de um padrão fixado com exemplo, que causa inconsistência entre os resumos."
+      }
+    },
+    {
+      "ordem": 4,
+      "titulo_aula": "O cuidado com few-shot",
+      "corpo": "Os exemplos que você dá moldam fortemente o resultado — um exemplo com erro tende a ser repetido pela IA nos próximos casos, porque ela não sabe distinguir se o exemplo está certo ou errado.",
+      "atividade": {
+        "id": "intermediaria-03-q3",
+        "tipo": "completar_lacuna",
+        "enunciado": "Se o exemplo que você forneceu em few-shot contém um erro, a IA tende a ___ esse erro nos casos seguintes.",
+        "lacunas": [
+          {
+            "posicao": 1,
+            "opcoes": [
+              "repetir",
+              "corrigir",
+              "ignorar"
+            ],
+            "correta": "repetir"
+          }
+        ]
       }
     }
   ],

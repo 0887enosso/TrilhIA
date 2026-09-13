@@ -16,70 +16,42 @@
     {
       "ordem": 1,
       "titulo_aula": "O problema da busca por palavra exata",
-      "corpo": "Buscar 'rescisão' não encontra um documento que fala em 'término do contrato' — mesmo que o significado seja praticamente o mesmo.",
+      "corpo": "Buscar 'rescisão' não encontra um documento que fala em 'término do contrato' — mesmo que o significado seja praticamente o mesmo.\n\nO motivo é simples: a busca tradicional compara as letras que você digitou com as letras que estão no texto. Se não baterem, o documento não aparece, por mais próximo que seja o assunto.\n\nNo vocabulário jurídico isso dói especialmente, porque a mesma ideia costuma ter três ou quatro nomes diferentes.",
       "atividade": {
         "id": "intermediaria-21-q1",
         "tipo": "multipla_escolha",
-        "enunciado": "O que é um embedding, de forma simples?",
+        "enunciado": "Você busca \"rescisão\" e um parecer que trata de \"término do contrato\" não aparece nos resultados. Por que isso acontece numa busca tradicional?",
         "alternativas": [
           {
             "id": "a",
-            "texto": "Uma representação numérica de um texto que captura seu significado, permitindo comparar textos por similaridade.",
+            "texto": "Porque a busca tradicional compara as letras digitadas com as letras do texto, e não o significado por trás delas.",
             "correta": true
           },
           {
             "id": "b",
-            "texto": "Um tipo de erro que ocorre quando a IA não encontra nenhum resultado para uma busca.",
+            "texto": "Porque documentos jurídicos precisam ser reindexados manualmente antes de aparecer em qualquer resultado de busca.",
             "correta": false
           },
           {
             "id": "c",
-            "texto": "Um recurso exclusivo de ferramentas de busca tradicional, sem relação com IA.",
+            "texto": "Porque a busca tradicional só considera os termos que aparecem no título do documento, ignorando o corpo.",
             "correta": false
           },
           {
             "id": "d",
-            "texto": "Uma senha usada para autenticar buscas dentro de um sistema.",
+            "texto": "Porque a busca descarta automaticamente documentos que tratem do mesmo tema em mais de uma cláusula.",
             "correta": false
           }
         ],
-        "explicacao_acerto": "Isso mesmo — é uma representação numérica do significado do texto.",
-        "explicacao_erro": "Embedding não é um erro, não é exclusivo de busca tradicional (é central em busca com IA), e não é senha de autenticação."
+        "explicacao_acerto": "Exatamente — a comparação é literal. Se as letras não batem, o documento não aparece, por mais próximo que o assunto seja.",
+        "explicacao_erro": "Não é questão de reindexação, de título nem de número de cláusulas: a busca tradicional simplesmente não enxerga significado, só correspondência de texto."
       }
     },
     {
       "ordem": 2,
       "titulo_aula": "O que é um embedding",
       "corpo": "Uma forma de transformar um texto em uma espécie de 'coordenada' numérica que representa seu significado. Textos com significado parecido acabam com coordenadas próximas entre si.",
-      "atividade": {
-        "id": "intermediaria-21-q2",
-        "tipo": "verdadeiro_falso",
-        "enunciado": "Busca por palavra exata e busca semântica são a mesma coisa.",
-        "resposta_correta": false,
-        "justificativas": [
-          {
-            "id": "a",
-            "texto": "Falso — busca por palavra exata encontra apenas correspondência literal; busca semântica encontra por significado, mesmo com palavras diferentes.",
-            "correta": true
-          },
-          {
-            "id": "b",
-            "texto": "Falso, porque busca semântica só existe em textos escritos em inglês.",
-            "correta": false
-          },
-          {
-            "id": "c",
-            "texto": "Verdadeiro, as duas sempre retornam exatamente os mesmos resultados.",
-            "correta": false
-          }
-        ],
-        "explicacao": "Busca semântica não é limitada a um idioma específico, e as duas abordagens frequentemente retornam resultados diferentes — essa é justamente a vantagem da busca semântica."
-      }
-    },
-    {
-      "ordem": 3,
-      "titulo_aula": "Por que isso importa",
-      "corpo": "Permite busca semântica — encontrar documentos relevantes pelo significado, não apenas pela palavra exata que foi digitada.",
+      "destaque": "Pensa num mapa: 'rescisão' e 'término do contrato' cairiam praticamente no mesmo ponto, enquanto 'audiência de conciliação' ficaria num bairro distante.",
       "atividade": {
         "id": "intermediaria-21-q3",
         "tipo": "completar_lacuna",
@@ -98,9 +70,9 @@
       }
     },
     {
-      "ordem": 4,
-      "titulo_aula": "Conectando com RAG",
-      "corpo": "A etapa de busca (retrieval) do RAG normalmente usa embeddings para encontrar os documentos mais relevantes para aquela pergunta específica.",
+      "ordem": 3,
+      "titulo_aula": "Por que isso importa",
+      "corpo": "Permite busca semântica — encontrar documentos relevantes pelo significado, não apenas pela palavra exata que foi digitada.",
       "atividade": {
         "id": "intermediaria-21-q4",
         "tipo": "multipla_escolha",
@@ -129,6 +101,35 @@
         ],
         "explicacao_acerto": "Exatamente — embeddings permitem reconhecer que 'rescisão' e 'término do contrato' têm significado próximo.",
         "explicacao_erro": "Tamanho de fonte, tradução e redução de páginas não resolvem o problema de busca por significado."
+      }
+    },
+    {
+      "ordem": 4,
+      "titulo_aula": "Conectando com RAG",
+      "corpo": "A etapa de busca (retrieval) do RAG normalmente usa embeddings para encontrar os documentos mais relevantes para aquela pergunta específica.\n\nÉ isso que permite o sistema achar o parecer certo mesmo quando a pergunta foi escrita com outras palavras: a comparação acontece entre significados, não entre os termos que você digitou.",
+      "atividade": {
+        "id": "intermediaria-21-q2",
+        "tipo": "verdadeiro_falso",
+        "enunciado": "Sem embeddings, a etapa de busca de um sistema RAG só encontraria documentos que repetem exatamente as palavras usadas na pergunta.",
+        "resposta_correta": true,
+        "justificativas": [
+          {
+            "id": "a",
+            "texto": "Verdadeiro — é o embedding que permite comparar significados nessa etapa, em vez de depender das palavras exatas da pergunta.",
+            "correta": true
+          },
+          {
+            "id": "b",
+            "texto": "Falso — a etapa de busca do RAG seleciona os documentos por ordem de data, sem comparar o conteúdo deles.",
+            "correta": false
+          },
+          {
+            "id": "c",
+            "texto": "Falso — o RAG dispensa qualquer etapa de busca, porque o modelo já conhece todos os documentos internos.",
+            "correta": false
+          }
+        ],
+        "explicacao": "A busca do RAG não é por data nem dispensável: sem ela, o modelo não teria acesso aos documentos internos (Módulo 19). O embedding é justamente o que faz essa busca enxergar significado."
       }
     }
   ],

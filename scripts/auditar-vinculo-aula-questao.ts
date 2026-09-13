@@ -24,14 +24,21 @@ const TRILHAS = [
 // Limiar abaixo do qual a questão é considerada desancorada da sua aula.
 const LIMIAR_ALERTA = 0.5;
 
+// Só palavras funcionais e andaime de enunciado ("ligue cada opção à
+// alternativa correta"). Palavras de domínio ficam FORA desta lista, por mais
+// genéricas que pareçam: numa primeira versão daqui, "exemplo" e "exemplos"
+// estavam listados como vazios — e isso zerou a medição do módulo de
+// few-shot, que é justamente o módulo sobre fornecer EXEMPLOS. O mesmo valia
+// para "caso", "tipo", "forma" e "texto", que são termos centrais em vários
+// módulos. Filtrar termo de domínio faz a auditoria acusar desancoragem onde
+// não existe.
 const VAZIAS = new Set(
   ("a as ao aos com como da das de dela dele deles do dos e ela elas ele eles em entre era essa esse esta este eu " +
-    "foi for isso isto ja la lhe mais mas me mesmo meu minha muito na nao nas nem no nos numa nunca o os ou para " +
-    "pela pelo per por qual quando que quem se sem ser seu sua sao so tambem te tem tinha tu tua um uma voce vos " +
-    "qualquer sobre sempre cada onde entao depois antes ainda apenas melhor pode deve fazer sendo suas seus todo " +
+    "foi for isso isto ja la lhe mais mas me mesmo mesma meu minha muito na nao nas nem no nos numa nunca o os ou para " +
+    "pela pelo per por quando que quem se sem ser seu sua sao so tambem te tem tinha tu tua um uma voce vos " +
+    "qualquer sobre sempre cada onde entao depois antes ainda apenas pode deve sendo suas seus todo " +
     "toda todos todas outro outra outros outras algum alguma dentro fora alem porque assim pois aquele aquela " +
-    "opcoes opcao alternativa alternativas seguir abaixo acima correta correto certa certo qual quais texto " +
-    "exemplo exemplos caso casos coisa coisas forma formas parte partes tipo tipos situacao situacoes")
+    "opcoes opcao alternativa alternativas seguir abaixo acima correta correto certa certo qual quais")
     .split(/\s+/)
 );
 

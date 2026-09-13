@@ -52,55 +52,26 @@
       "titulo_aula": "Um jeito simples de pensar: o garçom",
       "corpo": "Pense numa API como um garçom. Você (o app) não entra na cozinha (o modelo de IA) para pegar o prato — você faz o pedido ao garçom (a API), que leva à cozinha e traz o resultado de volta.",
       "atividade": {
-        "id": "intermediaria-24-q2",
-        "tipo": "verdadeiro_falso",
-        "enunciado": "Uma API é apenas um tipo de tela onde você digita perguntas para a IA.",
-        "resposta_correta": false,
-        "justificativas": [
+        "id": "intermediaria-24-q3",
+        "tipo": "completar_lacuna",
+        "enunciado": "No exemplo do garçom, a API faz o papel do ___ entre você e a cozinha.",
+        "lacunas": [
           {
-            "id": "a",
-            "texto": "Falso — API é comunicação entre programas, sem interface visual; a tela de chat é só uma das formas de usar um modelo de IA.",
-            "correta": true
-          },
-          {
-            "id": "b",
-            "texto": "Falso, porque APIs foram substituídas por interfaces visuais em todas as ferramentas modernas.",
-            "correta": false
-          },
-          {
-            "id": "c",
-            "texto": "Verdadeiro, toda API tem obrigatoriamente uma tela visual para o usuário digitar.",
-            "correta": false
+            "posicao": 1,
+            "opcoes": [
+              "intermediário",
+              "cardápio",
+              "pagamento"
+            ],
+            "correta": "intermediário"
           }
-        ],
-        "explicacao": "APIs não foram substituídas — elas continuam sendo o canal por trás até das interfaces visuais modernas, que são só uma camada a mais em cima delas."
+        ]
       }
     },
     {
       "ordem": 3,
       "titulo_aula": "Por que isso importa",
       "corpo": "É graças a APIs que uma ferramenta de gestão jurídica consegue 'usar' um modelo de IA por trás, sem ter que construir o próprio modelo do zero — mesma lógica do Módulo 4 da trilha básica.",
-      "atividade": {
-        "id": "intermediaria-24-q3",
-        "tipo": "completar_lacuna",
-        "enunciado": "Uma API funciona como um ___ que permite dois programas se comunicarem entre si.",
-        "lacunas": [
-          {
-            "posicao": 1,
-            "opcoes": [
-              "canal/intermediário",
-              "vírus",
-              "arquivo"
-            ],
-            "correta": "canal/intermediário"
-          }
-        ]
-      }
-    },
-    {
-      "ordem": 4,
-      "titulo_aula": "Você já usa API sem saber",
-      "corpo": "Todo app do celular que puxa previsão do tempo, mapa ou status de entrega está, por trás, se comunicando com alguma API. Com IA não é diferente.",
       "atividade": {
         "id": "intermediaria-24-q4",
         "tipo": "multipla_escolha",
@@ -129,6 +100,35 @@
         ],
         "explicacao_acerto": "Exatamente — API permite usar um modelo de terceiros de forma legítima, sem construir nada do zero.",
         "explicacao_erro": "Não envolve cópia ilegal, não é impossível, e treinar um modelo do zero em minutos não é realista — API é justamente o que evita essa necessidade."
+      }
+    },
+    {
+      "ordem": 4,
+      "titulo_aula": "Você já usa API sem saber",
+      "corpo": "Todo app do celular que puxa previsão do tempo, mapa ou status de entrega está, por trás, se comunicando com alguma API. Com IA não é diferente.",
+      "atividade": {
+        "id": "intermediaria-24-q2",
+        "tipo": "verdadeiro_falso",
+        "enunciado": "Quando um app de celular mostra a previsão do tempo, provavelmente existe uma API buscando esse dado em outro sistema.",
+        "resposta_correta": true,
+        "justificativas": [
+          {
+            "id": "a",
+            "texto": "Verdadeiro — previsão do tempo, mapa e status de entrega vêm de outros sistemas, e é a API que faz esse vaivém de dados.",
+            "correta": true
+          },
+          {
+            "id": "b",
+            "texto": "Falso — esses dados ficam guardados dentro do próprio app e só mudam quando sai uma versão nova dele.",
+            "correta": false
+          },
+          {
+            "id": "c",
+            "texto": "Falso — APIs existem apenas em sistemas corporativos, não em aplicativos comuns de celular.",
+            "correta": false
+          }
+        ],
+        "explicacao": "Dado que muda o tempo todo não caberia embutido no app, e API não é coisa exclusiva de sistema corporativo: esse vaivém entre sistemas é rotina em qualquer celular. Com IA funciona igual — o app conversa com o modelo pela API."
       }
     }
   ],
