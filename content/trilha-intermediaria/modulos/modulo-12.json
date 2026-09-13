@@ -15,7 +15,37 @@
     {
       "ordem": 1,
       "titulo_aula": "Juntando os fios",
-      "corpo": "Você já viu categorias de ferramenta, técnicas de prompt e vários usos práticos. Este módulo é sobre decidir, na prática, qual ferramenta usar em cada situação real.",
+      "corpo": "Você já viu categorias de ferramenta, técnicas de prompt e vários usos práticos. Este módulo é sobre decidir, na prática, qual ferramenta usar em cada situação real.\n\nE essa decisão tem um detalhe traiçoeiro: escolher errado quase nunca dá erro na tela. A ferramenta responde, o texto sai bonito, e nada avisa que aquilo foi produzido pela ferramenta errada — ou que um dado de cliente acabou de ir parar onde não devia.",
+      "destaque": "Escolha errada de ferramenta não trava. Ela entrega — e o preço aparece depois.",
+      "atividade": {
+        "id": "intermediaria-12-q2",
+        "tipo": "verdadeiro_falso",
+        "enunciado": "Usar a ferramenta errada para uma tarefa normalmente se manifesta como um erro visível na tela.",
+        "resposta_correta": false,
+        "justificativas": [
+          {
+            "id": "a",
+            "texto": "Falso — em geral ela responde normalmente; o preço aparece depois, no resultado fraco ou no dado que foi parar onde não devia.",
+            "correta": true
+          },
+          {
+            "id": "b",
+            "texto": "Falso — a ferramenta recusa a tarefa e avisa quando ela está fora do escopo para o qual foi feita.",
+            "correta": false
+          },
+          {
+            "id": "c",
+            "texto": "Verdadeiro — ferramentas de IA sinalizam na resposta quando não são adequadas para o pedido.",
+            "correta": false
+          }
+        ],
+        "explicacao": "Ferramenta de IA quase nunca recusa nem avisa: ela tenta responder de qualquer jeito. É exatamente por isso que a checagem precisa vir de você, ANTES de usar — e não do aviso que nunca vem."
+      }
+    },
+    {
+      "ordem": 2,
+      "titulo_aula": "Três perguntas antes de escolher",
+      "corpo": "Que tipo de tarefa é essa? A informação envolvida é sensível? A ferramenta que estou pensando em usar é aprovada para esse tipo de dado?",
       "atividade": {
         "id": "intermediaria-12-q1",
         "tipo": "multipla_escolha",
@@ -47,59 +77,9 @@
       }
     },
     {
-      "ordem": 2,
-      "titulo_aula": "Três perguntas antes de escolher",
-      "corpo": "Que tipo de tarefa é essa? A informação envolvida é sensível? A ferramenta que estou pensando em usar é aprovada para esse tipo de dado?",
-      "atividade": {
-        "id": "intermediaria-12-q2",
-        "tipo": "verdadeiro_falso",
-        "enunciado": "Existe uma única ferramenta de IA que deveria ser usada para qualquer tipo de tarefa.",
-        "resposta_correta": false,
-        "justificativas": [
-          {
-            "id": "a",
-            "texto": "Falso — a ferramenta mais adequada muda conforme o tipo de tarefa e a sensibilidade do dado envolvido.",
-            "correta": true
-          },
-          {
-            "id": "b",
-            "texto": "Falso, porque cada colaborador do escritório deveria usar uma ferramenta diferente por sorteio.",
-            "correta": false
-          },
-          {
-            "id": "c",
-            "texto": "Verdadeiro, uma vez aprovada, a mesma ferramenta serve para qualquer situação.",
-            "correta": false
-          }
-        ],
-        "explicacao": "Não é uma questão de sorteio nem de usar sempre a mesma ferramenta aprovada — é uma questão de adequação situacional."
-      }
-    },
-    {
       "ordem": 3,
       "titulo_aula": "Sinais de ferramenta errada",
       "corpo": "Respostas sempre genéricas apesar de prompts bons. A ferramenta 'não entende' o formato do que você precisa. Você está inserindo dado sensível numa ferramenta pessoal só por hábito.",
-      "atividade": {
-        "id": "intermediaria-12-q3",
-        "tipo": "completar_lacuna",
-        "enunciado": "Respostas sempre genéricas, mesmo com prompts bons, é um sinal de que a ferramenta pode não ser ___ para aquela tarefa.",
-        "lacunas": [
-          {
-            "posicao": 1,
-            "opcoes": [
-              "adequada",
-              "gratuita",
-              "popular"
-            ],
-            "correta": "adequada"
-          }
-        ]
-      }
-    },
-    {
-      "ordem": 4,
-      "titulo_aula": "Não existe \"a melhor ferramenta\", existe a mais adequada",
-      "corpo": "A pergunta certa nunca é 'qual é a melhor IA do mercado', e sim 'qual é a mais adequada para esta tarefa específica, com este dado específico'.",
       "atividade": {
         "id": "intermediaria-12-q4",
         "tipo": "multipla_escolha",
@@ -128,6 +108,27 @@
         ],
         "explicacao_acerto": "Hábito não é um critério de segurança — os três critérios do módulo deveriam prevalecer sobre a familiaridade com uma ferramenta.",
         "explicacao_erro": "Usar IA não é o problema, ter mais de uma opção disponível também não é — o problema é a escolha não seguir os critérios corretos."
+      }
+    },
+    {
+      "ordem": 4,
+      "titulo_aula": "Não existe \"a melhor ferramenta\", existe a mais adequada",
+      "corpo": "A pergunta certa nunca é 'qual é a melhor IA do mercado', e sim 'qual é a mais adequada para esta tarefa específica, com este dado específico'.",
+      "atividade": {
+        "id": "intermediaria-12-q3",
+        "tipo": "completar_lacuna",
+        "enunciado": "Não existe \"a melhor IA do mercado\" — existe a mais ___ para esta tarefa específica, com este dado específico.",
+        "lacunas": [
+          {
+            "posicao": 1,
+            "opcoes": [
+              "adequada",
+              "gratuita",
+              "popular"
+            ],
+            "correta": "adequada"
+          }
+        ]
       }
     }
   ],

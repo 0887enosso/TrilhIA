@@ -51,35 +51,6 @@
       "titulo_aula": "Implicações práticas de um modelo fechado",
       "corpo": "Geralmente mais fácil de usar, com suporte da empresa — mas você depende das regras e da infraestrutura dela.",
       "atividade": {
-        "id": "intermediaria-23-q2",
-        "tipo": "verdadeiro_falso",
-        "enunciado": "Um modelo aberto é sempre uma escolha melhor do que um modelo fechado.",
-        "resposta_correta": false,
-        "justificativas": [
-          {
-            "id": "a",
-            "texto": "Falso — a escolha depende do contexto: orçamento, necessidade de customização e conhecimento técnico disponível.",
-            "correta": true
-          },
-          {
-            "id": "b",
-            "texto": "Falso, porque modelos abertos foram descontinuados no mercado atual.",
-            "correta": false
-          },
-          {
-            "id": "c",
-            "texto": "Verdadeiro, modelo aberto sempre supera modelo fechado em qualquer critério técnico.",
-            "correta": false
-          }
-        ],
-        "explicacao": "Modelos abertos continuam disponíveis e amplamente usados — a questão não é superioridade técnica absoluta, é adequação ao contexto."
-      }
-    },
-    {
-      "ordem": 3,
-      "titulo_aula": "Implicações práticas de um modelo aberto",
-      "corpo": "Mais controle e customização possível, pode rodar em infraestrutura própria — mas exige bem mais conhecimento técnico para implementar bem.",
-      "atividade": {
         "id": "intermediaria-23-q3",
         "tipo": "completar_lacuna",
         "enunciado": "Em um modelo fechado, você depende das ___ e da infraestrutura da empresa que o mantém.",
@@ -97,9 +68,9 @@
       }
     },
     {
-      "ordem": 4,
-      "titulo_aula": "Nenhum dos dois é \"melhor\" por padrão",
-      "corpo": "A escolha depende do contexto — empresa, orçamento, necessidade de customização. Não existe resposta universal.",
+      "ordem": 3,
+      "titulo_aula": "Implicações práticas de um modelo aberto",
+      "corpo": "Mais controle e customização possível, pode rodar em infraestrutura própria — mas exige bem mais conhecimento técnico para implementar bem.",
       "atividade": {
         "id": "intermediaria-23-q4",
         "tipo": "multipla_escolha",
@@ -128,6 +99,35 @@
         ],
         "explicacao_acerto": "Controle e customização profunda são justamente os pontos fortes de um modelo aberto, quando há capacidade técnica disponível.",
         "explicacao_erro": "Modelo fechado normalmente oferece menos controle técnico, não mais, e a capacidade técnica da equipe é sim um fator relevante na decisão."
+      }
+    },
+    {
+      "ordem": 4,
+      "titulo_aula": "Nenhum dos dois é \"melhor\" por padrão",
+      "corpo": "A escolha depende do contexto — empresa, orçamento, necessidade de customização. Não existe resposta universal.",
+      "atividade": {
+        "id": "intermediaria-23-q2",
+        "tipo": "verdadeiro_falso",
+        "enunciado": "Um modelo aberto é sempre uma escolha melhor do que um modelo fechado.",
+        "resposta_correta": false,
+        "justificativas": [
+          {
+            "id": "a",
+            "texto": "Falso — a escolha depende do contexto: orçamento, necessidade de customização e conhecimento técnico disponível.",
+            "correta": true
+          },
+          {
+            "id": "b",
+            "texto": "Falso, porque modelos abertos foram descontinuados no mercado atual.",
+            "correta": false
+          },
+          {
+            "id": "c",
+            "texto": "Verdadeiro, modelo aberto sempre supera modelo fechado em qualquer critério técnico.",
+            "correta": false
+          }
+        ],
+        "explicacao": "Modelos abertos continuam disponíveis e amplamente usados — a questão não é superioridade técnica absoluta, é adequação ao contexto."
       }
     }
   ],

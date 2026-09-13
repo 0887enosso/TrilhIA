@@ -52,28 +52,15 @@
       "corpo": "O modelo foi treinado lendo uma quantidade gigantesca de texto — livros, artigos, sites. A partir disso, aprendeu padrões estatísticos: dado um certo começo de frase, quais palavras normalmente vêm a seguir. Ele repete esse processo várias vezes, até formar a resposta inteira.",
       "destaque": "Pensa no corretor preditivo do seu celular — só que extremamente mais sofisticado. Em vez de prever uma palavra, ele prevê parágrafos inteiros, mantendo coerência com o resto da conversa.",
       "atividade": {
-        "id": "basica-02-q2",
-        "tipo": "verdadeiro_falso",
-        "enunciado": "A IA generativa procura a resposta certa em uma base de dados, como se fosse um arquivo.",
-        "resposta_correta": false,
-        "justificativas": [
-          {
-            "id": "a",
-            "texto": "Falso — ela gera a resposta prevendo palavra por palavra a partir de padrões aprendidos, e não localizando um texto pronto em algum arquivo.",
-            "correta": true
-          },
-          {
-            "id": "b",
-            "texto": "Falso — porque nenhuma ferramenta de IA tem permissão de acessar qualquer tipo de arquivo armazenado.",
-            "correta": false
-          },
-          {
-            "id": "c",
-            "texto": "Verdadeiro — toda resposta gerada já existe em algum lugar da internet, só que reorganizada de outro jeito.",
-            "correta": false
-          }
-        ],
-        "explicacao": "A questão central é o mecanismo de geração por previsão — não uma regra sobre permissão de acesso a arquivos, nem a ideia de que tudo já existe pronto em algum lugar."
+        "id": "basica-02-q4",
+        "tipo": "ordenar_etapas",
+        "enunciado": "Coloque em ordem o processo simplificado de como uma IA generativa chega a uma resposta.",
+        "etapas_corretas": [
+          "Treinamento com grande volume de texto",
+          "Aprendizado de padrões estatísticos de linguagem",
+          "Geração de texto palavra por palavra a partir de um pedido",
+          "Formação da resposta final"
+        ]
       }
     },
     {
@@ -112,15 +99,28 @@
       "corpo": "Se a IA não sabe distinguir 'verdade' de 'texto plausível', quem precisa fazer essa distinção é você. Isso não torna a IA inútil — torna a revisão humana uma etapa obrigatória, nunca opcional.",
       "destaque": "A gente aprofunda esse ponto no Módulo 8, com exemplos reais.",
       "atividade": {
-        "id": "basica-02-q4",
-        "tipo": "ordenar_etapas",
-        "enunciado": "Coloque em ordem o processo simplificado de como uma IA generativa chega a uma resposta.",
-        "etapas_corretas": [
-          "Treinamento com grande volume de texto",
-          "Aprendizado de padrões estatísticos de linguagem",
-          "Geração de texto palavra por palavra a partir de um pedido",
-          "Formação da resposta final"
-        ]
+        "id": "basica-02-q2",
+        "tipo": "verdadeiro_falso",
+        "enunciado": "Como a IA não distingue \"verdade\" de \"texto plausível\", a revisão humana vira etapa obrigatória, não opcional.",
+        "resposta_correta": true,
+        "justificativas": [
+          {
+            "id": "a",
+            "texto": "Verdadeiro — quem faz essa distinção é você; sem a revisão, nada no caminho separa o que é real do que só parece real.",
+            "correta": true
+          },
+          {
+            "id": "b",
+            "texto": "Falso — basta pedir no prompt que ela responda apenas o que for verdadeiro, e o problema se resolve na origem.",
+            "correta": false
+          },
+          {
+            "id": "c",
+            "texto": "Falso — a revisão só se justifica quando a resposta trata de tema jurídico ou de números.",
+            "correta": false
+          }
+        ],
+        "explicacao": "Pedir no prompt não muda o mecanismo: ela continua prevendo o provável, e um texto inventado sai com a mesma cara de um verdadeiro. E o risco não depende do tema — depende de a informação ser usada como se já estivesse verificada."
       }
     }
   ],

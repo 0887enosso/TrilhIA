@@ -52,35 +52,6 @@
       "titulo_aula": "Gatilho e ação",
       "corpo": "Todo fluxo de automação tem um gatilho (o que inicia o processo, ex: 'um novo e-mail chega') e uma ou mais ações (o que acontece depois, ex: 'a IA resume o e-mail e salva numa planilha').",
       "atividade": {
-        "id": "intermediaria-28-q2",
-        "tipo": "verdadeiro_falso",
-        "enunciado": "Configurar uma automação em uma ferramenta no-code exige escrever código de programação.",
-        "resposta_correta": false,
-        "justificativas": [
-          {
-            "id": "a",
-            "texto": "Falso — 'no-code' significa justamente que a configuração é feita por interface visual, sem exigir programação.",
-            "correta": true
-          },
-          {
-            "id": "b",
-            "texto": "Falso, porque ferramentas no-code foram descontinuadas do mercado.",
-            "correta": false
-          },
-          {
-            "id": "c",
-            "texto": "Verdadeiro, todo fluxo de automação exige pelo menos uma linha de código.",
-            "correta": false
-          }
-        ],
-        "explicacao": "Ferramentas no-code continuam amplamente disponíveis, e a própria proposta delas é eliminar a necessidade de código para configurar um fluxo."
-      }
-    },
-    {
-      "ordem": 3,
-      "titulo_aula": "Um exemplo prático",
-      "corpo": "Gatilho: um novo documento chega numa pasta compartilhada. Ação 1: a IA gera um resumo do documento. Ação 2: o resumo é enviado automaticamente para o canal de comunicação da equipe.",
-      "atividade": {
         "id": "intermediaria-28-q3",
         "tipo": "completar_lacuna",
         "enunciado": "Todo fluxo de automação tem um ___1___ que inicia o processo e uma ou mais ___2___ que definem o que acontece depois.",
@@ -107,9 +78,9 @@
       }
     },
     {
-      "ordem": 4,
-      "titulo_aula": "Nem toda tarefa vale a pena automatizar",
-      "corpo": "Automatizar tem custo de configuração e manutenção — vale a pena para tarefas repetitivas e previsíveis, não necessariamente para tarefas raras ou muito variáveis.",
+      "ordem": 3,
+      "titulo_aula": "Um exemplo prático",
+      "corpo": "Gatilho: um novo documento chega numa pasta compartilhada. Ação 1: a IA gera um resumo do documento. Ação 2: o resumo é enviado automaticamente para o canal de comunicação da equipe.",
       "atividade": {
         "id": "intermediaria-28-q4",
         "tipo": "multipla_escolha",
@@ -138,6 +109,35 @@
         ],
         "explicacao_acerto": "O gatilho é sempre o evento que dá início ao fluxo — nesse caso, a chegada do documento.",
         "explicacao_erro": "Gerar o resumo e enviar ao canal são ações que acontecem depois do gatilho, não o gatilho em si — e todo fluxo de automação precisa de um gatilho."
+      }
+    },
+    {
+      "ordem": 4,
+      "titulo_aula": "Nem toda tarefa vale a pena automatizar",
+      "corpo": "Automatizar tem custo de configuração e manutenção — vale a pena para tarefas repetitivas e previsíveis, não necessariamente para tarefas raras ou muito variáveis.",
+      "atividade": {
+        "id": "intermediaria-28-q2",
+        "tipo": "verdadeiro_falso",
+        "enunciado": "Depois de configurada, uma automação não gera mais custo nenhum — a ferramenta cuida de tudo sozinha daí em diante.",
+        "resposta_correta": false,
+        "justificativas": [
+          {
+            "id": "a",
+            "texto": "Falso — além da configuração, há a manutenção: as regras mudam e o fluxo precisa ser revisado de tempos em tempos.",
+            "correta": true
+          },
+          {
+            "id": "b",
+            "texto": "Falso — as ferramentas exigem que todo fluxo seja reconfigurado do zero a cada 30 dias.",
+            "correta": false
+          },
+          {
+            "id": "c",
+            "texto": "Verdadeiro — o único custo de uma automação é o tempo gasto para montá-la na primeira vez.",
+            "correta": false
+          }
+        ],
+        "explicacao": "Não existe exigência de reconfigurar por prazo, mas também não existe fluxo que se cuide sozinho para sempre. É esse custo de manutenção que decide se a tarefa compensa ou não ser automatizada."
       }
     }
   ],

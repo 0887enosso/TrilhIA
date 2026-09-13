@@ -20,87 +20,37 @@
       "atividade": {
         "id": "intermediaria-15-q1",
         "tipo": "multipla_escolha",
-        "enunciado": "O que torna um prompt de análise de risco contratual mais eficaz?",
+        "enunciado": "Numa análise de contrato, o que faz uma cláusula entrar na lista de \"cláusulas de risco\"?",
         "alternativas": [
           {
             "id": "a",
-            "texto": "Definir critérios específicos do que conta como risco, em vez de pedir 'aponte os riscos' de forma genérica.",
+            "texto": "Ela pode gerar prejuízo financeiro, obrigação desproporcional ou exposição jurídica para a parte que você representa.",
             "correta": true
           },
           {
             "id": "b",
-            "texto": "Pedir para a IA classificar sozinha a gravidade final de cada risco encontrado.",
+            "texto": "Ela tem redação longa e cheia de termos técnicos, difícil de acompanhar por quem não é da área.",
             "correta": false
           },
           {
             "id": "c",
-            "texto": "Evitar mencionar qualquer critério, para não influenciar a resposta da IA.",
+            "texto": "Ela trata do mesmo assunto em mais de uma seção do contrato, o que gera repetição.",
             "correta": false
           },
           {
             "id": "d",
-            "texto": "Pedir a resposta em uma única palavra, para maior objetividade.",
+            "texto": "Ela foi redigida pela outra parte, e não pelo escritório que representa o seu cliente.",
             "correta": false
           }
         ],
-        "explicacao_acerto": "Isso mesmo — critério específico reduz respostas genéricas ou infladas.",
-        "explicacao_erro": "Deixar a IA classificar gravidade sozinha, evitar critério, ou pedir uma única palavra não geram uma análise útil de risco contratual."
+        "explicacao_acerto": "Isso mesmo — o que define risco aqui é o efeito sobre quem você representa, não a forma do texto.",
+        "explicacao_erro": "Redação difícil, repetição e autoria da outra parte podem incomodar, mas nenhuma delas é, por si só, risco. O que conta é o efeito: prejuízo, desproporção ou exposição para o seu lado."
       }
     },
     {
       "ordem": 2,
       "titulo_aula": "Um prompt eficaz de análise de risco",
       "corpo": "Definir critérios específicos ('aponte cláusulas com risco financeiro para o contratante' é melhor que 'aponte os riscos') evita respostas genéricas ou infladas.",
-      "atividade": {
-        "id": "intermediaria-15-q2",
-        "tipo": "verdadeiro_falso",
-        "enunciado": "A IA deve ser responsável pela classificação final de gravidade de um risco contratual.",
-        "resposta_correta": false,
-        "justificativas": [
-          {
-            "id": "a",
-            "texto": "Falso — a IA pode apontar candidatos a risco, mas a classificação de gravidade e a decisão final são julgamento humano.",
-            "correta": true
-          },
-          {
-            "id": "b",
-            "texto": "Falso, porque classificação de gravidade é uma função tecnicamente indisponível em qualquer IA.",
-            "correta": false
-          },
-          {
-            "id": "c",
-            "texto": "Verdadeiro, desde que o prompt peça uma escala numérica de gravidade.",
-            "correta": false
-          }
-        ],
-        "explicacao": "Não é uma limitação técnica — é uma questão de responsabilidade profissional, retomando o raciocínio do Módulo 7 da trilha básica."
-      }
-    },
-    {
-      "ordem": 3,
-      "titulo_aula": "O erro comum: pedir sem critério",
-      "corpo": "'Aponte todos os riscos deste contrato', sem mais nada, tende a gerar uma lista genérica — ou, pior, cláusulas apontadas como risco sem base real no texto.",
-      "atividade": {
-        "id": "intermediaria-15-q3",
-        "tipo": "completar_lacuna",
-        "enunciado": "Pedir \"aponte todos os riscos\" sem critério tende a gerar uma resposta ___ ou sem base real no texto.",
-        "lacunas": [
-          {
-            "posicao": 1,
-            "opcoes": [
-              "genérica",
-              "instantânea",
-              "traduzida"
-            ],
-            "correta": "genérica"
-          }
-        ]
-      }
-    },
-    {
-      "ordem": 4,
-      "titulo_aula": "A classificação final é sua",
-      "corpo": "A IA pode apontar candidatos a cláusula de risco; decidir a gravidade real e a resposta apropriada continua sendo julgamento humano — retomando o raciocínio do Módulo 7 da trilha básica.",
       "atividade": {
         "id": "intermediaria-15-q4",
         "tipo": "correcao_prompt",
@@ -130,6 +80,56 @@
         ],
         "explicacao_acerto": "Exigir que cada risco venha com o trecho exato que o fundamenta reduz bastante o risco de apontamento sem base real.",
         "explicacao_erro": "Papel de juiz e idioma não resolvem esse problema específico, e existe sim uma forma prática de reduzir esse risco: pedir fundamentação explícita."
+      }
+    },
+    {
+      "ordem": 3,
+      "titulo_aula": "O erro comum: pedir sem critério",
+      "corpo": "'Aponte todos os riscos deste contrato', sem mais nada, tende a gerar uma lista genérica — ou, pior, cláusulas apontadas como risco sem base real no texto.",
+      "atividade": {
+        "id": "intermediaria-15-q3",
+        "tipo": "completar_lacuna",
+        "enunciado": "Pedir \"aponte todos os riscos\" sem critério tende a gerar uma resposta ___ ou sem base real no texto.",
+        "lacunas": [
+          {
+            "posicao": 1,
+            "opcoes": [
+              "genérica",
+              "instantânea",
+              "traduzida"
+            ],
+            "correta": "genérica"
+          }
+        ]
+      }
+    },
+    {
+      "ordem": 4,
+      "titulo_aula": "A classificação final é sua",
+      "corpo": "A IA pode apontar candidatos a cláusula de risco; decidir a gravidade real e a resposta apropriada continua sendo julgamento humano — retomando o raciocínio do Módulo 7 da trilha básica.",
+      "atividade": {
+        "id": "intermediaria-15-q2",
+        "tipo": "verdadeiro_falso",
+        "enunciado": "A IA deve ser responsável pela classificação final de gravidade de um risco contratual.",
+        "resposta_correta": false,
+        "justificativas": [
+          {
+            "id": "a",
+            "texto": "Falso — a IA pode apontar candidatos a risco, mas a classificação de gravidade e a decisão final são julgamento humano.",
+            "correta": true
+          },
+          {
+            "id": "b",
+            "texto": "Falso, porque classificação de gravidade é uma função tecnicamente indisponível em qualquer IA.",
+            "correta": false
+          },
+          {
+            "id": "c",
+            "texto": "Verdadeiro, desde que o prompt peça uma escala numérica de gravidade.",
+            "correta": false
+          }
+        ],
+        "explicacao": "Não é uma limitação técnica — é uma questão de responsabilidade profissional, retomando o raciocínio do Módulo 7 da trilha básica."
       }
     }
   ],

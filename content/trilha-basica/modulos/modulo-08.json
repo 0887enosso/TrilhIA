@@ -49,36 +49,7 @@
     {
       "ordem": 2,
       "titulo_aula": "Alucinação em contexto jurídico",
-      "corpo": "Já existem casos reais e documentados ao redor do mundo: citação de jurisprudência inexistente, número de processo inventado, artigo de lei citado incorretamente ou fora de vigência. Nada disso é hipotético — já causou problemas sérios, inclusive processuais, em diversos escritórios.",
-      "atividade": {
-        "id": "basica-08-q2",
-        "tipo": "verdadeiro_falso",
-        "enunciado": "Uma resposta de IA com tom confiante e bem escrito é mais provável de estar correta.",
-        "resposta_correta": false,
-        "justificativas": [
-          {
-            "id": "a",
-            "texto": "Falso — o tom de confiança não está relacionado à veracidade da informação; respostas erradas podem soar igualmente seguras.",
-            "correta": true
-          },
-          {
-            "id": "b",
-            "texto": "Falso — porque textos bem escritos demoram mais tempo para serem gerados pela IA.",
-            "correta": false
-          },
-          {
-            "id": "c",
-            "texto": "Verdadeiro — quanto mais fluente e articulado o texto, maior a chance estatística de estar correto.",
-            "correta": false
-          }
-        ],
-        "explicacao": "Esse é o núcleo do módulo: fluência e tom de segurança não são sinônimos de veracidade, e não têm relação com tempo de geração."
-      }
-    },
-    {
-      "ordem": 3,
-      "titulo_aula": "O perigo específico: confiança não é indicador de acerto",
-      "corpo": "Uma resposta errada da IA tem exatamente o mesmo tom de segurança de uma resposta certa. Isso é diferente de uma pessoa insegura, que geralmente sinaliza dúvida — a IA, na maioria das vezes, não sinaliza nada.",
+      "corpo": "Já existem casos reais e documentados ao redor do mundo: citação de jurisprudência inexistente, número de processo inventado, artigo de lei citado incorretamente ou fora de vigência. Nada disso é hipotético — já causou problemas sérios, inclusive processuais, em diversos escritórios.\n\nE o padrão se repete em todos eles: ninguém conferiu a citação na fonte original antes de protocolar. É exatamente essa checagem que separa um rascunho útil de um problema disciplinar.",
       "atividade": {
         "id": "basica-08-q3",
         "tipo": "multipla_escolha",
@@ -107,6 +78,35 @@
         ],
         "explicacao_acerto": "A única verificação confiável é checar a fonte original — formatação correta não garante veracidade.",
         "explicacao_erro": "Formatação convincente, autoconfirmação da própria IA e raridade do evento não substituem a checagem em uma fonte independente e real."
+      }
+    },
+    {
+      "ordem": 3,
+      "titulo_aula": "O perigo específico: confiança não é indicador de acerto",
+      "corpo": "Uma resposta errada da IA tem exatamente o mesmo tom de segurança de uma resposta certa. Isso é diferente de uma pessoa insegura, que geralmente sinaliza dúvida — a IA, na maioria das vezes, não sinaliza nada.",
+      "atividade": {
+        "id": "basica-08-q2",
+        "tipo": "verdadeiro_falso",
+        "enunciado": "Uma resposta de IA com tom confiante e bem escrito é mais provável de estar correta.",
+        "resposta_correta": false,
+        "justificativas": [
+          {
+            "id": "a",
+            "texto": "Falso — o tom de confiança não está relacionado à veracidade da informação; respostas erradas podem soar igualmente seguras.",
+            "correta": true
+          },
+          {
+            "id": "b",
+            "texto": "Falso — porque textos bem escritos demoram mais tempo para serem gerados pela IA.",
+            "correta": false
+          },
+          {
+            "id": "c",
+            "texto": "Verdadeiro — quanto mais fluente e articulado o texto, maior a chance estatística de estar correto.",
+            "correta": false
+          }
+        ],
+        "explicacao": "Esse é o núcleo do módulo: fluência e tom de segurança não são sinônimos de veracidade, e não têm relação com tempo de geração."
       }
     },
     {
