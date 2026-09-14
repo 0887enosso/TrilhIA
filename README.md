@@ -114,6 +114,8 @@ Todas as telas do fluxo do colaborador (login, início, mapa de trilha, módulo,
 
 ## Próximos passos sugeridos (fora do escopo já implementado)
 
-- Executar `npm install && npm run dev` de verdade num ambiente sem as limitações do sandbox usado para gerar este projeto — nem o backend nem o frontend foram compilados/testados no navegador aqui — e navegar pelo fluxo completo (cadastro → módulo → conclusão → conquistas) antes de confiar no código.
-- Testes de integração (com banco) além dos testes unitários já escritos.
-- Arte final do mascote e testes end-to-end da interface — ver "o que fica para depois" em `docs/frontend.md`.
+- Estruturar a versão mobile. Decisão explícita: primeiro o desktop sem problemas, depois o celular — ver "o que fica para depois" em `docs/frontend.md`.
+- Testes de integração (com banco) e testes end-to-end da interface, além dos testes unitários já escritos.
+- Migrar para o Next 16: o `next@15.5.25` carrega um `postcss@8.4.31` aninhado com vulnerabilidades conhecidas, e não existe correção dentro do 15.x.
+
+> O projeto é instalado, construído, testado (`npm test`, 33 testes) e publicado normalmente. Ao verificar um build, confie no **código de saída**, não na linha `"Compiled successfully"` — ela é impressa antes da checagem de tipos.

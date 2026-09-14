@@ -4,17 +4,23 @@ Documenta as decisões da implementação do frontend (Next.js App Router + Tail
 
 ## Sistema do mascote
 
-`src/components/mascote/`. Um único sprite SVG oculto (`MascoteSprite.tsx`, renderizado uma vez em `src/app/layout.tsx`) define 8 poses como `<symbol>`; qualquer tela usa `<Mascote pose="..." />` (`Mascote.tsx`), que referencia o símbolo via `<use>`. Poses disponíveis (`poses.ts`): `andando`, `sorrindo`, `comemorando`, `tchau`, `pensando`, `cansado`, `certificado`, `sentado`.
+`src/components/mascote/`. São **10 PNGs** de arte final em `public/mascote/{pose}.png`, servidos por `next/image`. Qualquer tela usa `<Mascote pose="..." />` (`Mascote.tsx`); `poses.ts` mapeia cada pose ao seu texto acessível padrão. Poses: `andando`, `sorrindo`, `comemorando`, `tchau`, `pensando`, `cansado`, `certificado`, `sentado`, `parar`, `pulando`.
 
-**Redesenho em relação ao rascunho original:** o desenho enviado seguia de perto uma minifigura licenciada (chapéu fedora bicudo, chicote, jaqueta de couro, bolsa a tiracolo, mãos em garra — reconhecível como Indiana Jones/LEGO). O mascote implementado preserva o "esqueleto" (proporções de boneco articulado: cabeça cilíndrica, torso em bloco, membros retos) mas redesenha todo o figurino com elementos próprios: pele em tom parchment (não amarelo-brinquedo), chapéu de aba curta com emblema de bússola, colete com bolsos, mãos redondas (não em garra), bússola/certificado/lupa como acessórios em vez de chicote. Cores em `src/app/globals.css` (`--masc-*`).
+> Versões anteriores deste documento descreviam um sprite SVG (`MascoteSprite.tsx`) com 8 poses como `<symbol>`, referenciadas via `<use>`, e cores em `--masc-*` no `globals.css`. **Nada disso existe mais**: o sprite foi substituído por arte final em PNG, o componente foi removido e as variáveis CSS saíram junto. Se você procurou por esses nomes e não achou, é por isso.
 
-As 4 poses novas (além das 4 originais) foram criadas para mecânicas que o produto já tem mas o rascunho não cobria: `pensando` (carregamento), `cansado` (0 corações), `certificado` (emissão de certificado), `sentado` (estados vazios).
-
-**Pendência de design:** as poses são ilustrações vetoriais simples (formas geométricas), suficientes para o MVP funcionar e para validar a composição/onde cada pose aparece — mas não substituem arte final desenhada à mão ou gerada por um designer, se o time quiser um acabamento mais rico.
+Como o `next/image` faz lazy loading por padrão, uma pose que aparece de repente depois de uma ação só começaria a baixar naquele instante. É o caso da barra de feedback da questão, que só monta depois da resposta: medido em produção, a imagem levava 425ms e o mascote chegava quase 900ms após o clique — a reação atrasada justamente no momento em que ela existe para comemorar. Por isso existe `<PrecarregarPoses />` (mesmo arquivo), renderizado pelo `CartaoQuestao` enquanto a questão está na tela: baixa as três poses de reação (`comemorando`, `cansado`, `pensando`) com `priority`, para que a barra já encontre a imagem em cache.
 
 ## Paleta e tipografia
 
-`tailwind.config.ts` — cores `parchment`/`ink`/`rule` (neutros), `trail` (estrutural/marca), `amber` (gamificação: XP, badges, estrelas), `coral` (semântico: corações, erro — nunca decorativo). Tipografia: `font-display` (serifada) reservada para contexto de *leitura* (título de aula dentro do módulo, enunciado de questão); `font-sans font-extrabold` é o padrão para título de tela/UI de jogo (dashboard, mapa de trilha, sidebar, conquistas, liga) — decisão tomada depois que a primeira versão (tudo em serifa/parchment) leu como institucional demais, não como gamificação. `font-mono` para dados (XP, IDs, contadores).
+`tailwind.config.ts` — cores `parchment`/`ink`/`rule` (neutros), `trail` (estrutural/marca), `jade` (conquista: acerto, módulo concluído), `amber` (gamificação: XP, badges, estrelas), `coral` (semântico: corações, erro — nunca decorativo).
+
+**Os dois verdes têm papéis distintos e não são intercambiáveis:** `trail` é cromo/marca (sidebar, cabeçalhos, CTA neutro), `jade` é conquista (acerto, nó concluído no mapa, barra de progresso). Trocar um pelo outro faz o app dizer "você acertou" onde ele só queria dizer "isto é o TrilhIA".
+
+Cada família tem papéis de contraste: `DEFAULT` é preenchimento seguro (≥3:1), `vivid` só pode ser usado **dentro de um contorno escuro** (sozinho sobre fundo claro ele reprova em contraste), `strong` é para texto (≥4.5:1) e `soft` é fundo.
+
+**Tipografia:** Nunito (`font-sans`) e Lora (`font-display`), carregadas por `next/font/google` em `src/app/layout.tsx` — baixadas no build e servidas pelo próprio domínio, expostas como `--font-nunito`/`--font-lora`. `font-display` (serifada) é reservada para contexto de *leitura*: título de aula dentro do módulo, enunciado de questão. `font-sans font-extrabold` é o padrão para título de tela/UI de jogo — decisão tomada depois que a primeira versão (tudo em serifa) leu como institucional demais, não como gamificação.
+
+Para números que mudam no lugar (XP, contadores, posição no ranking) use `font-variant-tabular`, não `font-mono`: mantém a fonte da interface e só trava a largura dos dígitos, evitando o "pulo" de largura a cada mudança. `font-mono` ainda aparece nas telas de admin e em alguns rótulos — é resquício da versão anterior, não um padrão a seguir em tela nova.
 
 ### Acento "blaze" e botões 3D
 
@@ -61,12 +67,23 @@ Guardas de autenticação ficam nos layouts (`(app)/layout.tsx`, `admin/layout.t
 
 ## Componentes de questão
 
-`src/components/quiz/CartaoQuestao.tsx` — um componente único com um branch por tipo (`multipla_escolha`/`correcao_prompt` compartilham o mesmo branch, já que a API sanitiza os dois no mesmo formato). Fluxo: seleciona → envia → mostra explicação → "Continuar" (se certo/autoavaliada) ou "Tentar novamente" (se errado, reseta a seleção sem perder a questão). `ordenar_etapas` usa botões ↑/↓ em vez de arrastar-e-soltar — mais simples de implementar e mais acessível, sem dependência extra.
+`src/components/quiz/CartaoQuestao.tsx` — um componente único com um branch por tipo (`multipla_escolha`/`correcao_prompt` compartilham o mesmo branch, já que a API sanitiza os dois no mesmo formato). Fluxo: seleciona → envia → mostra explicação → "Continuar" (se certo/autoavaliada) ou volta para a aula relacionada (se errado). `ordenar_etapas` usa botões ↑/↓ em vez de arrastar-e-soltar — mais simples de implementar e mais acessível, sem dependência extra.
+
+O resultado **não** aparece dentro do cartão: ele vai para `BarraFeedback.tsx`, fixa no rodapé. O motivo é de ritmo, não de enfeite — com o resultado inline, o botão de continuar nascia num lugar diferente a cada questão (dependia do tamanho do enunciado e da explicação), obrigando o usuário a procurar onde clicar a cada rodada. Fixa no rodapé, a ação fica sempre no mesmo pixel, que é o que permite encadear várias questões sem tirar a mão do lugar.
+
+O gabarito nunca é revelado: a API manda só se a resposta enviada estava certa (`sanitizarQuestaoParaCliente`), porque o usuário pode tentar de novo. Na tela, só a alternativa escolhida ganha a cor do resultado — as demais apagam.
 
 ## O que fica para depois (não bloqueia o uso)
 
-- Arte final do mascote (ver "Pendência de design" acima).
+- **Versão mobile.** Decisão explícita: a prioridade atual é deixar o desktop inteiro sem problemas, e só depois estruturar o celular. O que já se sabe que precisa mudar lá: a sidebar fixa de 80px consome 20% de uma tela de 390px e o HUD quebra em três linhas — juntos, ~40% da altura/largura útil viram cromo antes do conteúdo começar. O padrão é barra inferior no mobile.
 - Drag-and-drop para `ordenar_etapas`/`associacao`, se o time preferir à navegação por botões/select.
-- Página de ranking por liga específica no painel admin (a rota de API já existe: `GET /api/admin/ligas/[ligaId]/ranking`).
-- Testes end-to-end da interface (os testes unitários de lógica pura em `src/lib/__tests__/` continuam cobrindo só o backend).
-- Rodar `npm install && npm run build` de verdade — este frontend foi escrito sem acesso a `node_modules` neste ambiente (mesma limitação de sandbox já registrada em `docs/implantacao.md`); revisar a saída do build antes de confiar no código.
+- Testes end-to-end da interface (os testes unitários de lógica pura em `src/lib/__tests__/` continuam cobrindo só o backend). Há verificação visual por captura de tela contra produção, mas é feita sob demanda, não automatizada.
+- Acabamento visual das telas de autenticação e do painel admin, que não passaram pela repaginação.
+
+### Itens desta lista que já foram feitos
+
+Registrados aqui porque a lista acima os descrevia como pendentes até esta rodada:
+
+- ~~Arte final do mascote~~ — feita: 10 PNGs em `public/mascote/`.
+- ~~Página de ranking por liga específica no painel admin~~ — existe: `src/app/admin/ligas/[ligaId]/page.tsx`.
+- ~~Rodar `npm install && npm run build` de verdade~~ — o projeto é construído, testado e publicado normalmente. **Verifique sempre pelo código de saída** (`$LASTEXITCODE` / exit code), nunca procurando `"Compiled successfully"` na saída: essa linha é impressa **antes** da checagem de tipos, então um erro de tipo passa despercebido por quem só olha o texto. Isso já derrubou 13 deploys seguidos enquanto o build era dado como bem-sucedido.

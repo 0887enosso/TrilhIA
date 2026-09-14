@@ -36,17 +36,26 @@ Colaboradores de escritório de advocacia com pouca ou nenhuma vivência prátic
 - **21 rotas de API implementadas**, cobrindo cadastro (com rate limiting e restrição de domínio opcional), autenticação (com invalidação de sessão ao trocar senha), conteúdo sanitizado, progresso de módulo/questão/projeto final (incluindo progresso agregado das duas trilhas), conquistas/certificados, desafio diário, painel administrativo (incluindo criar equipes/ligas e promover/ativar usuários) e apuração semanal de ligas via Vercel Cron. Lista completa em `README.md`.
 - **Gamificação implementada:** XP por tipo de questão, corações com reset por módulo, streak diário com freeze, ligas por equipe + ligas exclusivas com condição de desbloqueio, badges de bloco/trilha, emissão de certificado, estrelas diárias (2 módulos novos por dia) e desafio diário (5 questões de conteúdo já visto, +30 XP de bônus). Detalhes em `docs/gamificacao.md` e `docs/modelagem-dados.md`.
 - **Auditoria técnica realizada em duas rodadas** (`docs/auditoria-tecnica-backend.md`) — todos os achados de prioridade Crítica e Alta corrigidos, e a maioria dos de prioridade Média (Módulo 30 sem captura de dado, senha temporária com aleatoriedade insegura, sessão não invalidada no reset, cadastro sem restrição de domínio, sem rate limiting, sem usuário ativo/inativo).
-- **Testes unitários** para as funções mais críticas (validação de resposta por tipo de questão, sanitização de gabarito, XP/nível/semana ISO) em `src/lib/__tests__/`, rodáveis com `npm test`. Escritos e validados sintaticamente, mas não executados de fato — o ambiente onde este projeto foi gerado teve erro de I/O ao instalar `node_modules` (limitação do sandbox, não do código). Rode `npm install && npm test` antes de confiar neles.
+- **Testes unitários** em `src/lib/__tests__/`, rodáveis com `npm test` — **executados e passando (33 testes)**. Cobrem validação de resposta por tipo de questão, sanitização de gabarito, XP/nível/semana ISO e as travas de conteúdo (toda questão final declara `aula_relacionada` ou `revisao_de`; toda aula tem atividade própria; IDs únicos; gabarito alcançável — a alternativa correta precisa existir entre as opções, e precisa haver exatamente uma). A trava de gabarito alcançável existe porque o erro de trocar as opções de uma lacuna e esquecer o valor de `correta` já aconteceu duas vezes, deixando a questão impossível de responder.
 - **Pendências conhecidas (não bloqueiam o uso):** log estruturado/observabilidade, testes de integração com banco, rate limit de IP em `src/lib/rateLimiter.ts` confia em `x-forwarded-for` (forjável pelo cliente).
 - **Não é mais pendência:** "`atualizarStreak()` não chamado no fluxo do Módulo 30" — o foguinho foi redefinido para ser monitor só do desafio diário (ver `docs/gamificacao.md` e `src/lib/streak.ts`); responder questão de módulo (Módulo 30 incluso) não deve mesmo mover o streak. Chamar `atualizarStreak()` fora de `processarRespostaParaDesafioDiario` violaria essa regra.
 
 ### Status detalhado da Fase 3 (implementada nesta rodada)
 
 - **Stack:** Next.js App Router + Tailwind, sem dependências novas. Leituras de página são Server Components chamando `src/lib/*.ts` direto (mesmas funções que as rotas `GET` usam); mutações são Client Components que chamam as rotas de API existentes via `fetch`. Detalhes e racional completo em `docs/frontend.md`.
-- **Mascote:** sistema de 8 poses em SVG (`src/components/mascote/`) — as 4 originais enviadas foram **redesenhadas** (o rascunho seguia de perto uma minifigura licenciada; a versão implementada tem figurino, cores e acessórios próprios, mesma "esqueleto" de boneco articulado) e 4 novas foram criadas (`pensando`, `cansado`, `certificado`, `sentado`). Arte é vetorial simples — serve para o produto funcionar, mas não substitui um acabamento final de design.
+- **Mascote:** 10 poses em PNG de arte final, em `public/mascote/`, servidas por `next/image` (`src/components/mascote/`). Não existe mais sprite SVG — ver `docs/frontend.md` se você procurou por `MascoteSprite.tsx` e não achou.
 - **Novo endpoint:** `GET /api/ligas` (ranking semanal do usuário logado — só existia leitura de ranking pelo painel admin).
 - **Todas as telas do fluxo do colaborador implementadas:** login/cadastro/troca de senha, início (dashboard), mapa de trilha, módulo (aulas + 7 tipos de questão + módulo 30 com fluxo próprio), desafio diário, conquistas/certificado (com impressão), liga. Painel admin: usuários (promover/rebaixar, ativar/desativar, resetar senha), equipes, ligas.
-- **Não verificado neste ambiente:** o sandbox usado não tem `node_modules` instalado (mesma limitação já registrada para a Fase 2) — o código não foi compilado nem testado no navegador. Rode `npm install && npm run dev` e navegue pelo fluxo completo antes de considerar a Fase 3 fechada.
+- **Verificação:** o projeto é instalado, construído, testado e publicado normalmente (Vercel, região `gru1`, ao lado do banco). Há também verificação visual por captura de tela contra a produção, feita sob demanda.
+
+  **Sempre verifique build pelo código de saída (`$LASTEXITCODE`/exit code), nunca procurando `"Compiled successfully"` na saída.** Essa linha é impressa **antes** da checagem de tipos: um erro de tipo — inclusive em `scripts/`, que o `next build` também type-checa — passa despercebido por quem só lê o texto. Isso já derrubou 13 deploys seguidos enquanto o build era reportado como bem-sucedido, deixando a produção sem correções críticas de segurança.
+
+### Rodadas posteriores à Fase 3
+
+- **Revisão de conteúdo (vínculo aula↔questão).** Toda questão passou a ser respondível a partir da aula imediatamente anterior. A causa raiz era estrutural — havia "aulas de moldura", que apresentavam o tema sem ensinar o que a questão seguinte cobrava — e os 39 módulos foram corrigidos. As questões de `atividade_final` ganharam o campo `aula_relacionada`, usado quando o usuário erra e volta para revisar. A regra está travada por teste (`src/lib/__tests__/vinculoAulaQuestao.test.ts`): não é convenção, é falha de build se alguém quebrar.
+- **Repaginação visual.** Paleta com papéis de contraste explícitos, tipografia Nunito/Lora via `next/font`, ícones de jogo em SVG multi-tom, botões e alternativas pressionáveis, mapa da trilha serpenteando com o mascote marcando "você está aqui", barra de feedback fixa no rodapé. Detalhes em `docs/frontend.md`.
+- **Latência.** As funções foram fixadas em `gru1` (`vercel.json`), ao lado do banco, e o número de idas ao banco por ação foi reduzido — a rota de responder questão caiu de 14 para 8 consultas numa resposta errada. Com banco remoto o custo é dominado pelo **número** de idas, não pelo peso de cada uma: `LOG_QUERIES=1` (ver `src/lib/prisma.ts`) liga um contador por ação, que é a ferramenta certa para investigar lentidão aqui.
+- **Pendências abertas:** versão mobile (decisão explícita de tratar depois do desktop); acabamento visual de autenticação e painel admin; `postcss@8.4.31` aninhado dentro do `next@15.5.25` tem vulnerabilidades conhecidas e **não há correção dentro do 15.x** — o único caminho é migrar para o Next 16 (major).
 
 ## Estrutura de pastas
 
@@ -77,12 +86,13 @@ trilhia/
 │   │   ├── layout.tsx / page.tsx      (layout raiz + redirect para /inicio ou /login)
 │   │   └── globals.css
 │   ├── components/
-│   │   ├── mascote/                   (sprite SVG de 8 poses + componente <Mascote pose="..." />)
-│   │   ├── ui/                        (Botao, Campo, Coracoes, EstrelasDiarias, StreakBadge, BadgePill)
-│   │   ├── app/                       (Header, NavLinks, LogoutButton — shell autenticado)
+│   │   ├── mascote/                   (Mascote — 10 poses PNG, PrecarregarPoses, CarregandoMascote, poses)
+│   │   ├── ui/                        (Botao, Campo, Coracoes, ContadorCoracoes, EstrelasDiarias, StreakBadge, BadgePill, iconesJogo)
+│   │   ├── app/                       (AppShell, Sidebar, TopHud, TrilhaBackdrop, LogoutButton, icones — shell autenticado)
+│   │   ├── reactbits/                 (efeitos adaptados do React Bits — ver docs/THIRD-PARTY-NOTICES.md)
 │   │   ├── auth/                      (formulários de login/cadastro/troca de senha)
 │   │   ├── trilha/                    (MapaTrilha)
-│   │   ├── quiz/                      (CartaoQuestao — 7 tipos, ModuloClient, DesafioClient, ProjetoFinalFlow)
+│   │   ├── quiz/                      (CartaoQuestao — 7 tipos, BarraFeedback, ModuloClient, DesafioClient, ProjetoFinalFlow)
 │   │   └── admin/                     (UsuariosTable, formulários de equipe/liga)
 │   ├── lib/
 │   │   ├── prisma.ts                  (singleton do cliente Prisma)
