@@ -6,7 +6,6 @@ import { useRouter } from "next/navigation";
 import { Mascote } from "@/components/mascote/Mascote";
 import { CarregandoMascote } from "@/components/mascote/CarregandoMascote";
 import { Botao } from "@/components/ui/Botao";
-import { Coracoes } from "@/components/ui/Coracoes";
 import { ContadorCoracoes } from "@/components/ui/ContadorCoracoes";
 import { BadgePill } from "@/components/ui/BadgePill";
 import { CountUp } from "@/components/reactbits/CountUp";
@@ -79,7 +78,6 @@ export function ModuloClient({ trilha, moduloId }: { trilha: TrilhaId; moduloId:
   const [conteudo, setConteudo] = useState<ModuloConteudo | null>(null);
   const [passos, setPassos] = useState<Passo[]>([]);
   const [indice, setIndice] = useState(0);
-  const [coracoesAtuais, setCoracoesAtuais] = useState(5);
   const [coracoesLiberamEm, setCoracoesLiberamEm] = useState<string | null>(null);
   const [xpSessao, setXpSessao] = useState(0);
   // Quando o usuário erra uma questão e volta pra revisar a aula relacionada,
@@ -114,7 +112,6 @@ export function ModuloClient({ trilha, moduloId }: { trilha: TrilhaId; moduloId:
       setFase(codigosBloqueio.includes(corpoIniciar.codigo) ? "bloqueado" : "erro");
       return;
     }
-    setCoracoesAtuais(corpoIniciar.coracoesAtuais);
     setCoracoesLiberamEm(corpoIniciar.coracoesLiberamEm ?? null);
 
     // Vidas não são mais restauradas ao (re)iniciar um módulo — só pela
@@ -167,7 +164,6 @@ export function ModuloClient({ trilha, moduloId }: { trilha: TrilhaId; moduloId:
       return { correta: false, xpGanho: 0, coracoesAtuais: 0, xpTotal: 0, nivel: 1, explicacao: corpo.erro };
     }
 
-    setCoracoesAtuais(corpo.coracoesAtuais);
     if (corpo.xpGanho > 0) setXpSessao((atual) => atual + corpo.xpGanho);
     // Corações podem chegar a 0 aqui sem bloquear ainda de propósito: o
     // cartão precisa renderizar a explicação da resposta errada primeiro.
@@ -379,20 +375,19 @@ export function ModuloClient({ trilha, moduloId }: { trilha: TrilhaId; moduloId:
 
   return (
     <div className="flex flex-col gap-6">
-      {/* `flex-wrap` + `min-w-0`: num módulo com 15+ passos, o indicador de
-          etapas é largo, e sem isso ele empurrava a página inteira para além
-          da largura da tela no celular — a página ficava com 514px de
-          conteúdo numa tela de 390px e as alternativas saíam cortadas. */}
-      <div className="flex flex-wrap items-center justify-between gap-y-2">
-        <div className="min-w-0 flex-1">
-          <p className="text-xs font-extrabold uppercase tracking-widest text-ink-faint">
-            {conteudo.titulo}
-          </p>
-          <div className="mt-2">
-            <EtapaIndicador total={passos.length} atual={indice} />
-          </div>
+      {/* Os corações saíram daqui. O TopHud já mostra as mesmas cinco vidas a
+          uns 80px acima, e o `router.refresh()` do responder() mantém os dois
+          em sincronia — então eram duas fileiras idênticas na mesma tela,
+          dizendo a mesma coisa. Numa tela de celular elas apareciam juntas,
+          gastando altura útil do enunciado. Fica a do topo, que é fixa e
+          acompanha o usuário na rolagem. */}
+      <div className="min-w-0">
+        <p className="text-xs font-extrabold uppercase tracking-widest text-ink-faint">
+          {conteudo.titulo}
+        </p>
+        <div className="mt-2">
+          <EtapaIndicador total={passos.length} atual={indice} />
         </div>
-        <Coracoes atuais={coracoesAtuais} />
       </div>
 
       {passoAtual?.tipo === "licao" ? (

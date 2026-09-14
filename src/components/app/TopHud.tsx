@@ -37,8 +37,13 @@ export function TopHud({ usuario }: { usuario: ResumoUsuario }) {
 
       <Ficha className="border-amber-strong bg-amber-soft">
         <IconeXp tamanho={18} />
+        {/* Sem contagem: o XP total é o mesmo em toda navegação, então subir
+            de 0 até ele não comemora nada — só faz o topo da tela parecer que
+            ainda está carregando por segundos depois da página estar pronta.
+            O XP ganho já é comemorado onde ele de fato acontece: na barra de
+            feedback da questão e no resumo de fim de módulo. */}
         <span className="font-variant-tabular text-sm font-extrabold text-amber-strong">
-          <CountUp to={usuario.xpTotal} duration={1} /> XP
+          <CountUp to={usuario.xpTotal} animar={false} /> XP
         </span>
       </Ficha>
 
