@@ -44,19 +44,27 @@ export async function processarIntervaloDoCafezinho(
   const horaBrasilia = new Date(respondidoEm.getTime() - 3 * 60 * 60 * 1000).getUTCHours();
   if (horaBrasilia < HORA_INICIO_CAFEZINHO || horaBrasilia >= HORA_FIM_CAFEZINHO) return;
 
-  const respostas = await db.respostaQuestao.findMany({
-    where: { usuarioId },
-    select: { respondidoEm: true },
-  });
+  // A contagem de dias distintos é feita no banco, não em memória.
+  //
+  // Antes isto trazia TODAS as respostas do usuário (`findMany` sem limite) só
+  // para contar quantos dias distintos caíam na janela. O custo crescia com o
+  // histórico do usuário e era pago a cada resposta — e a janela é 12h-14h de
+  // Brasília, ou seja, exatamente o horário de almoço, que num app de estudo
+  // de escritório é quando o uso concentra. Quem mais responde é quem mais
+  // linhas arrasta.
+  //
+  // O `- INTERVAL '3 hours'` reproduz o mesmo deslocamento fixo que o código
+  // em JS usava (o Brasil não tem mais horário de verão desde 2019), então a
+  // conquista continua sendo concedida exatamente nos mesmos casos.
+  const [contagem] = await db.$queryRaw<{ dias: bigint }[]>`
+    SELECT COUNT(DISTINCT ("respondidoEm" - INTERVAL '3 hours')::date) AS dias
+    FROM "RespostaQuestao"
+    WHERE "usuarioId" = ${usuarioId}
+      AND EXTRACT(HOUR FROM ("respondidoEm" - INTERVAL '3 hours')) >= ${HORA_INICIO_CAFEZINHO}
+      AND EXTRACT(HOUR FROM ("respondidoEm" - INTERVAL '3 hours')) < ${HORA_FIM_CAFEZINHO}
+  `;
 
-  const diasDistintos = new Set<string>();
-  for (const r of respostas) {
-    const hora = new Date(r.respondidoEm.getTime() - 3 * 60 * 60 * 1000);
-    if (hora.getUTCHours() < HORA_INICIO_CAFEZINHO || hora.getUTCHours() >= HORA_FIM_CAFEZINHO) continue;
-    diasDistintos.add(`${hora.getUTCFullYear()}-${hora.getUTCMonth()}-${hora.getUTCDate()}`);
-  }
-
-  if (diasDistintos.size >= DIAS_MINIMOS_CAFEZINHO) {
+  if (Number(contagem.dias) >= DIAS_MINIMOS_CAFEZINHO) {
     await concederConquista(
       db,
       usuarioId,

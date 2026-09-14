@@ -156,7 +156,25 @@ export async function POST(request: NextRequest) {
   // liga) perdia XP do usuário (ou da liga) silenciosamente, sem forma de
   // recuperação (a constraint única em XpConcedido impede reconceder depois).
   let xpGanho = 0;
-  await prisma.$transaction(async (tx) => {
+
+  // Resposta errada e sem bônus de desafio diário: a única escrita do bloco
+  // abaixo seria zerar a sequência de acertos. Nesse caso a transação não
+  // protege nada — não há duas escritas pra manter juntas — e custava um
+  // BEGIN e um COMMIT, duas idas ao banco a mais que a própria escrita, em
+  // todo erro do usuário. (Errar é metade do uso do app: é o que consome
+  // coração e o que manda o usuário revisar a aula.)
+  //
+  // A condição é deliberadamente estreita: `correta === false` exclui a
+  // autoavaliada (que vem como `null` e sempre concede XP), e o bônus zero
+  // garante que o trecho de XP/liga lá de baixo não teria rodado mesmo.
+  const apenasZeraSequencia = correta === false && xpBonusDesafio <= 0;
+
+  if (apenasZeraSequencia) {
+    await prisma.usuario.update({
+      where: { id: sessao.usuarioId },
+      data: { sequenciaAcertosAtual: 0 },
+    });
+  } else await prisma.$transaction(async (tx) => {
     if (deveTentarConcederXp) {
       // `createMany` + `skipDuplicates` em vez de `create` dentro de
       // try/catch de P2002. A diferença não é de estilo: no PostgreSQL, um
@@ -239,15 +257,28 @@ export async function POST(request: NextRequest) {
     // increment atômico no banco (não "ler xpTotal, somar em código, gravar")
     // — combinar isso numa leitura-cálculo-escrita reabriria uma corrida de
     // perda de XP se duas respostas do mesmo usuário chegarem quase juntas.
-    const comXpAtualizado = await tx.usuario.update({
-      where: { id: sessao.usuarioId },
-      data: { xpTotal: { increment: xpTotalGanhoNaRequisicao } },
-    });
-    const comNivelAtualizado = await tx.usuario.update({
-      where: { id: sessao.usuarioId },
-      data: { nivel: calcularNivel(comXpAtualizado.xpTotal) },
-    });
-    await processarConquistasDeNivel(sessao.usuarioId, comNivelAtualizado.nivel, tx);
+    const [comXpAtualizado] = await tx.$queryRaw<{ xpTotal: number; nivel: number }[]>`
+      UPDATE "Usuario"
+      SET "xpTotal" = "xpTotal" + ${xpTotalGanhoNaRequisicao},
+          "atualizadoEm" = NOW()
+      WHERE "id" = ${sessao.usuarioId}
+      RETURNING "xpTotal", "nivel"
+    `;
+
+    // O nível só é reescrito quando de fato mudou. Antes eram dois UPDATEs na
+    // mesma linha em toda resposta que dava XP — o segundo quase sempre
+    // gravava o mesmo nível de novo, já que só se sobe de nível a cada 300 XP
+    // (uma vez a cada ~30 questões). O RETURNING acima traz o xpTotal novo e o
+    // nível vigente numa ida só, e a fórmula continua morando exclusivamente
+    // em calcularNivel (src/lib/xp.ts): nada de espalhar a regra pelo SQL.
+    const nivelAtualizado = calcularNivel(comXpAtualizado.xpTotal);
+    if (nivelAtualizado !== comXpAtualizado.nivel) {
+      await tx.usuario.update({
+        where: { id: sessao.usuarioId },
+        data: { nivel: nivelAtualizado },
+      });
+    }
+    await processarConquistasDeNivel(sessao.usuarioId, nivelAtualizado, tx);
     const resultadoLiga = await adicionarXpSemanal(
       sessao.usuarioId,
       usuarioAntes.equipeId,
@@ -263,20 +294,28 @@ export async function POST(request: NextRequest) {
   // --- Corações: decremento condicional (gt: 0), nunca fica negativo mesmo
   // sob concorrência — diferente de um decrement simples, que não tem piso.
   if (!ehAutoavaliada && correta === false) {
-    const resultado = await prisma.usuario.updateMany({
-      where: { id: sessao.usuarioId, coracoesAtuais: { gt: 0 } },
-      data: { coracoesAtuais: { decrement: 1 } },
-    });
-    if (resultado.count > 0) {
-      const usuarioComCoracaoDecrementado = await prisma.usuario.findUniqueOrThrow({
-        where: { id: sessao.usuarioId },
-      });
+    // Decremento condicional e leitura do valor resultante numa ida só.
+    //
+    // Eram quatro: `updateMany` do Prisma abre BEGIN/COMMIT implícitos mesmo
+    // para uma única escrita, e o valor pós-decremento exigia um SELECT
+    // depois. O `RETURNING` responde as duas perguntas de uma vez, e o
+    // `WHERE "coracoesAtuais" > 0` mantém o mesmo piso de antes: se outra
+    // requisição já zerou, nenhuma linha volta e nada aqui roda — igual ao
+    // `count === 0` do updateMany.
+    const [coracaoDecrementado] = await prisma.$queryRaw<{ coracoesAtuais: number }[]>`
+      UPDATE "Usuario"
+      SET "coracoesAtuais" = "coracoesAtuais" - 1,
+          "atualizadoEm" = NOW()
+      WHERE "id" = ${sessao.usuarioId} AND "coracoesAtuais" > 0
+      RETURNING "coracoesAtuais"
+    `;
+    if (coracaoDecrementado) {
       // Corações chegaram a exatamente zero agora: grava o timestamp que
       // dispara a regeneração automática em 2h (ver src/lib/coracoes.ts). Só
       // sabemos que chegou a zero depois de ler o valor pós-decremento acima,
       // por isso essa escrita extra só acontece nesse caso específico (não
       // em toda resposta errada).
-      if (usuarioComCoracaoDecrementado.coracoesAtuais === 0) {
+      if (coracaoDecrementado.coracoesAtuais === 0) {
         await prisma.usuario.update({
           where: { id: sessao.usuarioId },
           data: { coracoesZeradosEm: new Date() },

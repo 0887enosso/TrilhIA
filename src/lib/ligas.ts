@@ -90,10 +90,16 @@ export async function ligasElegiveis(
   equipeId: string,
   db: PrismaOuTransacao = prisma
 ) {
-  const [ligasPadrao, ligasExclusivas] = await Promise.all([
-    db.liga.findMany({ where: { tipo: "PADRAO", equipeId } }),
-    db.liga.findMany({ where: { tipo: "EXCLUSIVA" } }),
-  ]);
+  // Uma leitura só, particionada em memória. Eram duas em `Promise.all`, o
+  // que não ajudava no caso que importa: esta função roda quase sempre dentro
+  // do `$transaction` de `adicionarXpSemanal`, e uma transação vive numa
+  // conexão só — as duas consultas serializavam ali de qualquer jeito, mas
+  // continuavam custando duas idas ao banco.
+  const ligas = await db.liga.findMany({
+    where: { OR: [{ tipo: "PADRAO", equipeId }, { tipo: "EXCLUSIVA" }] },
+  });
+  const ligasPadrao = ligas.filter((liga) => liga.tipo === "PADRAO");
+  const ligasExclusivas = ligas.filter((liga) => liga.tipo === "EXCLUSIVA");
 
   const elegiveis = [];
 

@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Botao } from "@/components/ui/Botao";
 import { PELE_CAMPO } from "@/components/ui/Campo";
 import { ClickSpark } from "@/components/reactbits/ClickSpark";
+import { PrecarregarPoses } from "@/components/mascote/Mascote";
 import { BarraFeedback } from "./BarraFeedback";
 import type { ExplicacaoAutoavaliada, Questao, ResultadoResposta } from "./tipos";
 
@@ -153,6 +154,10 @@ export function CartaoQuestao({ questao, onResponder, onContinuar, aoErrarVoltar
 
   return (
     <>
+      {/* Baixa as poses de reação enquanto a questão está na tela, pra que a
+          barra de feedback já encontre a imagem em cache quando montar. */}
+      {resultado ? null : <PrecarregarPoses />}
+
       <div className="flex flex-col gap-5 rounded-3xl border-2 border-rule bg-parchment-surface p-6 shadow-lift">
         {questao.tipo === "multipla_escolha" || questao.tipo === "correcao_prompt" ? (
           <>
