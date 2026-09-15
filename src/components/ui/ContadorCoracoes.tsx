@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
+import { limparAjusteHud } from "@/components/app/estadoHud";
 
 /**
  * Cronômetro de regeneração de vidas — mostra "Vidas voltam em Xh Ymin" a
@@ -40,6 +41,11 @@ export function ContadorCoracoes({
         setRestanteMs(null);
         if (!jaAtualizouRef.current) {
           jaAtualizouRef.current = true;
+          // A regeneração acontece no servidor: o número de corações que ele
+          // vai devolver é mais novo que o ajuste local guardado pela última
+          // questão respondida. Descarta o ajuste, senão ele sobreporia os
+          // corações recém-regenerados com o valor antigo (ver estadoHud.ts).
+          limparAjusteHud();
           router.refresh();
         }
         return false;

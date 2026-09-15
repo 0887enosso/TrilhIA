@@ -1,3 +1,5 @@
+"use client";
+
 import { Coracoes } from "@/components/ui/Coracoes";
 import { ContadorCoracoes } from "@/components/ui/ContadorCoracoes";
 import { EstrelasDiarias } from "@/components/ui/EstrelasDiarias";
@@ -5,6 +7,7 @@ import { StreakBadge } from "@/components/ui/StreakBadge";
 import { IconeXp } from "@/components/ui/iconesJogo";
 import { CountUp } from "@/components/reactbits/CountUp";
 import { StarBorder } from "@/components/reactbits/StarBorder";
+import { useAjusteHud } from "./estadoHud";
 import type { ResumoUsuario } from "@/lib/usuario";
 
 /**
@@ -27,7 +30,16 @@ function Ficha({ children, className = "" }: { children: React.ReactNode; classN
   );
 }
 
-export function TopHud({ usuario }: { usuario: ResumoUsuario }) {
+export function TopHud({ usuario: doServidor }: { usuario: ResumoUsuario }) {
+  // O servidor é a base; o ajuste local, quando existe, é mais novo que ele.
+  //
+  // O layout não re-renderiza a cada questão respondida, então sem isso o HUD
+  // congelava nos valores de quando a página abriu. A alternativa anterior era
+  // um `router.refresh()` por resposta — ~375ms de servidor para atualizar três
+  // números que a resposta da API já trazia. Ver estadoHud.ts.
+  const ajuste = useAjusteHud();
+  const usuario = ajuste ? { ...doServidor, ...ajuste } : doServidor;
+
   return (
     <div className="sticky top-0 z-20 flex flex-wrap items-center justify-end gap-2 border-b-2 border-rule bg-parchment/95 px-4 py-2.5 backdrop-blur print:hidden sm:gap-3">
       <Ficha className="border-trail bg-trail text-parchment-surface">

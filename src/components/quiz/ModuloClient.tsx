@@ -7,6 +7,7 @@ import { Mascote } from "@/components/mascote/Mascote";
 import { CarregandoMascote } from "@/components/mascote/CarregandoMascote";
 import { Botao } from "@/components/ui/Botao";
 import { ContadorCoracoes } from "@/components/ui/ContadorCoracoes";
+import { limparAjusteHud, publicarAjusteHud } from "@/components/app/estadoHud";
 import { BadgePill } from "@/components/ui/BadgePill";
 import { CountUp } from "@/components/reactbits/CountUp";
 import { Confete } from "@/components/reactbits/Confete";
@@ -170,13 +171,21 @@ export function ModuloClient({ trilha, moduloId }: { trilha: TrilhaId; moduloId:
     // O bloqueio ("sem_energia") só acontece quando o usuário tenta
     // responder de novo e a API rejeita com 403 sem_coracoes (acima).
 
-    // A barra de status do topo (TopHud) vem do layout — um Server Component
-    // que só refaz a busca em navegação de página inteira, não a cada
-    // interação dentro deste client component. Sem este refresh, ela ficava
-    // "congelada" no valor de corações/XP/streak de quando a página abriu,
-    // podendo mostrar um coração cheio (ou nenhum cronômetro) mesmo depois
-    // do usuário já ter zerado as vidas de verdade nesta sessão.
-    router.refresh();
+    // A barra de status do topo (TopHud) vem do layout, que o App Router não
+    // re-renderiza a cada interação dentro desta página. Sem sincronizar algo,
+    // ela congela no valor de quando a página abriu e mostra coração cheio
+    // depois do usuário já ter errado.
+    //
+    // Antes isso era um `router.refresh()`: o servidor refazia a árvore
+    // inteira, ~375ms de trabalho por questão respondida, para atualizar três
+    // números que esta resposta já trouxe. Agora os três são publicados
+    // direto. Os demais campos do HUD (estrelas, foguinho) não mudam ao
+    // responder — ver estadoHud.ts para a verificação.
+    publicarAjusteHud({
+      coracoesAtuais: corpo.coracoesAtuais,
+      xpTotal: corpo.xpTotal,
+      nivel: corpo.nivel,
+    });
 
     return corpo;
   }
@@ -221,7 +230,11 @@ export function ModuloClient({ trilha, moduloId }: { trilha: TrilhaId; moduloId:
 
     setConclusao({ badgesGanhas: corpo.badgesGanhas ?? [], certificadoEmitido: corpo.certificadoEmitido ?? false });
     setFase("concluido");
-    router.refresh(); // sincroniza XP/estrelas do TopHud com o que acabou de ser concedido
+    // Concluir módulo pode conceder XP de bônus e mexe nas estrelas do dia —
+    // coisas que o ajuste local não sabe calcular. Descarta o ajuste para o
+    // valor do servidor voltar a valer, e pede a árvore nova.
+    limparAjusteHud();
+    router.refresh();
   }
 
   // Passo "questao" -> passo da aula para onde o "Revisar aula" deve levar.
@@ -376,7 +389,7 @@ export function ModuloClient({ trilha, moduloId }: { trilha: TrilhaId; moduloId:
   return (
     <div className="flex flex-col gap-6">
       {/* Os corações saíram daqui. O TopHud já mostra as mesmas cinco vidas a
-          uns 80px acima, e o `router.refresh()` do responder() mantém os dois
+          uns 80px acima, e o publicarAjusteHud() do responder() mantém os dois
           em sincronia — então eram duas fileiras idênticas na mesma tela,
           dizendo a mesma coisa. Numa tela de celular elas apareciam juntas,
           gastando altura útil do enunciado. Fica a do topo, que é fixa e

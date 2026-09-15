@@ -7,6 +7,7 @@ import { Mascote } from "@/components/mascote/Mascote";
 import { Botao } from "@/components/ui/Botao";
 import { IconeRaio } from "@/components/app/icones";
 import { CountUp } from "@/components/reactbits/CountUp";
+import { limparAjusteHud, publicarAjusteHud } from "@/components/app/estadoHud";
 import { Confete } from "@/components/reactbits/Confete";
 import { IconeXp } from "@/components/ui/iconesJogo";
 import { CartaoQuestao } from "./CartaoQuestao";
@@ -65,11 +66,23 @@ export function DesafioClient({ dadosIniciais }: { dadosIniciais: DesafioParaCli
     }
     if (corpo.desafioDiario?.desafioConcluidoAgora) {
       setXpBonus(corpo.desafioDiario.xpBonus);
+      // Concluir o desafio do dia é o único momento em que o foguinho avança
+      // (ver src/lib/desafioDiario.ts), e o foguinho não sai da resposta desta
+      // API — só o servidor sabe o valor novo. Então aqui, e só aqui, ainda
+      // vale a pena refazer a árvore. Limpa o ajuste antes para o dado fresco
+      // do servidor não ficar sobreposto pelo valor local.
+      limparAjusteHud();
+      router.refresh();
+      return corpo;
     }
-    // Mesma razão do ModuloClient: sem isso, o TopHud (corações, XP, foguinho)
-    // ficava com os valores de quando a página abriu, mesmo depois de uma
-    // resposta errada zerar os corações de verdade nesta sessão.
-    router.refresh();
+
+    // Caso comum: só corações/XP/nível mudaram, e os três vieram na resposta.
+    // Publicar sai de graça no lugar de um refresh de ~375ms por questão.
+    publicarAjusteHud({
+      coracoesAtuais: corpo.coracoesAtuais,
+      xpTotal: corpo.xpTotal,
+      nivel: corpo.nivel,
+    });
     return corpo;
   }
 
