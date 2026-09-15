@@ -40,7 +40,13 @@ function respondidasInicial(desafio: DesafioParaCliente["desafio"]): Set<string>
  */
 export function DesafioClient({ dadosIniciais }: { dadosIniciais: DesafioParaCliente }) {
   const router = useRouter();
-  const [fase, setFase] = useState<Fase>(() => faseInicial(dadosIniciais.desafio));
+  // Sem setter: a fase é decidida uma vez a partir dos dados que o Server
+  // Component entregou e nunca muda por conta própria — a transição para
+  // "tudo respondido" é feita pela condição de render mais abaixo, não por
+  // uma escrita de estado. Mantido como `useState` (e não um `const`
+  // derivado) de propósito: derivar recalcularia a cada render, mudando o
+  // comportamento quando o `router.refresh()` da conclusão traz props novas.
+  const [fase] = useState<Fase>(() => faseInicial(dadosIniciais.desafio));
   const [itens] = useState<ItemDesafio[]>(() => dadosIniciais.desafio?.questoes ?? []);
   const [respondidasAgora, setRespondidasAgora] = useState<Set<string>>(() =>
     respondidasInicial(dadosIniciais.desafio)
