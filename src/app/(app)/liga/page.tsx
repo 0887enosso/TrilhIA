@@ -5,6 +5,7 @@ import { Mascote } from "@/components/mascote/Mascote";
 import { BadgePill } from "@/components/ui/BadgePill";
 import { IconeXp } from "@/components/ui/iconesJogo";
 import { IconeTrofeu } from "@/components/app/icones";
+import { SecaoVazia } from "@/components/ui/SecaoVazia";
 
 // Medalhas do pódio: em vez dos emojis de medalha (que renderizam diferente
 // em cada sistema e destoam do resto da iconografia), um selo desenhado com
@@ -51,6 +52,15 @@ export default async function LigaPage() {
         </div>
       </div>
 
+      {/* Sem este caso, um usuário sem nenhuma liga elegível via só o título e
+          um vazio absoluto embaixo — nada explicando por quê. */}
+      {ligas.length === 0 ? (
+        <SecaoVazia pose="pensando">
+          Você ainda não participa de nenhuma liga. As ligas são organizadas por equipe e a sua
+          aparece aqui assim que houver uma ativa.
+        </SecaoVazia>
+      ) : null}
+
       {ligas.map((liga) => (
         <section key={liga.ligaId} className="rounded-3xl border-2 border-rule bg-parchment-surface p-6">
           <div className="mb-4 flex items-center justify-between">
@@ -59,7 +69,10 @@ export default async function LigaPage() {
           </div>
 
           {liga.participantes.length === 0 ? (
-            <p className="text-sm text-ink-soft">Ninguém pontuou nesta liga ainda esta semana.</p>
+            <SecaoVazia pose="andando">
+              Ninguém pontuou nesta liga ainda esta semana. Responda uma questão e você assume a
+              liderança.
+            </SecaoVazia>
           ) : (
             <ol className="flex flex-col gap-1.5">
               {liga.participantes.map((p) => (
