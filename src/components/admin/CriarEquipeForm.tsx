@@ -4,11 +4,13 @@ import { FormEvent, useState } from "react";
 import { useRouter } from "next/navigation";
 import { CampoTexto } from "@/components/ui/Campo";
 import { Botao } from "@/components/ui/Botao";
+import { useHidratado } from "@/components/ui/useHidratado";
 
 export function CriarEquipeForm() {
   const router = useRouter();
   const [erro, setErro] = useState<string | null>(null);
   const [enviando, setEnviando] = useState(false);
+  const hidratado = useHidratado();
 
   async function aoEnviar(evento: FormEvent<HTMLFormElement>) {
     evento.preventDefault();
@@ -35,11 +37,11 @@ export function CriarEquipeForm() {
   }
 
   return (
-    <form onSubmit={aoEnviar} className="flex flex-wrap items-end gap-3">
+    <form method="post" onSubmit={aoEnviar} className="flex flex-wrap items-end gap-3">
       <div className="w-64">
         <CampoTexto rotulo="Nova equipe" name="nome" required placeholder="Ex: Banco XP" />
       </div>
-      <Botao type="submit" disabled={enviando}>
+      <Botao type="submit" disabled={enviando || !hidratado}>
         {enviando ? "Criando…" : "Criar equipe"}
       </Botao>
       {erro ? <p className="text-sm text-coral">{erro}</p> : null}

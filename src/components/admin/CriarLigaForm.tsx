@@ -4,6 +4,7 @@ import { FormEvent, useState } from "react";
 import { useRouter } from "next/navigation";
 import { CampoTexto, CampoSelecao } from "@/components/ui/Campo";
 import { Botao } from "@/components/ui/Botao";
+import { useHidratado } from "@/components/ui/useHidratado";
 import { CONDICOES_DESBLOQUEIO_ROTULOS } from "@/lib/condicoesLiga";
 
 type Equipe = { id: string; nome: string };
@@ -13,6 +14,7 @@ export function CriarLigaForm({ equipes }: { equipes: Equipe[] }) {
   const [tipo, setTipo] = useState<"PADRAO" | "EXCLUSIVA">("EXCLUSIVA");
   const [erro, setErro] = useState<string | null>(null);
   const [enviando, setEnviando] = useState(false);
+  const hidratado = useHidratado();
 
   async function aoEnviar(evento: FormEvent<HTMLFormElement>) {
     evento.preventDefault();
@@ -47,7 +49,7 @@ export function CriarLigaForm({ equipes }: { equipes: Equipe[] }) {
   }
 
   return (
-    <form onSubmit={aoEnviar} className="flex flex-col gap-4 rounded-lg border border-rule bg-parchment-surface p-5">
+    <form method="post" onSubmit={aoEnviar} className="flex flex-col gap-4 rounded-lg border border-rule bg-parchment-surface p-5">
       <h2 className="font-display text-lg text-ink">Nova liga</h2>
       <div className="grid gap-4 sm:grid-cols-2">
         <CampoTexto rotulo="Nome" name="nome" required placeholder="Ex: Liga da Trilha Intermediária" />
@@ -81,7 +83,7 @@ export function CriarLigaForm({ equipes }: { equipes: Equipe[] }) {
       </div>
 
       {erro ? <p className="text-sm text-coral">{erro}</p> : null}
-      <Botao type="submit" disabled={enviando} className="self-start">
+      <Botao type="submit" disabled={enviando || !hidratado} className="self-start">
         {enviando ? "Criando…" : "Criar liga"}
       </Botao>
     </form>

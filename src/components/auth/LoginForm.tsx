@@ -4,6 +4,7 @@ import { FormEvent, useState } from "react";
 import { useRouter } from "next/navigation";
 import { CampoTexto } from "@/components/ui/Campo";
 import { Botao } from "@/components/ui/Botao";
+import { useHidratado } from "@/components/ui/useHidratado";
 import { DecryptedText } from "@/components/reactbits/DecryptedText";
 import { CartaoAuth } from "./CartaoAuth";
 
@@ -11,6 +12,7 @@ export function LoginForm() {
   const router = useRouter();
   const [erro, setErro] = useState<string | null>(null);
   const [enviando, setEnviando] = useState(false);
+  const hidratado = useHidratado();
 
   async function aoEnviar(evento: FormEvent<HTMLFormElement>) {
     evento.preventDefault();
@@ -52,7 +54,10 @@ export function LoginForm() {
           <p className="mt-1 text-sm text-ink-soft">Letramento em IA para o escritório.</p>
         </div>
 
-        <form onSubmit={aoEnviar} className="flex w-full flex-col gap-4">
+        {/* `method="post"` e o botão travado até hidratar: sem os dois, um
+            clique antes da hidratação virava submit nativo GET e mandava a
+            senha para a query string da URL. Ver useHidratado.ts. */}
+        <form method="post" onSubmit={aoEnviar} className="flex w-full flex-col gap-4">
           <CampoTexto rotulo="Nickname" name="nickname" type="text" required autoComplete="username" />
           <CampoTexto rotulo="Senha" name="senha" type="password" required autoComplete="current-password" />
 
@@ -62,7 +67,7 @@ export function LoginForm() {
             </p>
           ) : null}
 
-          <Botao type="submit" disabled={enviando}>
+          <Botao type="submit" disabled={enviando || !hidratado}>
             {enviando ? "Entrando…" : "Entrar"}
           </Botao>
         </form>

@@ -5,11 +5,13 @@ import { useRouter } from "next/navigation";
 import { Mascote } from "@/components/mascote/Mascote";
 import { CampoTexto } from "@/components/ui/Campo";
 import { Botao } from "@/components/ui/Botao";
+import { useHidratado } from "@/components/ui/useHidratado";
 
 export function TrocarSenhaForm() {
   const router = useRouter();
   const [erro, setErro] = useState<string | null>(null);
   const [enviando, setEnviando] = useState(false);
+  const hidratado = useHidratado();
 
   async function aoEnviar(evento: FormEvent<HTMLFormElement>) {
     evento.preventDefault();
@@ -53,7 +55,10 @@ export function TrocarSenhaForm() {
           </p>
         </div>
 
-        <form onSubmit={aoEnviar} className="flex w-full flex-col gap-4">
+        {/* `method="post"` e o botão travado até hidratar: sem os dois, um
+            clique antes da hidratação virava submit nativo GET e mandava a
+            senha para a query string da URL. Ver useHidratado.ts. */}
+        <form method="post" onSubmit={aoEnviar} className="flex w-full flex-col gap-4">
           <CampoTexto
             rotulo="Nova senha"
             name="novaSenha"
@@ -77,7 +82,7 @@ export function TrocarSenhaForm() {
             </p>
           ) : null}
 
-          <Botao type="submit" disabled={enviando}>
+          <Botao type="submit" disabled={enviando || !hidratado}>
             {enviando ? "Salvando…" : "Salvar nova senha"}
           </Botao>
         </form>
